@@ -1,0 +1,337 @@
+\part{Part I - Practice of Technical Work}
+
+The ``technology stack'' is the collection of hardware and software systems that enables an application to run. The technology stack on contemporary personal computers includes the following components. If you know the name of the component you are confusing about, you will have more success finding help online, or from your instructors or peers.
+
+\begin{description}[noitemsep]
+    \item[Application.] An application is a self-contained program that allows a user to perform specific tasks. Applications are built differently depending on the operating system and typically need permission to access the file system to store and retrieve data. Microsoft Word and Excel, Google Chrome, and Apple Mail are all applications.
+    \item[Channel.] When you install packages using conda, it downloads packages from a channel. A channel is just a named bin that holds packages that you can choose. Most often, you will download packages from a big channel called conda-forge using \texttt{-c conda-forge} in conda commands. If conda can't find a package, make sure you are using an appropriate channel.
+    \item[Command line interface (CLI).] Command line interfaces are the most direct method for interacting with a computer's operating and file systems.\footnote{\url{https://en.wikipedia.org/wiki/Command-line_interface}} The command line accepts only specifically-formatted text commands to navigate the file system and run applications and scripts, but is potentially more customizable than graphical interfaces. The macOS command line can be accessed via the ``Terminal'' application. The Windows command line can be accessed via the ``Command Prompt'' application.
+    \item[File system.] The file system is the software and hardware that stores, retrieves, and organizes the data folders, files, and their permissions for the user(s) on your computer.\footnote{\url{https://en.wikipedia.org/wiki/File_system}}
+    \item[Graphical user interface (GUI).] Graphical user interfaces are a more usable method for interacting with a computer's operating and file systems than CLIs.\footnote{\url{https://en.wikipedia.org/wiki/Graphical_user_interface}} A GUI lets you click icons to launch applications to move icons to copy files. The macOS file systems can be accessed graphically for macOS via its ``Finder'' application for Windows via its ``File Explorer'' application.
+    You are probably most used to interacting with a computer using a GUI. Another way to interact with a computer is through ``the command line'' where you tell the computer what to do using commands, which you enter using a terminal.\footnote{A long time ago, there were no GUIs for computers; everyone just interacted with computers using the terminal. That is why GUIs have special name.} You will sometimes hear GUI pronounced as ``ghee-you-eye" or ``gooey''.
+    \item[Driver.] A driver is software that interfaces between hardware and software (\textit{e.g.}, allowing an operating system to receive information from your mouse and keyboard) or between software programs (\textit{e.g.}, allowing your web browser to combine network packets into a complete data request). Your operating system will typically keep the drivers for hardware like video cards, sound, and networking up-to-date. You may need to install and configure drivers for some applications to talk to other systems like databases.
+    \item[Environment.] Code on your computer does not run in isolation. For instance, to run a Python file you need a Python interpreter stored somewhere on your computer, which reads and executes each line of your code. Moreover, your Python program will sometimes load files from a given directory, or access packages stored somewhere on your machine. If you ran a different Python interpreter (e.g.\ a Python Version 2 interpreter) or loaded different versions of those same packages on your computer you might get different output from your Python program. So you can say the program runs in a given context, with access to particular resources. A program's ``environment'' refers to the all of the variable things that the program uses to run. The program conda is a system for managing Python software environments. If it helps, you can think of a software environment a little bit like an animal's environment. A bird that lives in downtown Boulder will interact with different resources than a bird that lives in Rocky Mountain National Park. The default environment in conda is called the ``base'' environment.
+    \item[Library.] A library is a set of software resources that expand the functionality of a programming language.\footnote{\url{https://en.wikipedia.org/wiki/Library_(computing)}} The basic version of Python only includes a core set of functionality to write Python programs, but not to analyze and visualize data. Software developers write and maintain libraries like \texttt{numpy}, \texttt{pandas}, and \texttt{matplotlib} that allow Python to perform more advanced numerical calculations, to read common data formats, and to visualize data (respectively).
+    \item[Notebook.] Within the context of Python programming, a notebook is an interactive system for running and viewing Python code. A notebook runs in a particular environment. If you run a notebook in an environment called \texttt{3401} it will access particular versions of packages associated with that environment. If you run the same notebook in an environment called \texttt{3402} then you will access \textit{different} versions of those same packages. So if you are getting errors importing packages sometimes but not all the time, then make sure you are running the notebook in the correct environment.
+    \item[Operating system.] The operating system (OS) is the software that coordinates the hardware (processor, hard drive, keyboard, mouse, \textit{etc}.) and other software (file system, interfaces, programs, compilers, drivers, \textit{etc}.) on your computer.\footnote{\url{https://en.wikipedia.org/wiki/Operating_system}}
+    \item[Package.] A package is computer code that somebody else has already written. Often, you will need to install a package on your own computer to develop software. Once you install a package, you can load that package into your own code to use the package in your own code. For example, \href{https://numpy.org/}{numpy} and \href{https://pandas.pydata.org/}{pandas} as common packages for data science.
+    \item[Package manager.]
+    Just like the rest of the software on your computer and phone that needs updates and patched from time-to-time, programming languages like Python rely on software libraries that also need to be kept up-to-date. Because there are dozens of libraries that we regularly use, and because many people need different combinations of packages, we do not want to have to update each individual library in a haphazard manner. Instead, we use a \textit{package manager} to keep track of all the libraries and their versions and automate the process of keeping them up-to-date. In INFO, we often use \conda, which is a popular package manager in the Python data science ecosystem. There is also another package manager called \texttt{pip} that we tend not to use. In general, it is better to always use a particular package manager (i.e.\ conda or pip) to install packages.\footnote{Note that there other package managers for other systems, such as \texttt{npm} package manager for the node.js system.}
+    Many package managers are often used from the command line using the terminal, but the conda GUI also gives you access to a package manager. 
+    \item [PATH.] A path is an environment variable that tells your computer where to look for programs. If you are seeing errors that say things like \texttt{command Python not found} this might indicate an issue with your \texttt{PATH} variable.
+    \item[\texttt{pip}.] \texttt{pip} is another package manager, like conda. In INFO classes, we use conda, not pip.
+    \item[Programming language.] A programming language converts structured input text and data into machine code for computation and translates those results back into human-readable outputs.\footnote{\url{https://en.wikipedia.org/wiki/Programming_language}} Python, Java, Ruby, and C++ are all examples of programming languages. The specific formatting and commands (syntax) of one programming language rarely translate to others but all programming languages use similar computational concepts like sequences, loops, events, and operators.
+    \item[Script.] A script is a simple software program written and run in a ``scripting language'' that does not require compilation.\footnote{\url{https://en.wikipedia.org/wiki/Scripting_language}} Scripts typically can only be run from a CLI and have only text-based updates rather than GUIs. 
+    \item[Text editor.] A text editor is a program for editing files. You can think of it like a word processor but for code. There are many available text editors out there, but the one we tend to use in INFO is Sublime Text.
+    \item[Terminal.] A terminal is a program which allows you to give instructions to your computer. You may sometimes hear the terminal described as a ``shell''. For our purposes, you can think of terminal and shell as synonymous. (Technically, a shell is what actually sends the instructions to the computer. A terminal launches a shell.)
+    \item[Version.] Packages and languages often get updated. So they are assigned version numbers.
+\end{description}
+
+%Python is a open-source programming language that is popular with software engineers, data scientists, and academic researchers. 
+
+% LaTeX Canvas: Chapter Outline
+% LaTeX Canvas: Chapter Outline
+\chapter{Asking Technical Questions}
+\label{ch:asking-questions}
+
+\section*{Purpose}
+This chapter makes the tacit skill of asking for technical help explicit. You will learn how to turn a vague problem (``it doesn't work'') into a specific, reproducible question that others can answer efficiently.
+
+\section*{Learning objectives}
+By the end of this chapter, a reader should be able to:
+\begin{enumerate}
+\item Identify the information a helper needs (context, constraints, reproduction steps, evidence).
+\item Write a minimal, reproducible example (MRE) that a stranger can run.
+\item Clearly separate \textbf{observations} (what happened) from \textbf{interpretations} (why it happened).
+\item Provide environment details (OS, versions, dependencies) without noise.
+\item Ask in the right venue with an appropriate subject/title and respectful tone.
+\item Close the loop with follow-ups that document the resolution for future readers.
+\end{enumerate}
+
+\section*{Running theme: reduce ``search and guess''}
+A good question minimizes the work needed to understand, reproduce, and diagnose. Your goal is to eliminate ambiguity and make the problem observable.
+
+\section{What counts as a `good'' technical question}
+\subsection{Three properties}
+\begin{description}
+  \item[Specific] The request is precise: what you tried, what you expected, what happened instead.
+  \item[Reproducible] Another person can observe the same failure from your description and artifacts.
+  \item[Actionable] The question has a clear decision point (`Why does X happen?'' `How do I do Y?'' `Is Z the right approach given constraint C?'').
+\end{description}
+
+\subsection{Question types}
+\begin{itemize}
+\item \textbf{How-to:} you want a procedure or pattern.
+\item \textbf{Why/diagnosis:} something failed; you want a cause or fix.
+\item \textbf{Design choice:} trade-offs under constraints; you want a recommendation.
+\item \textbf{Verification:} you want confirmation that your understanding is correct.
+\end{itemize}
+
+\section{Before you ask: a short pre-flight}
+\subsection{Locate the right venue}
+\begin{itemize}
+\item Project issue tracker vs. Q\&A site vs. course forum vs. internal team channel.
+\item Read the contribution or support guidelines if they exist.
+\end{itemize}
+
+\subsection{Show your work (without writing a memoir)}
+\begin{itemize}
+\item What documentation did you read? (link/section names)
+\item What did you try? (commands, code, configuration)
+\item What changed recently? (package update, OS upgrade, new data)
+\end{itemize}
+
+\subsection{Define ``done''}
+\begin{itemize}
+\item What outcome would solve the problem?
+\item What constraints matter? (time, compute, permissions, policy, privacy)
+\end{itemize}
+
+\section{Anatomy of a high-signal question}
+\subsection{Title (one line)}
+\begin{itemize}
+\item Include: component + symptom + context.
+\item Avoid: `Help!!!'' `Urgent'' ``Doesn't work''.
+\end{itemize}
+
+\subsection{Body (five blocks)}
+\begin{enumerate}
+\item \textbf{Goal and context:} What are you trying to do, and why?
+\item \textbf{Minimal reproduction:} code/commands/data needed to reproduce.
+\item \textbf{Expected vs. actual:} explicit contrast.
+\item \textbf{Evidence:} error message, logs, screenshots if truly needed.
+\item \textbf{Environment:} versions, OS, dependency manager, runtime.
+\end{enumerate}
+
+\subsection{Separate observation from interpretation}
+\begin{itemize}
+\item Observations: outputs, error text, timings, screenshots.
+\item Interpretations: `I think it is a PATH issue'' or `maybe a race condition.''
+\item Rule: lead with observations; label hypotheses as hypotheses.
+\end{itemize}
+
+\section{Minimal, Reproducible Example (MRE)}
+\subsection{What ``minimal'' means}
+\begin{itemize}
+\item Keep only what is required to trigger the problem.
+\item Remove unrelated files, features, and dependencies.
+\item Prefer small inputs that still fail.
+\end{itemize}
+
+\subsection{What ``complete'' means}
+\begin{itemize}
+\item Include all imports, setup, and data required.
+\item Replace private or sensitive data with synthetic data that preserves structure.
+\item Include the exact command(s) to run.
+\end{itemize}
+
+\subsection{What ``reproducible'' means}
+\begin{itemize}
+\item You have re-run the example from a clean start and confirmed it fails.
+\item Another person can copy, paste, and run without modifications.
+\end{itemize}
+
+\subsection{A practical MRE workflow}
+\begin{enumerate}
+\item Start from the failing program.
+\item Copy it to a scratch location.
+\item Delete code until it stops failing.
+\item Add back only the smallest pieces needed to fail again.
+\item Replace real data with a minimal synthetic fixture.
+\item Document the one command to run.
+\end{enumerate}
+
+\section{Evidence: error messages, logs, and traces}
+\subsection{Error messages}
+\begin{itemize}
+\item Paste the exact text (do not paraphrase).
+\item Include the full stack trace when relevant.
+\item If the message is long: include the full text and highlight the key lines.
+\end{itemize}
+
+\subsection{Logs}
+\begin{itemize}
+\item Include log level and timestamps if available.
+\item Provide a short excerpt around the failure.
+\item State how logs were produced (flags, configuration).
+\end{itemize}
+
+\subsection{Screenshots and images}
+\begin{itemize}
+\item Prefer text over images for code and errors.
+\item Use images for UI issues, plots, or visual artifacts that cannot be described.
+\end{itemize}
+
+\section{Environment capture (without noise)}
+\subsection{What to include}
+\begin{itemize}
+\item OS and version.
+\item Language runtime version (e.g., Python 3.11.x).
+\item Package manager and environment tool (conda, pip, poetry).
+\item Key package versions.
+\item Hardware constraints when relevant (RAM, GPU model).
+\end{itemize}
+
+\subsection{What to omit}
+\begin{itemize}
+\item Irrelevant full package lists.
+\item Personal details (usernames, machine names) unless necessary.
+\item Secrets (API keys, tokens, private URLs).
+\end{itemize}
+
+\subsection{Convenient snippets}
+\begin{quote}
+\texttt{python --version}\
+\texttt{conda info}\
+\texttt{conda list | head}\
+\texttt{pip show <package>}\
+\texttt{uname -a} (Linux/macOS)\
+\texttt{systeminfo} (Windows)
+\end{quote}
+
+\section{Bug-report thinking: steps, expected, actual}
+Even when you are not filing a ``bug,'' this structure improves diagnostic questions.
+\begin{enumerate}
+\item \textbf{Steps to reproduce:} numbered, deterministic.
+\item \textbf{Expected result:} what should have happened.
+\item \textbf{Actual result:} what happened.
+\end{enumerate}
+
+\section{Working with others: tone, etiquette, and follow-through}
+\subsection{Tone and framing}
+\begin{itemize}
+\item Be direct and factual.
+\item Assume good faith; avoid blame.
+\item Do not declare urgency unless the venue explicitly supports it.
+\end{itemize}
+
+\subsection{Follow-through}
+\begin{itemize}
+\item Answer clarifying questions promptly.
+\item Report what you tried based on suggestions.
+\item When solved: summarize the fix and mark the resolution if the platform supports it.
+\end{itemize}
+
+\section{Using LLM/AI tools responsibly when asking questions}
+\subsection{Good uses}
+\begin{itemize}
+\item Drafting an MRE from a larger codebase.
+\item Translating an error message into search terms.
+\item Producing a first-pass hypothesis list.
+\end{itemize}
+
+\subsection{Required safeguards}
+\begin{itemize}
+\item Verify any generated code by running it.
+\item Disclose when text/code was LLM-assisted if norms require it.
+\item Do not paste confidential data into external tools.
+\end{itemize}
+
+\section{Templates}
+\subsection{Template A: general technical question}
+\begin{verbatim}
+Title: [Component] [Symptom] when [Context]
+
+Goal:
+
+* I am trying to ... because ...
+
+Reproduction:
+
+1. ...
+2. ...
+3. ...
+
+Minimal example:
+
+* Code/commands:
+  ...
+* Input data:
+  ...
+
+Expected:
+
+* ...
+
+Actual:
+
+* ...
+
+Evidence:
+
+* Error/log excerpt:
+  ...
+
+Environment:
+
+* OS:
+* Runtime:
+* Key packages:
+* How installed:
+  \end{verbatim}
+
+\subsection{Template B: design-choice question}
+\begin{verbatim}
+Context:
+
+* System/problem setting:
+* Constraints (time, cost, policy, data, stakeholders):
+
+Options considered:
+
+* Option 1:
+* Option 2:
+
+Trade-offs I see:
+
+* ...
+
+Question:
+
+* Given constraints C, which option is more appropriate and why?
+  \end{verbatim}
+
+\section{Worked examples (outline)}
+\subsection{Example 1: vague question (bad)}
+\begin{itemize}
+\item ``My notebook won't run. What is wrong?''
+\end{itemize}
+
+\subsection{Example 1: revised question (good)}
+\begin{itemize}
+\item Title includes error class and tool.
+\item Includes 6-line MRE.
+\item Provides exact command and environment.
+\end{itemize}
+
+\section{Common failure modes and fixes}
+\begin{description}
+\item[Too much context] Move narrative to a short ``Background'' and lead with reproduction.
+\item[No reproduction] Build an MRE; if impossible, state what blocks reproduction.
+\item[Missing environment] Provide versions and how you installed dependencies.
+\item[Paraphrased errors] Paste exact error text.
+\item[Multiple questions at once] Split into separate questions; link them.
+\end{description}
+
+\section{Exercises}
+\begin{enumerate}
+\item Convert a vague prompt into a high-signal question using Template A.
+\item Reduce a 200-line script to a 15-line MRE that still fails.
+\item Write two alternative titles for the same issue: one bad, one good.
+\item Practice environment capture for your machine and paste into a mock report.
+\item Peer review: exchange questions and rate them against the checklist.
+\end{enumerate}
+
+\section{Checklist (one page)}
+\begin{itemize}
+\item I can state my goal in one sentence.
+\item I included a minimal reproduction that I re-tested.
+\item I provided expected vs actual.
+\item I pasted the exact error message/trace.
+\item I included relevant environment details.
+\item I removed secrets and private data.
+\item I asked one question (or clearly separated multiple questions).
+\item I chose the right venue and followed its norms.
+\item I am prepared to respond with additional details.
+\item I will post the resolution.
+\end{itemize}

@@ -1,0 +1,313 @@
+% LaTeX Canvas: Chapter Outline
+\chapter{Using AI and LLMs as Part of Technical Practice (Not a Replacement)}
+\label{ch:llm-practice}
+
+\section*{Purpose}
+Large language model (LLM) tools can accelerate learning and routine work, but they do not remove the need for technical fundamentals. This chapter gives novice students a practical, safety-conscious approach: use LLMs as an assistant embedded in a disciplined workflow of documentation, experimentation, testing, and accountability.
+
+\section*{Learning objectives}
+By the end of this chapter, a reader should be able to:
+\begin{enumerate}
+\item Explain what LLM tools can and cannot reliably do, and why.
+\item Use LLMs to clarify goals, generate options, and draft artifacts \emph{without} outsourcing responsibility.
+\item Verify AI-produced claims and code using documentation, tests, and reproducible runs.
+\item Protect privacy, secrets, and sensitive data when prompting.
+\item Maintain an audit trail of AI assistance (what was generated, what was edited, what was verified).
+\item Follow course and institutional policies about disclosure and academic integrity.
+\end{enumerate}
+
+\section*{Running theme: trust through verification}
+LLMs are best treated as a fast generator of candidate text, code, and hypotheses. You supply the discipline: requirements, checks, and proofs that the output is correct, safe, and appropriate.
+
+\section{A novice-friendly mental model}
+\subsection{What an LLM is (operationally)}
+\begin{itemize}
+\item A probabilistic text generator trained on patterns in large corpora.
+\item It can produce plausible answers even when it is wrong.
+\item It does not automatically know what is true in your environment.
+\end{itemize}
+
+\subsection{What LLMs are good at}
+\begin{itemize}
+\item Drafting: outlines, pseudocode, first-pass code, and documentation templates.
+\item Explaining: rephrasing concepts, translating errors into search terms, analogies.
+\item Suggesting: alternative approaches, edge cases to test, potential failure modes.
+\item Refactoring: simplifying code, improving readability, naming, style.
+\end{itemize}
+
+\subsection{What LLMs are risky at}
+\begin{itemize}
+\item Fabricating facts, citations, or API details.
+\item Producing code that runs but is subtly incorrect.
+\item Introducing security vulnerabilities or leaking secrets.
+\item Overconfident recommendations that ignore constraints.
+\end{itemize}
+
+\section{Rules of engagement: non-negotiables}
+\subsection{Rule 1: You are responsible for the work}
+\begin{itemize}
+\item If you submit it, you own it: correctness, ethics, and policy compliance.
+\item Treat AI output as an untrusted draft until verified.
+\end{itemize}
+
+\subsection{Rule 2: Do not share sensitive information}
+\begin{itemize}
+\item Never paste: passwords, API keys, tokens, private URLs, personal identifiers, or confidential datasets.
+\item Use redaction and synthetic examples.
+\item Prefer local/offline alternatives when handling protected data.
+\end{itemize}
+
+\subsection{Rule 3: Verify with primary sources and execution}
+\begin{itemize}
+\item Verify factual claims using authoritative documentation.
+\item Verify code by running it in your environment.
+\item Verify behavior with tests and minimal reproducible examples.
+\end{itemize}
+
+\subsection{Rule 4: Keep an audit trail}
+\begin{itemize}
+\item Record prompts and model outputs that materially shaped your work.
+\item Track what you changed after generation.
+\item Capture evidence of verification (tests run, outputs, links to docs).
+\end{itemize}
+
+\subsection{Rule 5: Follow disclosure and integrity norms}
+\begin{itemize}
+\item Follow course/institution policies about permitted uses.
+\item Disclose nontrivial AI assistance when required.
+\item Do not misrepresent AI-generated work as fully original.
+\end{itemize}
+
+\section{A workflow: ``Generate \rightarrow Verify \rightarrow Integrate’’}
+\subsection{Step 1: Generate drafts and hypotheses}
+Use AI to propose:
+\begin{itemize}
+\item a plan (steps, checkpoints, prerequisites)
+\item candidate code snippets
+\item a list of hypotheses for why something is failing
+\item potential edge cases and tests
+\end{itemize}
+
+\subsection{Step 2: Verify}
+Verification should be explicit and testable:
+\begin{itemize}
+\item \textbf{Docs check:} find the relevant official doc section and confirm syntax.
+\item \textbf{Run check:} execute on a minimal example.
+\item \textbf{Test check:} add or run a targeted test.
+\item \textbf{Safety check:} scan for secrets, destructive commands, unsafe defaults.
+\end{itemize}
+
+\subsection{Step 3: Integrate}
+\begin{itemize}
+\item Refactor AI output to match your project style.
+\item Add comments only where they improve comprehension.
+\item Commit changes with a message that records what was done.
+\item Update documentation and add a regression test where appropriate.
+\end{itemize}
+
+\section{Best-practice use cases in technical learning}
+\subsection{Learning and comprehension}
+\begin{itemize}
+\item Ask for multiple explanations: intuitive, formal, and example-driven.
+\item Ask for a short self-quiz; then verify answers with notes and docs.
+\item Ask for common misconceptions and how to detect them.
+\end{itemize}
+
+\subsection{Working with documentation}
+\begin{itemize}
+\item Ask AI to translate docs into a checklist for your task.
+\item Ask for ``what should I look for in the reference?’’ then confirm in docs.
+\item Ask for alternative search queries using the exact error message.
+\end{itemize}
+
+\subsection{Debugging}
+\begin{itemize}
+\item Provide a minimal reproduction and ask for hypotheses.
+\item Ask for an experiment plan that changes one variable at a time.
+\item Ask for logging statements to add at boundaries (without sensitive data).
+\end{itemize}
+
+\subsection{Testing}
+\begin{itemize}
+\item Ask AI to propose unit tests for invariants and edge cases.
+\item Ask for a regression test that captures a bug you observed.
+\item Ask for how to make tests deterministic (seeds, isolation, fixtures).
+\end{itemize}
+
+\subsection{Refactoring and code quality}
+\begin{itemize}
+\item Ask for a refactor plan: smaller functions, clearer names, reduced side effects.
+\item Ask to rewrite code to be more readable \emph{without changing behavior}.
+\item Ask for a checklist to review for security and performance pitfalls.
+\end{itemize}
+
+\section{Prompting that supports technical discipline}
+\subsection{Provide the right context}
+\begin{itemize}
+\item State your goal, constraints, and what you have already tried.
+\item Provide the exact error message and minimal reproduction.
+\item Specify your environment: OS, language version, key libraries.
+\end{itemize}
+
+\subsection{Ask for outputs you can verify}
+\begin{itemize}
+\item Prefer step-by-step procedures with checkpoints.
+\item Ask for runnable minimal examples.
+\item Ask for a test plan and expected outputs.
+\end{itemize}
+
+\subsection{Force the model to separate facts from guesses}
+\begin{itemize}
+\item Request assumptions to be stated explicitly.
+\item Request a list of uncertainties and how to resolve them (docs to check, commands to run).
+\end{itemize}
+
+\subsection{Avoid common prompting traps}
+\begin{itemize}
+\item Do not ask for ``the best’’ approach without constraints.
+\item Do not paste large blobs of code; reduce to minimal examples.
+\item Do not accept citations or APIs without verifying against authoritative sources.
+\end{itemize}
+
+\section{Risk management for students}
+\subsection{Accuracy risk (hallucination)}
+\begin{itemize}
+\item Countermeasure: triangulate with primary docs and run checks.
+\item Countermeasure: ask for test cases and predicted outputs.
+\end{itemize}
+
+\subsection{Reproducibility risk}
+\begin{itemize}
+\item Countermeasure: keep environment pinned; record versions.
+\item Countermeasure: capture prompts and generated artifacts in your repo (when allowed).
+\end{itemize}
+
+\subsection{Security and privacy risk}
+\begin{itemize}
+\item Countermeasure: redact; never share secrets.
+\item Countermeasure: treat prompts as potentially persistent; use least disclosure.
+\end{itemize}
+
+\subsection{Academic integrity risk}
+\begin{itemize}
+\item Countermeasure: follow policy and disclose as required.
+\item Countermeasure: use AI to \emph{learn} and \emph{debug}, not to bypass assessed skills.
+\end{itemize}
+
+\subsection{Over-reliance risk (skill atrophy)}
+\begin{itemize}
+\item Countermeasure: attempt first; use AI for hints, not full solutions.
+\item Countermeasure: after using AI, explain the solution in your own words.
+\item Countermeasure: rewrite generated code from scratch after understanding it.
+\end{itemize}
+
+\section{Documentation and disclosure: lightweight provenance}
+\subsection{A simple disclosure statement (when required)}
+\begin{verbatim}
+AI assistance:
+	•	Tool(s) used:
+	•	What it helped with (e.g., outlining, refactoring, test ideas):
+	•	What I verified (tests run, docs checked):
+	•	What I wrote/changed myself:
+\end{verbatim}
+
+\subsection{A simple ``AI usage log’’ for projects}
+\begin{verbatim}
+Date:
+Task:
+Prompt summary:
+Output used (link/commit):
+Verification performed:
+Notes:
+\end{verbatim}
+
+\section{Templates: prompts that enforce good practice}
+\subsection{Template A: Ask for a plan with checkpoints}
+\begin{verbatim}
+Goal: [one sentence]
+Constraints: [OS, versions, time, data limits]
+What I tried: [bullets]
+
+Give me:
+	1.	A step-by-step plan
+	2.	For each step, a checkpoint (what output I should see)
+	3.	Common failure modes and how to detect them
+\end{verbatim}
+
+\subsection{Template B: Debugging with minimal reproduction}
+\begin{verbatim}
+Here is a minimal reproduction:
+[code]
+
+Command to run:
+[command]
+
+Expected:
+Actual:
+Error message:
+	1.	List 3-5 hypotheses
+	2.	For each, propose a minimal experiment to falsify it
+	3.	Suggest the smallest logging statements to add at boundaries
+\end{verbatim}
+
+\subsection{Template C: Generate tests for invariants}
+\begin{verbatim}
+Function/spec:
+	•	Inputs:
+	•	Outputs:
+	•	Invariants:
+	•	Edge cases:
+
+Propose unit tests with synthetic fixtures and expected outputs.
+\end{verbatim}
+
+\subsection{Template D: Documentation cross-check}
+\begin{verbatim}
+I want to use [API/command].
+Summarize the required syntax and key options.
+Then give me a list of specific doc sections or keywords I should verify.
+Do not invent citations.
+\end{verbatim}
+
+\section{Worked examples (outline)}
+\subsection{Example 1: From confusion to understanding}
+\begin{itemize}
+\item Student asks AI for an explanation of file paths.
+\item Student validates by running small terminal commands.
+\item Student writes a short note in their own words.
+\end{itemize}
+
+\subsection{Example 2: Debugging a data-loading error}
+\begin{itemize}
+\item Create a minimal CSV that reproduces the parsing error.
+\item Use AI to propose hypotheses and tests.
+\item Confirm the fix and add a regression test.
+\end{itemize}
+
+\subsection{Example 3: Refactoring notebook code into a script}
+\begin{itemize}
+\item Use AI to propose a refactor plan.
+\item Student implements stepwise, verifying outputs at each step.
+\item Add README steps and environment capture.
+\end{itemize}
+
+\section{Exercises}
+\begin{enumerate}
+\item Write two prompts for the same task: one that invites guessing, one that forces verification.
+\item Take an AI-generated code snippet and (a) run it, (b) write a unit test for it, (c) refactor it for readability.
+\item Produce a one-page AI usage disclosure for a small assignment (tool, scope, verification).
+\item Create a redacted prompt from a sensitive scenario (replace data with synthetic fixtures).
+\item Compare: solve a problem without AI, then with AI; write what you learned and what you verified.
+\end{enumerate}
+
+\section{One-page checklist}
+\begin{itemize}
+\item I attempted the problem first and can state the goal and constraints.
+\item I did not include secrets or sensitive data in my prompt.
+\item I asked for outputs I can verify (steps, tests, predicted outputs).
+\item I verified claims in authoritative documentation.
+\item I ran the code in my environment and captured evidence (outputs/tests).
+\item I integrated changes cleanly (refactor, style, comments) and added a regression test if needed.
+\item I recorded what AI contributed and what I changed.
+\item I complied with disclosure and academic integrity requirements.
+\end{itemize}

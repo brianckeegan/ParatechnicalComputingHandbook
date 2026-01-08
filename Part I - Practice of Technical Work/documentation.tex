@@ -1,0 +1,372 @@
+% LaTeX Canvas: Chapter Outline
+\chapter{Finding, Using, and Writing Technical Documentation}
+\label{ch:docs}
+
+\section*{Purpose}
+Technical documentation is the interface between you and a tool, library, dataset, or system. This chapter teaches you how to (1) locate the right docs quickly, (2) read them strategically for the job at hand, and (3) write documentation that is usable, maintainable, and aligned with audience needs.
+
+\section*{Learning objectives}
+By the end of this chapter, a reader should be able to:
+\begin{enumerate}
+\item Identify documentation \emph{types} and choose the right one for a given need.
+\item Efficiently find authoritative documentation and assess its reliability.
+\item Extract actionable procedures from docs (commands, configuration, API usage) and validate them.
+\item Write clear documentation (tutorial/how-to/reference/explanation) with strong examples.
+\item Maintain docs over time using a docs-as-code workflow.
+\item Contribute improvements via issues and pull requests.
+\end{enumerate}
+
+\section*{Running theme: documentation as an engineering artifact}
+Treat docs as part of the system. Good docs reduce support load, shorten onboarding, and prevent repeated errors. Bad docs create hidden time taxes.
+
+\section{The documentation landscape}
+\subsection{What counts as ``documentation’’}
+\begin{itemize}
+\item Official product/library documentation
+\item README files and examples in repositories
+\item API references and docstrings
+\item Tutorials, quickstarts, and user guides
+\item Man pages and command help output
+\item Standards (RFCs), specifications, and style guides
+\item Issue trackers, release notes, changelogs, migration guides
+\end{itemize}
+
+\subsection{A practical taxonomy (four doc types)}
+Organize documentation into four distinct types, each optimized for a different user need.
+\begin{description}
+\item[Tutorial] Learning-oriented, step-by-step, with a curated path and gentle pacing.
+\item[How-to guide] Task-oriented, concise steps to achieve one goal.
+\item[Reference] Information-oriented, complete and precise (API, options, syntax).
+\item[Explanation] Understanding-oriented, clarifies concepts and design rationale.
+\end{description}
+
+\section{Finding the right documentation fast}
+\subsection{Start with authority and version}
+\begin{itemize}
+\item Prefer primary sources: official docs, maintainer repos, vendor guidance.
+\item Confirm you are reading documentation for the correct \textbf{version}.
+\item If results disagree: prioritize official docs and recent release notes.
+\end{itemize}
+
+\subsection{A search playbook}
+\begin{enumerate}
+\item Query with anchors: \texttt{   }.
+\item Use exact-string search for error messages.
+\item Add intent terms: \texttt{tutorial}, \texttt{how to}, \texttt{reference}, \texttt{API}, \texttt{migration}.
+\item Search within docs using site search or \texttt{site:} filtering.
+\item Use the project issue tracker for edge cases and known bugs.
+\end{enumerate}
+
+\subsection{Where to look (by artifact)}
+\begin{description}
+\item[Command-line tools] Man pages, \texttt{–help}, official docs, examples.
+\item[Python/R packages] Package docs, reference API, tutorials, examples, docstrings.
+\item[Data formats] Format specs, schema docs, examples, validation tooling.
+\item[Cloud/services] Vendor docs, limits/quotas, authentication guides, SDK references.
+\item[Standards] RFCs/specs for precise definitions and normative requirements.
+\end{description}
+
+\subsection{Evaluating reliability in 60 seconds}
+\begin{itemize}
+\item Does it specify the version/date?
+\item Is the source authoritative for the tool?
+\item Are examples runnable and consistent with the current API?
+\item Does it match your environment (OS, language runtime, dependency manager)?
+\item Are there open issues indicating the doc is stale or wrong?
+\end{itemize}
+
+\section{Using documentation effectively}
+\subsection{Two reading modes}
+\begin{description}
+\item[Work mode] You need to complete a task now. Prefer how-to and reference.
+\item[Learn mode] You need durable understanding. Prefer tutorials and explanation.
+\end{description}
+
+\subsection{How to read reference documentation}
+\begin{itemize}
+\item Identify the \textbf{surface area}: parameters, options, return values, constraints.
+\item Locate defaults and edge cases.
+\item Learn the ``shape’’ of the API: required vs optional, types, failure modes.
+\item Translate into a minimal example you can run.
+\end{itemize}
+
+\subsection{How to read how-to guides}
+\begin{itemize}
+\item Verify prerequisites before running steps.
+\item Copy commands exactly; then adapt one variable at a time.
+\item If a step fails: capture the full error, the state, and the last successful step.
+\end{itemize}
+
+\subsection{How to read tutorials}
+\begin{itemize}
+\item Understand the ``happy path’’ first.
+\item Take notes on assumptions and glossed-over details.
+\item After completion, refactor: change one dimension (data size, parameter, environment) to test understanding.
+\end{itemize}
+
+\subsection{How to read man pages and syntax}
+\begin{itemize}
+\item Parse the \texttt{SYNOPSIS}: required arguments vs optional flags.
+\item Interpret conventions: brackets for optional, pipes for alternatives, ellipses for repetition.
+\item Move between sections: NAME, SYNOPSIS, DESCRIPTION, OPTIONS, EXAMPLES.
+\end{itemize}
+
+\subsection{Validate documentation with execution}
+\begin{itemize}
+\item Run examples in a clean environment.
+\item Prefer copy-paste runnable snippets over prose.
+\item Confirm outputs match the doc; record deviations.
+\end{itemize}
+
+\section{Writing technical documentation}
+\subsection{First decision: audience and purpose}
+\begin{itemize}
+\item Define the primary audience: what they know, what they need, what they fear.
+\item Decide the user goal: learn, do, look up, understand.
+\item Write one sentence: ``After reading this, a user can \ldots’’
+\end{itemize}
+
+\subsection{Second decision: choose the doc type}
+\begin{itemize}
+\item Tutorial: onboarding and confidence
+\item How-to: completion under time pressure
+\item Reference: correctness and completeness
+\item Explanation: conceptual clarity and rationale
+\end{itemize}
+
+\subsection{Minimum viable documentation}
+\begin{itemize}
+\item A small set of correct, fresh docs beats a large set of stale docs.
+\item Prefer short documents with tested examples.
+\item Remove redundancy; link rather than duplicate.
+\end{itemize}
+
+\subsection{Core writing principles}
+\begin{itemize}
+\item Use concrete language, consistent terminology, and defined acronyms.
+\item Front-load keywords for skimmability.
+\item Favor parallel structure in steps and lists.
+\item Use code formatting for commands, filenames, and literals.
+\end{itemize}
+
+\subsection{Procedures: writing instructions that work}
+\begin{itemize}
+\item One step, one action.
+\item Use numbered steps; use bullets for non-ordered items.
+\item Provide expected output at key checkpoints.
+\item Add ``If this fails’’ notes only where common.
+\end{itemize}
+
+\subsection{Examples as the backbone}
+\begin{itemize}
+\item Prefer minimal runnable examples.
+\item Provide at least one basic'' and one realistic’’ example.
+\item Show typical errors and how to recover.
+\end{itemize}
+
+\subsection{Warnings, safety, and guardrails}
+\begin{itemize}
+\item Call out destructive operations (deletes, overwrites, credential exposure).
+\item State security-relevant defaults and recommended practices.
+\item Separate normative requirements from suggestions.
+\end{itemize}
+
+\subsection{Information architecture}
+\begin{itemize}
+\item Use headings that match user intent (task verbs for how-to, nouns for reference).
+\item Create a predictable template per doc type.
+\item Include cross-links: prerequisites, related tasks, deeper explanations.
+\end{itemize}
+
+\subsection{Accessibility and inclusivity basics}
+\begin{itemize}
+\item Avoid culture-specific idioms.
+\item Use descriptive link text.
+\item Provide alt text for images and avoid screenshots for code when possible.
+\end{itemize}
+
+\section{Docs as code: maintaining documentation over time}
+\subsection{Workflow}
+\begin{itemize}
+\item Store docs in version control.
+\item Review docs changes via pull requests.
+\item Build docs automatically (CI) and fail on broken links if feasible.
+\item Release docs with code; note doc changes in changelogs.
+\end{itemize}
+
+\subsection{Doc testing patterns}
+\begin{itemize}
+\item ``Doctest’’ or executable examples for APIs.
+\item Linting for style/format.
+\item Link checking.
+\item Smoke tests for tutorial steps.
+\end{itemize}
+
+\subsection{Versioning and deprecation}
+\begin{itemize}
+\item Document breaking changes.
+\item Provide migration guides.
+\item Mark deprecated features and removal timelines.
+\end{itemize}
+
+\section{Contributing to documentation}
+\subsection{When to file an issue vs. submit a patch}
+\begin{itemize}
+\item File an issue if you cannot propose a specific change.
+\item Submit a patch if you can edit the text and test the example.
+\end{itemize}
+
+\subsection{A high-quality documentation issue}
+\begin{itemize}
+\item What page/section is wrong (link + heading)
+\item What you expected
+\item What happened when you followed the doc
+\item Proposed fix (diff, wording, corrected example)
+\item Environment/version details
+\end{itemize}
+
+\section{Using LLM/AI tools for documentation work}
+\subsection{Good uses}
+\begin{itemize}
+\item Drafting outlines and templates
+\item Rewriting for clarity and consistent tone
+\item Generating example variations (then testing)
+\item Creating glossaries and term consistency checks
+\end{itemize}
+
+\subsection{Required safeguards}
+\begin{itemize}
+\item Treat generated content as a draft until verified.
+\item Test every command and code snippet.
+\item Do not leak secrets or private data.
+\item Keep a provenance note when policies require it.
+\end{itemize}
+
+\section{Templates}
+\subsection{Template A: README (minimum viable)}
+\begin{verbatim}
+Project:
+	•	One-sentence description of what this is and who it is for.
+
+Quickstart:
+	1.	Install …
+	2.	Configure …
+	3.	Run …
+
+Example:
+	•	Minimal runnable example with expected output.
+
+Docs:
+	•	Link to tutorial/how-to/reference.
+
+Support:
+	•	Where to ask questions / file issues.
+
+License:
+	•	…
+\end{verbatim}
+
+\subsection{Template B: How-to guide}
+\begin{verbatim}
+Title: How to [do one task]
+
+Prerequisites:
+	•	…
+
+Steps:
+	1.	…
+	2.	…
+	3.	…
+
+Verify:
+	•	Expected output / check.
+
+Troubleshooting:
+	•	Common error -> fix.
+\end{verbatim}
+
+\subsection{Template C: Reference entry}
+\begin{verbatim}
+Name:
+	•	…
+
+Synopsis:
+	•	…
+
+Parameters/Options:
+	•	…
+
+Returns/Outputs:
+	•	…
+
+Errors:
+	•	…
+
+Examples:
+	•	…
+\end{verbatim}
+
+\subsection{Template D: Documentation bug report}
+\begin{verbatim}
+Page/Section:
+	•	URL + heading
+
+Problem:
+	•	What is incorrect, missing, ambiguous, or outdated.
+
+Reproduction:
+	•	Steps followed from the doc.
+
+Expected vs Actual:
+	•	…
+
+Proposed fix:
+	•	Replacement text / corrected example.
+
+Environment:
+	•	Version, OS, runtime, etc.
+\end{verbatim}
+
+\section{Worked examples (outline)}
+\subsection{Example 1: Finding the right doc}
+\begin{itemize}
+\item Start from an error message.
+\item Locate authoritative docs + matching version.
+\item Confirm with a minimal reproduction.
+\end{itemize}
+
+\subsection{Example 2: Converting a messy note into a how-to}
+\begin{itemize}
+\item Extract prerequisites.
+\item Turn actions into numbered steps.
+\item Add verification checkpoints.
+\end{itemize}
+
+\subsection{Example 3: Turning a repeated question into reference}
+\begin{itemize}
+\item Identify stable facts (reference) vs evolving guidance (how-to).
+\item Write a crisp synopsis and options table.
+\item Add two tested examples.
+\end{itemize}
+
+\section{Exercises}
+\begin{enumerate}
+\item Pick a tool you use weekly. Locate: tutorial, how-to, reference, explanation. Note what each does well.
+\item Take a working command sequence from your notes. Convert it into a how-to guide using Template B.
+\item Write a minimum viable README for a small analysis project.
+\item Find one doc bug (ambiguity, missing step, stale example). File a draft issue using Template D.
+\item Rewrite a paragraph for clarity: define terms, remove ambiguity, and add a runnable example.
+\end{enumerate}
+
+\section{Checklist (one page)}
+\begin{itemize}
+\item I know the doc type I am writing.
+\item The audience and prerequisites are explicit.
+\item Examples are minimal and tested.
+\item Steps are ordered, atomic, and verifiable.
+\item Terminology is consistent; acronyms are defined.
+\item Versioning and deprecations are addressed.
+\item Links work; references point to authoritative sources.
+\item Security-sensitive actions are labeled and safe defaults are stated.
+\item The doc can be maintained (docs-as-code workflow).
+\end{itemize}

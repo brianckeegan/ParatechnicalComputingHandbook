@@ -1,0 +1,326 @@
+% LaTeX Canvas: Chapter Outline
+\chapter{Debugging Best Practices: Decomposition, Testing, and Logging}
+\label{ch:debugging}
+
+\section*{Purpose}
+Debugging is not guessing. It is a disciplined process for turning a surprising behavior into an explainable cause and a verified fix. This chapter teaches a repeatable workflow centered on decomposition, controlled experiments, and evidence from tests and logs.
+
+\section*{Learning objectives}
+By the end of this chapter, a reader should be able to:
+\begin{enumerate}
+\item Reproduce a bug reliably and describe it in terms of inputs, state, and observable outputs.
+\item Decompose a system into components and narrow the fault domain systematically.
+\item Form hypotheses and design minimal experiments that falsify them.
+\item Use tests as a debugging instrument: regression tests, unit tests, and targeted harnesses.
+\item Add and interpret logs that accelerate diagnosis without creating noise or leaking secrets.
+\item Use debuggers and tracing tools appropriately (breakpoints, stack traces, profiling, system-call tracing).
+\item Prevent recurrences via fixes that include tests, logging improvements, and documentation.
+\end{enumerate}
+
+\section*{Running theme: make failure observable}
+Your goal is to replace “I think” with “I can show.” The core loop is: \textbf{observe} $\rightarrow$\textbf{hypothesize} $\rightarrow$ \textbf{test} $\rightarrow$ \textbf{learn}.
+
+\section{A practical debugging model}
+\subsection{The debugging loop}
+\begin{enumerate}
+\item \textbf{Stabilize the failure:} reproduce it.
+\item \textbf{Localize:} reduce the scope where the bug can live.
+\item \textbf{Explain:} identify the cause.
+\item \textbf{Fix:} implement the smallest correct change.
+\item \textbf{Prevent:} add a regression test and relevant instrumentation.
+\end{enumerate}
+
+\subsection{Categories of bugs}
+\begin{itemize}
+\item \textbf{Deterministic bugs:} same input, same failure.
+\item \textbf{Data-dependent bugs:} triggered by specific values, formats, or edge cases.
+\item \textbf{Stateful bugs:} depend on history, caches, configuration, or environment.
+\item \textbf{Timing/concurrency bugs:} race conditions, deadlocks, timeouts.
+\item \textbf{Integration bugs:} mismatched assumptions across components.
+\end{itemize}
+
+\section{Step 1: Stabilize and reproduce}
+\subsection{Define the reproduction contract}
+\begin{itemize}
+\item Inputs: files, parameters, environment variables, configuration.
+\item Preconditions: required data state, permissions, network access.
+\item Observable outputs: error messages, logs, wrong values, performance symptoms.
+\end{itemize}
+
+\subsection{Remove randomness and nondeterminism}
+\begin{itemize}
+\item Fix random seeds.
+\item Reduce parallelism (single thread/process) when possible.
+\item Pin dependencies and capture environment details.
+\item Isolate external services with mocks or recorded fixtures.
+\end{itemize}
+
+\subsection{Build a minimal reproduction harness}
+\begin{itemize}
+\item One command to run.
+\item Smallest dataset that still fails.
+\item Clean start instructions (delete cache, restart kernel, reset state).
+\end{itemize}
+
+\section{Step 2: Decomposition and localization}
+\subsection{Draw the system boundary}
+\begin{itemize}
+\item What is under your control (your code)?
+\item What is external (libraries, OS, network, services)?
+\item What is the interface (inputs/outputs) between them?
+\end{itemize}
+
+\subsection{Decompose into a fault tree}
+\begin{enumerate}
+\item List plausible layers: data \rightarrow parsing \rightarrow transformation \rightarrow model/logic \rightarrow I/O \rightarrow presentation.
+\item For each layer, identify invariants (what must always be true).
+\item Instrument checks at boundaries (assertions, validations, logging).
+\end{enumerate}
+
+\subsection{Binary search (bisection) as a general technique}
+\begin{itemize}
+\item \textbf{In code:} comment out half, replace with stubs, or toggle feature flags.
+\item \textbf{In commits:} git bisect to locate the introducing change.
+\item \textbf{In data:} reduce dataset by halving rows/columns until the bug persists.
+\end{itemize}
+
+\subsection{Simplify aggressively}
+\begin{itemize}
+\item Replace complex dependencies with known-good stand-ins.
+\item Swap real data for synthetic data preserving structure.
+\item Reduce concurrency, I/O, and variability to isolate the mechanism.
+\end{itemize}
+
+\section{Step 3: Hypotheses and experiments}
+\subsection{Write falsifiable hypotheses}
+\begin{itemize}
+\item Bad: Something is wrong with the environment.'' \item Good: The bug occurs only when \texttt{X} is \texttt{None}, because \texttt{Y} assumes a string.’’
+\end{itemize}
+
+\subsection{Design minimal experiments}
+\begin{itemize}
+\item Change one variable at a time.
+\item Predict the outcome before running.
+\item Prefer experiments that can fail fast.
+\item Keep notes: command, change, result.
+\end{itemize}
+
+\subsection{Observation hierarchy}
+\begin{itemize}
+\item \textbf{First-order:} stack traces, exceptions, direct wrong outputs.
+\item \textbf{Second-order:} logs and counters that expose internal state.
+\item \textbf{Third-order:} profiles, traces, system calls, network captures.
+\end{itemize}
+
+\section{Debugging tools and techniques}
+\subsection{Print debugging vs logging vs debugger}
+\begin{description}
+\item[Debugger] Best for step-through execution, inspecting state, and control flow.
+\item[Logging] Best for persistent evidence across runs and for hard-to-reproduce failures.
+\item[Print statements] Acceptable for quick local exploration; convert to logging before sharing.
+\end{description}
+
+\subsection{Breakpoints and stepping}
+\begin{itemize}
+\item Set breakpoints at boundaries (entry points, data validation, side effects).
+\item Inspect invariants: types, shapes, units, sortedness, null counts.
+\item Use conditional breakpoints to stop only when a predicate holds.
+\end{itemize}
+
+\subsection{Static analysis and linters}
+\begin{itemize}
+\item Catch type and logic errors before runtime.
+\item Use formatting and linting as “preventive debugging.”
+\end{itemize}
+
+\subsection{Profiling and performance debugging}
+\begin{itemize}
+\item Distinguish CPU-bound vs I/O-bound vs memory-bound.
+\item Use sampling/tracing profilers depending on overhead and needed detail.
+\item Validate with microbenchmarks only after correctness is established.
+\end{itemize}
+
+\subsection{System-level tracing (when the bug is outside your code)}
+\begin{itemize}
+\item Trace file/network calls (e.g., system-call tracing) to confirm assumptions.
+\item Use this for permission issues, missing files, DNS/network failures, and subprocess behavior.
+\end{itemize}
+
+\section{Testing as a debugging instrument}
+\subsection{The debugging value of tests}
+\begin{itemize}
+\item A failing test is a stable reproduction.
+\item A passing test after a fix is evidence, not a feeling.
+\item Tests encode invariants and prevent regressions.
+\end{itemize}
+
+\subsection{Test pyramid for debugging}
+\begin{itemize}
+\item \textbf{Unit tests:} isolate functions; fastest feedback.
+\item \textbf{Integration tests:} verify component interfaces and data contracts.
+\item \textbf{End-to-end tests:} confirm full workflows; slowest and flakiest.
+\end{itemize}
+
+\subsection{Regression tests}
+\begin{itemize}
+\item First write a test that fails for the bug.
+\item Then fix until it passes.
+\item Keep the test small and targeted to the root cause.
+\end{itemize}
+
+\subsection{Fixtures and synthetic data}
+\begin{itemize}
+\item Use fixtures to stabilize state (temp directories, known config).
+\item Use synthetic datasets that preserve schema and edge cases.
+\end{itemize}
+
+\subsection{Flaky tests and nondeterminism}
+\begin{itemize}
+\item Identify sources: timeouts, reliance on network, shared state.
+\item Stabilize: deterministic seeds, isolation, retries only as a last resort.
+\end{itemize}
+
+\section{Logging that helps rather than hurts}
+\subsection{Principles of useful logs}
+\begin{itemize}
+\item Logs are for future you (and other people).
+\item Prefer \textbf{structured} logs (key-value/JSON) when automation matters.
+\item Log at boundaries: inputs received, decisions made, outputs produced.
+\item Include correlation identifiers for multi-step workflows.
+\end{itemize}
+
+\subsection{Log levels (a working contract)}
+\begin{description}
+\item[DEBUG] Fine-grained diagnostics for developers.
+\item[INFO] High-level events: milestones, completed steps.
+\item[WARNING] Unexpected states that are recovered from.
+\item[ERROR] Failures that prevent completion of a task.
+\item[CRITICAL] Failures that threaten system availability or data integrity.
+\end{description}
+
+\subsection{What to log}
+\begin{itemize}
+\item The ``shape’’ of data: counts, ranges, schema versions, hash of inputs.
+\item Decision points: chosen branch, fallback path, retry reason.
+\item External interactions: request IDs, response codes, latency.
+\item Timing: durations for expensive steps.
+\end{itemize}
+
+\subsection{What \emph{not} to log}
+\begin{itemize}
+\item Secrets: API keys, tokens, passwords.
+\item Sensitive data unless policy allows and it is essential.
+\item Unbounded dumps (entire datasets, huge objects) that flood logs.
+\end{itemize}
+
+\subsection{Logging patterns}
+\begin{itemize}
+\item Use a module-level logger (not the root logger) in libraries.
+\item Add context via adapters or structured fields.
+\item Prefer lazy formatting (do not build expensive strings when the level is disabled).
+\item Add exception context correctly (stack traces with the error).
+\end{itemize}
+
+\subsection{From logging to observability (optional extension)}
+\begin{itemize}
+\item Metrics: counts, rates, error ratios, latency distributions.
+\item Traces: follow a request across components.
+\item Use logs, metrics, and traces together to narrow the fault domain.
+\end{itemize}
+
+\section{Common debugging anti-patterns}
+\begin{description}
+\item[Thrashing] Random changes without hypotheses or notes.
+\item[Multi-variable edits] Changing many things between runs.
+\item[Ignoring the error text] Paraphrasing instead of using the exact message.
+\item[Over-trusting intuition] Preferring stories over evidence.
+\item[No regression test] Fixing once and reintroducing later.
+\item[Logging everything] Producing noise instead of signal.
+\end{description}
+
+\section{Case studies (outline)}
+\subsection{Case 1: Data bug (schema drift)}
+\begin{itemize}
+\item Symptom: parsing fails on a subset of files.
+\item Approach: reduce dataset, validate schema, add boundary checks.
+\item Prevention: schema versioning + regression fixture.
+\end{itemize}
+
+\subsection{Case 2: Performance regression}
+\begin{itemize}
+\item Symptom: job runtime doubled.
+\item Approach: add timing logs, profile, bisect commits.
+\item Prevention: performance benchmark in CI + alert thresholds.
+\end{itemize}
+
+\subsection{Case 3: Nondeterministic failure}
+\begin{itemize}
+\item Symptom: occasional wrong outputs.
+\item Approach: reduce concurrency, add correlation IDs, isolate shared state.
+\item Prevention: deterministic tests + instrumentation around shared resources.
+\end{itemize}
+
+\section{Templates}
+\subsection{Template A: Debugging logbook}
+\begin{verbatim}
+Bug:
+	•	One sentence summary.
+
+Reproduction:
+	•	One command / minimal script.
+
+Baseline:
+	•	Expected:
+	•	Actual:
+
+Hypothesis #1:
+	•	Prediction:
+	•	Experiment:
+	•	Result:
+	•	Next:
+
+(Repeat)
+
+Fix:
+	•	Change:
+	•	Why it works:
+
+Prevention:
+	•	Regression test:
+	•	Logging/metrics update:
+	•	Doc update:
+\end{verbatim}
+
+\subsection{Template B: Boundary invariant checklist}
+\begin{verbatim}
+At each boundary, verify:
+	•	Type(s):
+	•	Shape/size:
+	•	Missingness:
+	•	Range/units:
+	•	Sort/order assumptions:
+	•	Encoding/format:
+	•	Permissions/path existence:
+\end{verbatim}
+
+\section{Exercises}
+\begin{enumerate}
+\item Convert a real bug into a minimal reproduction harness.
+\item Use bisection on a sequence of changes to find the introducing step.
+\item Write a regression test for a bug you fixed.
+\item Add three logs that improve observability while avoiding sensitive content.
+\item Diagnose a performance issue using timing logs and a profiler.
+\end{enumerate}
+
+\section{One-page checklist}
+\begin{itemize}
+\item I can reproduce the failure on demand.
+\item I defined expected vs actual outcomes.
+\item I narrowed the fault domain by decomposition or bisection.
+\item I formed a falsifiable hypothesis and ran a minimal experiment.
+\item I used the right tool (debugger, logs, tests, profiler) for the symptom.
+\item I implemented a minimal fix.
+\item I added a regression test.
+\item I improved logging/observability at the relevant boundaries.
+\item I documented the resolution and any new invariants.
+\end{itemize}
