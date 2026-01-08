@@ -1675,8 +1675,8 @@
   \titlecontents{part}% FIXME
     [0em] % distance from left margin
     {\vspace{1.5\baselineskip}\begin{fullwidth}\LARGE\rmfamily\itshape} % above (global formatting of entry)
-    {\contentslabel{2em}} % before w/label (label = ``II'')
-    {} % before w/o label
+    {\hspace*{0em}\contentslabel{2em}} % before w/label (label = ``II'')
+    {\hspace*{0em}} % before w/o label
     {\rmfamily\upshape\qquad\thecontentspage} % filler + page (leaders and page num)
     [\end{fullwidth}] % after
   \titlecontents{chapter}%

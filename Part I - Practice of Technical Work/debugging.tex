@@ -1,326 +1,467 @@
-% LaTeX Canvas: Chapter Outline
-\chapter{Debugging Best Practices}
+% Paratechnical Data Science Handbook
+% Chapter: Debugging Best Practices (Decomposition, Testing, Logging)
+% Target length: ~5000 words
+
+\chapter{Debugging}
 \label{ch:debugging}
 
 \section*{Purpose}
-Debugging is not guessing. It is a disciplined process for turning a surprising behavior into an explainable cause and a verified fix. This chapter teaches a repeatable workflow centered on decomposition, controlled experiments, and evidence from tests and logs.
+When a program fails, it can feel like the computer is ``mad at you.'' In reality, most bugs are ordinary mismatches between what you think the computer is doing and what it is actually doing. Debugging is the practice of finding that mismatch efficiently and fixing it without breaking something else.
+
+In computing courses, beginners sometimes treat debugging as a chaotic activity: rerun the same cell, change random lines, search the error message, and hope it works. Professionals do something different. They treat debugging as a structured investigation. They narrow the search space, form hypotheses, run controlled experiments, collect evidence (including logs), and confirm the fix with tests.
+
+This chapter gives you a repeatable debugging workflow you can use in Python scripts, Jupyter notebooks, spreadsheets, and command-line tools. The emphasis is not on fancy tools. The emphasis is on disciplined thinking: decomposition, minimal reproduction, instrumentation, and verification.
 
 \section*{Learning objectives}
-By the end of this chapter, a reader should be able to:
-\begin{enumerate}
-\item Reproduce a bug reliably and describe it in terms of inputs, state, and observable outputs.
-\item Decompose a system into components and narrow the fault domain systematically.
-\item Form hypotheses and design minimal experiments that falsify them.
-\item Use tests as a debugging instrument: regression tests, unit tests, and targeted harnesses.
-\item Add and interpret logs that accelerate diagnosis without creating noise or leaking secrets.
-\item Use debuggers and tracing tools appropriately (breakpoints, stack traces, profiling, system-call tracing).
-\item Prevent recurrences via fixes that include tests, logging improvements, and documentation.
+By the end of this chapter, you should be able to:
+\begin{enumerate}[noitemsep]
+  \item Describe debugging as an investigation: symptoms, hypotheses, experiments, and evidence.
+  \item Produce a minimal reproducible example (MRE) that isolates a bug.
+  \item Decompose a failing program into smaller units and test them independently.
+  \item Read error messages and stack traces to locate the relevant failure point.
+  \item Use print statements and the \texttt{logging} module to collect useful diagnostic information.
+  \item Write small tests (including ``smoke tests'') to confirm that your fix works and stays fixed.
+  \item Avoid common debugging traps such as random edits, confirmation bias, and stale state in notebooks.
+  \item Use AI tools to assist debugging without outsourcing verification or creating new risks.
 \end{enumerate}
 
-\section*{Running theme: make failure observable}
-Your goal is to replace “I think” with “I can show.” The core loop is: \textbf{observe} $\rightarrow$\textbf{hypothesize} $\rightarrow$ \textbf{test} $\rightarrow$ \textbf{learn}.
+\section*{Running theme: change one thing, observe one thing}
+Most debugging becomes easier when you adopt one rule: make one change at a time, then observe the result. When you change multiple things at once, you cannot tell which change mattered. Debugging is a science experiment, not a guessing game.
 
-\section{A practical debugging model}
-\subsection{The debugging loop}
-\begin{enumerate}
-\item \textbf{Stabilize the failure:} reproduce it.
-\item \textbf{Localize:} reduce the scope where the bug can live.
-\item \textbf{Explain:} identify the cause.
-\item \textbf{Fix:} implement the smallest correct change.
-\item \textbf{Prevent:} add a regression test and relevant instrumentation.
+\section{A mental model: debugging as an evidence-driven loop}
+A bug is a situation where the program behaves differently than you expect. Debugging is the process of reconciling expectations with reality.
+
+A useful way to think about debugging is a loop:
+\begin{enumerate}[noitemsep]
+  \item \textbf{State the symptom.} What exactly went wrong? What did you expect instead?
+  \item \textbf{Reproduce it reliably.} Can you make it fail again on demand?
+  \item \textbf{Localize the problem.} Where (roughly) does the failure occur?
+  \item \textbf{Form hypotheses.} What could cause this symptom?
+  \item \textbf{Run a controlled experiment.} Change one thing to test one hypothesis.
+  \item \textbf{Collect evidence.} Use output, logs, and small checks.
+  \item \textbf{Apply a fix.} Make the smallest change that resolves the cause.
+  \item \textbf{Verify and prevent regression.} Confirm the fix and write a test.
 \end{enumerate}
 
-\subsection{Categories of bugs}
-\begin{itemize}
-\item \textbf{Deterministic bugs:} same input, same failure.
-\item \textbf{Data-dependent bugs:} triggered by specific values, formats, or edge cases.
-\item \textbf{Stateful bugs:} depend on history, caches, configuration, or environment.
-\item \textbf{Timing/concurrency bugs:} race conditions, deadlocks, timeouts.
-\item \textbf{Integration bugs:} mismatched assumptions across components.
+This loop is not linear. You may circle back several times. But it is structured: each iteration should reduce uncertainty.
+
+\subsection{Why the ``random edits'' strategy fails}
+Beginners often respond to a bug by changing multiple lines, rerunning, and hoping. This fails for three reasons:
+\begin{itemize}[noitemsep]
+  \item \textbf{No causality.} If the bug disappears, you do not know why.
+  \item \textbf{New bugs.} Random edits can break working code.
+  \item \textbf{Wasted time.} You spend effort without learning.
 \end{itemize}
 
-\section{Step 1: Stabilize and reproduce}
-\subsection{Define the reproduction contract}
-\begin{itemize}
-\item Inputs: files, parameters, environment variables, configuration.
-\item Preconditions: required data state, permissions, network access.
-\item Observable outputs: error messages, logs, wrong values, performance symptoms.
+A disciplined debugging workflow is not slower; it is faster because it avoids loops of confusion.
+
+\section{Start with a clear problem statement}
+Before you dive into code, write a one-sentence statement:
+
+\begin{quote}
+\textbf{When I do \underline{X}, I expect \underline{Y}, but instead I observe \underline{Z}.}
+\end{quote}
+
+Examples:
+\begin{itemize}[noitemsep]
+  \item ``When I call \texttt{pd.read\_csv} on this file, I expect three columns, but I get one combined column.''
+  \item ``When I run \texttt{python pipeline.py}, I expect an \texttt{outputs/} folder, but nothing is created and there is no error.''
+  \item ``When I merge my branch, I expect a clean history, but I get a merge conflict in \texttt{analysis.ipynb}.''
 \end{itemize}
 
-\subsection{Remove randomness and nondeterminism}
-\begin{itemize}
-\item Fix random seeds.
-\item Reduce parallelism (single thread/process) when possible.
-\item Pin dependencies and capture environment details.
-\item Isolate external services with mocks or recorded fixtures.
+This statement forces you to name your expectation. Many issues turn out to be misunderstandings of what a function or tool is supposed to do.
+
+\section{Reproduce the bug and capture the evidence}
+If you cannot reproduce a bug, you cannot reliably confirm a fix. Reproduction does not always mean ``every time.'' It means ``often enough that you can test changes.''
+
+\subsection{What to capture}
+When something fails, capture the evidence immediately:
+\begin{itemize}[noitemsep]
+  \item The exact command(s) you ran (including directory).
+  \item The exact error message (copy/paste, do not retype).
+  \item The stack trace (if present).
+  \item The inputs: file path, parameters, small sample data.
+  \item The environment: OS, Python version, key package versions, and which environment is active.
 \end{itemize}
 
-\subsection{Build a minimal reproduction harness}
-\begin{itemize}
-\item One command to run.
-\item Smallest dataset that still fails.
-\item Clean start instructions (delete cache, restart kernel, reset state).
-\end{itemize}
+A practical rule: if the information disappears when you close the terminal or restart the notebook, write it down.
 
-\section{Step 2: Decomposition and localization}
-\subsection{Draw the system boundary}
-\begin{itemize}
-\item What is under your control (your code)?
-\item What is external (libraries, OS, network, services)?
-\item What is the interface (inputs/outputs) between them?
-\end{itemize}
-
-\subsection{Decompose into a fault tree}
-\begin{enumerate}
-\item List plausible layers: data $\rightarrow$ parsing $\rightarrow$ transformation $\rightarrow$ model/logic $\rightarrow$ I/O $\rightarrow$ presentation.
-\item For each layer, identify invariants (what must always be true).
-\item Instrument checks at boundaries (assertions, validations, logging).
+\subsection{Reproduction in notebooks versus scripts}
+Jupyter notebooks are convenient, but they create a common debugging hazard: \emph{hidden state}. You can run cells out of order, redefine variables, or keep stale objects in memory. Two ways to protect yourself:
+\begin{enumerate}[noitemsep]
+  \item Restart the kernel and run all cells from top to bottom.
+  \item When you can, reproduce the issue in a plain script.
 \end{enumerate}
 
-\subsection{Binary search (bisection) as a general technique}
-\begin{itemize}
-\item \textbf{In code:} comment out half, replace with stubs, or toggle feature flags.
-\item \textbf{In commits:} git bisect to locate the introducing change.
-\item \textbf{In data:} reduce dataset by halving rows/columns until the bug persists.
+If a bug appears in a notebook but not in a script (or vice versa), that difference is evidence.
+
+\section{Read error messages and stack traces}
+Error messages are not insults. They are structured signals.
+
+\subsection{The difference between an error and a symptom}
+Sometimes the error message is the symptom (e.g., \texttt{FileNotFoundError}). Sometimes the symptom is incorrect output with no error (e.g., a column is all zeros). Both require debugging. Errors are easier because the program tells you where it stopped.
+
+\subsection{How to read a Python stack trace}
+A Python stack trace shows the sequence of function calls that led to the error. Beginners often stare at the last line only. Instead:
+\begin{enumerate}[noitemsep]
+  \item Find the exception type (e.g., \texttt{KeyError}, \texttt{TypeError}).
+  \item Read the exception message (it often includes the missing key or wrong type).
+  \item Scan upward for the first line that refers to \emph{your code} (a file path in your project).
+  \item Treat the frames below that line as internal details of libraries.
+\end{enumerate}
+
+Common novice mistake: trying to ``fix'' library code in \texttt{site-packages}. If the traceback points into a library, the cause is usually your inputs or your environment.
+
+\subsection{Error taxonomies: learn a few recurring families}
+You do not need to memorize every error, but it helps to recognize common families:
+\begin{itemize}[noitemsep]
+  \item \textbf{Name and scope errors}: \texttt{NameError}, variables not defined, typos.
+  \item \textbf{Type mismatches}: \texttt{TypeError}, operations on wrong data type.
+  \item \textbf{Indexing and keys}: \texttt{IndexError}, \texttt{KeyError}, missing columns or out-of-range indices.
+  \item \textbf{Files and paths}: \texttt{FileNotFoundError}, wrong directory, permissions.
+  \item \textbf{Parsing and formats}: \texttt{ValueError} when converting strings to numbers/dates.
+  \item \textbf{Imports and environments}: \texttt{ModuleNotFoundError}, version conflicts.
 \end{itemize}
 
-\subsection{Simplify aggressively}
-\begin{itemize}
-\item Replace complex dependencies with known-good stand-ins.
-\item Swap real data for synthetic data preserving structure.
-\item Reduce concurrency, I/O, and variability to isolate the mechanism.
+Each family suggests a different debugging move. For example, \texttt{KeyError} suggests printing available keys/columns; \texttt{ModuleNotFoundError} suggests checking environments.
+
+\section{Decomposition: make the problem smaller}
+Decomposition is the most important debugging skill. You reduce a complex failure to a small failure.
+
+\subsection{Three decomposition strategies}
+\paragraph{1) Divide and conquer.} Split the workflow into stages and find where the bug first appears. In data science pipelines:
+\begin{enumerate}[noitemsep]
+  \item load data,
+  \item clean/transform,
+  \item compute features,
+  \item fit model,
+  \item evaluate,
+  \item produce outputs.
+\end{enumerate}
+Run each stage separately and inspect the intermediate result.
+
+\paragraph{2) Binary search over history.} If the code worked yesterday, look at what changed. Version control makes this dramatically easier. Even without Git, you can copy a working version and compare.
+
+\paragraph{3) Strip to a minimal reproducible example.} Remove everything unrelated until the failure remains.
+
+\subsection{The minimal reproducible example (MRE) as a debugging tool}
+An MRE is not only for asking questions. It is a debugging instrument. If you can recreate the problem in 15 lines, you have already learned:
+\begin{itemize}[noitemsep]
+  \item which inputs matter,
+  \item which library call triggers the failure,
+  \item what assumptions were hidden.
 \end{itemize}
 
-\section{Step 3: Hypotheses and experiments}
-\subsection{Write falsifiable hypotheses}
-\begin{itemize}
-\item Bad: Something is wrong with the environment.'' \item Good: The bug occurs only when \texttt{X} is \texttt{None}, because \texttt{Y} assumes a string.’’
+\subsection{Practical MRE techniques}
+\begin{enumerate}[noitemsep]
+  \item \textbf{Replace real data with synthetic data.} Use \texttt{io.StringIO} or small lists.
+  \item \textbf{Hard-code a small example.} A 3-row dataframe is often enough.
+  \item \textbf{Delete code aggressively.} If removing a block does not change the failure, it was not relevant.
+  \item \textbf{Freeze randomness.} Set random seeds so behavior is repeatable.
+\end{enumerate}
+
+\section{Hypotheses and controlled experiments}
+Once you have localized the issue, do not jump straight to a fix. First, form a hypothesis.
+
+\subsection{What a good hypothesis looks like}
+A good debugging hypothesis is specific and falsifiable:
+\begin{itemize}[noitemsep]
+  \item ``The file path is relative to the working directory, and I am running from the wrong folder.''
+  \item ``This column is stored as strings with commas, so numeric conversion fails.''
+  \item ``I installed the package into a different environment than the one running Jupyter.''
 \end{itemize}
 
-\subsection{Design minimal experiments}
-\begin{itemize}
-\item Change one variable at a time.
-\item Predict the outcome before running.
-\item Prefer experiments that can fail fast.
-\item Keep notes: command, change, result.
+A weak hypothesis is vague:
+\begin{itemize}[noitemsep]
+  \item ``Something is wrong with pandas.''
+  \item ``My computer is broken.''
 \end{itemize}
 
-\subsection{Observation hierarchy}
-\begin{itemize}
-\item \textbf{First-order:} stack traces, exceptions, direct wrong outputs.
-\item \textbf{Second-order:} logs and counters that expose internal state.
-\item \textbf{Third-order:} profiles, traces, system calls, network captures.
+\subsection{Designing a controlled experiment}
+A controlled experiment changes one factor and observes one outcome. Common experiments include:
+\begin{itemize}[noitemsep]
+  \item Print a variable right before the error line.
+  \item Replace one input value (e.g., a date string) with a known-good value.
+  \item Run the same code in a fresh environment.
+  \item Comment out one transformation step.
 \end{itemize}
 
-\section{Debugging tools and techniques}
-\subsection{Print debugging vs logging vs debugger}
-\begin{description}
-\item[Debugger] Best for step-through execution, inspecting state, and control flow.
-\item[Logging] Best for persistent evidence across runs and for hard-to-reproduce failures.
-\item[Print statements] Acceptable for quick local exploration; convert to logging before sharing.
-\end{description}
+When you run an experiment, record the result. The result is progress even if the bug remains, because you ruled something out.
 
-\subsection{Breakpoints and stepping}
-\begin{itemize}
-\item Set breakpoints at boundaries (entry points, data validation, side effects).
-\item Inspect invariants: types, shapes, units, sortedness, null counts.
-\item Use conditional breakpoints to stop only when a predicate holds.
+\section{Instrumentation: print statements and sanity checks}
+Instrumentation means adding temporary measurements to observe program state.
+
+\subsection{Strategic printing}
+Print statements are a legitimate debugging tool when used strategically. Good print debugging follows these rules:
+\begin{enumerate}[noitemsep]
+  \item Print \emph{labels} and \emph{values} (so you know what you are seeing).
+  \item Print right before and right after suspicious lines.
+  \item Print shapes, types, and small samples—not entire datasets.
+  \item Remove or convert prints to logs after you finish.
+\end{enumerate}
+
+Examples of useful prints in data work:
+\begin{itemize}[noitemsep]
+  \item \texttt{print(df.shape)}
+  \item \texttt{print(df.dtypes)}
+  \item \texttt{print(df.head(3))}
+  \item \texttt{print(df['col'].isna().mean())}
 \end{itemize}
 
-\subsection{Static analysis and linters}
-\begin{itemize}
-\item Catch type and logic errors before runtime.
-\item Use formatting and linting as “preventive debugging.”
+\subsection{Assertions as executable assumptions}
+An assertion is a statement that should be true. If it is false, the program stops with a clear signal.
+
+For beginners, assertions are useful because they turn silent wrongness into loud wrongness.
+
+Examples:
+\begin{verbatim}
+assert df.shape[0] > 0, "Dataframe has no rows"
+assert 'date' in df.columns, "Missing expected column: date"
+assert df['age'].min() >= 0, "Negative age values present"
+\end{verbatim}
+
+Use assertions to encode assumptions you would otherwise hold in your head.
+
+\section{Logging: debugging that scales beyond one run}
+Print statements are fine during exploration, but logging is better when:
+\begin{itemize}[noitemsep]
+  \item your code runs for a long time,
+  \item you run it as a scheduled job,
+  \item you need to keep evidence for later,
+  \item multiple people will run the code.
 \end{itemize}
 
-\subsection{Profiling and performance debugging}
-\begin{itemize}
-\item Distinguish CPU-bound vs I/O-bound vs memory-bound.
-\item Use sampling/tracing profilers depending on overhead and needed detail.
-\item Validate with microbenchmarks only after correctness is established.
+\subsection{What logging is (and is not)}
+Logging is a structured way to record events. It is not the same as printing everything. Logs should help you answer:
+\begin{itemize}[noitemsep]
+  \item Where did the program get to?
+  \item What inputs and configuration did it use?
+  \item How long did steps take?
+  \item Why did it fail?
 \end{itemize}
 
-\subsection{System-level tracing (when the bug is outside your code)}
-\begin{itemize}
-\item Trace file/network calls (e.g., system-call tracing) to confirm assumptions.
-\item Use this for permission issues, missing files, DNS/network failures, and subprocess behavior.
+\subsection{Logging levels}
+Most logging systems have levels such as \texttt{DEBUG}, \texttt{INFO}, \texttt{WARNING}, \texttt{ERROR}. A beginner-friendly interpretation:
+\begin{itemize}[noitemsep]
+  \item \texttt{DEBUG}: details useful for developers while diagnosing.
+  \item \texttt{INFO}: major milestones (started, loaded data, finished).
+  \item \texttt{WARNING}: something unexpected but not fatal.
+  \item \texttt{ERROR}: the operation failed.
 \end{itemize}
 
-\section{Testing as a debugging instrument}
-\subsection{The debugging value of tests}
-\begin{itemize}
-\item A failing test is a stable reproduction.
-\item A passing test after a fix is evidence, not a feeling.
-\item Tests encode invariants and prevent regressions.
+\subsection{A minimal Python logging setup}
+You do not need a complicated configuration. A simple pattern:
+\begin{verbatim}
+import logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s %(message)s"
+)
+logger = logging.getLogger(__name__)
+
+logger.info("Starting pipeline")
+\end{verbatim}
+
+Then replace prints with \texttt{logger.info(...)} or \texttt{logger.debug(...)}.
+
+\subsection{Avoid logging secrets}
+Never log:
+\begin{itemize}[noitemsep]
+  \item passwords,
+  \item API keys,
+  \item private personal data,
+  \item full rows of sensitive datasets.
 \end{itemize}
 
-\subsection{Test pyramid for debugging}
-\begin{itemize}
-\item \textbf{Unit tests:} isolate functions; fastest feedback.
-\item \textbf{Integration tests:} verify component interfaces and data contracts.
-\item \textbf{End-to-end tests:} confirm full workflows; slowest and flakiest.
+If you need to confirm that a token exists, log only that it is set, not its value.
+
+\section{Testing: confirm fixes and prevent regressions}
+Testing is the final stage of debugging. Without tests, a bug can return quietly.
+
+\subsection{What a test is}
+A test is an executable claim about behavior. It says: for this input, the output should satisfy this condition.
+
+Beginners often think tests are only for large professional projects. In reality, small tests are one of the best study tools in programming.
+
+\subsection{A testing ladder for novices}
+Start small and build up:
+\begin{enumerate}[noitemsep]
+  \item \textbf{Smoke tests}: does the script run end-to-end without crashing?
+  \item \textbf{Property checks}: outputs have expected shape, columns, ranges.
+  \item \textbf{Unit tests}: a single function behaves correctly on small inputs.
+  \item \textbf{Integration tests}: multiple components work together.
+\end{enumerate}
+
+For most class projects, smoke tests and a handful of unit tests are enough.
+
+\subsection{Write a test that would have caught the bug}
+After fixing a bug, ask: ``What condition was violated?'' Then write a test that fails on the old behavior and passes on the new.
+
+Examples:
+\begin{itemize}[noitemsep]
+  \item If a column was missing: test that required columns exist.
+  \item If parsing failed on a weird value: test that that value is handled.
+  \item If a function returned wrong units: test numeric values within expected range.
 \end{itemize}
 
-\subsection{Regression tests}
-\begin{itemize}
-\item First write a test that fails for the bug.
-\item Then fix until it passes.
-\item Keep the test small and targeted to the root cause.
+\subsection{Golden rule: tests should be deterministic}
+A test should give the same result every run. If randomness is involved, set a seed or test statistical properties rather than exact values.
+
+\section{Debugging in common environments}
+Different environments create different failure modes.
+
+\subsection{Notebook-specific hazards}
+Common notebook debugging pitfalls:
+\begin{itemize}[noitemsep]
+  \item Running cells out of order.
+  \item Redefining functions and forgetting which version is active.
+  \item Keeping old dataframes in memory and thinking they updated.
+  \item Installing a package in one environment while Jupyter uses another.
 \end{itemize}
 
-\subsection{Fixtures and synthetic data}
-\begin{itemize}
-\item Use fixtures to stabilize state (temp directories, known config).
-\item Use synthetic datasets that preserve schema and edge cases.
+Countermeasures:
+\begin{enumerate}[noitemsep]
+  \item Restart kernel + run all.
+  \item Use clearly named cells and avoid hidden side effects.
+  \item Print versions and environment information when uncertain.
+\end{enumerate}
+
+\subsection{Command-line and OS-level bugs}
+Some ``code'' bugs are actually environment bugs:
+\begin{itemize}[noitemsep]
+  \item wrong working directory,
+  \item missing permissions,
+  \item PATH not set,
+  \item file encoding,
+  \item line-ending differences (Windows vs macOS).
 \end{itemize}
 
-\subsection{Flaky tests and nondeterminism}
-\begin{itemize}
-\item Identify sources: timeouts, reliance on network, shared state.
-\item Stabilize: deterministic seeds, isolation, retries only as a last resort.
+If a command works in one terminal but not another, treat the environment as a suspect.
+
+\section{A practical debugging checklist}
+When you feel stuck, use this checklist as a reset:
+\begin{enumerate}[noitemsep]
+  \item What exactly is the symptom (expected vs actual)?
+  \item Can I reproduce it?
+  \item What is the smallest example that fails?
+  \item Where is the failure located (line/function/stage)?
+  \item What are 2--3 plausible hypotheses?
+  \item What experiment tests one hypothesis with one change?
+  \item What evidence will confirm or refute it?
+  \item After the fix, what test will prevent regression?
+\end{enumerate}
+
+Print it and keep it near your desk.
+
+\section{Case studies}
+The goal of case studies is to show the loop in action.
+
+\subsection{Case study 1: ``File not found'' that is really ``wrong folder''}
+\paragraph{Symptom.} You run a script and get \texttt{FileNotFoundError: data/input.csv}.
+
+\paragraph{Investigation.} Rather than editing the path randomly, you gather evidence:
+\begin{itemize}[noitemsep]
+  \item Print the current working directory.
+  \item List the \texttt{data/} folder.
 \end{itemize}
 
-\section{Logging that helps rather than hurts}
-\subsection{Principles of useful logs}
-\begin{itemize}
-\item Logs are for future you (and other people).
-\item Prefer \textbf{structured} logs (key-value/JSON) when automation matters.
-\item Log at boundaries: inputs received, decisions made, outputs produced.
-\item Include correlation identifiers for multi-step workflows.
+\paragraph{Hypothesis.} The script uses a relative path, and you are running it from the wrong directory.
+
+\paragraph{Experiment.} Run the script from the project root, or change the script to compute absolute paths based on \texttt{__file__}.
+
+\paragraph{Verification.} Add a small check:
+\begin{verbatim}
+from pathlib import Path
+assert Path("data/input.csv").exists(), "Missing data/input.csv"
+\end{verbatim}
+
+This case illustrates a common debugging lesson: many failures are about context, not about code logic.
+
+\subsection{Case study 2: ``It runs but results are wrong''}
+Silent wrongness is harder than crashes. Suppose you compute an average age and get 0.0.
+
+\paragraph{Decomposition.} Break the pipeline:
+\begin{enumerate}[noitemsep]
+  \item Load ages.
+  \item Convert ages to numeric.
+  \item Compute average.
+\end{enumerate}
+
+\paragraph{Instrumentation.} Print:
+\begin{itemize}[noitemsep]
+  \item \texttt{df['age'].head()}
+  \item \texttt{df['age'].dtype}
+  \item \texttt{df['age'].isna().mean()}
 \end{itemize}
 
-\subsection{Log levels (a working contract)}
-\begin{description}
-\item[DEBUG] Fine-grained diagnostics for developers.
-\item[INFO] High-level events: milestones, completed steps.
-\item[WARNING] Unexpected states that are recovered from.
-\item[ERROR] Failures that prevent completion of a task.
-\item[CRITICAL] Failures that threaten system availability or data integrity.
-\end{description}
+\paragraph{Hypothesis.} Ages are strings with non-numeric values; conversion produced NaNs, and the computation treated NaNs as zeros (or you filled missing values incorrectly).
 
-\subsection{What to log}
-\begin{itemize}
-\item The ``shape’’ of data: counts, ranges, schema versions, hash of inputs.
-\item Decision points: chosen branch, fallback path, retry reason.
-\item External interactions: request IDs, response codes, latency.
-\item Timing: durations for expensive steps.
+\paragraph{Fix + test.} Fix conversion and add a test that the NaN rate is below an expected threshold.
+
+The lesson: debugging is often about inspecting intermediate representations.
+
+\section{Using AI tools in debugging}
+AI tools can help you debug, but they can also increase confusion if you treat them as authoritative.
+
+\subsection{Good uses of AI}
+\begin{itemize}[noitemsep]
+  \item Summarize an error message and propose likely categories (type mismatch, missing key).
+  \item Suggest questions to ask (What is the dtype? What is the working directory?).
+  \item Propose an MRE by stripping code.
+  \item Draft a unit test skeleton once you know the expected behavior.
 \end{itemize}
 
-\subsection{What \emph{not} to log}
-\begin{itemize}
-\item Secrets: API keys, tokens, passwords.
-\item Sensitive data unless policy allows and it is essential.
-\item Unbounded dumps (entire datasets, huge objects) that flood logs.
-\end{itemize}
+\subsection{Guardrails}
+\begin{enumerate}[noitemsep]
+  \item Do not paste secrets or private data.
+  \item Verify AI-suggested commands in official docs.
+  \item Prefer small diffs: one change at a time.
+  \item If the AI proposes a fix, make it fail/pass with a test.
+\end{enumerate}
 
-\subsection{Logging patterns}
-\begin{itemize}
-\item Use a module-level logger (not the root logger) in libraries.
-\item Add context via adapters or structured fields.
-\item Prefer lazy formatting (do not build expensive strings when the level is disabled).
-\item Add exception context correctly (stack traces with the error).
-\end{itemize}
-
-\subsection{From logging to observability (optional extension)}
-\begin{itemize}
-\item Metrics: counts, rates, error ratios, latency distributions.
-\item Traces: follow a request across components.
-\item Use logs, metrics, and traces together to narrow the fault domain.
-\end{itemize}
-
-\section{Common debugging anti-patterns}
-\begin{description}
-\item[Thrashing] Random changes without hypotheses or notes.
-\item[Multi-variable edits] Changing many things between runs.
-\item[Ignoring the error text] Paraphrasing instead of using the exact message.
-\item[Over-trusting intuition] Preferring stories over evidence.
-\item[No regression test] Fixing once and reintroducing later.
-\item[Logging everything] Producing noise instead of signal.
-\end{description}
-
-\section{Case studies (outline)}
-\subsection{Case 1: Data bug (schema drift)}
-\begin{itemize}
-\item Symptom: parsing fails on a subset of files.
-\item Approach: reduce dataset, validate schema, add boundary checks.
-\item Prevention: schema versioning + regression fixture.
-\end{itemize}
-
-\subsection{Case 2: Performance regression}
-\begin{itemize}
-\item Symptom: job runtime doubled.
-\item Approach: add timing logs, profile, bisect commits.
-\item Prevention: performance benchmark in CI + alert thresholds.
-\end{itemize}
-
-\subsection{Case 3: Nondeterministic failure}
-\begin{itemize}
-\item Symptom: occasional wrong outputs.
-\item Approach: reduce concurrency, add correlation IDs, isolate shared state.
-\item Prevention: deterministic tests + instrumentation around shared resources.
-\end{itemize}
+A practical motto: AI can suggest hypotheses; you supply the evidence.
 
 \section{Templates}
-\subsection{Template A: Debugging logbook}
+\subsection{Template A: debugging journal entry}
+When debugging takes more than a few minutes, keep a short journal:
 \begin{verbatim}
-Bug:
-	•	One sentence summary.
-
-Reproduction:
-	•	One command / minimal script.
-
-Baseline:
-	•	Expected:
-	•	Actual:
-
-Hypothesis #1:
-	•	Prediction:
-	•	Experiment:
-	•	Result:
-	•	Next:
-
-(Repeat)
-
-Fix:
-	•	Change:
-	•	Why it works:
-
-Prevention:
-	•	Regression test:
-	•	Logging/metrics update:
-	•	Doc update:
+Symptom:
+Expected vs actual:
+Reproduction steps:
+Evidence captured (error/trace/logs):
+Hypotheses:
+Experiments tried (one per line) + outcomes:
+Fix applied:
+Test added:
 \end{verbatim}
 
-\subsection{Template B: Boundary invariant checklist}
-\begin{verbatim}
-At each boundary, verify:
-	•	Type(s):
-	•	Shape/size:
-	•	Missingness:
-	•	Range/units:
-	•	Sort/order assumptions:
-	•	Encoding/format:
-	•	Permissions/path existence:
-\end{verbatim}
+\subsection{Template B: minimal test checklist}
+\begin{itemize}[noitemsep]
+  \item Test name describes behavior.
+  \item Inputs are small and synthetic.
+  \item Expected outcome is explicit.
+  \item Test is deterministic.
+  \item Test fails on the buggy version.
+\end{itemize}
 
 \section{Exercises}
-\begin{enumerate}
-\item Convert a real bug into a minimal reproduction harness.
-\item Use bisection on a sequence of changes to find the introducing step.
-\item Write a regression test for a bug you fixed.
-\item Add three logs that improve observability while avoiding sensitive content.
-\item Diagnose a performance issue using timing logs and a profiler.
+\begin{enumerate}[noitemsep]
+  \item Take a recent error you encountered. Write a one-sentence symptom statement (X, expect Y, observe Z).
+  \item Create an MRE that reproduces the error in fewer than 20 lines.
+  \item Add two assertions that encode assumptions about your data (columns, ranges, missingness).
+  \item Convert three print statements into logging calls with levels.
+  \item Fix a bug and then write a unit test that would have caught it.
+  \item In a notebook, intentionally create a hidden-state bug (run cells out of order), then fix it by restarting and re-running from top.
 \end{enumerate}
 
 \section{One-page checklist}
-\begin{itemize}
-\item I can reproduce the failure on demand.
-\item I defined expected vs actual outcomes.
-\item I narrowed the fault domain by decomposition or bisection.
-\item I formed a falsifiable hypothesis and ran a minimal experiment.
-\item I used the right tool (debugger, logs, tests, profiler) for the symptom.
-\item I implemented a minimal fix.
-\item I added a regression test.
-\item I improved logging/observability at the relevant boundaries.
-\item I documented the resolution and any new invariants.
+\begin{itemize}[noitemsep]
+  \item I can state the symptom clearly (expected vs actual).
+  \item I can reproduce the bug and capture the evidence.
+  \item I can localize the failure and reduce scope.
+  \item I form hypotheses and test them with one-change experiments.
+  \item I use prints/assertions/logs to collect useful signals.
+  \item I verify the fix and add a test to prevent regression.
+  \item In notebooks, I manage hidden state (restart + run all).
+  \item If I use AI tools, I treat outputs as drafts and verify with tests.
 \end{itemize}
