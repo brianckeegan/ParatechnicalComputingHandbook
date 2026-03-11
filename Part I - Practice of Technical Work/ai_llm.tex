@@ -1,447 +1,545 @@
 % Paratechnical Data Science Handbook
-% Chapter: Using AI and LLM Tools as Part of (Not a Replacement for) Technical Practice
+% Chapter: Using AI and LLM Tools as Part of Technical Practice
+% Voice: textbook / O’Reilly style (concise, structured, verification-forward)
+% Target length: ~4000 words
+% Assumes you have defined the verbatim environment in the preamble.
 
-\chapter{Using AI and LLM Tools}
+\chapter{Using AI Tools}
 \label{ch:ai-llm}
 
 \section*{Purpose}
-Large language models (LLMs) and other AI assistants are now common in technical work. Used well, they can reduce friction: they can help you draft a README, explain an error message, propose a test, or remind you how a tool works. Used poorly, they can slow you down and increase risk: they can hallucinate facts, invent API behavior, produce insecure code, or give you a false sense that you understand something you have not verified.
+AI assistants can reduce friction in programming and data science. They can draft documentation, summarize error messages, propose alternative implementations, and generate boilerplate. They can also produce plausible but incorrect guidance. This chapter treats AI assistance as one input to a disciplined workflow. The goal is not to get answers faster. The goal is to produce correct, reproducible, and safe work with less unnecessary effort.
 
-This chapter treats AI tools as a \emph{component} in a larger technical practice rather than a replacement for that practice. The main idea is simple: an AI assistant can propose text, code, or hypotheses, but you are responsible for evidence, verification, and decisions. You will learn practical workflows, guardrails, and templates that let you use AI effectively while protecting correctness, academic integrity, and security.
+The governing rule is simple:
+
+\begin{quote}
+\textbf{AI can propose. You must verify.}
+\end{quote}
+
+Verification means using primary documentation, running small experiments, and adding tests. Those practices remain your responsibility, even if an assistant produced the first draft.
 
 \section*{Learning objectives}
 By the end of this chapter, you should be able to:
 \begin{enumerate}[noitemsep]
-  \item Explain what LLMs are good at (language and pattern completion) and what they are not good at (ground-truth verification).
-  \item Choose appropriate tasks for AI assistance and recognize ``high-risk'' tasks that require extra caution.
-  \item Use AI tools to improve question quality, debugging workflows, documentation, and code structure.
-  \item Validate AI outputs using primary sources, small experiments, and tests.
-  \item Avoid common failure modes: hallucinations, version mismatch, subtle logical errors, and insecure defaults.
-  \item Follow basic privacy and security hygiene when sharing context with AI.
-  \item Communicate transparently about AI use in course work and collaborative projects.
+  \item Identify high-value AI uses and common failure modes.
+  \item Apply a risk-based policy to decide how much verification is required.
+  \item Write prompts that produce usable how-to guidance, not vague advice.
+  \item Validate AI outputs using primary sources, minimal experiments, and automated tests.
+  \item Avoid privacy and security mistakes when sharing context.
+  \item Use AI in coursework and collaboration without undermining learning or integrity.
 \end{enumerate}
 
-\section*{Running theme: treat AI like a junior collaborator}
-A useful mindset is to treat an AI assistant like a helpful junior collaborator who is fast, enthusiastic, and sometimes wrong. That collaborator can draft, summarize, and suggest options, but they cannot replace your judgment. When you adopt this mindset, your behavior changes in healthy ways:
+\section{What an AI assistant is doing}
+Most AI assistants in technical settings are built on large language models (LLMs). An LLM generates text that fits patterns in its training data and in your prompt. That makes it useful for drafting and transformation tasks, such as turning rough notes into a README or converting a stack trace into a troubleshooting plan. It does not guarantee factual correctness.
+
+A practical interpretation is to treat AI output as a draft produced by a fast collaborator who can be wrong. Your job is to turn drafts into reliable artifacts.
+
+\subsection{What AI is usually good at}
+LLM assistance is strongest when the task is primarily about language, structure, or recall of common patterns:
 \begin{itemize}[noitemsep]
-  \item you ask for alternatives,
-  \item you demand evidence,
-  \item you test outputs,
-  \item you keep control of final decisions.
+  \item Drafting outlines, READMEs, docstrings, issue templates, and lab instructions.
+  \item Rewriting an explanation for a novice reader.
+  \item Producing boilerplate code patterns (argument parsing, logging setup) that you then review.
+  \item Suggesting search terms, likely documentation sections, and common failure modes.
+  \item Generating checklists that you then shorten and validate.
 \end{itemize}
 
-\section{What AI tools can and cannot do}
-Before learning workflows, it helps to understand capabilities and limitations in plain language.
-
-\subsection{What LLMs are good at}
-LLMs excel at tasks where the main difficulty is producing or transforming text:
+\subsection{What AI is not reliable at}
+These failures appear frequently enough that you should plan around them:
 \begin{itemize}[noitemsep]
-  \item \textbf{Drafting}: outlines, README sections, docstrings, comments, emails, issue templates.
-  \item \textbf{Explaining}: rephrasing technical explanations, simplifying terminology, giving intuitive mental models.
-  \item \textbf{Pattern completion}: common code structures (argument parsing, logging setup), common command sequences.
-  \item \textbf{Search scaffolding}: suggesting keywords, likely file locations, or likely causes of a common error.
-  \item \textbf{Refactoring suggestions}: making code more readable, identifying duplication, proposing modularization.
+  \item \textbf{Hallucinated details}: invented flags, APIs, or citations.
+  \item \textbf{Version mismatch}: correct advice for a different version of a tool than yours.
+  \item \textbf{Hidden prerequisites}: missing steps such as activating an environment, changing directories, or installing a system dependency.
+  \item \textbf{Silent logic bugs}: code that runs but is wrong on edge cases.
+  \item \textbf{Unsafe defaults}: suggestions that weaken security or increase destructive behavior.
 \end{itemize}
 
-\subsection{What LLMs are not reliable at}
-LLMs are not designed to guarantee correctness. They can be wrong in convincing ways.
+You should assume any of these errors are possible. This assumption leads to good habits: request sources, run small tests, and prefer minimal changes.
 
-Common failure modes:
+\section{A risk-based verification policy}
+Not all tasks have the same consequences if something goes wrong. Use risk level to decide how careful you need to be.
+
+\subsection{Low risk: drafting and formatting}
+Low-risk tasks are those where an error is easy to spot and easy to correct:
 \begin{itemize}[noitemsep]
-  \item \textbf{Hallucination}: inventing commands, APIs, or citations that do not exist.
-  \item \textbf{Version mismatch}: giving advice for a different version of a tool than you are using.
-  \item \textbf{Hidden assumptions}: omitting steps like activating an environment or changing directories.
-  \item \textbf{Subtle bugs}: code that ``looks right'' but fails on edge cases.
-  \item \textbf{Security hazards}: suggesting unsafe defaults (e.g., disabling verification, using insecure randomness).
-  \item \textbf{Overconfidence}: presenting speculation as fact.
+  \item Rewrite a paragraph for clarity.
+  \item Draft a README skeleton.
+  \item Produce a checklist or template.
 \end{itemize}
 
-A key principle follows:
+Verification: read for accuracy, completeness, and alignment with your assignment or project requirements.
 
-\begin{quote}
-\textbf{AI output is a starting point. Evidence is the finish line.}
-\end{quote}
-
-\section{A risk-based approach to using AI}
-Not all tasks are equally risky. A risk-based approach helps you decide how much verification is necessary.
-
-\subsection{Low-risk tasks (drafting and formatting)}
-These tasks are typically low-risk because mistakes are easy to spot and easy to correct:
+\subsection{Medium risk: technical guidance you can test quickly}
+Medium-risk tasks involve technical claims but can be validated with small experiments:
 \begin{itemize}[noitemsep]
-  \item rewriting rough notes into a clearer paragraph,
-  \item producing checklists and templates,
-  \item drafting documentation structure,
-  \item turning a verbose explanation into a concise one,
-  \item generating example data for a demonstration (synthetic, non-sensitive).
+  \item Interpreting a stack trace and proposing checks.
+  \item Suggesting commands to inspect an environment.
+  \item Drafting a unit test scaffold.
+  \item Proposing a refactor that you can validate with tests.
 \end{itemize}
 
-\subsection{Medium-risk tasks (technical guidance with verification)}
-These tasks can be very helpful but require verification:
+Verification: run the checks, confirm in primary documentation, and add tests or assertions.
+
+\subsection{High risk: destructive commands, security changes, and sensitive data}
+High-risk tasks require strict guardrails:
 \begin{itemize}[noitemsep]
-  \item explaining an error message,
-  \item proposing a debugging plan,
-  \item suggesting how to use a library function,
-  \item proposing a Git workflow,
-  \item drafting tests.
+  \item Commands that delete, overwrite, or move files recursively.
+  \item Privilege escalation (\texttt{sudo}) and broad permission changes (\texttt{chmod 777}).
+  \item Network and authentication configuration (SSH keys, VPNs, firewall rules).
+  \item Any handling of protected, confidential, or regulated data.
 \end{itemize}
 
-\subsection{High-risk tasks (extra caution)}
-These tasks require strong guardrails because mistakes can be costly:
+Verification: consult primary documentation; prefer supervised help (instructor/TA); test in a sandbox; do not execute commands you do not understand.
+
+\subsection{A non-negotiable warning for destructive commands}
+Treat these as stop signs until you have confirmed paths, backups, and intent:
+
+\begin{verbatim}
+# Examples of destructive patterns (do not run blindly)
+# rm -rf <path>              # macOS/Linux: recursive delete
+# del /s <path>              # Windows: recursive delete
+# mv <source> <dest>         # can overwrite depending on flags/context
+# chmod -R 777 <path>        # broad permissions (usually wrong)
+# sudo <anything>            # elevated privileges
+\end{verbatim}
+
+If an assistant suggests one of these as a fix, pause. Ask: What exactly will this change? What evidence says this is the right change? How do I undo it?
+
+\section{The assistive loop: a workflow that forces evidence}
+A reliable workflow is an assistive loop: you use AI to propose an approach, then you validate it with evidence.
+
+\subsection{Step 1: write a short specification}
+Include:
 \begin{itemize}[noitemsep]
-  \item commands that modify or delete files (\texttt{rm}, \texttt{del}, recursive operations),
-  \item permission and security changes (\texttt{sudo}, firewall rules, SSH configuration),
-  \item handling sensitive data (personal information, credentials, confidential research),
-  \item producing claims that must be true (citations, legal/medical guidance, factual assertions for publication),
-  \item code that will run in production or handle authentication.
+  \item Goal (one sentence).
+  \item Context (OS, Python version, environment name, relevant package versions).
+  \item Inputs (code snippet, command, file path, sample data).
+  \item Observed behavior (exact error/output).
+  \item Expected behavior.
+  \item What you tried and what happened.
 \end{itemize}
 
-For high-risk tasks, do not rely on the AI assistant alone. Consult primary documentation, ask an instructor, or work in a safe sandbox.
+This structure is also the structure of a good technical question.
 
-\section{The ``assistive loop'': a repeatable workflow}
-The most reliable way to use AI tools is to embed them in a broader loop that forces verification.
-
-\subsection{Step 1: state the goal and constraints}
-Start by writing down:
+\subsection{Step 2: request alternatives and checkpoints}
+Avoid prompts that ask for a single answer. Ask for:
 \begin{itemize}[noitemsep]
-  \item what you want to accomplish,
-  \item your environment (OS, Python version, conda env name),
-  \item constraints (no admin access, limited memory, assignment requirements),
-  \item what you have already tried.
+  \item 2 to 4 plausible root causes.
+  \item A short decision tree of checks.
+  \item A step-by-step plan with verification checkpoints.
 \end{itemize}
 
-This is the same discipline you use for asking technical questions (Chapter~\ref{ch:asking-questions}).
+This reduces the chance you follow one incorrect path.
 
-\subsection{Step 2: ask for options, not a single answer}
-Instead of asking ``what is the answer?'', ask for:
+\subsection{Step 3: validate claims in primary documentation}
+If the output depends on external truth (API behavior, command flags), verify it in official documentation for your version. If the assistant cannot point to a primary source, treat the claim as tentative.
+
+\subsection{Step 4: run a minimal experiment}
+Convert advice into the smallest experiment that can succeed or fail. Change one factor at a time. Record results.
+
+\subsection{Step 5: lock in the outcome}
+After a fix, add one of:
 \begin{itemize}[noitemsep]
-  \item two or three plausible explanations,
-  \item a small decision tree,
-  \item a step-by-step plan with checkpoints,
-  \item trade-offs between approaches.
+  \item a unit test,
+  \item an assertion (shape, type, range),
+  \item a checklist item in project documentation.
 \end{itemize}
 
-This reduces the chance that you will follow a single wrong path.
+This is how you prevent regression.
 
-\subsection{Step 3: demand citations to primary sources when appropriate}
-If the question depends on external truth (e.g., a command option or API behavior), ask the assistant to point you to official documentation and specify the version. Then you verify.
+\section{Prompt patterns that produce usable how-to guidance}
+Prompts work best when they specify output format and constraints. The goal is to be unambiguous.
 
-\subsection{Step 4: run a small experiment}
-Convert suggestions into a minimal experiment:
+\subsection{Pattern A: decision tree diagnosis}
+\begin{fullcode}
+# "I am seeing: <symptom or exact error>. Provide a decision tree with 8 checks.
+# Each check must be a concrete command or observation, and you must say what
+# each outcome implies. Keep it specific to <OS> and <tool/version>."
+\end{fullcode}
+
+\subsection{Pattern B: minimal reproducible example reduction}
+\begin{fullcode}
+# "Here is my current minimal failing snippet. Reduce it further if possible.
+# Replace real data with synthetic data. Output:
+# (1) reduced code, (2) what you removed and why, (3) how to verify failure."
+\end{fullcode}
+
+\subsection{Pattern C: test-first scaffold}
+\begin{fullcode}
+# "Write 4 pytest tests for the intended behavior below (include 2 edge cases).
+# Then propose an implementation that satisfies the tests. State assumptions."
+\end{fullcode}
+
+\subsection{Pattern D: documentation rewrite without inventing steps}
+\begin{fullcode}
+# "Rewrite these notes into a how-to guide with sections: Purpose, Prerequisites,
+# Steps, Verify, Troubleshooting. Do not invent commands I did not provide.
+# If prerequisites are missing, list questions under 'Prerequisites'."
+\end{fullcode}
+
+\subsection{Pattern E: safe command review}
+Use when you want to understand a command before running it.
+\begin{fullcode}
+# "Explain what this command does, what it changes on disk, and how to undo it:
+# <command>
+# Then give a safer alternative or a dry run option if available."
+\end{fullcode}
+
+\subsection{Pattern F: request a patch instead of a rewrite}
+For code changes, request a minimal diff rather than a full replacement.
+\begin{fullcode}
+# "Here is the current function. Provide a minimal patch (diff-style) to fix
+# <specific bug>. Do not refactor unrelated code. Explain how to test the fix."
+\end{fullcode}
+
+\section{Using AI to improve technical questions}
+Good questions produce good answers. AI can help you edit and structure questions before you ask a human.
+
+\subsection{Rewrite into a standard template}
+Ask the assistant to convert a messy description into:
 \begin{itemize}[noitemsep]
-  \item run a small snippet in a scratch file,
-  \item test one command in a safe folder,
-  \item try one change at a time.
+  \item Goal
+  \item Expected
+  \item Actual
+  \item Reproduction steps
+  \item Context (versions, OS)
+  \item What you tried
 \end{itemize}
 
-\subsection{Step 5: write down what happened}
-Record:
+Then audit the result for correctness. Do not let an assistant improve a question by inventing details.
+
+\subsection{Generate a context checklist}
+If you do not know what context matters, ask for a checklist. Common context fields include:
 \begin{itemize}[noitemsep]
-  \item what you ran,
-  \item what you observed,
-  \item what that implies.
+  \item OS and version
+  \item Python version and interpreter path
+  \item Environment manager (conda, venv) and active environment name
+  \item Package versions (\texttt{pip show} or \texttt{conda list})
+  \item Working directory and relevant file paths
 \end{itemize}
 
-That record improves your next question and becomes project documentation.
+Report unknowns as unknowns rather than guessing.
 
-\subsection{Step 6: lock in the fix with a test or checklist}
-If you fixed something, add a test, an assertion, or a checklist so the issue does not quietly return.
+\section{Using AI in debugging: hypotheses, checks, and minimal diffs}
+Use AI to propose hypotheses and checks. Keep control of the debugging loop.
 
-\section{Prompting as specification, not magic words}
-People sometimes treat prompting as searching for a magical phrase. A more useful view is that a prompt is a specification: it defines the task, the context, and the success criteria.
-
-\subsection{A prompt template for technical work}
-Use this structure when you want technical help:
-\begin{enumerate}[noitemsep]
-  \item \textbf{Goal}: one sentence.
-  \item \textbf{Context}: OS, versions, environment.
-  \item \textbf{Inputs}: code snippet, commands, sample data.
-  \item \textbf{Observed behavior}: exact error/output.
-  \item \textbf{Expected behavior}: what you wanted.
-  \item \textbf{What I tried}: bullet list.
-  \item \textbf{Request}: what kind of output you want (plan, options, explanation, test).
-\end{enumerate}
-
-This is very close to the template for good technical questions. The same structure works because the underlying problem is the same: reducing ambiguity.
-
-\subsection{Be explicit about format}
-AI tools respond well when you specify format:
-\begin{itemize}[noitemsep]
-  \item ``Return a numbered checklist with checkpoints.''
-  \item ``Return two alternative approaches with pros/cons.''
-  \item ``Return code plus a short explanation of each line.''
-  \item ``Return a minimal reproducible example.''
-\end{itemize}
-
-\subsection{Ask for failure modes and verification steps}
-A high-quality prompt includes:
-\begin{itemize}[noitemsep]
-  \item ``What could go wrong with this approach?''
-  \item ``How can I verify this worked?''
-  \item ``What is the simplest test to catch regression?''
-\end{itemize}
-
-These questions push the assistant toward technical humility.
-
-\section{Using AI to improve your questions}
-One of the best uses of AI tools in a course setting is to improve the quality of your questions before you ask a human.
-
-\subsection{Drafting a structured question}
-If you have a messy story, you can ask the assistant to rewrite it using a structured template (Goal / Expected / Actual / Repro / Context / What I tried). Then you verify that the details are accurate.
-
-\subsection{Reducing to a minimal reproducible example}
-You can ask the assistant:
-\begin{itemize}[noitemsep]
-  \item ``Which parts of this code are likely irrelevant to the error?''
-  \item ``Propose a smaller example with synthetic data.''
-\end{itemize}
-
-Then you attempt to reproduce in the smaller example. If the assistant removes too much, you add pieces back. This process is valuable even when it does not work perfectly because it forces you to think about causality.
-
-\section{Using AI in debugging workflows}
-AI tools can be helpful during debugging if you treat them as hypothesis generators.
-
-\subsection{A safe debugging workflow}
-\begin{enumerate}[noitemsep]
-  \item Capture the full error text and the minimal code that triggers it.
-  \item Ask for 3--5 plausible causes grouped by category (types, keys, paths, environment).
-  \item Ask for 1--2 small experiments per cause.
-  \item Run experiments one at a time.
-  \item When fixed, add a test or assertion.
-\end{enumerate}
-
-\subsection{Example: using AI to propose a diagnosis plan}
-Suppose you see \texttt{ModuleNotFoundError}. A useful AI interaction is not ``fix it'' but ``what are the likely causes and checks?''
+\subsection{Import errors: identify the interpreter and environment}
+Most import problems are environment problems. Confirm which Python is running and where packages are installed.
 
 \begin{fullcode}
-# Checks you might run (examples; adapt to your OS)
+# Interpreter and environment checks
 python --version
-which python          # macOS/Linux
-where python          # Windows
 python -c "import sys; print(sys.executable)"
+
+# macOS/Linux:
+which python
+
+# Windows:
+where python
+
+# Package presence:
 pip show <package>
 conda list <package>
 \end{fullcode}
 
-AI can suggest these checks, but you must run them and interpret results.
+Interpretation:
+\begin{itemize}[noitemsep]
+  \item If \texttt{sys.executable} is not in the environment you expect, you are using the wrong interpreter.
+  \item If \texttt{pip show} reports a package under a different Python than \texttt{sys.executable}, you installed into the wrong environment.
+\end{itemize}
 
-\subsection{Warning: AI can hide the real bug by proposing large rewrites}
-A common trap is accepting a large rewrite that ``makes the error go away'' but changes the assignment or hides the core misunderstanding. Prefer minimal changes. If the assistant proposes a rewrite, ask it to propose the smallest change that preserves intent.
+Ask the assistant to propose a diagnosis tree, but do not accept environment-changing commands without understanding them.
 
-\section{Using AI for documentation and project hygiene}
-Documentation is an excellent place for AI assistance because the output is text-heavy and easy to review.
+\subsection{Data ingestion bugs: inspect the intermediate}
+For many data issues, the right move is to inspect intermediate representations.
 
-\subsection{Drafting a README}
-A practical workflow:
+Example: a CSV loads into one column instead of many. Plausible causes include the wrong delimiter, quoting, or encoding artifacts. A useful debugging sequence is:
 \begin{enumerate}[noitemsep]
-  \item You provide the project purpose, structure, and run commands.
-  \item The assistant drafts a README with standard sections.
-  \item You edit for accuracy and add verification steps.
-  \item You run the instructions from scratch to confirm they work.
+  \item print the first few lines of the file,
+  \item test delimiters explicitly,
+  \item check column names and types after load.
 \end{enumerate}
-
-\subsection{Creating checklists and runbooks}
-AI can help you produce:
-\begin{itemize}[noitemsep]
-  \item data intake checklists,
-  \item ``how to run'' runbooks,
-  \item troubleshooting sections,
-  \item standard issue templates.
-\end{itemize}
-
-A good guardrail is to ensure that every checklist item corresponds to an action you can actually perform.
-
-\section{Using AI for coding: patterns, boundaries, and verification}
-LLMs can generate code quickly. The danger is that generated code can be superficially plausible but wrong.
-
-\subsection{What AI-generated code is good for}
-Common high-value uses:
-\begin{itemize}[noitemsep]
-  \item boilerplate: argument parsing, logging setup, file path handling,
-  \item refactoring suggestions: extracting functions, reducing duplication,
-  \item test scaffolding: a starting point for \texttt{pytest} tests,
-  \item translating between formats: notebook-to-script structure, pseudo-code to code.
-\end{itemize}
-
-\subsection{What AI-generated code is risky for}
-Be cautious with:
-\begin{itemize}[noitemsep]
-  \item security-sensitive code (auth, encryption, networking),
-  \item performance-critical code (vectorization vs loops),
-  \item data cleaning logic where subtle mistakes change results,
-  \item statistical or scientific claims embedded in code.
-\end{itemize}
-
-\subsection{A verification ladder for generated code}
-When you use AI-generated code, climb this ladder:
-\begin{enumerate}[noitemsep]
-  \item \textbf{Read it.} Can you explain what each part does?
-  \item \textbf{Run a smoke test.} Does it run on a tiny input?
-  \item \textbf{Add asserts.} Check shapes, types, ranges.
-  \item \textbf{Add unit tests.} Pick two or three edge cases.
-  \item \textbf{Compare outputs.} If replacing existing code, compare results on the same data.
-\end{enumerate}
-
-If you cannot explain the code, treat it as suspicious. Your goal is learning and correctness, not just producing output.
-
-\subsection{Example: asking for a small, testable function}
-Instead of asking for an entire pipeline, ask for a small function and tests.
 
 \begin{fullcode}
-# Example of a productive request to an AI assistant (as plain text)
-# "Write a Python function normalize_column(df, col) that:
-#  (1) strips whitespace,
-#  (2) lowercases strings,
-#  (3) converts empty strings to NA,
-#  and returns a copy.
-# Also write 3 pytest tests for edge cases."
+# Quick inspection approach (Python)
+import pandas as pd
+
+path = "data/input.csv"
+with open(path, "r", encoding="utf-8", errors="replace") as f:
+    for _ in range(5):
+        print(f.readline().rstrip("\n"))
+
+df = pd.read_csv(path)              # default delimiter is comma
+print(df.shape)
+print(df.columns.tolist())
+
+df_tab = pd.read_csv(path, sep="\t")
+print(df_tab.shape)
 \end{fullcode}
 
-This style tends to produce code you can actually verify.
+Use AI to suggest likely causes and checks, but interpret the output yourself. A model cannot see your file contents unless you provide them, and you should avoid pasting sensitive data.
 
-\section{Privacy and security hygiene}
-Undergraduates often underestimate how quickly sensitive information can leak through copy/paste.
+\subsection{Path and working directory confusion}
+Many errors are simple path mistakes. Validate where you are before changing code.
+\begin{fullcode}
+# Working directory checks
+# macOS/Linux:
+pwd
+ls -la
 
-\subsection{Never share secrets}
-Never paste into an AI tool:
+# Windows:
+cd
+dir
+\end{fullcode}
+
+If AI suggests changing or deleting files to solve a path problem, stop. Verify the path and fix the invocation first.
+
+\subsection{Prefer minimal diffs over large rewrites}
+A common anti-pattern is accepting a large rewrite because it makes an error disappear. Large changes reduce your ability to identify cause and increase the chance of introducing new bugs. If an assistant proposes a rewrite:
+\begin{itemize}[noitemsep]
+  \item ask for the smallest change that preserves intent,
+  \item apply one change at a time,
+  \item verify with a test or a checkpoint.
+\end{itemize}
+
+\section{Using AI for documentation and project hygiene}
+Documentation is a strong target for AI assistance because outputs are reviewable and verifiable.
+
+\subsection{Draft a README that can be executed}
+A README is good only if a reader can follow it. Use AI to draft structure, then validate it by running it from scratch.
+
+Minimum sections:
+\begin{itemize}[noitemsep]
+  \item Purpose
+  \item Setup (environment creation)
+  \item How to run
+  \item Verify (what success looks like)
+  \item Troubleshooting (common failures)
+\end{itemize}
+
+Provide the actual commands you use. Ask the assistant to format them. Then test them in a fresh environment. This is often where missing steps are discovered.
+
+\subsection{Troubleshooting sections: symptom, cause, check, fix}
+Ask the assistant to propose troubleshooting entries in a strict format:
+\begin{itemize}[noitemsep]
+  \item Symptom
+  \item Likely cause
+  \item Check (a command or observable)
+  \item Fix (a minimal action)
+\end{itemize}
+
+Then validate each fix on your system. Remove entries you cannot verify.
+
+\subsection{Runbooks for repetitive tasks}
+For recurring tasks (refreshing a dataset, rebuilding outputs), create a runbook. Include:
+\begin{itemize}[noitemsep]
+  \item prerequisites and inputs,
+  \item step-by-step commands,
+  \item verification checks,
+  \item rollback or recovery steps.
+\end{itemize}
+
+AI can draft a runbook; you must execute it to confirm it works.
+
+\section{Using AI for code: constraints, review, and tests}
+AI-generated code is useful when you control scope and require verification.
+
+\subsection{Request small, testable units}
+Instead of asking for an entire pipeline, request one function with a clear contract:
+\begin{itemize}[noitemsep]
+  \item Inputs: types and constraints
+  \item Output: type and invariants
+  \item Examples: at least one realistic case
+  \item Tests: include edge cases
+\end{itemize}
+
+This makes review manageable and encourages correct design.
+
+\subsection{Verification ladder}
+Use this ladder for any AI-generated code you plan to keep:
+\begin{enumerate}[noitemsep]
+  \item Read it line by line. You should be able to explain it.
+  \item Run a smoke test on tiny inputs.
+  \item Add assertions for invariants (shape, type, ranges).
+  \item Add unit tests (including edge cases).
+  \item Compare outputs to a baseline if replacing existing code.
+\end{enumerate}
+
+If you cannot explain the code, do not ship it. ``It works'' is not a sufficient reason to keep code you do not understand, especially in an educational context.
+
+\subsection{Ask for tests before implementations}
+A reliable pattern is to ask for tests first. Tests clarify the contract and catch silent errors.
+
+For example, if you are cleaning a column:
+\begin{itemize}[noitemsep]
+  \item define how empty strings should be treated,
+  \item define how whitespace is handled,
+  \item define whether case is preserved,
+  \item define how non-string values should behave.
+\end{itemize}
+
+Then request tests that lock that behavior in.
+
+\subsection{Warnings for file operations in code}
+Code that writes files can destroy work. When an assistant proposes code that deletes or overwrites:
+\begin{itemize}[noitemsep]
+  \item request a dry run mode,
+  \item request explicit confirmation before destructive operations,
+  \item request that outputs go to a dedicated \texttt{outputs/} directory,
+  \item confirm the code uses explicit paths, not implicit working-directory assumptions.
+\end{itemize}
+
+\section{Security and privacy hygiene}
+Security mistakes often begin as convenience: pasting too much context.
+
+\subsection{Never paste secrets}
+Do not paste:
 \begin{itemize}[noitemsep]
   \item passwords,
-  \item API keys and tokens,
+  \item API keys or tokens,
   \item private SSH keys,
   \item institutional credentials,
   \item confidential datasets.
 \end{itemize}
 
-\subsection{Be cautious with personal and protected data}
-If your dataset contains:
+If you need help, describe the structure and the error. If you need an example, use synthetic values.
+
+\subsection{Prefer synthetic or summarized data}
+If you need help with data issues, share:
 \begin{itemize}[noitemsep]
-  \item names, addresses, emails,
-  \item student records,
-  \item health information,
-  \item anything covered by policy or law,
-\end{itemize}
-then do not paste raw rows into a chat. Prefer:
-\begin{itemize}[noitemsep]
-  \item synthetic examples that match structure,
-  \item aggregated statistics,
-  \item schema descriptions.
+  \item schema (columns and types),
+  \item 3 to 5 synthetic rows that match structure,
+  \item aggregate statistics (counts, missingness, ranges).
 \end{itemize}
 
-\subsection{Treat suggested destructive commands as high-risk}
-If an AI tool suggests:
-\begin{itemize}[noitemsep]
-  \item \texttt{rm -rf}, \texttt{del /s},
-  \item changing permissions widely (\texttt{chmod 777}),
-  \item disabling security features,
-\end{itemize}
-stop. Verify in official documentation, confirm you are in a safe directory, and consider asking a human.
+Avoid copying raw records when they include personal or sensitive information. If policy or law applies, assume raw disclosure is not allowed.
 
-\section{Academic integrity and transparency}
-Courses differ in their AI policies. Even when AI use is allowed, you are usually responsible for attribution and understanding.
-
-\subsection{A simple disclosure practice}
-If your course permits AI assistance, a lightweight disclosure note can be helpful:
+\subsection{Treat privilege escalation as high risk}
+Commands that request elevated privileges require extra caution. If an assistant suggests \texttt{sudo} or broad permission changes:
 \begin{itemize}[noitemsep]
-  \item ``I used an AI assistant to draft the README structure and to suggest unit test scaffolding. I verified commands by running them locally and edited for accuracy.''
+  \item consult primary documentation,
+  \item confirm the scope of the change,
+  \item prefer least-privilege alternatives,
+  \item ask a human when you are unsure.
 \end{itemize}
 
-\subsection{Use AI to learn, not to skip}
-If an AI tool gives you an answer, turn it into a learning opportunity:
-\begin{enumerate}[noitemsep]
-  \item Ask it to explain the concept in simpler terms.
-  \item Ask it to show a smaller example.
-  \item Ask it to predict what happens if you change an input.
+\section{Academic integrity and collaboration}
+Courses and teams differ in their policies. Follow the policy that governs your work.
+
+\subsection{Disclose AI assistance when required}
+When disclosure is expected, keep it concrete:
+\begin{itemize}[noitemsep]
+  \item ``Used AI assistance to draft README structure and suggest unit test scaffolding; verified commands by running locally; edited output for accuracy.''
+\end{itemize}
+
+Avoid vague statements that do not clarify what was assisted and what was verified.
+
+\subsection{Use AI to support learning}
+If you receive an answer, convert it into learning:
+\begin{itemize}[noitemsep]
+  \item Ask for a smaller example.
+  \item Ask for assumptions and edge cases.
+  \item Predict what will happen if an input changes.
   \item Test those predictions.
-\end{enumerate}
+\end{itemize}
 
-That cycle builds understanding rather than dependency.
+A useful personal rule is: if you cannot explain it, you do not own it.
+
+\subsection{Collaboration: keep humans in the loop}
+In team settings, AI can accelerate drafting, but humans should review:
+\begin{itemize}[noitemsep]
+  \item Pull requests should explain intent and include tests.
+  \item Code review comments should reference evidence (tests, logs, docs).
+  \item Generated code should be treated like any other contribution: reviewed, tested, and justified.
+\end{itemize}
 
 \section{When AI advice conflicts with your observations}
-Conflicts are common: the assistant says one thing, your computer shows another.
+Conflicts are common. Resolve them with evidence.
 
-\subsection{A resolution protocol}
+\subsection{Resolution protocol}
 \begin{enumerate}[noitemsep]
-  \item Trust your local evidence first: what happened when you ran the code.
-  \item Check versions and environment (a frequent source of mismatch).
-  \item Consult primary documentation for the specific version.
-  \item If still unclear, ask a human with a structured question and include your evidence.
+  \item Trust local evidence: what happened when you ran the code.
+  \item Confirm versions and environment.
+  \item Consult primary documentation for that version.
+  \item If still unclear, ask a human with a structured question.
 \end{enumerate}
 
-If the assistant insists on a claim without pointing you to a primary source, treat that as a warning sign.
-
-\section{Practical prompt patterns you can reuse}
-This section provides reusable prompt patterns. These are not magical; they are structured requests.
-
-\subsection{Pattern A: decision tree}
-\begin{fullcode}
-# Prompt (plain text)
-# "I am seeing <symptom>. Give me a decision tree of 5-8 checks,
-# each check is a command or observation, and each leaf is a likely cause.
-# Keep it specific to <OS> and <tool version> and include verification steps."
-\end{fullcode}
-
-\subsection{Pattern B: MRE reduction}
-\begin{fullcode}
-# Prompt (plain text)
-# "Here is a failing code snippet. Suggest how to reduce it to a minimal
-# reproducible example using synthetic data. Keep the behavior identical.
-# Output: (1) reduced code, (2) what you removed and why, (3) what to test."
-\end{fullcode}
-
-\subsection{Pattern C: test-first}
-\begin{fullcode}
-# Prompt (plain text)
-# "Given this function signature and intended behavior, write 4 unit tests
-# (including edge cases). Then propose an implementation that satisfies the tests.
-# Assume Python 3.12 and pytest." 
-\end{fullcode}
-
-\subsection{Pattern D: documentation rewrite with verification}
-\begin{fullcode}
-# Prompt (plain text)
-# "Rewrite these rough notes into a how-to guide with sections:
-# Purpose, Prerequisites, Steps, Verify, Troubleshooting.
-# Do not invent commands I did not provide; if something is missing, list it
-# as a question under 'Prerequisites'."
-\end{fullcode}
+If the assistant cannot provide a verifiable primary source, treat its claim as tentative.
 
 \section{Case studies}
-These case studies model what ``AI as part of practice'' looks like.
+These case studies illustrate how AI fits into a disciplined workflow.
 
-\subsection{Case study 1: fixing a path bug with AI as a hypothesis engine}
-You run a script and it cannot find a file. You ask the assistant for a checklist of path checks. It suggests printing the working directory, using absolute paths, and listing the target folder. You run those checks and discover that you launched the script from a different directory than you assumed.
+\subsection{Case study 1: notebook kernel mismatch}
+Symptom: a package imports in the terminal but fails in Jupyter.
 
-What you learned is not ``the AI fixed it.'' What you learned is a transferable principle: relative paths are interpreted relative to the working directory.
+Workflow:
+\begin{enumerate}[noitemsep]
+  \item Use AI to propose checks: inspect \texttt{sys.executable} in the notebook.
+  \item Run the check and confirm the notebook kernel points to the wrong environment.
+  \item Switch kernels or install into the correct environment.
+  \item Add a note to your README: ``Kernel must be \texttt{<env-name>}.''
+\end{enumerate}
 
-\subsection{Case study 2: turning a messy notebook into a reproducible workflow}
-You have a notebook that works on your laptop but fails on a class server. You ask the assistant to propose a README structure and an environment specification. It drafts content. You run the instructions in a fresh environment and correct missing steps (installing a system dependency, activating the environment). You commit the README and environment file.
+AI helped propose checks. Local evidence determined the fix.
 
-The deliverable is not the AI text. The deliverable is the verified, runnable workflow.
+\subsection{Case study 2: CSV delimiter confusion}
+Symptom: a CSV loads into one column.
 
-\subsection{Case study 3: AI-proposed code that fails a test}
-You ask the assistant to write a cleaning function. It looks correct but fails on empty strings and produces unexpected missing values. You add a test, see the failure, and then revise the function.
+Workflow:
+\begin{enumerate}[noitemsep]
+  \item Ask AI for plausible causes: delimiter, quoting, encoding.
+  \item Inspect the first lines of the file; test \texttt{sep} explicitly.
+  \item Confirm the correct delimiter and update load code.
+  \item Add an assertion: expected columns present.
+\end{enumerate}
 
-The key move was using tests to force correctness.
+The fix is reliable because it is backed by inspection and an assertion.
+
+\subsection{Case study 3: Git merge conflict in a notebook}
+Symptom: merge conflict in \texttt{analysis.ipynb}.
+
+Workflow:
+\begin{enumerate}[noitemsep]
+  \item Ask AI to outline options: resolve in an editor, use a notebook diff tool, or rerun to regenerate.
+  \item Choose an option consistent with your course and team workflow.
+  \item After resolving, add a practice note: avoid committing noisy notebook outputs if your policy allows.
+\end{enumerate}
+
+AI can propose approaches, but your team's policy determines the acceptable option.
+
+\subsection{Case study 4: unsafe suggested fix}
+Symptom: permission error writing to a directory.
+
+The assistant suggests \texttt{sudo} or a broad permission change.
+
+Correct response:
+\begin{itemize}[noitemsep]
+  \item Stop and identify the correct output directory.
+  \item Prefer writing to a user-owned folder (project \texttt{outputs/} under your home directory).
+  \item Consult documentation or a TA if you think system permissions are required.
+\end{itemize}
+
+High-risk suggestions require human judgment and primary sources.
 
 \section{Exercises}
 \begin{enumerate}[noitemsep]
-  \item Take an error you encountered this week. Use an AI assistant to propose 3 hypotheses and 6 checks. Run the checks and write down which hypotheses were ruled out.
-  \item Draft a structured help request (Goal/Expected/Actual/Repro/Context/What I tried). Ask the assistant to improve clarity without changing facts. Post the final version to your course forum.
-  \item Ask an assistant to generate a README skeleton for your project. Then verify each command by running it. Add a \emph{Verify} section describing what success looks like.
-  \item Ask the assistant for a small function plus unit tests. Run the tests. If any fail, revise the code until all pass.
-  \item Create a ``red list'' for yourself: 10 things you will never paste into an AI tool (keys, tokens, private data). Keep it near your workstation.
+  \item Take a recent error. Ask an assistant for three hypotheses and two checks per hypothesis. Run the checks and record which hypotheses you eliminated.
+  \item Draft a structured help request (Goal/Expected/Actual/Repro/Context/What I tried). Ask the assistant to improve clarity without changing facts. Audit the result and then post it.
+  \item Ask for a README skeleton for your project. Verify each command in a fresh environment. Add a Verify section and one troubleshooting entry.
+  \item Ask for a small function plus unit tests. Run the tests. If any fail, revise until they pass.
+  \item Create a personal ``do not paste'' list (credentials, tokens, private data). Keep it near your workstation.
 \end{enumerate}
 
 \section{One-page checklist}
 \begin{itemize}[noitemsep]
-  \item I choose AI-assisted tasks based on risk (low/medium/high).
-  \item I provide clear context (versions, OS, constraints) in prompts.
-  \item I ask for options and verification steps, not just answers.
-  \item I validate outputs using primary docs, small experiments, and tests.
-  \item I never paste secrets or sensitive data.
-  \item I avoid large rewrites as ``debugging''; I prefer small diffs.
-  \item I record what I tried and what happened.
-  \item I disclose AI use when required and ensure I understand the final work.
+  \item I treat AI output as a proposal and require evidence.
+  \item I scale verification to risk.
+  \item I request alternatives and checkpoints, not a single answer.
+  \item I confirm commands and API behavior in primary documentation.
+  \item I run minimal experiments and change one thing at a time.
+  \item I add tests or assertions after fixes.
+  \item I do not paste secrets or sensitive data.
+  \item I disclose AI assistance when required and keep it specific.
 \end{itemize}
 
-\section*{Further reading}
-If your course includes a policy on AI use, treat it as primary documentation for what is allowed. For general technical practice, the key habit is consistent: make your work verifiable.
+% \section*{Further reading}

@@ -83,11 +83,12 @@
   {}% before the title body
   []% after the title body
 
-% Full-width verbatim code blocks for tufte-book
-\usepackage{fvextra}   % extends fancyvrb; enables wrapping, etc.
-% \usepackage{etoolbox}  % environment hooks
+% Full-width code blocks in tufte-book, using the class's fullwidth environment
+\usepackage{fvextra}   % extends fancyvrb's Verbatim features
+\usepackage{etoolbox}  % environment hooks
+\usepackage{xcolor}    % for rulecolor (optional)
 
-% Define a verbatim environment whose delimiter is \end{fullcode}
+% 1) Define fullcode as a real verbatim environment (end delimiter is \end{fullcode})
 \DefineVerbatimEnvironment{fullcode}{Verbatim}{
   formatcom=\ttfamily,
   fontsize=\small,
@@ -101,7 +102,10 @@
   xrightmargin=0pt
 }
 
-
+% 2) Wrap it with tufte's fullwidth (defined in tufte-common.def)
+\BeforeBeginEnvironment{fullcode}{\begin{fullwidth}}
+\AfterEndEnvironment{fullcode}{\end{fullwidth}}
+  
 \newcommand{\conda}{\texttt{conda}\xspace}
 
 \begin{document}
