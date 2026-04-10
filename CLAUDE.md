@@ -19,7 +19,7 @@ The **Paratechnical Computing Handbook** is a Quarto book for undergraduate non-
 ### Prerequisites
 
 - **Quarto ≥ 1.9.0** (required for `llms-txt` support) — https://quarto.org/docs/download/
-- **TinyTeX** for PDF rendering — `quarto install tinytex`
+- **TinyTeX** (optional, local only) — only needed if you want to render the PDF; `quarto install tinytex`. CI builds HTML only.
 - Optional: Python 3.11+ if you want to add executable code cells (not currently used)
 
 ### Commands
@@ -28,27 +28,24 @@ The **Paratechnical Computing Handbook** is a Quarto book for undergraduate non-
 # Live preview (auto-rebuild on save)
 quarto preview
 
-# Full render to all formats (HTML + PDF)
-quarto render
-
-# Render just HTML
+# Render HTML (matches CI)
 quarto render --to html
 
-# Render just PDF
+# Render PDF locally (requires TinyTeX, not run in CI)
 quarto render --to pdf
 ```
 
-Output lands in `_book/` (gitignored). The landing page is `_book/index.html`. The PDF is `_book/Paratechnical-Computing-Handbook.pdf`. The LLM-friendly files are `_book/llms.txt` and one `*.llms.md` per chapter.
+Output lands in `_book/` (gitignored). The landing page is `_book/index.html`. The LLM-friendly files are `_book/llms.txt` and one `*.llms.md` per chapter. A PDF is only produced if you explicitly run `--to pdf`.
 
 ### Verify
 
-After `quarto render`:
+After `quarto render --to html`:
 
-- **Zero warnings** from `quarto render`.
+- **Zero warnings** from `quarto render --to html`.
 - `_book/index.html` opens and the sidebar lists all six parts with their chapters.
 - `_book/llms.txt` exists and enumerates all chapters.
 - At least a handful of `@sec-*` cross-references resolve (click through in HTML).
-- `_book/Paratechnical-Computing-Handbook.pdf` renders without LaTeX errors.
+- Optional, local only: `quarto render --to pdf` renders without LaTeX errors (requires TinyTeX).
 
 ---
 
@@ -68,8 +65,9 @@ ParatechnicalComputingHandbook/
 │   ├── part-1-practice/             # Part I — Practice of Technical Work
 │   │   ├── questions.qmd
 │   │   ├── documentation.qmd
+│   │   ├── reading-docs.qmd
 │   │   ├── debugging.qmd
-│   │   ├── tracebacks.qmd           # NEW (gap chapter)
+│   │   ├── tracebacks.qmd
 │   │   └── ai-llm.qmd
 │   ├── part-2-environment/          # Part II — Computing Environment
 │   │   ├── operating-system.qmd
@@ -79,17 +77,25 @@ ParatechnicalComputingHandbook/
 │   │   └── remote.qmd
 │   ├── part-3-python/               # Part III — Python Management
 │   │   ├── package-management.qmd
-│   │   ├── virtual-environments.qmd # NEW (gap chapter)
+│   │   ├── virtual-environments.qmd
 │   │   ├── jupyter.qmd
 │   │   ├── scripting.qmd
-│   │   └── testing.qmd              # NEW (gap chapter)
+│   │   ├── testing.qmd
+│   │   ├── regex.qmd
+│   │   └── linting.qmd
 │   ├── part-4-data/                 # Part IV — Working with Data
-│   │   └── data-file-formats.qmd    # NEW (gap chapter)
+│   │   ├── data-file-formats.qmd
+│   │   ├── tabular-data.qmd
+│   │   ├── pandas-basics.qmd
+│   │   ├── sql-basics.qmd
+│   │   └── http-apis.qmd
 │   ├── part-5-projects/             # Part V — Project Management
 │   │   ├── project-management.qmd
 │   │   ├── version-control.qmd
 │   │   ├── collaboration.qmd
-│   │   └── automation.qmd
+│   │   ├── automation.qmd
+│   │   ├── secrets.qmd
+│   │   └── pre-commit.qmd
 │   └── part-6-algorithmic/          # Part VI — Algorithmic Systems
 │       ├── llm-internals.qmd
 │       ├── ai-agents.qmd
@@ -114,6 +120,7 @@ Every chapter has an explicit H1 section ID immediately after the heading. Use t
 |---|---|
 | Asking Technical Questions | `@sec-asking-questions` |
 | Technical Documentation | `@sec-documentation` |
+| Reading Official Documentation | `@sec-reading-docs` |
 | Debugging | `@sec-debugging` |
 | Reading Python Tracebacks | `@sec-tracebacks` |
 | Using AI Tools | `@sec-ai-llm` |
@@ -127,15 +134,24 @@ Every chapter has an explicit H1 section ID immediately after the heading. Use t
 | Jupyter | `@sec-jupyter` |
 | Scripting | `@sec-scripts-vs-notebooks` |
 | Testing Basics with pytest | `@sec-testing` |
+| Regular Expressions | `@sec-regex` |
+| Code Style, Linting, and Formatting | `@sec-linting` |
 | Data File Formats | `@sec-data-file-formats` |
+| Tabular Data: Shape, Cleaning, and Validation | `@sec-tabular-data` |
+| pandas Basics | `@sec-pandas-basics` |
+| SQL Basics | `@sec-sql-basics` |
+| HTTP and Web APIs | `@sec-http-apis` |
 | Project Management | `@sec-project-management` |
 | Version Control | `@sec-git-github` |
 | Collaboration Mechanics | `@sec-collaboration` |
 | Automation | `@sec-automation` |
+| Environment Variables and Secrets | `@sec-secrets` |
+| Pre-commit Hooks | `@sec-pre-commit` |
 | LLM Internals | `@sec-llm-internals` |
 | AI Agents | `@sec-ai-agents` |
 | Evaluating AI | `@sec-evaluating-ai` |
 | Glossary (appendix) | `@sec-glossary` |
+| AI Disclosure (appendix) | `@sec-ai-disclosure` |
 
 **Inline reference form:**
 
@@ -306,30 +322,18 @@ Each glossary term in `appendix-glossary.qmd` has an explicit `{#term-<slug>}` a
 
 ## Gap Chapter Backlog
 
-The first cut of the handbook added four high-priority gap chapters: `tracebacks`, `virtual-environments`, `testing`, and `data-file-formats`. The following remain as candidates for future work. Scaffolding each would be a good first PR for a contributor.
+The handbook's original gap analysis identified 16 candidate chapters. The first round added four high-priority chapters (`tracebacks`, `virtual-environments`, `testing`, `data-file-formats`). The second round added nine more: `reading-docs`, `regex`, `linting`, `tabular-data`, `pandas-basics`, `sql-basics`, `http-apis`, `secrets`, and `pre-commit`. The following topics remain as candidates for future work.
 
-**High priority:**
+**Lower priority (but valuable):**
 
-- **Regular expressions** — new chapter in Part II or III (expand `terminal.qmd`'s "Searching" or stand alone).
-- **HTTP/APIs/`requests`** — new chapter in Part III or IV.
-- **`.env` files and secrets hygiene** — expand `package-management.qmd` or new short chapter.
-- **Reading official documentation / docstrings** — new section in `documentation.qmd`.
+- **Data dictionary / schema docs** — new section in `project-management.qmd` covering column documentation and schema change tracking.
+- **Shell scripting (bash `.sh`)** — expand `automation.qmd` with a section on writing `.sh` scripts with control flow, exit codes, and error handling.
+- **Profiling / performance (`%%timeit`, `cProfile`)** — add to `jupyter.qmd` or a new short chapter in Part III.
+- **Containers / Docker intro** — add to `automation.qmd` or a stand-alone chapter: what a container is, why it matters for reproducibility, when to reach for one.
+- **Markdown syntax as its own reference** — add to `documentation.qmd` or a short appendix.
+- **Stack Overflow hygiene** — add to `questions.qmd`.
 
-**Medium priority:**
-
-- **Code style / linting (`black`, `ruff`)** — add to `scripting.qmd` or `collaboration.qmd`.
-- **Data dictionary / schema docs** — new section in `project-management.qmd`.
-- **`pre-commit` hooks** — add to `version-control.qmd` or `automation.qmd`.
-- **SQL basics** — new chapter in Part IV (Working with Data).
-- **Dataframe basics (pandas orientation)** — new chapter in Part IV for students who have literally never used pandas.
-
-**Lower priority:**
-
-- **Shell scripting (bash `.sh`)** — expand `automation.qmd`.
-- **Profiling / performance (`%%timeit`, `cProfile`)** — add to `jupyter.qmd`.
-- **Containers / Docker intro** — add to `automation.qmd` or stand alone.
-- **Markdown syntax as its own reference** — add to `documentation.qmd`.
-- **Stack Overflow hygiene** — add to `asking-questions.qmd`.
+Each of the above would be a reasonable first PR for a contributor. Follow the canonical 8-section structure (see Style Guide) and add the chapter to `_quarto.yml` + the label table above.
 
 ---
 
