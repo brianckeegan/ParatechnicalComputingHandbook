@@ -1,4 +1,4 @@
-# 24  HTTP and Web APIs
+# 23  HTTP and Web APIs
 
 > **TIP:**
 >
@@ -29,7 +29,7 @@ By the end of this chapter, you should be able to:
 
 Assume every HTTP request can time out, rate-limit you, return garbage, or fail silently. Good HTTP code has timeouts, status checks, and retries. Bad HTTP code crashes halfway through a ten-minute loop.
 
-## 24.1 1. HTTP in one paragraph
+## 23.1 HTTP in one paragraph
 
 The web runs on HTTP (Hypertext Transfer Protocol). A client (your Python script, a browser, `curl`) sends a **request** to a server: a method (GET, POST, …), a URL (`https://api.example.com/v1/users/42`), optional headers (metadata), and optional body (data). The server replies with a **response**: a status code (200 OK, 404 Not Found, 500 Server Error), headers, and a body (usually HTML, JSON, or binary data). That is the whole protocol for our purposes.
 
@@ -67,7 +67,7 @@ Memorize these five:
 - **429 Too Many Requests** — you are being rate-limited. Slow down.
 - **500 Internal Server Error** — the server broke. Not your fault; try again later.
 
-## 24.2 2. The `requests` library
+## 23.2 The `requests` library
 
 The `requests` library is the de facto standard for HTTP in Python. It is not in the standard library, so install it:
 
@@ -137,7 +137,7 @@ resp = requests.get(url, timeout=10)   # fail after 10 seconds
 
 10 seconds is reasonable for most APIs. Set it shorter for fast APIs and longer for reports or exports.
 
-## 24.3 3. Checking the response
+## 23.3 Checking the response
 
 `requests` will not raise an exception on a 404 or 500 by default — you have to check. Two common idioms:
 
@@ -155,7 +155,7 @@ data = resp.json()
 
 Use `raise_for_status()` when you just want to abort on any error. Use the explicit check when you want different behavior for different codes (e.g., retry on 429 but abort on 404).
 
-## 24.4 4. JSON → DataFrame
+## 23.4 JSON → DataFrame
 
 Most APIs return JSON. For tabular data the pattern is usually:
 
@@ -183,7 +183,7 @@ df = pd.json_normalize(payload["results"])
 
 Always inspect `payload` in a REPL or notebook cell before assuming it is shaped like you expect. The first couple times you call a new API, `print(payload)` and `print(type(payload))` are cheaper than wrong code.
 
-## 24.5 5. API keys and secrets
+## 23.5 API keys and secrets
 
 Most useful APIs require authentication. The key goes in a header, usually as `Authorization: Bearer <token>` or in a custom header like `X-API-Key`.
 
@@ -203,7 +203,7 @@ resp = requests.get(
 
 Store the key in a `.env` file and load it with `python-dotenv`. The full workflow — why, how, and how to avoid leaking keys into git — is [sec-secrets](#sec-secrets). Read it before building anything serious.
 
-## 24.6 6. Rate limits and being polite
+## 23.6 Rate limits and being polite
 
 Most APIs limit how fast you can call them — often “N requests per minute” or “N requests per day.” When you exceed the limit, you get a `429 Too Many Requests`. Some APIs return a `Retry-After` header telling you how many seconds to wait.
 
@@ -244,7 +244,7 @@ def get_with_retry(url, headers=None, params=None, max_retries=5):
 
 For web pages (not APIs), check `https://example.com/robots.txt` before scraping. It tells you which paths the site owner is OK with automated tools hitting. Ignoring it is rude and can get your IP blocked.
 
-## 24.7 7. When *not* to use `requests` directly
+## 23.7 When *not* to use `requests` directly
 
 Before you write a lot of custom API code, check:
 
@@ -252,9 +252,9 @@ Before you write a lot of custom API code, check:
 - **Is there a bulk download?** Many data sources also offer CSV, Parquet, or SQL dumps of the same data. If you want a snapshot, the dump is usually much faster and easier than hammering the API row by row. See [sec-data-file-formats](#sec-data-file-formats).
 - **Is this a one-off?** For a single fetch, `curl` on the command line or a browser download might be faster than a Python script. Save the result to disk and work from there.
 
-## 24.8 8. Worked examples
+## 23.8 Worked examples
 
-### Example 1: fetch a GitHub repo’s metadata
+### Fetch a GitHub repo’s metadata
 
 ``` python
 import requests
@@ -272,7 +272,7 @@ print(f"{repo['full_name']}: {repo['stargazers_count']:,} stars")
 print(f"Last updated: {repo['updated_at']}")
 ```
 
-### Example 2: paginate through results
+### Paginate through results
 
 Most list endpoints return a few dozen items per page and require you to request subsequent pages.
 
@@ -295,7 +295,7 @@ def list_issues(owner, repo, token):
 
 Stop when the response is an empty list. Some APIs also return a `Link` header with `rel="next"` — you can follow that instead of incrementing a page number.
 
-### Example 3: handle a flaky weather API
+### Handle a flaky weather API
 
 ``` python
 import os, time, requests
@@ -323,7 +323,7 @@ def current_weather(city):
 
 Three layers of defense: status-code checks, timeout handling, and exponential backoff.
 
-## 24.9 9. Templates
+## 23.9 Templates
 
 **A defensive GET helper:**
 
@@ -356,7 +356,7 @@ from dotenv import load_dotenv
 load_dotenv()
 ```
 
-## 24.10 10. Exercises
+## 23.10 Exercises
 
 1.  Use `requests.get` to fetch `https://api.github.com/repos/python/cpython` and print the star count, license name, and default branch.
 2.  Add a `User-Agent` header to the request above. Repeat the request without one (or with `User-Agent: ""`) and see if you get the same response.
@@ -366,7 +366,7 @@ load_dotenv()
 6.  Find a dataset that is available both as a bulk CSV download and as an API. Download both, load them into pandas, compare the row counts, and write down which was faster and why.
 7.  Use `resp = requests.get(...)` and inspect `resp.headers` in a notebook. Find the `Content-Type`, `Server`, and any rate-limit headers (`X-RateLimit-Remaining` is common).
 
-## 24.11 11. One-page checklist
+## 23.11 One-page checklist
 
 - Import `requests`; install with `python -m pip install requests`.
 - Always pass a `timeout=` to every request.

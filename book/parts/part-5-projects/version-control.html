@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>26&nbsp; Version Control – Paratechnical Computing Handbook</title>
+<title>25&nbsp; Version Control – Paratechnical Computing Handbook</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -280,7 +315,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../parts/part-5-projects/project-management.html">Part V — Project Management</a></li><li class="breadcrumb-item"><a href="../../parts/part-5-projects/version-control.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Version Control</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../parts/part-5-projects/project-management.html">Part V — Project Management</a></li><li class="breadcrumb-item"><a href="../../parts/part-5-projects/version-control.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Version Control</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -455,20 +490,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../parts/part-3-python/testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Testing Basics with pytest</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../parts/part-3-python/regex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regular Expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Regular Expressions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-3-python/linting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Code Style, Linting, and Formatting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Code Style, Linting, and Formatting</span></span></a>
   </div>
 </li>
       </ul>
@@ -485,31 +514,31 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/data-file-formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Data File Formats</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Data File Formats</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/tabular-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Tabular Data: Shape, Cleaning, and Validation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Tabular Data: Shape, Cleaning, and Validation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/pandas-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">pandas Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">pandas Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/sql-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">SQL Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">SQL Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/http-apis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">HTTP and Web APIs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">HTTP and Web APIs</span></span></a>
   </div>
 </li>
       </ul>
@@ -526,37 +555,31 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/project-management.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Project Management</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Project Management</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/version-control.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Version Control</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Version Control</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/collaboration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Collaboration Mechanics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Collaboration Mechanics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/automation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Automation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Automation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/secrets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Environment Variables and Secrets</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../parts/part-5-projects/pre-commit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Pre-commit Hooks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Environment Variables and Secrets</span></span></a>
   </div>
 </li>
       </ul>
@@ -573,19 +596,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/llm-internals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">How Language Models Work</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">How Language Models Work</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/ai-agents.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Working with AI Agent Frameworks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Working with AI Agent Frameworks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/evaluating-ai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Evaluating and Auditing AI Outputs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Evaluating and Auditing AI Outputs</span></span></a>
   </div>
 </li>
       </ul>
@@ -593,7 +616,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -632,45 +655,32 @@ window.Quarto = {
   <li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose">Purpose</a></li>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning objectives</a></li>
   <li><a href="#running-theme-make-changes-small-reviewable-and-reversible" id="toc-running-theme-make-changes-small-reviewable-and-reversible" class="nav-link" data-scroll-target="#running-theme-make-changes-small-reviewable-and-reversible">Running theme: make changes small, reviewable, and reversible</a></li>
-  <li><a href="#mental-models-and-vocabulary" id="toc-mental-models-and-vocabulary" class="nav-link" data-scroll-target="#mental-models-and-vocabulary"><span class="header-section-number">26.1</span> Mental models and vocabulary</a>
-  <ul class="collapse">
-  <li><a href="#repository-snapshot-history" id="toc-repository-snapshot-history" class="nav-link" data-scroll-target="#repository-snapshot-history">Repository, snapshot, history</a></li>
-  <li><a href="#the-three-zones-working-tree-staging-area-commits" id="toc-the-three-zones-working-tree-staging-area-commits" class="nav-link" data-scroll-target="#the-three-zones-working-tree-staging-area-commits">The three zones: working tree, staging area, commits</a></li>
-  <li><a href="#branching-as-pointers" id="toc-branching-as-pointers" class="nav-link" data-scroll-target="#branching-as-pointers">Branching as pointers</a></li>
-  <li><a href="#remote-repositories" id="toc-remote-repositories" class="nav-link" data-scroll-target="#remote-repositories">Remote repositories</a></li>
-  <li><a href="#pull-request-pr" id="toc-pull-request-pr" class="nav-link" data-scroll-target="#pull-request-pr">Pull request (PR)</a></li>
-  </ul></li>
-  <li><a href="#why-version-control-matters-for-student-data-work" id="toc-why-version-control-matters-for-student-data-work" class="nav-link" data-scroll-target="#why-version-control-matters-for-student-data-work"><span class="header-section-number">26.2</span> Why version control matters for student data work</a>
+  <li><a href="#mental-models-and-vocabulary" id="toc-mental-models-and-vocabulary" class="nav-link" data-scroll-target="#mental-models-and-vocabulary"><span class="header-section-number">25.1</span> Mental models and vocabulary</a></li>
+  <li><a href="#why-version-control-matters-for-student-data-work" id="toc-why-version-control-matters-for-student-data-work" class="nav-link" data-scroll-target="#why-version-control-matters-for-student-data-work"><span class="header-section-number">25.2</span> Why version control matters for student data work</a>
   <ul class="collapse">
   <li><a href="#use-cases" id="toc-use-cases" class="nav-link" data-scroll-target="#use-cases">Use cases</a></li>
   <li><a href="#what-to-version-and-what-not-to-version" id="toc-what-to-version-and-what-not-to-version" class="nav-link" data-scroll-target="#what-to-version-and-what-not-to-version">What to version and what not to version</a></li>
   </ul></li>
-  <li><a href="#getting-started-create-or-clone" id="toc-getting-started-create-or-clone" class="nav-link" data-scroll-target="#getting-started-create-or-clone"><span class="header-section-number">26.3</span> Getting started: create or clone</a>
+  <li><a href="#getting-started-create-or-clone" id="toc-getting-started-create-or-clone" class="nav-link" data-scroll-target="#getting-started-create-or-clone"><span class="header-section-number">25.3</span> Getting started: create or clone</a>
   <ul class="collapse">
   <li><a href="#initialize-a-repository-local" id="toc-initialize-a-repository-local" class="nav-link" data-scroll-target="#initialize-a-repository-local">Initialize a repository (local)</a></li>
   <li><a href="#clone-an-existing-repository" id="toc-clone-an-existing-repository" class="nav-link" data-scroll-target="#clone-an-existing-repository">Clone an existing repository</a></li>
   <li><a href="#first-time-setup-identity-and-defaults" id="toc-first-time-setup-identity-and-defaults" class="nav-link" data-scroll-target="#first-time-setup-identity-and-defaults">First-time setup (identity and defaults)</a></li>
   </ul></li>
-  <li><a href="#daily-git-workflow-the-minimum-viable-loop" id="toc-daily-git-workflow-the-minimum-viable-loop" class="nav-link" data-scroll-target="#daily-git-workflow-the-minimum-viable-loop"><span class="header-section-number">26.4</span> Daily Git workflow (the minimum viable loop)</a>
-  <ul class="collapse">
-  <li><a href="#status-and-diff-first" id="toc-status-and-diff-first" class="nav-link" data-scroll-target="#status-and-diff-first">Status and diff first</a></li>
-  <li><a href="#stage-intentionally" id="toc-stage-intentionally" class="nav-link" data-scroll-target="#stage-intentionally">Stage intentionally</a></li>
-  <li><a href="#commit-with-meaning" id="toc-commit-with-meaning" class="nav-link" data-scroll-target="#commit-with-meaning">Commit with meaning</a></li>
-  <li><a href="#sync-with-the-remote" id="toc-sync-with-the-remote" class="nav-link" data-scroll-target="#sync-with-the-remote">Sync with the remote</a></li>
-  </ul></li>
-  <li><a href="#branches-and-merges-collaboration-without-chaos" id="toc-branches-and-merges-collaboration-without-chaos" class="nav-link" data-scroll-target="#branches-and-merges-collaboration-without-chaos"><span class="header-section-number">26.5</span> Branches and merges (collaboration without chaos)</a>
+  <li><a href="#daily-git-workflow-the-minimum-viable-loop" id="toc-daily-git-workflow-the-minimum-viable-loop" class="nav-link" data-scroll-target="#daily-git-workflow-the-minimum-viable-loop"><span class="header-section-number">25.4</span> Daily Git workflow (the minimum viable loop)</a></li>
+  <li><a href="#branches-and-merges-collaboration-without-chaos" id="toc-branches-and-merges-collaboration-without-chaos" class="nav-link" data-scroll-target="#branches-and-merges-collaboration-without-chaos"><span class="header-section-number">25.5</span> Branches and merges (collaboration without chaos)</a>
   <ul class="collapse">
   <li><a href="#why-branches" id="toc-why-branches" class="nav-link" data-scroll-target="#why-branches">Why branches</a></li>
   <li><a href="#a-standard-branch-workflow" id="toc-a-standard-branch-workflow" class="nav-link" data-scroll-target="#a-standard-branch-workflow">A standard branch workflow</a></li>
   <li><a href="#merge-vs-rebase-novice-policy" id="toc-merge-vs-rebase-novice-policy" class="nav-link" data-scroll-target="#merge-vs-rebase-novice-policy">Merge vs rebase (novice policy)</a></li>
   <li><a href="#undo-safely-intro" id="toc-undo-safely-intro" class="nav-link" data-scroll-target="#undo-safely-intro">Undo safely (intro)</a></li>
   </ul></li>
-  <li><a href="#remotes-fetch-pull-push" id="toc-remotes-fetch-pull-push" class="nav-link" data-scroll-target="#remotes-fetch-pull-push"><span class="header-section-number">26.6</span> Remotes: fetch, pull, push</a>
+  <li><a href="#remotes-fetch-pull-push" id="toc-remotes-fetch-pull-push" class="nav-link" data-scroll-target="#remotes-fetch-pull-push"><span class="header-section-number">25.6</span> Remotes: fetch, pull, push</a>
   <ul class="collapse">
   <li><a href="#what-these-commands-do-conceptually" id="toc-what-these-commands-do-conceptually" class="nav-link" data-scroll-target="#what-these-commands-do-conceptually">What these commands do conceptually</a></li>
   <li><a href="#the-drift-problem" id="toc-the-drift-problem" class="nav-link" data-scroll-target="#the-drift-problem">The drift problem</a></li>
   </ul></li>
-  <li><a href="#github-fundamentals" id="toc-github-fundamentals" class="nav-link" data-scroll-target="#github-fundamentals"><span class="header-section-number">26.7</span> GitHub fundamentals</a>
+  <li><a href="#github-fundamentals" id="toc-github-fundamentals" class="nav-link" data-scroll-target="#github-fundamentals"><span class="header-section-number">25.7</span> GitHub fundamentals</a>
   <ul class="collapse">
   <li><a href="#repository-anatomy-on-github" id="toc-repository-anatomy-on-github" class="nav-link" data-scroll-target="#repository-anatomy-on-github">Repository anatomy on GitHub</a></li>
   <li><a href="#pull-requests-the-core-collaboration-primitive" id="toc-pull-requests-the-core-collaboration-primitive" class="nav-link" data-scroll-target="#pull-requests-the-core-collaboration-primitive">Pull requests: the core collaboration primitive</a></li>
@@ -678,41 +688,41 @@ window.Quarto = {
   <li><a href="#reviews-and-commenting-best-practices" id="toc-reviews-and-commenting-best-practices" class="nav-link" data-scroll-target="#reviews-and-commenting-best-practices">Reviews and commenting best practices</a></li>
   <li><a href="#linking-work-issues-leftrightarrow-prs" id="toc-linking-work-issues-leftrightarrow-prs" class="nav-link" data-scroll-target="#linking-work-issues-leftrightarrow-prs">Linking work: issues <span class="math inline">\(\leftrightarrow\)</span> PRs</a></li>
   </ul></li>
-  <li><a href="#forking-workflow-contributing-without-direct-write-access" id="toc-forking-workflow-contributing-without-direct-write-access" class="nav-link" data-scroll-target="#forking-workflow-contributing-without-direct-write-access"><span class="header-section-number">26.8</span> Forking workflow (contributing without direct write access)</a>
+  <li><a href="#forking-workflow-contributing-without-direct-write-access" id="toc-forking-workflow-contributing-without-direct-write-access" class="nav-link" data-scroll-target="#forking-workflow-contributing-without-direct-write-access"><span class="header-section-number">25.8</span> Forking workflow (contributing without direct write access)</a>
   <ul class="collapse">
   <li><a href="#fork-vs-clone" id="toc-fork-vs-clone" class="nav-link" data-scroll-target="#fork-vs-clone">Fork vs clone</a></li>
   <li><a href="#the-standard-fork-contribution-flow" id="toc-the-standard-fork-contribution-flow" class="nav-link" data-scroll-target="#the-standard-fork-contribution-flow">The standard fork contribution flow</a></li>
   <li><a href="#keeping-your-fork-up-to-date" id="toc-keeping-your-fork-up-to-date" class="nav-link" data-scroll-target="#keeping-your-fork-up-to-date">Keeping your fork up to date</a></li>
   </ul></li>
-  <li><a href="#merge-conflicts-a-disciplined-resolution-playbook" id="toc-merge-conflicts-a-disciplined-resolution-playbook" class="nav-link" data-scroll-target="#merge-conflicts-a-disciplined-resolution-playbook"><span class="header-section-number">26.9</span> Merge conflicts: a disciplined resolution playbook</a>
+  <li><a href="#merge-conflicts-a-disciplined-resolution-playbook" id="toc-merge-conflicts-a-disciplined-resolution-playbook" class="nav-link" data-scroll-target="#merge-conflicts-a-disciplined-resolution-playbook"><span class="header-section-number">25.9</span> Merge conflicts: a disciplined resolution playbook</a>
   <ul class="collapse">
   <li><a href="#what-a-conflict-is" id="toc-what-a-conflict-is" class="nav-link" data-scroll-target="#what-a-conflict-is">What a conflict is</a></li>
   <li><a href="#the-safe-sequence" id="toc-the-safe-sequence" class="nav-link" data-scroll-target="#the-safe-sequence">The safe sequence</a></li>
   <li><a href="#when-to-ask-for-help" id="toc-when-to-ask-for-help" class="nav-link" data-scroll-target="#when-to-ask-for-help">When to ask for help</a></li>
   </ul></li>
-  <li><a href="#special-considerations-for-data-science-projects" id="toc-special-considerations-for-data-science-projects" class="nav-link" data-scroll-target="#special-considerations-for-data-science-projects"><span class="header-section-number">26.10</span> Special considerations for data science projects</a>
+  <li><a href="#special-considerations-for-data-science-projects" id="toc-special-considerations-for-data-science-projects" class="nav-link" data-scroll-target="#special-considerations-for-data-science-projects"><span class="header-section-number">25.10</span> Special considerations for data science projects</a>
   <ul class="collapse">
   <li><a href="#gitignore-hygiene" id="toc-gitignore-hygiene" class="nav-link" data-scroll-target="#gitignore-hygiene"><code>.gitignore</code> hygiene</a></li>
   <li><a href="#notebooks-in-git" id="toc-notebooks-in-git" class="nav-link" data-scroll-target="#notebooks-in-git">Notebooks in Git</a></li>
   <li><a href="#large-files-and-datasets" id="toc-large-files-and-datasets" class="nav-link" data-scroll-target="#large-files-and-datasets">Large files and datasets</a></li>
   <li><a href="#releases-and-tags-optional" id="toc-releases-and-tags-optional" class="nav-link" data-scroll-target="#releases-and-tags-optional">Releases and tags (optional)</a></li>
   </ul></li>
-  <li><a href="#worked-examples-outline" id="toc-worked-examples-outline" class="nav-link" data-scroll-target="#worked-examples-outline"><span class="header-section-number">26.11</span> Worked examples (outline)</a>
+  <li><a href="#worked-examples-outline" id="toc-worked-examples-outline" class="nav-link" data-scroll-target="#worked-examples-outline"><span class="header-section-number">25.11</span> Worked examples (outline)</a>
   <ul class="collapse">
-  <li><a href="#example-1-the-daily-loop" id="toc-example-1-the-daily-loop" class="nav-link" data-scroll-target="#example-1-the-daily-loop">Example 1: The daily loop</a></li>
-  <li><a href="#example-2-branch-pr-workflow" id="toc-example-2-branch-pr-workflow" class="nav-link" data-scroll-target="#example-2-branch-pr-workflow">Example 2: Branch + PR workflow</a></li>
-  <li><a href="#example-3-resolve-a-merge-conflict" id="toc-example-3-resolve-a-merge-conflict" class="nav-link" data-scroll-target="#example-3-resolve-a-merge-conflict">Example 3: Resolve a merge conflict</a></li>
-  <li><a href="#example-4-fork-contribution" id="toc-example-4-fork-contribution" class="nav-link" data-scroll-target="#example-4-fork-contribution">Example 4: Fork contribution</a></li>
+  <li><a href="#the-daily-loop" id="toc-the-daily-loop" class="nav-link" data-scroll-target="#the-daily-loop">The daily loop</a></li>
+  <li><a href="#branch-pr-workflow" id="toc-branch-pr-workflow" class="nav-link" data-scroll-target="#branch-pr-workflow">Branch + PR workflow</a></li>
+  <li><a href="#resolve-a-merge-conflict" id="toc-resolve-a-merge-conflict" class="nav-link" data-scroll-target="#resolve-a-merge-conflict">Resolve a merge conflict</a></li>
+  <li><a href="#fork-contribution" id="toc-fork-contribution" class="nav-link" data-scroll-target="#fork-contribution">Fork contribution</a></li>
   </ul></li>
-  <li><a href="#templates" id="toc-templates" class="nav-link" data-scroll-target="#templates"><span class="header-section-number">26.12</span> Templates</a>
+  <li><a href="#templates" id="toc-templates" class="nav-link" data-scroll-target="#templates"><span class="header-section-number">25.12</span> Templates</a>
   <ul class="collapse">
   <li><a href="#template-a-commit-message" id="toc-template-a-commit-message" class="nav-link" data-scroll-target="#template-a-commit-message">Template A: Commit message</a></li>
   <li><a href="#template-b-pull-request-description" id="toc-template-b-pull-request-description" class="nav-link" data-scroll-target="#template-b-pull-request-description">Template B: Pull request description</a></li>
   <li><a href="#template-c-review-comment-taxonomy" id="toc-template-c-review-comment-taxonomy" class="nav-link" data-scroll-target="#template-c-review-comment-taxonomy">Template C: Review comment taxonomy</a></li>
   </ul></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">26.13</span> Exercises</a></li>
-  <li><a href="#one-page-checklist" id="toc-one-page-checklist" class="nav-link" data-scroll-target="#one-page-checklist"><span class="header-section-number">26.14</span> One-page checklist</a></li>
-  <li><a href="#quick-reference-common-commands-student-set" id="toc-quick-reference-common-commands-student-set" class="nav-link" data-scroll-target="#quick-reference-common-commands-student-set"><span class="header-section-number">26.15</span> Quick reference: common commands (student set)</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">25.13</span> Exercises</a></li>
+  <li><a href="#one-page-checklist" id="toc-one-page-checklist" class="nav-link" data-scroll-target="#one-page-checklist"><span class="header-section-number">25.14</span> One-page checklist</a></li>
+  <li><a href="#quick-reference-common-commands-student-set" id="toc-quick-reference-common-commands-student-set" class="nav-link" data-scroll-target="#quick-reference-common-commands-student-set"><span class="header-section-number">25.15</span> Quick reference: common commands (student set)</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/brianckeegan/ParatechnicalComputingHandbook/edit/main/parts/part-5-projects/version-control.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/brianckeegan/ParatechnicalComputingHandbook/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -720,9 +730,9 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../parts/part-5-projects/project-management.html">Part V — Project Management</a></li><li class="breadcrumb-item"><a href="../../parts/part-5-projects/version-control.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Version Control</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../parts/part-5-projects/project-management.html">Part V — Project Management</a></li><li class="breadcrumb-item"><a href="../../parts/part-5-projects/version-control.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Version Control</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-git-github" class="quarto-section-identifier"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Version Control</span></span></h1>
+<h1 class="title"><span id="sec-git-github" class="quarto-section-identifier"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Version Control</span></span></h1>
 </div>
 
 
@@ -751,8 +761,8 @@ window.Quarto = {
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>Prerequisites (read first if unfamiliar):</strong> <a href="#sec-terminal" class="quarto-xref"><span class="quarto-unresolved-ref">sec-terminal</span></a>.</p>
-<p><strong>See also:</strong> <a href="#sec-collaboration" class="quarto-xref"><span class="quarto-unresolved-ref">sec-collaboration</span></a>, <a href="#sec-automation" class="quarto-xref"><span class="quarto-unresolved-ref">sec-automation</span></a>, <a href="#sec-project-management" class="quarto-xref"><span class="quarto-unresolved-ref">sec-project-management</span></a>.</p>
+<p><strong>Prerequisites (read first if unfamiliar):</strong> <a href="../part-2-environment/terminal.html" class="quarto-xref"><span>Chapter 10</span></a>.</p>
+<p><strong>See also:</strong> <a href="collaboration.html" class="quarto-xref"><span>Chapter 26</span></a>, <a href="automation.html" class="quarto-xref"><span>Chapter 27</span></a>, <a href="project-management.html" class="quarto-xref"><span>Chapter 24</span></a>.</p>
 </div>
 </div>
 </div>
@@ -779,50 +789,25 @@ window.Quarto = {
 <h2 class="unnumbered anchored" data-anchor-id="running-theme-make-changes-small-reviewable-and-reversible">Running theme: make changes small, reviewable, and reversible</h2>
 <p>A healthy Git workflow favors small commits, small pull requests, clear messages, and frequent synchronization.</p>
 </section>
-<section id="mental-models-and-vocabulary" class="level2" data-number="26.1">
-<h2 data-number="26.1" class="anchored" data-anchor-id="mental-models-and-vocabulary"><span class="header-section-number">26.1</span> Mental models and vocabulary</h2>
-<section id="repository-snapshot-history" class="level3">
-<h3 class="anchored" data-anchor-id="repository-snapshot-history">Repository, snapshot, history</h3>
-<ul>
-<li><p>A <strong>repository</strong> is your project folder plus a hidden <code>.git</code> directory.</p></li>
-<li><p>A <strong>commit</strong> is a snapshot of tracked files with metadata (author, time, message).</p></li>
-<li><p>Git history is a graph, not a single line.</p></li>
-</ul>
+<section id="mental-models-and-vocabulary" class="level2" data-number="25.1">
+<h2 data-number="25.1" class="anchored" data-anchor-id="mental-models-and-vocabulary"><span class="header-section-number">25.1</span> Mental models and vocabulary</h2>
+<p>A <strong>repository</strong> is your project folder plus a hidden <code>.git</code> directory inside it. Everything Git knows about your project — every commit, every branch, every author, every file at every point in time — is stored in <code>.git</code>. Delete the directory, and you have a regular folder with no version control. Keep it, and you have a complete history you can rewind to.</p>
+<p>A <strong>commit</strong> is a snapshot of every tracked file in the repository at a specific moment, plus a small bundle of metadata: the author, the time, the commit message you wrote, and a unique identifier (the SHA hash) that names this specific snapshot forever. Commits are the unit of history. They are how you say “this is the state of the project right now, save it.”</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git log <span class="at">--oneline</span> <span class="at">-3</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">8b73ab1</span> Part I: convert outline bullets to narrative prose</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">185d03f</span> Part II: convert outline bullets to narrative prose</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">c127108</span> Merge pre-commit chapter into automation</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Git history is not a single straight line — it is a graph. Branches diverge and merge back together, and the same project can have many parallel lines of work in flight at once. Once you internalize that mental picture, the rest of Git makes more sense.</p>
+<p>There are three zones any file moves through on its way into history. The <strong>working tree</strong> is the version of the file as it exists on disk right now — what you see when you open it in your editor. The <strong>staging area</strong> (also called the <em>index</em>) is the set of changes you have explicitly told Git you intend to include in your next commit. And the <strong>commit</strong> is the saved snapshot in history once you actually run <code>git commit</code>. Edits land in the working tree first; <code>git add</code> promotes them to staging; <code>git commit</code> turns staging into a commit.</p>
+<pre class="text"><code>edit file        →  working tree
+git add file     →  staging area
+git commit       →  history</code></pre>
+<p>A <strong>branch</strong> is a movable pointer that names one specific commit (and, by extension, the entire history leading up to it). Branches are cheap — creating one is essentially free, since Git just records “the name <code>feature-x</code> points at this commit.” That cheapness is what enables the standard workflow of “make a branch for every change, no matter how small.” Use branches; they are not heavy ceremony.</p>
+<p>A <strong>remote</strong> is another copy of the repository hosted somewhere else — usually on GitHub. The conventional name for the default remote is <strong>origin</strong>, which is just a short label for “the GitHub repository this clone came from.” When you also have a fork relationship, you typically add a second remote called <strong>upstream</strong> that points at the original repository you forked. The local copy on your computer can talk to multiple remotes, and <code>git push</code>, <code>git pull</code>, and <code>git fetch</code> all take a remote name as an (often implicit) argument.</p>
+<p>A <strong>pull request</strong> (PR, sometimes called a <em>merge request</em> on GitLab) is GitHub’s mechanism for proposing that one branch be merged into another. A PR is not a Git concept — it is a GitHub feature layered on top of Git — but it is where most collaborative decisions actually happen: you push a branch, open a PR, your teammates comment on the diff, you respond and revise, and eventually someone clicks Merge. PRs are how teams make changes <em>visible</em> before they land.</p>
 </section>
-<section id="the-three-zones-working-tree-staging-area-commits" class="level3">
-<h3 class="anchored" data-anchor-id="the-three-zones-working-tree-staging-area-commits">The three zones: working tree, staging area, commits</h3>
-<ul>
-<li><p><strong>Working tree:</strong> your edited files.</p></li>
-<li><p><strong>Staging area (index):</strong> the exact changes you plan to commit.</p></li>
-<li><p><strong>Commit:</strong> saved snapshot in history.</p></li>
-</ul>
-</section>
-<section id="branching-as-pointers" class="level3">
-<h3 class="anchored" data-anchor-id="branching-as-pointers">Branching as pointers</h3>
-<ul>
-<li><p>A <strong>branch</strong> is a movable pointer to a commit.</p></li>
-<li><p>A branch is cheap; use them.</p></li>
-</ul>
-</section>
-<section id="remote-repositories" class="level3">
-<h3 class="anchored" data-anchor-id="remote-repositories">Remote repositories</h3>
-<ul>
-<li><p><strong>Local repo:</strong> on your computer.</p></li>
-<li><p><strong>Remote repo:</strong> hosted on GitHub.</p></li>
-<li><p><strong>origin:</strong> the default remote name.</p></li>
-<li><p><strong>upstream:</strong> the source repository for forks.</p></li>
-</ul>
-</section>
-<section id="pull-request-pr" class="level3">
-<h3 class="anchored" data-anchor-id="pull-request-pr">Pull request (PR)</h3>
-<ul>
-<li><p>A PR is a proposal to merge changes, with discussion and review.</p></li>
-<li><p>PRs are where teams make decisions visible.</p></li>
-</ul>
-</section>
-</section>
-<section id="why-version-control-matters-for-student-data-work" class="level2" data-number="26.2">
-<h2 data-number="26.2" class="anchored" data-anchor-id="why-version-control-matters-for-student-data-work"><span class="header-section-number">26.2</span> Why version control matters for student data work</h2>
+<section id="why-version-control-matters-for-student-data-work" class="level2" data-number="25.2">
+<h2 data-number="25.2" class="anchored" data-anchor-id="why-version-control-matters-for-student-data-work"><span class="header-section-number">25.2</span> Why version control matters for student data work</h2>
 <section id="use-cases" class="level3">
 <h3 class="anchored" data-anchor-id="use-cases">Use cases</h3>
 <ul>
@@ -840,8 +825,8 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="getting-started-create-or-clone" class="level2" data-number="26.3">
-<h2 data-number="26.3" class="anchored" data-anchor-id="getting-started-create-or-clone"><span class="header-section-number">26.3</span> Getting started: create or clone</h2>
+<section id="getting-started-create-or-clone" class="level2" data-number="25.3">
+<h2 data-number="25.3" class="anchored" data-anchor-id="getting-started-create-or-clone"><span class="header-section-number">25.3</span> Getting started: create or clone</h2>
 <section id="initialize-a-repository-local" class="level3">
 <h3 class="anchored" data-anchor-id="initialize-a-repository-local">Initialize a repository (local)</h3>
 <ul>
@@ -864,39 +849,30 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="daily-git-workflow-the-minimum-viable-loop" class="level2" data-number="26.4">
-<h2 data-number="26.4" class="anchored" data-anchor-id="daily-git-workflow-the-minimum-viable-loop"><span class="header-section-number">26.4</span> Daily Git workflow (the minimum viable loop)</h2>
-<section id="status-and-diff-first" class="level3">
-<h3 class="anchored" data-anchor-id="status-and-diff-first">Status and diff first</h3>
-<ul>
-<li><p>Check what changed before committing.</p></li>
-<li><p>Review diffs so commits are intentional.</p></li>
-</ul>
+<section id="daily-git-workflow-the-minimum-viable-loop" class="level2" data-number="25.4">
+<h2 data-number="25.4" class="anchored" data-anchor-id="daily-git-workflow-the-minimum-viable-loop"><span class="header-section-number">25.4</span> Daily Git workflow (the minimum viable loop)</h2>
+<p>The healthy daily loop is the same handful of commands repeated over and over: see what changed, stage what you want, commit it with a clear message, and sync with the remote. Once this loop is automatic, the rest of Git becomes much less intimidating.</p>
+<p>The first move when you sit down to commit is always to check <strong>what changed</strong> since your last commit. <code>git status</code> tells you which files have been modified, added, or deleted. <code>git diff</code> shows the actual line-by-line changes inside those files. Read both before you commit anything — committing without looking at the diff is how you accidentally include debugging print statements, hard-coded passwords, or unrelated experiments.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch main</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> not staged for commit:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">modified:</span>   src/cleaning.py</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">modified:</span>   notebooks/analysis.ipynb</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git diff src/cleaning.py</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">@@</span> <span class="at">-12,7</span> +12,7 @@ def clean_sales<span class="er">(</span><span class="fu">df</span><span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span>    df = df.dropna<span class="er">(</span><span class="kw">)</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ex">+</span>    df = df.dropna<span class="er">(</span><span class="va">subset</span><span class="op">=</span><span class="pp">[</span><span class="st">"customer_id"</span><span class="pp">]</span><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Once you have decided what you want to commit, <strong>stage it intentionally</strong>. The smallest coherent change is the right unit — one logical idea per commit. If your working tree contains both a bug fix and an unrelated rename, stage them as two separate commits, not one. The tool for this is <code>git add</code> (or <code>git add -p</code> for the interactive “stage this hunk, skip this hunk” experience), and the discipline is to think about each file before you stage it rather than reflexively running <code>git add .</code>.</p>
+<p>Then <strong>commit with a meaningful message</strong>. A good commit message is a short summary line in the imperative mood — <em>“Add data intake checks”</em>, not <em>“Added data intake checks”</em> and not <em>“changes”</em>. If the change deserves more explanation, leave a blank line after the summary and then a paragraph or two of context: what the change does, why it was needed, and any subtleties a reader might miss.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add data intake checks for missing customer_id"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Finally, <strong>sync with the remote</strong>. Push your work so it is backed up to GitHub and visible to your collaborators. Pull (or <code>git fetch</code> followed by <code>git merge</code>) before you start a new piece of work, so your local copy reflects whatever your teammates have been doing. Frequent small pushes and pulls are dramatically less painful than one giant sync at the end of the week.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push                <span class="co"># send your commits to origin</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull                <span class="co"># fetch and merge the remote into your branch</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>That is the entire daily loop: status, diff, add, commit, push, pull. Master those six and you have most of what version control gives you.</p>
 </section>
-<section id="stage-intentionally" class="level3">
-<h3 class="anchored" data-anchor-id="stage-intentionally">Stage intentionally</h3>
-<ul>
-<li><p>Stage the smallest coherent change.</p></li>
-<li><p>Avoid committing unrelated changes together.</p></li>
-</ul>
-</section>
-<section id="commit-with-meaning" class="level3">
-<h3 class="anchored" data-anchor-id="commit-with-meaning">Commit with meaning</h3>
-<ul>
-<li><p>Commit messages: short summary + optional details.</p></li>
-<li><p>Prefer imperative mood: “Add data intake checks”.</p></li>
-</ul>
-</section>
-<section id="sync-with-the-remote" class="level3">
-<h3 class="anchored" data-anchor-id="sync-with-the-remote">Sync with the remote</h3>
-<ul>
-<li><p>Push your work so it is backed up and shareable.</p></li>
-<li><p>Pull (or fetch+merge) so you do not drift from teammates.</p></li>
-</ul>
-</section>
-</section>
-<section id="branches-and-merges-collaboration-without-chaos" class="level2" data-number="26.5">
-<h2 data-number="26.5" class="anchored" data-anchor-id="branches-and-merges-collaboration-without-chaos"><span class="header-section-number">26.5</span> Branches and merges (collaboration without chaos)</h2>
+<section id="branches-and-merges-collaboration-without-chaos" class="level2" data-number="25.5">
+<h2 data-number="25.5" class="anchored" data-anchor-id="branches-and-merges-collaboration-without-chaos"><span class="header-section-number">25.5</span> Branches and merges (collaboration without chaos)</h2>
 <section id="why-branches" class="level3">
 <h3 class="anchored" data-anchor-id="why-branches">Why branches</h3>
 <ul>
@@ -930,8 +906,8 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="remotes-fetch-pull-push" class="level2" data-number="26.6">
-<h2 data-number="26.6" class="anchored" data-anchor-id="remotes-fetch-pull-push"><span class="header-section-number">26.6</span> Remotes: fetch, pull, push</h2>
+<section id="remotes-fetch-pull-push" class="level2" data-number="25.6">
+<h2 data-number="25.6" class="anchored" data-anchor-id="remotes-fetch-pull-push"><span class="header-section-number">25.6</span> Remotes: fetch, pull, push</h2>
 <section id="what-these-commands-do-conceptually" class="level3">
 <h3 class="anchored" data-anchor-id="what-these-commands-do-conceptually">What these commands do conceptually</h3>
 <ul>
@@ -948,12 +924,12 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="github-fundamentals" class="level2" data-number="26.7">
-<h2 data-number="26.7" class="anchored" data-anchor-id="github-fundamentals"><span class="header-section-number">26.7</span> GitHub fundamentals</h2>
+<section id="github-fundamentals" class="level2" data-number="25.7">
+<h2 data-number="25.7" class="anchored" data-anchor-id="github-fundamentals"><span class="header-section-number">25.7</span> GitHub fundamentals</h2>
 <section id="repository-anatomy-on-github" class="level3">
 <h3 class="anchored" data-anchor-id="repository-anatomy-on-github">Repository anatomy on GitHub</h3>
 <ul>
-<li><p>Code view, issues, pull requests, actions, releases (<a href="#sec-automation" class="quarto-xref"><span class="quarto-unresolved-ref">sec-automation</span></a> covers GitHub Actions and CI in depth).</p></li>
+<li><p>Code view, issues, pull requests, actions, releases (<a href="automation.html" class="quarto-xref"><span>Chapter 27</span></a> covers GitHub Actions and CI in depth).</p></li>
 <li><p>The README is the front door.</p></li>
 </ul>
 </section>
@@ -989,8 +965,8 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="forking-workflow-contributing-without-direct-write-access" class="level2" data-number="26.8">
-<h2 data-number="26.8" class="anchored" data-anchor-id="forking-workflow-contributing-without-direct-write-access"><span class="header-section-number">26.8</span> Forking workflow (contributing without direct write access)</h2>
+<section id="forking-workflow-contributing-without-direct-write-access" class="level2" data-number="25.8">
+<h2 data-number="25.8" class="anchored" data-anchor-id="forking-workflow-contributing-without-direct-write-access"><span class="header-section-number">25.8</span> Forking workflow (contributing without direct write access)</h2>
 <section id="fork-vs-clone" class="level3">
 <h3 class="anchored" data-anchor-id="fork-vs-clone">Fork vs clone</h3>
 <ul>
@@ -1018,26 +994,28 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="merge-conflicts-a-disciplined-resolution-playbook" class="level2" data-number="26.9">
-<h2 data-number="26.9" class="anchored" data-anchor-id="merge-conflicts-a-disciplined-resolution-playbook"><span class="header-section-number">26.9</span> Merge conflicts: a disciplined resolution playbook</h2>
+<section id="merge-conflicts-a-disciplined-resolution-playbook" class="level2" data-number="25.9">
+<h2 data-number="25.9" class="anchored" data-anchor-id="merge-conflicts-a-disciplined-resolution-playbook"><span class="header-section-number">25.9</span> Merge conflicts: a disciplined resolution playbook</h2>
 <section id="what-a-conflict-is" class="level3">
 <h3 class="anchored" data-anchor-id="what-a-conflict-is">What a conflict is</h3>
-<ul>
-<li><p>Git cannot automatically reconcile changes to the same lines/regions.</p></li>
-<li><p>Conflicts are normal in collaboration.</p></li>
-</ul>
+<p>A merge conflict is what happens when two branches both changed the same lines of the same file in incompatible ways, and Git cannot tell which change you want to keep. Conflicts are not a sign that something has gone wrong — they are a normal part of any collaboration where two people edit the same area of the codebase. The right response is “okay, time to resolve this,” not panic.</p>
 </section>
 <section id="the-safe-sequence" class="level3">
 <h3 class="anchored" data-anchor-id="the-safe-sequence">The safe sequence</h3>
-<ol type="1">
-<li><p>Stop and read the error.</p></li>
-<li><p>Identify which files are conflicted.</p></li>
-<li><p>Open the files and locate conflict markers.</p></li>
-<li><p>Decide the correct combined content (not “pick one side" by default).</p></li>
-<li><p>Stage resolved files.</p></li>
-<li><p>Complete the merge.</p></li>
-<li><p>Run a quick smoke test.</p></li>
-</ol>
+<p>When <code>git pull</code> or <code>git merge</code> reports a conflict, work through this sequence in order. <strong>First, stop and read the error.</strong> Git tells you exactly which files conflicted; do not skip past that text.</p>
+<pre class="text"><code>Auto-merging src/cleaning.py
+CONFLICT (content): Merge conflict in src/cleaning.py
+Automatic merge failed; fix conflicts and then commit the result.</code></pre>
+<p><strong>Second, run <code>git status</code></strong> to confirm the list of conflicted files, then open each one in your editor. Conflicted files contain little markers that show you both versions of every contested region:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> HEAD</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.dropna(subset<span class="op">=</span>[<span class="st">"customer_id"</span>])</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">=======</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.dropna(subset<span class="op">=</span>[<span class="st">"customer_id"</span>, <span class="st">"date"</span>])</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> feature<span class="op">-</span>strict<span class="op">-</span>cleaning</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The lines between <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code> and <code>=======</code> are the version that was on your branch; the lines between <code>=======</code> and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature-strict-cleaning</code> are the version coming in from the other branch. <strong>Third, decide the correct combined content</strong> — and “correct” almost never means “pick one side wholesale.” Read both versions, understand what each was trying to do, and write the merged version that preserves both intents:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.dropna(subset<span class="op">=</span>[<span class="st">"customer_id"</span>, <span class="st">"date"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Delete the conflict markers when you are done — they are not valid code and Git will not magically remove them for you.</p>
+<p><strong>Fourth, stage the resolved files</strong> with <code>git add</code>. Git uses staging as the signal that “I have finished resolving this file.” <strong>Fifth, run <code>git commit</code></strong> (or <code>git merge --continue</code>) to finalize the merge. Git produces a default commit message describing the merge; you can usually accept it. <strong>Sixth and most important, run a smoke test</strong> — execute the code, run any tests, open the notebook — to confirm that your manually-merged version actually works. A “successful” merge that produces broken code is the most common way for conflicts to silently introduce bugs.</p>
 </section>
 <section id="when-to-ask-for-help" class="level3">
 <h3 class="anchored" data-anchor-id="when-to-ask-for-help">When to ask for help</h3>
@@ -1047,8 +1025,8 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="special-considerations-for-data-science-projects" class="level2" data-number="26.10">
-<h2 data-number="26.10" class="anchored" data-anchor-id="special-considerations-for-data-science-projects"><span class="header-section-number">26.10</span> Special considerations for data science projects</h2>
+<section id="special-considerations-for-data-science-projects" class="level2" data-number="25.10">
+<h2 data-number="25.10" class="anchored" data-anchor-id="special-considerations-for-data-science-projects"><span class="header-section-number">25.10</span> Special considerations for data science projects</h2>
 <section id="gitignore-hygiene" class="level3">
 <h3 class="anchored" data-anchor-id="gitignore-hygiene"><code>.gitignore</code> hygiene</h3>
 <ul>
@@ -1079,35 +1057,35 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="worked-examples-outline" class="level2" data-number="26.11">
-<h2 data-number="26.11" class="anchored" data-anchor-id="worked-examples-outline"><span class="header-section-number">26.11</span> Worked examples (outline)</h2>
-<section id="example-1-the-daily-loop" class="level3">
-<h3 class="anchored" data-anchor-id="example-1-the-daily-loop">Example 1: The daily loop</h3>
+<section id="worked-examples-outline" class="level2" data-number="25.11">
+<h2 data-number="25.11" class="anchored" data-anchor-id="worked-examples-outline"><span class="header-section-number">25.11</span> Worked examples (outline)</h2>
+<section id="the-daily-loop" class="level3">
+<h3 class="anchored" data-anchor-id="the-daily-loop">The daily loop</h3>
 <ul>
 <li>Edit file, check status/diff, stage, commit, push.</li>
 </ul>
 </section>
-<section id="example-2-branch-pr-workflow" class="level3">
-<h3 class="anchored" data-anchor-id="example-2-branch-pr-workflow">Example 2: Branch + PR workflow</h3>
+<section id="branch-pr-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="branch-pr-workflow">Branch + PR workflow</h3>
 <ul>
 <li>Create feature branch, commit in small steps, open PR, respond to review, merge.</li>
 </ul>
 </section>
-<section id="example-3-resolve-a-merge-conflict" class="level3">
-<h3 class="anchored" data-anchor-id="example-3-resolve-a-merge-conflict">Example 3: Resolve a merge conflict</h3>
+<section id="resolve-a-merge-conflict" class="level3">
+<h3 class="anchored" data-anchor-id="resolve-a-merge-conflict">Resolve a merge conflict</h3>
 <ul>
 <li>Create an intentional conflict, resolve using the playbook, run a smoke test.</li>
 </ul>
 </section>
-<section id="example-4-fork-contribution" class="level3">
-<h3 class="anchored" data-anchor-id="example-4-fork-contribution">Example 4: Fork contribution</h3>
+<section id="fork-contribution" class="level3">
+<h3 class="anchored" data-anchor-id="fork-contribution">Fork contribution</h3>
 <ul>
 <li>Fork, clone, add upstream, sync, open PR to upstream.</li>
 </ul>
 </section>
 </section>
-<section id="templates" class="level2" data-number="26.12">
-<h2 data-number="26.12" class="anchored" data-anchor-id="templates"><span class="header-section-number">26.12</span> Templates</h2>
+<section id="templates" class="level2" data-number="25.12">
+<h2 data-number="25.12" class="anchored" data-anchor-id="templates"><span class="header-section-number">25.12</span> Templates</h2>
 <section id="template-a-commit-message" class="level3">
 <h3 class="anchored" data-anchor-id="template-a-commit-message">Template A: Commit message</h3>
 <pre><code> &lt;Short summary in imperative mood&gt;
@@ -1148,8 +1126,8 @@ Question: clarify intent, edge cases
 Nit: formatting, naming (non-blocking)</code></pre>
 </section>
 </section>
-<section id="exercises" class="level2" data-number="26.13">
-<h2 data-number="26.13" class="anchored" data-anchor-id="exercises"><span class="header-section-number">26.13</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="25.13">
+<h2 data-number="25.13" class="anchored" data-anchor-id="exercises"><span class="header-section-number">25.13</span> Exercises</h2>
 <ol type="1">
 <li><p>Initialize a repo, add a README and <code>.gitignore</code>, and make three meaningful commits.</p></li>
 <li><p>Create a branch, make changes, push it, and open a PR.</p></li>
@@ -1158,8 +1136,8 @@ Nit: formatting, naming (non-blocking)</code></pre>
 <li><p>Fork a repository, add an upstream remote, sync it, and open a PR from your fork.</p></li>
 </ol>
 </section>
-<section id="one-page-checklist" class="level2" data-number="26.14">
-<h2 data-number="26.14" class="anchored" data-anchor-id="one-page-checklist"><span class="header-section-number">26.14</span> One-page checklist</h2>
+<section id="one-page-checklist" class="level2" data-number="25.14">
+<h2 data-number="25.14" class="anchored" data-anchor-id="one-page-checklist"><span class="header-section-number">25.14</span> One-page checklist</h2>
 <ul>
 <li><p>I understand working tree vs staging vs commits.</p></li>
 <li><p>I can create branches and keep <code>main</code> stable.</p></li>
@@ -1170,8 +1148,8 @@ Nit: formatting, naming (non-blocking)</code></pre>
 <li><p>I follow hygiene: <code>.gitignore</code>, no secrets, controlled notebook diffs.</p></li>
 </ul>
 </section>
-<section id="quick-reference-common-commands-student-set" class="level2" data-number="26.15">
-<h2 data-number="26.15" class="anchored" data-anchor-id="quick-reference-common-commands-student-set"><span class="header-section-number">26.15</span> Quick reference: common commands (student set)</h2>
+<section id="quick-reference-common-commands-student-set" class="level2" data-number="25.15">
+<h2 data-number="25.15" class="anchored" data-anchor-id="quick-reference-common-commands-student-set"><span class="header-section-number">25.15</span> Quick reference: common commands (student set)</h2>
 <pre><code># create/clone
 
 git init
@@ -1634,12 +1612,12 @@ git merge --abort</code></pre>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../../parts/part-5-projects/project-management.html" class="pagination-link" aria-label="Project Management">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Project Management</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Project Management</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../parts/part-5-projects/collaboration.html" class="pagination-link" aria-label="Collaboration Mechanics">
-        <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Collaboration Mechanics</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Collaboration Mechanics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

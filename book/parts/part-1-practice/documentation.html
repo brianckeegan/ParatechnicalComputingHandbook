@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -445,20 +480,14 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../parts/part-3-python/testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Testing Basics with pytest</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../parts/part-3-python/regex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regular Expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Regular Expressions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-3-python/linting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Code Style, Linting, and Formatting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Code Style, Linting, and Formatting</span></span></a>
   </div>
 </li>
       </ul>
@@ -475,31 +504,31 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/data-file-formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Data File Formats</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Data File Formats</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/tabular-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Tabular Data: Shape, Cleaning, and Validation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Tabular Data: Shape, Cleaning, and Validation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/pandas-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">pandas Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">pandas Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/sql-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">SQL Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">SQL Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/http-apis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">HTTP and Web APIs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">HTTP and Web APIs</span></span></a>
   </div>
 </li>
       </ul>
@@ -516,37 +545,31 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/project-management.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Project Management</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Project Management</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/version-control.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Version Control</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Version Control</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/collaboration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Collaboration Mechanics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Collaboration Mechanics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/automation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Automation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Automation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/secrets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Environment Variables and Secrets</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../parts/part-5-projects/pre-commit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Pre-commit Hooks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Environment Variables and Secrets</span></span></a>
   </div>
 </li>
       </ul>
@@ -563,19 +586,19 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/llm-internals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">How Language Models Work</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">How Language Models Work</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/ai-agents.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Working with AI Agent Frameworks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Working with AI Agent Frameworks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/evaluating-ai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Evaluating and Auditing AI Outputs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Evaluating and Auditing AI Outputs</span></span></a>
   </div>
 </li>
       </ul>
@@ -583,7 +606,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -681,9 +704,9 @@ div.csl-indent {
   </ul></li>
   <li><a href="#worked-examples" id="toc-worked-examples" class="nav-link" data-scroll-target="#worked-examples"><span class="header-section-number">3.10</span> Worked examples</a>
   <ul class="collapse">
-  <li><a href="#example-1-turning-a-notebook-into-a-runnable-project" id="toc-example-1-turning-a-notebook-into-a-runnable-project" class="nav-link" data-scroll-target="#example-1-turning-a-notebook-into-a-runnable-project">Example 1: Turning a notebook into a runnable project</a></li>
-  <li><a href="#example-2-documenting-a-data-intake-pipeline" id="toc-example-2-documenting-a-data-intake-pipeline" class="nav-link" data-scroll-target="#example-2-documenting-a-data-intake-pipeline">Example 2: Documenting a data intake pipeline</a></li>
-  <li><a href="#example-3-writing-troubleshooting-notes" id="toc-example-3-writing-troubleshooting-notes" class="nav-link" data-scroll-target="#example-3-writing-troubleshooting-notes">Example 3: Writing troubleshooting notes</a></li>
+  <li><a href="#turning-a-notebook-into-a-runnable-project" id="toc-turning-a-notebook-into-a-runnable-project" class="nav-link" data-scroll-target="#turning-a-notebook-into-a-runnable-project">Turning a notebook into a runnable project</a></li>
+  <li><a href="#documenting-a-data-intake-pipeline" id="toc-documenting-a-data-intake-pipeline" class="nav-link" data-scroll-target="#documenting-a-data-intake-pipeline">Documenting a data intake pipeline</a></li>
+  <li><a href="#writing-troubleshooting-notes" id="toc-writing-troubleshooting-notes" class="nav-link" data-scroll-target="#writing-troubleshooting-notes">Writing troubleshooting notes</a></li>
   </ul></li>
   <li><a href="#templates" id="toc-templates" class="nav-link" data-scroll-target="#templates"><span class="header-section-number">3.11</span> Templates</a>
   <ul class="collapse">
@@ -732,7 +755,7 @@ div.csl-indent {
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>Prerequisites:</strong> none. This chapter stands on its own.</p>
-<p><strong>See also:</strong> <a href="#sec-asking-questions" class="quarto-xref"><span class="quarto-unresolved-ref">sec-asking-questions</span></a>, <a href="#sec-git-github" class="quarto-xref"><span class="quarto-unresolved-ref">sec-git-github</span></a>, <a href="#sec-collaboration" class="quarto-xref"><span class="quarto-unresolved-ref">sec-collaboration</span></a>.</p>
+<p><strong>See also:</strong> <a href="questions.html" class="quarto-xref"><span>Chapter 2</span></a>, <a href="../part-5-projects/version-control.html" class="quarto-xref"><span>Chapter 25</span></a>, <a href="../part-5-projects/collaboration.html" class="quarto-xref"><span>Chapter 26</span></a>.</p>
 </div>
 </div>
 </div>
@@ -763,12 +786,7 @@ div.csl-indent {
 <p>A common misconception is that documentation is a single thing: “the docs.” In practice, documentation is a <em>stack</em> of artifacts produced by different actors and optimized for different questions. When you learn to navigate that stack, you stop treating confusion as personal failure and start treating it as a routing problem: “Which source should answer this question?”</p>
 <section id="two-complementary-roles-learning-and-coordination" class="level3">
 <h3 class="anchored" data-anchor-id="two-complementary-roles-learning-and-coordination">Two complementary roles: learning and coordination</h3>
-<p>Documentation does two jobs at the same time:</p>
-<ul>
-<li><p><strong>Learning support</strong>: It teaches you how a tool works and how to use it.</p></li>
-<li><p><strong>Coordination support</strong>: It aligns multiple people on how a project should be run, changed, and evaluated.</p></li>
-</ul>
-<p>Many frustrations occur when we ask documentation to do the wrong job. An API reference is a poor tutorial. A tutorial is a poor specification. A README is not a substitute for a change log.</p>
+<p>Documentation does two jobs at the same time. The first is <strong>learning support</strong>: teaching you how a tool works and how to use it. The second is <strong>coordination support</strong>: aligning multiple people on how a project should be run, changed, and evaluated. The same document rarely does both jobs well, which is why so many frustrations come from asking the wrong artifact to do the wrong job. An API reference is a poor tutorial because it assumes you already know what you are looking for. A tutorial is a poor specification because it focuses on one path through the tool, not on every behavior. A README is not a substitute for a change log, because it describes the project as it is <em>now</em>, not how it changed. Recognizing which role you need is half the battle.</p>
 </section>
 <section id="a-simple-hierarchy-of-authority" class="level3">
 <h3 class="anchored" data-anchor-id="a-simple-hierarchy-of-authority">A simple hierarchy of authority</h3>
@@ -786,38 +804,27 @@ div.csl-indent {
 <p>A useful classification (popularized in multiple documentation communities) separates four genres. You do not need to memorize the labels; you need to recognize the different user needs they serve.</p>
 <section id="reference-documentation" class="level3">
 <h3 class="anchored" data-anchor-id="reference-documentation">Reference documentation</h3>
-<p><strong>Question it answers</strong>: “What are the exact inputs, outputs, options, and behaviors?”</p>
-<p>Reference documentation includes:</p>
-<ul>
-<li><p>API references (functions, classes, parameters)</p></li>
-<li><p>command-line help and man pages</p></li>
-<li><p>configuration schemas</p></li>
-</ul>
-<p>Reference is dense, structured, and typically not narrative. It is the place you go to settle precise details.</p>
+<p>Reference docs answer the question <em>“what are the exact inputs, outputs, options, and behaviors?”</em> They include API references for functions, classes, and parameters; command-line help and man pages; and configuration file schemas. Reference is dense, structured, and typically not narrative — you do not read it cover to cover, you dip into it for one precise answer and then leave. When you already know what function you want and just need to confirm an argument, reference is the right genre.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Examples of reference docs you can read locally</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> help merge          <span class="co"># man-page-style git reference</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">--help</span>               <span class="co"># GNU ls option reference</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"help(dict)"</span>  <span class="co"># Python built-in reference</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="tutorials" class="level3">
 <h3 class="anchored" data-anchor-id="tutorials">Tutorials</h3>
-<p><strong>Question it answers</strong>: “How do I learn this from scratch in a guided way?”</p>
-<p>Tutorials are linear and scaffolded. They assume you have time to follow a sequence and that you want a working example even if you do not fully understand every piece yet.</p>
+<p>Tutorials answer the question <em>“how do I learn this from scratch in a guided way?”</em> They are linear and scaffolded, and they assume you have the time to follow a sequence step by step. A good tutorial gets you to a working example quickly, even if you do not fully understand every piece on the first pass. The pandas “Getting Started” guide and the official Python tutorial are both examples of this genre.</p>
 </section>
 <section id="how-to-guides" class="level3">
 <h3 class="anchored" data-anchor-id="how-to-guides">How-to guides</h3>
-<p><strong>Question it answers</strong>: “How do I accomplish a specific task?”</p>
-<p>How-to guides are goal-oriented and practical. They should be short, focused, and opinionated about the steps.</p>
+<p>How-to guides answer the question <em>“how do I accomplish a specific task?”</em> They are goal-oriented and practical, and the best ones are short, focused, and opinionated about the steps. They assume you already know roughly what you want — “I need to read a CSV with a custom delimiter” — and they hand you the recipe without padding it with conceptual background.</p>
 </section>
 <section id="explanations-and-concepts" class="level3">
 <h3 class="anchored" data-anchor-id="explanations-and-concepts">Explanations and concepts</h3>
-<p><strong>Question it answers</strong>: “Why does this work that way?” or “What is the mental model?”</p>
-<p>Concept docs clarify terminology, architecture, trade-offs, and design rationale. This is often where you learn what not to do.</p>
+<p>Explanations answer the questions <em>“why does this work the way it does?”</em> and <em>“what is the right mental model for this thing?”</em> Concept docs clarify terminology, architecture, trade-offs, and design rationale. They are often where you learn what <em>not</em> to do — why <code>iterrows()</code> is slow in pandas, why mutable default arguments are a trap in Python, why HTTP <code>POST</code> is not idempotent. Reading good explanation docs is one of the highest-leverage activities in technical learning, even though it produces nothing immediately runnable.</p>
 </section>
 <section id="why-this-classification-matters" class="level3">
 <h3 class="anchored" data-anchor-id="why-this-classification-matters">Why this classification matters</h3>
-<p>When a student says “I read the docs and still don’t get it,” the hidden question is often: “Which kind of docs did you read, and which kind did you need?” A quick diagnostic:</p>
-<ul>
-<li><p>If you cannot find the correct function name, you need a <strong>tutorial</strong> or <strong>how-to</strong>.</p></li>
-<li><p>If you know the function name but not the parameter, you need <strong>reference</strong>.</p></li>
-<li><p>If you keep making the same conceptual mistake, you need <strong>explanations</strong>.</p></li>
-</ul>
+<p>When a student says “I read the docs and still don’t get it,” the hidden question is almost always <em>which kind of docs they read versus which kind they actually needed.</em> A quick mental diagnostic helps: if you cannot even find the right <em>function name</em> for what you want to do, you need a tutorial or a how-to to point you at it. If you know the function name and just need to look up the right parameter, you need reference. And if you keep making the same conceptual mistake — the same join going wrong, the same kind of <code>KeyError</code> — you need an explanation page that fixes the mental model, not another how-to that fixes one symptom.</p>
 </section>
 </section>
 <section id="finding-documentation-efficiently" class="level2 page-columns page-full" data-number="3.3">
@@ -825,26 +832,16 @@ div.csl-indent {
 <p>Finding documentation is a skill because the web contains too much material, and search engines optimize for popularity rather than correctness. You should develop a repeatable workflow that reliably gets you to primary sources.</p>
 <section id="start-with-what-is-the-object" class="level3">
 <h3 class="anchored" data-anchor-id="start-with-what-is-the-object">Start with “what is the object?”</h3>
-<p>Your first step is to identify what you are dealing with:</p>
-<ul>
-<li><p>A <strong>language feature</strong> (Python list slicing)</p></li>
-<li><p>A <strong>library</strong> (pandas, numpy, scikit-learn)</p></li>
-<li><p>A <strong>tool</strong> (Git, conda, Jupyter)</p></li>
-<li><p>A <strong>platform</strong> (GitHub Actions, Windows Task Scheduler)</p></li>
-<li><p>A <strong>file format</strong> (CSV, JSON, Parquet)</p></li>
-</ul>
-<p>Once you know the object class, you know where “official” information is most likely to live.</p>
+<p>The first move is always to figure out what <em>kind</em> of thing you are dealing with, because the answer determines where the “official” docs live. Are you trying to understand a <strong>language feature</strong> (Python list slicing, generator expressions), a <strong>library</strong> (pandas, numpy, scikit-learn), a <strong>tool</strong> (Git, conda, Jupyter), a <strong>platform</strong> (GitHub Actions, Windows Task Scheduler), or a <strong>file format</strong> (CSV, JSON, Parquet)? Each of those categories has a different home: language features live in the language reference, libraries live in their own documentation sites, tools live in their man pages and project sites, platforms live in their vendor docs, and file formats live in their public specifications. Once you know the category, you almost always know the URL pattern.</p>
 </section>
 <section id="search-queries-that-route-you-to-primary-sources" class="level3">
 <h3 class="anchored" data-anchor-id="search-queries-that-route-you-to-primary-sources">Search queries that route you to primary sources</h3>
-<p>Novices often search for “how to do X” and end up in secondary sources. Instead, search for:</p>
-<ul>
-<li><p><code>&lt;tool&gt; documentation &lt;topic&gt;</code> (e.g., <code>pip documentation requirements.txt</code>)</p></li>
-<li><p><code>&lt;library&gt; API &lt;function&gt;</code> (e.g., <code>pandas API read_csv</code>)</p></li>
-<li><p><code>&lt;tool&gt; man page &lt;command&gt;</code> (e.g., <code>ssh man page ProxyJump</code>)</p></li>
-<li><p><code>&lt;error message&gt;</code> + <code>&lt;library&gt;</code> + <code>version</code> (when relevant)</p></li>
-</ul>
-<p>If you land on a blog, use it to extract keywords (function names, flags, concepts), then jump to the official docs.</p>
+<p>A common novice mistake is to type <em>“how do I do X”</em> into Google and end up in a sea of secondary sources — blog posts, Stack Overflow answers, and YouTube videos of varying age and accuracy. A small change in search query routes you to primary sources directly. Instead of <em>“how do I write a requirements.txt”</em>, search for <code>pip documentation requirements.txt</code>. Instead of <em>“how do I use SSH ProxyJump”</em>, search for <code>ssh man page ProxyJump</code>. Instead of <em>“pandas merge tutorial”</em>, search for <code>pandas API merge</code>. The pattern is always the same: name the tool, name the topic, and add a word like <code>documentation</code>, <code>API</code>, or <code>man page</code> to bias the results toward authoritative sources.</p>
+<pre class="text"><code># Instead of                          search for
+# "how to use pandas merge"    →     "pandas API merge"
+# "git rebase tutorial"         →     "git documentation rebase"
+# "fix requests timeout"        →     "requests timeout parameter site:requests.readthedocs.io"</code></pre>
+<p>When you do land on a blog or Stack Overflow post, treat it as a <em>navigation aid</em>: use it to extract the function names, flags, and concepts you should look up next, and then jump immediately to the official docs to verify them against your installed version.</p>
 </section>
 <section id="know-the-home-bases" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="know-the-home-bases">Know the “home bases”</h3>
@@ -870,14 +867,11 @@ Chacon, Scott, and Ben Straub. 2014. <em>Pro Git</em>. 2nd ed. Apress. <a href="
 </section>
 <section id="use-built-in-documentation-before-the-web" class="level3">
 <h3 class="anchored" data-anchor-id="use-built-in-documentation-before-the-web">Use built-in documentation before the web</h3>
-<p>Before you open a browser, check what is already available locally:</p>
-<ul>
-<li><p><strong>Command line</strong>: <code>tool –help</code>, <code>man tool</code>, or <code>help tool</code></p></li>
-<li><p><strong>Python</strong>: <code>help(obj)</code> and <code>obj?&nbsp;</code> in Jupyter</p></li>
-<li><p><strong>R</strong>: <code>?function</code> and <code>help(function)</code></p></li>
-<li><p><strong>Git</strong>: <code>git help &lt;subcommand&gt;</code></p></li>
-</ul>
-<p>Local help is often aligned with your installed version, which is exactly what you need when version differences matter.</p>
+<p>Before you open a browser, check what is already on your machine. Almost every tool you use ships with its own reference, and that reference has the enormous advantage of being aligned with your installed version — which is exactly what you need when version differences matter. From the command line, the patterns are <code>tool --help</code>, <code>man tool</code>, or <code>help tool</code>. From Python, you can call <code>help(obj)</code> on any function or class, and inside Jupyter or IPython you can append <code>?</code> to a name to read its docstring or <code>??</code> to see its source code. R users have <code>?function</code> and <code>help(function)</code>. Git’s subcommands all have their own help pages, accessible as <code>git help merge</code>, <code>git help commit</code>, and so on.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> help rebase                  <span class="co"># full man page for git rebase</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">--help</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-20</span>             <span class="co"># short reference for ls flags</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"help(dict.get)"</span>       <span class="co"># built-in help for dict.get</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The local help is fast, offline, and version-correct. Reach for it before you reach for a search engine.</p>
 </section>
 </section>
 <section id="reading-documentation-actively" class="level2" data-number="3.4">
@@ -885,49 +879,19 @@ Chacon, Scott, and Ben Straub. 2014. <em>Pro Git</em>. 2nd ed. Apress. <a href="
 <p>Reading technical documentation is not like reading a novel. You do not “consume” it from start to finish. You interrogate it.</p>
 <section id="the-extract-five-facts-method" class="level3">
 <h3 class="anchored" data-anchor-id="the-extract-five-facts-method">The “extract five facts” method</h3>
-<p>For a function, command, or tool behavior, extract:</p>
-<ol type="1">
-<li><p><strong>Inputs</strong>: required arguments and accepted types</p></li>
-<li><p><strong>Outputs</strong>: return types, files created, side effects</p></li>
-<li><p><strong>Defaults</strong>: what happens if you do nothing special</p></li>
-<li><p><strong>Constraints</strong>: version requirements, OS restrictions, permissions</p></li>
-<li><p><strong>Failure modes</strong>: common errors and their meaning</p></li>
-</ol>
-<p>If you cannot locate these, you may be in the wrong documentation genre.</p>
+<p>When you are reading the docs for a function, command, or tool behavior, you are looking for five specific facts: the <strong>inputs</strong> (required arguments and the types they accept), the <strong>outputs</strong> (return types, files written, side effects on global state), the <strong>defaults</strong> (what happens if you do not pass anything special), the <strong>constraints</strong> (version requirements, OS restrictions, permissions needed), and the <strong>failure modes</strong> (which errors the function can raise and what they usually mean). If you can find all five for a given function, you know almost everything you need to use it confidently. If you cannot find them — for example, if a tutorial only shows you one usage and never enumerates the parameters — you are reading the wrong genre and should switch to the reference page.</p>
 </section>
 <section id="identify-assumptions-and-hidden-context" class="level3">
 <h3 class="anchored" data-anchor-id="identify-assumptions-and-hidden-context">Identify assumptions and hidden context</h3>
-<p>Documentation frequently assumes:</p>
-<ul>
-<li><p>you are in the right directory,</p></li>
-<li><p>your environment is activated,</p></li>
-<li><p>you have network access,</p></li>
-<li><p>you have permissions to read/write certain paths,</p></li>
-<li><p>your input data match a schema.</p></li>
-</ul>
-<p>As you read, ask: “What must be true for these steps to work?” Then compare those assumptions to your situation.</p>
+<p>Almost every set of docs is written for a specific imagined reader, and that reader is usually in a slightly different situation than you are. Docs routinely assume that you are in the right working directory, that your environment is already activated, that you have network access, that you have read/write permissions to wherever the example writes, and that your input data match a schema the docs never quite specify. As you read, train yourself to ask “what must be true for these steps to work?” — and then compare each of those assumptions to your actual situation. The first place they diverge is usually the place where the docs and your reality will collide.</p>
 </section>
 <section id="examples-are-executable-contracts" class="level3">
 <h3 class="anchored" data-anchor-id="examples-are-executable-contracts">Examples are executable contracts</h3>
-<p>Examples are not decoration. They are the closest thing documentation has to a contract. When you see an example:</p>
-<ul>
-<li><p>copy it into a scratch file,</p></li>
-<li><p>run it with the same version you have,</p></li>
-<li><p>modify one variable at a time to map it onto your goal.</p></li>
-</ul>
-<p>If the example fails on your machine, you have learned something important: either the docs are out of date, you are in a different version, or you misunderstood a prerequisite.</p>
+<p>Examples in official docs are not decoration. They are the closest thing documentation has to a contract: the maintainer is asserting that <em>this</em> code, running in <em>this</em> version of the library, produces <em>this</em> result. The most useful thing you can do with an example is take it seriously: copy it into a scratch file, run it as-is on your installed version, and confirm it works <em>before</em> you change anything. Then modify it one variable at a time toward your real use case. If the example fails on your machine, that is itself a piece of evidence — either the docs are out of date, you are on a different version than the docs assume, or one of the hidden prerequisites is missing in your environment. Either way, you have learned something concrete instead of staring at the docs in confusion.</p>
 </section>
 <section id="beware-the-happy-path" class="level3">
 <h3 class="anchored" data-anchor-id="beware-the-happy-path">Beware the “happy path”</h3>
-<p>Tutorials often show the happy path: clean inputs, correct permissions, and a fresh environment. Real work includes:</p>
-<ul>
-<li><p>missing files,</p></li>
-<li><p>corrupted data,</p></li>
-<li><p>partial installs,</p></li>
-<li><p>conflicting versions,</p></li>
-<li><p>network interruptions.</p></li>
-</ul>
-<p>When you read docs, look for sections labeled “Troubleshooting,” “Common issues,” “FAQ,” “Compatibility,” and “Upgrading.”</p>
+<p>Tutorials almost always show the happy path: clean input data, correct permissions, a fresh environment, no network blips, and no edge cases. Real work involves the messy versions of all of those — missing files, corrupted data, half-installed packages, version conflicts between tools that used to coexist, and intermittent network failures that look like bugs but are not. When you are reading docs, deliberately look for the sections that handle the unhappy path: “Troubleshooting,” “Common issues,” “FAQ,” “Compatibility,” and “Upgrading.” Most projects have these, and they are often the highest-density information in the entire site, because they describe exactly the situations that send people looking for help.</p>
 </section>
 </section>
 <section id="reconciling-documentation-with-versions-and-environments" class="level2 page-columns page-full" data-number="3.5">
@@ -935,15 +899,12 @@ Chacon, Scott, and Ben Straub. 2014. <em>Pro Git</em>. 2nd ed. Apress. <a href="
 <p>A high percentage of “the docs are wrong” complaints are actually version mismatches. The documentation might be correct for <em>some version</em> of the tool, just not yours.</p>
 <section id="always-capture-version-context" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="always-capture-version-context">Always capture version context</h3>
-<p>When you are stuck, record:</p>
-<ul>
-<li><p>tool or library version,</p></li>
-<li><p>operating system,</p></li>
-<li><p>Python version (if relevant),</p></li>
-<li><p>environment manager (conda, pip, venv),</p></li>
-<li><p>where the executable is located.</p></li>
-</ul>
-<p>This practice aligns with broader reproducibility guidance <span class="citation" data-cites="wilson2017goodenough turingway2025zenodo">(<a href="#ref-wilson2017goodenough" role="doc-biblioref">Wilson et al. 2017</a>; <a href="#ref-turingway2025zenodo" role="doc-biblioref">The Turing Way Community 2025</a>)</span>. It also makes questions answerable (see <a href="#sec-asking-questions" class="quarto-xref"><span class="quarto-unresolved-ref">sec-asking-questions</span></a>).</p>
+<p>When you are stuck on something that the docs say should work, the cheapest first move is to record exactly which versions of everything you have installed. The five fields that solve most version mysteries are the tool or library version, your operating system, your Python version (if Python is involved), the environment manager you are using (conda, pip, venv), and the path of the executable you are actually running. Capture all five before you start changing anything, because every fix you try is going to be interpreted in light of those values.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import sys; print(sys.executable)"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import pandas; print(pandas.__version__)"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">uname</span> <span class="at">-a</span>   <span class="co"># macOS / Linux  (Windows: 'systeminfo' or 'ver')</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This habit aligns with the broader reproducibility guidance from the literature <span class="citation" data-cites="wilson2017goodenough turingway2025zenodo">(<a href="#ref-wilson2017goodenough" role="doc-biblioref">Wilson et al. 2017</a>; <a href="#ref-turingway2025zenodo" role="doc-biblioref">The Turing Way Community 2025</a>)</span>, and as a practical bonus it also makes your questions answerable when you need to ask for help (see <a href="questions.html" class="quarto-xref"><span>Chapter 2</span></a>).</p>
 <div class="no-row-height column-margin column-container"></div></section>
 <section id="doc-version-selectors-and-release-notes" class="level3">
 <h3 class="anchored" data-anchor-id="doc-version-selectors-and-release-notes">Doc version selectors and release notes</h3>
@@ -964,16 +925,32 @@ Chacon, Scott, and Ben Straub. 2014. <em>Pro Git</em>. 2nd ed. Apress. <a href="
 <p>A project README is the most important document in your repository. It is the front door. It should answer: “What is this?” and “How do I run it?”</p>
 <section id="minimum-viable-readme" class="level3">
 <h3 class="anchored" data-anchor-id="minimum-viable-readme">Minimum viable README</h3>
-<p>A minimal README for a class project should include:</p>
-<ol type="1">
-<li><p><strong>One-paragraph purpose</strong>: what the project does and why.</p></li>
-<li><p><strong>Setup</strong>: environment creation and dependency installation.</p></li>
-<li><p><strong>How to run</strong>: exact commands.</p></li>
-<li><p><strong>Expected outputs</strong>: what files or results should appear.</p></li>
-<li><p><strong>Project structure</strong>: what key folders contain.</p></li>
-<li><p><strong>Data notes</strong>: where data come from and any restrictions.</p></li>
-</ol>
-<p>This is not busywork. It is an investment that pays back the first time you return to the project after a week.</p>
+<p>A minimal README for a class project has six sections, and they should appear in roughly this order. First, a <strong>one-paragraph purpose</strong> describing what the project does and why anyone should care. Second, a <strong>setup</strong> section that walks through environment creation and dependency installation. Third, a <strong>how to run</strong> section with the exact commands a reader should type. Fourth, an <strong>expected outputs</strong> section that says what files or results will appear when the run succeeds — this is what lets a reader confirm the run actually worked. Fifth, a <strong>project structure</strong> section explaining what each top-level folder contains. Sixth, a <strong>data notes</strong> section saying where the data came from and any restrictions on its use.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Q3 Sales Analysis</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>A short pipeline that loads quarterly sales data, cleans it, and</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>produces a report.</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Setup</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    python -m venv .venv</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    source .venv/bin/activate</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    pip install -r requirements.txt</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Run</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    python src/run_pipeline.py</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Expected outputs</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>outputs/figures/quarterly.png</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>outputs/tables/top_customers.csv</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Structure</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>data/raw/        # original CSVs (read-only)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>src/             # pipeline code</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>outputs/         # generated artifacts (gitignored)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>Source: /shared/sales-data/2026-q3.csv (internal use only).</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is not busywork. It is an investment that pays back the first time you return to the project after a week away — or the first time a teammate clones the repo and tries to run it on their own machine.</p>
 </section>
 <section id="runbooks-and-operational-docs" class="level3">
 <h3 class="anchored" data-anchor-id="runbooks-and-operational-docs">Runbooks and operational docs</h3>
@@ -1101,8 +1078,8 @@ Wilson, Greg, Jennifer Bryan, Karen Cranston, Justin Kitzes, Lex Nederbragt, and
 <section id="worked-examples" class="level2" data-number="3.10">
 <h2 data-number="3.10" class="anchored" data-anchor-id="worked-examples"><span class="header-section-number">3.10</span> Worked examples</h2>
 <p>This section demonstrates how documentation practices appear in typical novice workflows.</p>
-<section id="example-1-turning-a-notebook-into-a-runnable-project" class="level3">
-<h3 class="anchored" data-anchor-id="example-1-turning-a-notebook-into-a-runnable-project">Example 1: Turning a notebook into a runnable project</h3>
+<section id="turning-a-notebook-into-a-runnable-project" class="level3">
+<h3 class="anchored" data-anchor-id="turning-a-notebook-into-a-runnable-project">Turning a notebook into a runnable project</h3>
 <p>A student’s initial workflow often begins in a Jupyter notebook. That is fine, but as the project grows, collaborators need a stable way to reproduce results.</p>
 <p>A documentation upgrade path:</p>
 <ol type="1">
@@ -1113,8 +1090,8 @@ Wilson, Greg, Jennifer Bryan, Karen Cranston, Justin Kitzes, Lex Nederbragt, and
 </ol>
 <p>This minimal documentation shift turns a private artifact into a collaborative artifact.</p>
 </section>
-<section id="example-2-documenting-a-data-intake-pipeline" class="level3">
-<h3 class="anchored" data-anchor-id="example-2-documenting-a-data-intake-pipeline">Example 2: Documenting a data intake pipeline</h3>
+<section id="documenting-a-data-intake-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="documenting-a-data-intake-pipeline">Documenting a data intake pipeline</h3>
 <p>Even a simple “load a CSV and clean it” pipeline has assumptions:</p>
 <ul>
 <li><p>file encoding,</p></li>
@@ -1132,8 +1109,8 @@ Wilson, Greg, Jennifer Bryan, Karen Cranston, Justin Kitzes, Lex Nederbragt, and
 </ol>
 <p>This bridges the gap between raw files and analysis claims.</p>
 </section>
-<section id="example-3-writing-troubleshooting-notes" class="level3">
-<h3 class="anchored" data-anchor-id="example-3-writing-troubleshooting-notes">Example 3: Writing troubleshooting notes</h3>
+<section id="writing-troubleshooting-notes" class="level3">
+<h3 class="anchored" data-anchor-id="writing-troubleshooting-notes">Writing troubleshooting notes</h3>
 <p>Troubleshooting notes become valuable when they are specific. Compare:</p>
 <section id="weak." class="level5">
 <h5 class="anchored" data-anchor-id="weak.">Weak.</h5>

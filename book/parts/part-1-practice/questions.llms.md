@@ -46,21 +46,9 @@ If any of these are missing, helpers must fill the gaps by asking follow-up ques
 
 ### Why “help me” fails
 
-Most unproductive questions have one of the following issues:
+Most unproductive questions fail in one of a few characteristic ways. The most common is an **ambiguous symptom** — “it doesn’t work” without ever saying what “work” was supposed to look like. Closely related is **missing reproduction steps**: there is no concrete sequence of actions that another person could follow to make the same thing happen. A third is **no stated expectation**, where the helper cannot tell whether the program is misbehaving or the asker simply expected the wrong thing. A fourth is **no evidence at all** — no error message, no output, no screenshot, no code snippet — leaving the helper to guess. The fifth is the opposite problem: **too much irrelevant detail**, like a full notebook dump with no marker for where the failure happens, which buries the relevant lines under hundreds of unrelated ones. And the sixth is using **the wrong channel**, like asking for a half-hour debugging session in a chat venue designed for quick yes/no questions.
 
-- **Ambiguous symptom**: “it doesn’t work” without saying what “work” means.
-
-- **Missing reproduction steps**: no clear sequence that triggers the issue.
-
-- **No expected outcome**: we cannot tell whether the program is wrong or the expectation is.
-
-- **No evidence**: no error message, no output, no screenshots, no code snippet.
-
-- **Too much irrelevant detail**: a full notebook dump with no clue where to look.
-
-- **The wrong channel**: asking for a deep debugging session in a venue designed for quick Q&A.
-
-The good news is that each failure mode has a direct fix.
+The good news is that each of these failure modes has a direct, mechanical fix, and the rest of this chapter is about applying them.
 
 ## 2.2 Before you ask: a short self-debugging loop
 
@@ -94,15 +82,9 @@ This loop matters because it generates valuable information: what triggers the b
 
 ### What counts as “what I tried”
 
-“What I tried” should be concrete actions with outcomes. Examples:
+“What I tried” is one of the most useful fields in any technical question, but only if it contains *concrete actions paired with their outcomes*, not vague gestures at effort. A useful entry looks like “I verified the file exists with `ls data/input.csv` and it is in the correct folder,” or “I printed `df.dtypes` and confirmed that `date` is `object`, not `datetime64[ns]`,” or “I tried `pip install package==1.2.3` and the import error changed from `ModuleNotFoundError` to `ImportError: cannot import name 'foo'`.” Each of these tells the helper exactly what state the world is in and what hypotheses have already been ruled out.
 
-- “I verified the file exists with `ls` and it is in the correct folder.”
-
-- “I printed the dataframe columns and confirmed `date` is a string, not a datetime.”
-
-- “I tried `pip install package==1.2.3` and the import error changed to …”
-
-Avoid vague statements like “I tried a bunch of things” or “I looked online.” Your helper needs to know what is still possible.
+The contrast is with vague statements like “I tried a bunch of things” or “I looked online but nothing worked.” Those carry no information — your helper has no idea what is still worth checking and will end up suggesting the same things you have already tried. If you cannot remember what you tried, that is a hint that you should be writing it down as you go.
 
 ## 2.3 The anatomy of a high-quality technical question
 
@@ -122,15 +104,9 @@ This structure works across domains: Python errors, spreadsheet formulas, Git co
 
 ### Goal
 
-State your goal in one sentence. Good goals are verbs with objects:
+State your goal in a single sentence built around a verb and an object: “Load a CSV into pandas and parse the date column,” “Connect to the remote server via SSH and run JupyterLab,” “Merge my feature branch into `main` without losing changes.” Each of these names a concrete outcome the helper can recognize as success.
 
-- “Load a CSV into pandas and parse the date column.”
-
-- “Connect to the remote server via SSH and run JupyterLab.”
-
-- “Merge my feature branch into `main` without losing changes.”
-
-The goal matters because sometimes the best help is not “fix this error” but “there is an easier way to achieve the goal.”
+This field matters more than people expect, because sometimes the most useful answer is not “fix this error” but “there is an easier way to achieve what you actually want.” If the helper only sees the symptom — say, a regex that does not match — they may help you debug the regex when the real answer is that you should not be using a regex at all (see [sec-regex](#sec-regex)). Stating the goal explicitly keeps that door open.
 
 ### Expected vs. actual
 
@@ -144,35 +120,34 @@ Note that the expected behavior is not a guess about what the library does; it i
 
 ### Reproduction
 
-If you can reproduce the problem reliably, you can probably solve it. If someone else can reproduce it reliably, they can help you quickly.
+If you can reproduce the problem reliably on your machine, you can almost always solve it; if someone else can reproduce it reliably on theirs, they can help you in minutes. A complete reproduction has four parts: the exact command(s) you ran (including the directory you were in when you ran them), the exact code snippet that triggers the issue, the input data — either the real file or a small synthetic version that has the same structure — and the output or error as plain text rather than a screenshot.
 
-A reproduction should specify:
+``` text
+$ pwd
+/Users/alex/projects/q3-analysis
+$ python load.py
+Traceback (most recent call last):
+  File "load.py", line 4, in <module>
+    df["date"] = pd.to_datetime(df["date"])
+  File ".../pandas/core/tools/datetimes.py", line 1075, in to_datetime
+    ...
+ValueError: time data '2026/13/01' does not match format
+```
 
-- the exact command(s) you ran (including directory),
-
-- the exact code snippet,
-
-- the input data (or a small synthetic sample), and
-
-- the output/error as text.
+That kind of block — directory, command, output, all as text — is what makes a question reproducible.
 
 ### Context
 
-Context is the set of details that affect whether a solution will work:
+“Context” is the set of details that affect whether a proposed solution will actually work on your machine. The fields that come up most often are your operating system (Windows, macOS, or Linux), your Python version and the environment you are using (conda, venv, system Python), the versions of the packages involved, any hardware constraints that matter (memory, GPU availability), whether you have administrator access on the machine, and whether the work is local or running on a remote server. You do not need to provide every field every time; provide enough to rule out the major classes of problem. For Python errors, the four lines below answer most of the questions a helper would otherwise have to ask:
 
-- operating system (Windows/macOS/Linux),
+``` bash
+python --version
+python -c "import sys; print(sys.executable)"
+pip show pandas | head -2
+uname -a   # macOS/Linux; on Windows use 'systeminfo' or 'ver'
+```
 
-- Python version and environment (conda, venv),
-
-- package versions,
-
-- hardware constraints (memory),
-
-- whether you have admin access,
-
-- whether the work is local or remote.
-
-You do not need to provide everything every time. Provide enough context to rule out major classes of problems.
+Paste that block once at the bottom of your question and the helper has nearly everything they need.
 
 ## 2.4 Minimal Reproducible Examples (MREs)
 
@@ -186,17 +161,25 @@ For example, if your notebook has 50 cells, but the error happens in one functio
 
 ### Three ways to build an MRE
 
-##### 1) Deletion.
+The first way is **deletion**: start with your real code and delete pieces until the error goes away. Each deletion that *still* fails proves that the code you removed was not relevant. The last version that still produces the failure is your MRE. This is fast when the failing code is short and the bug is concentrated in a small region.
 
-Start with your real code and delete pieces until the error goes away. The last version that still fails is your MRE.
+The second way is **construction**: start from a blank script and add pieces back until the error appears. This is slower than deletion, but it has the advantage of clarifying which line is the actual trigger — by definition, it is the one whose addition flipped the script from “works” to “broken.” Use construction when deletion is hard (because the failing code is very large) or when you want a rock-solid story about cause and effect to put in a question.
 
-##### 2) Construction.
+The third way is **substitution**: replace your real data with synthetic or sample data that has the same structure. This is essential whenever the real data is large, private, or messy enough that you cannot share it. Pandas is happy to read from `io.StringIO`, so a few inline rows of CSV are usually enough:
 
-Start from a blank script and add pieces until the error appears. This is slower, but it clarifies which part triggers the failure.
+``` python
+import pandas as pd
+from io import StringIO
 
-##### 3) Substitution.
+raw = """name,age,joined
+Ada,35,2026/01/15
+Lin,42,2026/13/01
+"""
+df = pd.read_csv(StringIO(raw))
+df["joined"] = pd.to_datetime(df["joined"])   # reproduces the ValueError
+```
 
-Replace your real data with synthetic or small sample data that has the same structure. This is essential when your data are large, private, or messy.
+Most real MREs use a combination of all three: you delete the irrelevant code, substitute synthetic data for the real input, and end up with a 15-line script anyone can run.
 
 ### A template for MREs
 
@@ -230,27 +213,29 @@ If you are not sure, include the context once, and then trim based on feedback.
 
 ### Environment context: the “three lines”
 
-For Python projects, the following three lines solve many mysteries:
+For Python projects, three short commands resolve a remarkable number of mysteries on their own. The first is `python --version`, which tells you which language version is running. The second is `which python` on macOS or Linux (or `where python` on Windows), which tells you the file path of the interpreter — and therefore which environment it lives in. The third is `pip show <package>` or `conda list <package>`, which tells you whether the package you think is installed actually is, and at what version. Together these three answer the most common version of “why isn’t this working”: you are using a different Python than you think.
 
-- `python –version`
-
-- `which python` (macOS/Linux) or `where python` (Windows)
-
-- `pip show <package>` or `conda list <package>`
-
-These reveal whether you are using the environment you think you are using.
+``` bash
+python --version
+which python                # macOS/Linux  (Windows: where python)
+pip show pandas | head -3
+```
 
 ### File system context
 
-If your issue involves missing files, always include:
+When your issue involves missing files, always paste three things: your current working directory, the relative or absolute path you used in the code, and a directory listing showing whether the file actually exists where you said it would. A surprising number of “file not found” errors are not really errors at all — they are “you are in the wrong folder.”
 
-- your current working directory,
+``` bash
+$ pwd
+/Users/alex/projects/q3-analysis/notebooks
+$ ls ../data | head
+input.csv
+metadata.json
+$ python -c "import pandas; pandas.read_csv('data/input.csv')"
+FileNotFoundError: [Errno 2] No such file or directory: 'data/input.csv'
+```
 
-- the relative/absolute path you used, and
-
-- a directory listing showing whether the file exists.
-
-A surprising number of “file not found” errors are simply “you are in the wrong folder.”
+Paste exactly that, and the helper can immediately point at the cause: you are inside `notebooks/`, the file is in `../data/`, the relative path needs the `..` prefix or you need to `cd` up one level first.
 
 ## 2.6 Choosing the right channel
 
@@ -258,73 +243,27 @@ Different venues have different expectations.
 
 ### In-class and office hours
 
-When asking instructors or TAs:
-
-- Bring your MRE and the error text.
-
-- Explain what you have tried.
-
-- Be ready to reproduce the problem live.
-
-Office hours are not just for bugs. They are for clarifying concepts and improving your workflow.
+When you are asking an instructor or TA face to face, the bar is lower than for an online forum, but the same preparation pays off. Bring your MRE and the literal text of the error, explain what you have already tried (so the instructor does not waste the first ten minutes suggesting things you already ruled out), and be ready to reproduce the problem live on your laptop. It also helps to remember that office hours are not just for bugs — they are some of the best venues for clarifying a concept you only half-understand or asking whether your overall workflow is sensible. Bringing an open-ended question is fine, as long as it is specific enough to have a useful answer.
 
 ### Teammates
 
-When asking teammates:
-
-- Respect their time by preparing a concise problem statement.
-
-- Make it easy to help asynchronously (share a link, paste the error, summarize).
-
-- Avoid dumping a full repository without guidance.
+Teammates have the same time constraints you do. Respect that by writing a concise problem statement *before* you ping them, by making it easy to help asynchronously — share a link to the failing line, paste the error, summarize what you tried — and by *not* dumping a full repository on them with no guidance about where to look. The smaller the area of the codebase you ask them to load into their head, the faster they can help.
 
 ### Issue trackers
 
-If your course uses GitHub Issues (or similar), treat an issue as a formal question with an audit trail.
-
-A good issue title is specific:
-
-> “`pd.read_csv` fails when `sep=’'͡` with UTF-8 BOM”
-
-Issues are excellent for:
-
-- bugs that affect multiple people,
-
-- questions whose answer should be preserved,
-
-- tasks that require follow-up.
+If your course (or your team) uses GitHub Issues or a similar tracker, treat an issue as a formal question with an audit trail. Future readers — including future you — will appreciate the structure. The first thing to get right is the title: it should be specific enough to identify the problem at a glance, like `pd.read_csv fails when sep=";" with UTF-8 BOM`, not vague enough to apply to a hundred other situations like `read_csv broken`. Issues are the right channel when the bug affects more than one person, when the answer should be preserved for later (rather than evaporating in chat), or when the resolution is going to require follow-up work that someone needs to track.
 
 ### Public forums
 
-Public forums (Stack Overflow, GitHub Discussions, course Discords) can be extremely helpful. They also have norms:
-
-- Show that you did basic investigation.
-
-- Provide an MRE.
-
-- Use a clear title.
-
-- Avoid sharing sensitive data.
-
-If you are a beginner, do not worry about perfect terminology. Do worry about reproducibility and clarity.
+Public forums — Stack Overflow, GitHub Discussions, your course Discord — can be enormously helpful, but they have norms you should respect. The expectation is that you will show evidence of your own investigation (so volunteers do not have to triage hundreds of “does anyone know” posts), include a real MRE rather than a vague description, give the question a clear and specific title, and never share sensitive data like API keys, real student records, or anything subject to FERPA / HIPAA / GDPR. If you are a beginner, do not worry about perfect terminology — most communities are forgiving about that. Do worry about reproducibility and clarity, because those are the things that determine whether your question gets answered or scrolls into oblivion.
 
 ## 2.7 Common traps and how to avoid them
 
 ### The XY problem
 
-The XY problem is when you ask about your attempted solution (Y) instead of your real goal (X). Example:
+The XY problem is the name for a specific kind of unhelpful question: you ask about your *attempted solution* (Y) when what you actually need help with is the *real goal* (X). The classic example is asking “how do I parse this weird string with regex?” when your real goal is “how do I extract the year from this date column?” — a problem regex is the wrong tool for, because pandas already has `pd.to_datetime` and `.dt.year`. The helper, given only the regex question, ends up writing you an elaborate regex when one line of pandas would do.
 
-> “How do I parse this weird string with regex?” (Y)
->
-> Real goal: “How do I extract the year from this date column?” (X)
-
-To avoid XY problems:
-
-- State your goal first.
-
-- Mention your attempted solution as one option.
-
-- Invite alternatives.
+The fix is mechanical. State the real goal first, in one sentence, before you describe what you tried. Mention your attempted solution as *one option* you considered, not as the only path forward. And explicitly invite alternatives — something as simple as “open to other approaches” goes a long way. With those three habits, the XY trap mostly goes away on its own.
 
 ### Copying errors by hand
 
@@ -332,25 +271,11 @@ Do not retype error messages. Copy and paste them as text. Retyping introduces m
 
 ### Screenshot-only questions
 
-Screenshots are sometimes useful, but text is searchable and copyable. Prefer text for:
-
-- stack traces,
-
-- commands,
-
-- code snippets.
-
-If you include a screenshot, also include the relevant text.
+Screenshots have their place — they are good for showing the layout of an IDE, the contents of a settings dialog, or a GUI error you cannot copy out of. But for any text the helper might want to search, copy, or paste back to you, screenshots are actively harmful. Stack traces, commands, and code snippets should always be included as text. If you also want to attach a screenshot for context, fine, but include the text alongside it so the helper does not have to retype anything.
 
 ### Sharing entire notebooks
 
-Large notebooks make it hard for helpers to find the failing region. If you must share a notebook, also:
-
-- identify the cell that fails,
-
-- provide an MRE,
-
-- clear irrelevant outputs.
+A 200-cell notebook is one of the hardest things to debug for someone who is not you. If you are tempted to share an entire notebook, do at least three things first: identify the specific cell that fails (by index or by name), produce an MRE that reproduces the failure outside the notebook context if possible, and clear cell outputs that are not relevant to the bug — both because they bloat the file and because they sometimes contain things you did not realize were sensitive. Most of the time, the act of preparing the notebook for sharing will reveal the bug to you before you ever send it.
 
 ## 2.8 Using AI tools when asking questions
 
@@ -358,21 +283,11 @@ AI tools can accelerate the process of forming a good question, but they can als
 
 ### Good uses of AI in question formation
 
-- Turn a messy description into a structured template (goal, expected, actual, reproduction).
-
-- Suggest what environment details might matter.
-
-- Help you reduce code to an MRE by proposing deletions.
-
-- Propose search terms based on your exact error message.
+The most reliable use of AI in question formation is structural: take your messy first description and ask the assistant to convert it into the standard template (goal, expected, actual, reproduction, context, what you tried). The assistant is good at filling in the template and at noticing fields you forgot, which is exactly what you want here. Beyond that, the assistant can suggest what environment details might matter for a given error type, propose deletions to help you shrink your code into an MRE, and turn a noisy error message into a clean search query by stripping the parts that are specific to your machine.
 
 ### Bad uses of AI in question formation
 
-- Asking AI to “fix it” without reproducing the steps yourself.
-
-- Pasting secrets, tokens, or private data.
-
-- Accepting AI-suggested commands that you do not understand, especially with `sudo`.
+The worst uses of AI come from asking it to do the parts of the work you should be doing yourself. Asking it to “fix” your error without you actually reproducing the failure is one — you will get a plausible-looking fix that may or may not address the real cause, and you will not have learned anything you can apply to the next bug. Pasting secrets, tokens, or private data into a prompt is another, and it should be treated as a hard rule: once a secret leaves your machine, you have to assume it is no longer secret. And the most dangerous of all is accepting an AI-suggested command without understanding what it does — especially anything involving `sudo`, recursive deletes, or network configuration. See [sec-ai-llm](#sec-ai-llm) for the full set of rules around verifying AI output.
 
 ### A safe workflow
 
@@ -390,7 +305,7 @@ AI tools can accelerate the process of forming a good question, but they can als
 
 This section illustrates how vague questions become answerable.
 
-### Example 1: “Jupyter shows no notebooks”
+### From “Jupyter shows no notebooks” to a working-directory diagnosis
 
 ##### Vague question.
 
@@ -415,7 +330,7 @@ This section illustrates how vague questions become answerable.
 
 Notice how the revised question contains the seed of the solution: Jupyter was launching with a different working directory, and specifying `–notebook-dir=.` fixed it. Even if you did not know why, the helper can now explain it.
 
-### Example 2: “Git push rejected”
+### From “Git push rejected” to a fetch-and-merge plan
 
 ##### Vague question.
 
@@ -444,7 +359,7 @@ Notice how the revised question contains the seed of the solution: Jupyter was l
 
 Now a helper can quickly guide you: fetch/pull first, resolve conflicts, then push.
 
-### Example 3: “pandas read_csv weird columns”
+### From “pandas read_csv weird columns” to a tab-delimited fix
 
 ##### Vague question.
 

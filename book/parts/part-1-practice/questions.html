@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -426,20 +461,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../parts/part-3-python/testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Testing Basics with pytest</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../parts/part-3-python/regex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regular Expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Regular Expressions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-3-python/linting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Code Style, Linting, and Formatting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Code Style, Linting, and Formatting</span></span></a>
   </div>
 </li>
       </ul>
@@ -456,31 +485,31 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/data-file-formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Data File Formats</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Data File Formats</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/tabular-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Tabular Data: Shape, Cleaning, and Validation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Tabular Data: Shape, Cleaning, and Validation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/pandas-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">pandas Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">pandas Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/sql-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">SQL Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">SQL Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/http-apis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">HTTP and Web APIs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">HTTP and Web APIs</span></span></a>
   </div>
 </li>
       </ul>
@@ -497,37 +526,31 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/project-management.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Project Management</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Project Management</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/version-control.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Version Control</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Version Control</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/collaboration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Collaboration Mechanics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Collaboration Mechanics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/automation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Automation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Automation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/secrets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Environment Variables and Secrets</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../parts/part-5-projects/pre-commit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Pre-commit Hooks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Environment Variables and Secrets</span></span></a>
   </div>
 </li>
       </ul>
@@ -544,19 +567,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/llm-internals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">How Language Models Work</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">How Language Models Work</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/ai-agents.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Working with AI Agent Frameworks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Working with AI Agent Frameworks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/evaluating-ai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Evaluating and Auditing AI Outputs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Evaluating and Auditing AI Outputs</span></span></a>
   </div>
 </li>
       </ul>
@@ -564,7 +587,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -652,9 +675,9 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#worked-examples" id="toc-worked-examples" class="nav-link" data-scroll-target="#worked-examples"><span class="header-section-number">2.9</span> Worked examples</a>
   <ul class="collapse">
-  <li><a href="#example-1-jupyter-shows-no-notebooks" id="toc-example-1-jupyter-shows-no-notebooks" class="nav-link" data-scroll-target="#example-1-jupyter-shows-no-notebooks">Example 1: “Jupyter shows no notebooks”</a></li>
-  <li><a href="#example-2-git-push-rejected" id="toc-example-2-git-push-rejected" class="nav-link" data-scroll-target="#example-2-git-push-rejected">Example 2: “Git push rejected”</a></li>
-  <li><a href="#example-3-pandas-read_csv-weird-columns" id="toc-example-3-pandas-read_csv-weird-columns" class="nav-link" data-scroll-target="#example-3-pandas-read_csv-weird-columns">Example 3: “pandas read_csv weird columns”</a></li>
+  <li><a href="#from-jupyter-shows-no-notebooks-to-a-working-directory-diagnosis" id="toc-from-jupyter-shows-no-notebooks-to-a-working-directory-diagnosis" class="nav-link" data-scroll-target="#from-jupyter-shows-no-notebooks-to-a-working-directory-diagnosis">From “Jupyter shows no notebooks” to a working-directory diagnosis</a></li>
+  <li><a href="#from-git-push-rejected-to-a-fetch-and-merge-plan" id="toc-from-git-push-rejected-to-a-fetch-and-merge-plan" class="nav-link" data-scroll-target="#from-git-push-rejected-to-a-fetch-and-merge-plan">From “Git push rejected” to a fetch-and-merge plan</a></li>
+  <li><a href="#from-pandas-read_csv-weird-columns-to-a-tab-delimited-fix" id="toc-from-pandas-read_csv-weird-columns-to-a-tab-delimited-fix" class="nav-link" data-scroll-target="#from-pandas-read_csv-weird-columns-to-a-tab-delimited-fix">From “pandas read_csv weird columns” to a tab-delimited fix</a></li>
   </ul></li>
   <li><a href="#closing-the-loop-after-you-get-help" id="toc-closing-the-loop-after-you-get-help" class="nav-link" data-scroll-target="#closing-the-loop-after-you-get-help"><span class="header-section-number">2.10</span> Closing the loop: after you get help</a>
   <ul class="collapse">
@@ -709,7 +732,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>Prerequisites:</strong> none. This chapter stands on its own.</p>
-<p><strong>See also:</strong> <a href="#sec-documentation" class="quarto-xref"><span class="quarto-unresolved-ref">sec-documentation</span></a>, <a href="#sec-debugging" class="quarto-xref"><span class="quarto-unresolved-ref">sec-debugging</span></a>, <a href="#sec-ai-llm" class="quarto-xref"><span class="quarto-unresolved-ref">sec-ai-llm</span></a>.</p>
+<p><strong>See also:</strong> <a href="documentation.html" class="quarto-xref"><span>Chapter 3</span></a>, <a href="debugging.html" class="quarto-xref"><span>Chapter 5</span></a>, <a href="ai-llm.html" class="quarto-xref"><span>Chapter 7</span></a>.</p>
 </div>
 </div>
 </div>
@@ -745,21 +768,13 @@ ul.task-list li input[type="checkbox"] {
 <p>If any of these are missing, helpers must fill the gaps by asking follow-up questions. That is normal, but it slows everything down. Your goal is not to impress people with technical vocabulary. Your goal is to supply the claim, evidence, and context so the investigation can start immediately.</p>
 <section id="why-help-me-fails" class="level3">
 <h3 class="anchored" data-anchor-id="why-help-me-fails">Why “help me” fails</h3>
-<p>Most unproductive questions have one of the following issues:</p>
-<ul>
-<li><p><strong>Ambiguous symptom</strong>: “it doesn’t work” without saying what “work” means.</p></li>
-<li><p><strong>Missing reproduction steps</strong>: no clear sequence that triggers the issue.</p></li>
-<li><p><strong>No expected outcome</strong>: we cannot tell whether the program is wrong or the expectation is.</p></li>
-<li><p><strong>No evidence</strong>: no error message, no output, no screenshots, no code snippet.</p></li>
-<li><p><strong>Too much irrelevant detail</strong>: a full notebook dump with no clue where to look.</p></li>
-<li><p><strong>The wrong channel</strong>: asking for a deep debugging session in a venue designed for quick Q&amp;A.</p></li>
-</ul>
-<p>The good news is that each failure mode has a direct fix.</p>
+<p>Most unproductive questions fail in one of a few characteristic ways. The most common is an <strong>ambiguous symptom</strong> — “it doesn’t work” without ever saying what “work” was supposed to look like. Closely related is <strong>missing reproduction steps</strong>: there is no concrete sequence of actions that another person could follow to make the same thing happen. A third is <strong>no stated expectation</strong>, where the helper cannot tell whether the program is misbehaving or the asker simply expected the wrong thing. A fourth is <strong>no evidence at all</strong> — no error message, no output, no screenshot, no code snippet — leaving the helper to guess. The fifth is the opposite problem: <strong>too much irrelevant detail</strong>, like a full notebook dump with no marker for where the failure happens, which buries the relevant lines under hundreds of unrelated ones. And the sixth is using <strong>the wrong channel</strong>, like asking for a half-hour debugging session in a chat venue designed for quick yes/no questions.</p>
+<p>The good news is that each of these failure modes has a direct, mechanical fix, and the rest of this chapter is about applying them.</p>
 </section>
 </section>
 <section id="before-you-ask-a-short-self-debugging-loop" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="before-you-ask-a-short-self-debugging-loop"><span class="header-section-number">2.2</span> Before you ask: a short self-debugging loop</h2>
-<p>A productive question usually comes after 5–15 minutes of structured investigation. You are not required to solve the problem alone, but you should make a good-faith attempt to understand it. <a href="#sec-debugging" class="quarto-xref"><span class="quarto-unresolved-ref">sec-debugging</span></a> develops this investigation mindset into a full systematic workflow; the triage loop here is your minimum viable version.</p>
+<p>A productive question usually comes after 5–15 minutes of structured investigation. You are not required to solve the problem alone, but you should make a good-faith attempt to understand it. <a href="debugging.html" class="quarto-xref"><span>Chapter 5</span></a> develops this investigation mindset into a full systematic workflow; the triage loop here is your minimum viable version.</p>
 <section id="the-10-minute-triage" class="level3">
 <h3 class="anchored" data-anchor-id="the-10-minute-triage">The 10-minute triage</h3>
 <p>Use this checklist before you ask for help:</p>
@@ -779,13 +794,8 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="what-counts-as-what-i-tried" class="level3">
 <h3 class="anchored" data-anchor-id="what-counts-as-what-i-tried">What counts as “what I tried”</h3>
-<p>“What I tried” should be concrete actions with outcomes. Examples:</p>
-<ul>
-<li><p>“I verified the file exists with <code>ls</code> and it is in the correct folder.”</p></li>
-<li><p>“I printed the dataframe columns and confirmed <code>date</code> is a string, not a datetime.”</p></li>
-<li><p>“I tried <code>pip install package==1.2.3</code> and the import error changed to …”</p></li>
-</ul>
-<p>Avoid vague statements like “I tried a bunch of things” or “I looked online.” Your helper needs to know what is still possible.</p>
+<p>“What I tried” is one of the most useful fields in any technical question, but only if it contains <em>concrete actions paired with their outcomes</em>, not vague gestures at effort. A useful entry looks like “I verified the file exists with <code>ls data/input.csv</code> and it is in the correct folder,” or “I printed <code>df.dtypes</code> and confirmed that <code>date</code> is <code>object</code>, not <code>datetime64[ns]</code>,” or “I tried <code>pip install package==1.2.3</code> and the import error changed from <code>ModuleNotFoundError</code> to <code>ImportError: cannot import name 'foo'</code>.” Each of these tells the helper exactly what state the world is in and what hypotheses have already been ruled out.</p>
+<p>The contrast is with vague statements like “I tried a bunch of things” or “I looked online but nothing worked.” Those carry no information — your helper has no idea what is still worth checking and will end up suggesting the same things you have already tried. If you cannot remember what you tried, that is a hint that you should be writing it down as you go.</p>
 </section>
 </section>
 <section id="the-anatomy-of-a-high-quality-technical-question" class="level2" data-number="2.3">
@@ -801,13 +811,8 @@ ul.task-list li input[type="checkbox"] {
 <p>This structure works across domains: Python errors, spreadsheet formulas, Git conflicts, file path confusion, and even conceptual misunderstandings.</p>
 <section id="goal" class="level3">
 <h3 class="anchored" data-anchor-id="goal">Goal</h3>
-<p>State your goal in one sentence. Good goals are verbs with objects:</p>
-<ul>
-<li><p>“Load a CSV into pandas and parse the date column.”</p></li>
-<li><p>“Connect to the remote server via SSH and run JupyterLab.”</p></li>
-<li><p>“Merge my feature branch into <code>main</code> without losing changes.”</p></li>
-</ul>
-<p>The goal matters because sometimes the best help is not “fix this error” but “there is an easier way to achieve the goal.”</p>
+<p>State your goal in a single sentence built around a verb and an object: “Load a CSV into pandas and parse the date column,” “Connect to the remote server via SSH and run JupyterLab,” “Merge my feature branch into <code>main</code> without losing changes.” Each of these names a concrete outcome the helper can recognize as success.</p>
+<p>This field matters more than people expect, because sometimes the most useful answer is not “fix this error” but “there is an easier way to achieve what you actually want.” If the helper only sees the symptom — say, a regex that does not match — they may help you debug the regex when the real answer is that you should not be using a regex at all (see <a href="../part-3-python/regex.html" class="quarto-xref"><span>Chapter 17</span></a>). Stating the goal explicitly keeps that door open.</p>
 </section>
 <section id="expected-vs.-actual" class="level3">
 <h3 class="anchored" data-anchor-id="expected-vs.-actual">Expected vs.&nbsp;actual</h3>
@@ -820,27 +825,26 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="reproduction" class="level3">
 <h3 class="anchored" data-anchor-id="reproduction">Reproduction</h3>
-<p>If you can reproduce the problem reliably, you can probably solve it. If someone else can reproduce it reliably, they can help you quickly.</p>
-<p>A reproduction should specify:</p>
-<ul>
-<li><p>the exact command(s) you ran (including directory),</p></li>
-<li><p>the exact code snippet,</p></li>
-<li><p>the input data (or a small synthetic sample), and</p></li>
-<li><p>the output/error as text.</p></li>
-</ul>
+<p>If you can reproduce the problem reliably on your machine, you can almost always solve it; if someone else can reproduce it reliably on theirs, they can help you in minutes. A complete reproduction has four parts: the exact command(s) you ran (including the directory you were in when you ran them), the exact code snippet that triggers the issue, the input data — either the real file or a small synthetic version that has the same structure — and the output or error as plain text rather than a screenshot.</p>
+<pre class="text"><code>$ pwd
+/Users/alex/projects/q3-analysis
+$ python load.py
+Traceback (most recent call last):
+  File "load.py", line 4, in &lt;module&gt;
+    df["date"] = pd.to_datetime(df["date"])
+  File ".../pandas/core/tools/datetimes.py", line 1075, in to_datetime
+    ...
+ValueError: time data '2026/13/01' does not match format</code></pre>
+<p>That kind of block — directory, command, output, all as text — is what makes a question reproducible.</p>
 </section>
 <section id="context" class="level3">
 <h3 class="anchored" data-anchor-id="context">Context</h3>
-<p>Context is the set of details that affect whether a solution will work:</p>
-<ul>
-<li><p>operating system (Windows/macOS/Linux),</p></li>
-<li><p>Python version and environment (conda, venv),</p></li>
-<li><p>package versions,</p></li>
-<li><p>hardware constraints (memory),</p></li>
-<li><p>whether you have admin access,</p></li>
-<li><p>whether the work is local or remote.</p></li>
-</ul>
-<p>You do not need to provide everything every time. Provide enough context to rule out major classes of problems.</p>
+<p>“Context” is the set of details that affect whether a proposed solution will actually work on your machine. The fields that come up most often are your operating system (Windows, macOS, or Linux), your Python version and the environment you are using (conda, venv, system Python), the versions of the packages involved, any hardware constraints that matter (memory, GPU availability), whether you have administrator access on the machine, and whether the work is local or running on a remote server. You do not need to provide every field every time; provide enough to rule out the major classes of problem. For Python errors, the four lines below answer most of the questions a helper would otherwise have to ask:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import sys; print(sys.executable)"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> show pandas <span class="kw">|</span> <span class="fu">head</span> <span class="at">-2</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">uname</span> <span class="at">-a</span>   <span class="co"># macOS/Linux; on Windows use 'systeminfo' or 'ver'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Paste that block once at the bottom of your question and the helper has nearly everything they need.</p>
 </section>
 </section>
 <section id="minimal-reproducible-examples-mres" class="level2" data-number="2.4">
@@ -853,18 +857,19 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="three-ways-to-build-an-mre" class="level3">
 <h3 class="anchored" data-anchor-id="three-ways-to-build-an-mre">Three ways to build an MRE</h3>
-<section id="deletion." class="level5">
-<h5 class="anchored" data-anchor-id="deletion.">1) Deletion.</h5>
-<p>Start with your real code and delete pieces until the error goes away. The last version that still fails is your MRE.</p>
-</section>
-<section id="construction." class="level5">
-<h5 class="anchored" data-anchor-id="construction.">2) Construction.</h5>
-<p>Start from a blank script and add pieces until the error appears. This is slower, but it clarifies which part triggers the failure.</p>
-</section>
-<section id="substitution." class="level5">
-<h5 class="anchored" data-anchor-id="substitution.">3) Substitution.</h5>
-<p>Replace your real data with synthetic or small sample data that has the same structure. This is essential when your data are large, private, or messy.</p>
-</section>
+<p>The first way is <strong>deletion</strong>: start with your real code and delete pieces until the error goes away. Each deletion that <em>still</em> fails proves that the code you removed was not relevant. The last version that still produces the failure is your MRE. This is fast when the failing code is short and the bug is concentrated in a small region.</p>
+<p>The second way is <strong>construction</strong>: start from a blank script and add pieces back until the error appears. This is slower than deletion, but it has the advantage of clarifying which line is the actual trigger — by definition, it is the one whose addition flipped the script from “works” to “broken.” Use construction when deletion is hard (because the failing code is very large) or when you want a rock-solid story about cause and effect to put in a question.</p>
+<p>The third way is <strong>substitution</strong>: replace your real data with synthetic or sample data that has the same structure. This is essential whenever the real data is large, private, or messy enough that you cannot share it. Pandas is happy to read from <code>io.StringIO</code>, so a few inline rows of CSV are usually enough:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> io <span class="im">import</span> StringIO</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> <span class="st">"""name,age,joined</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">Ada,35,2026/01/15</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">Lin,42,2026/13/01</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(StringIO(raw))</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"joined"</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">"joined"</span>])   <span class="co"># reproduces the ValueError</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Most real MREs use a combination of all three: you delete the irrelevant code, substitute synthetic data for the real input, and end up with a 15-line script anyone can run.</p>
 </section>
 <section id="a-template-for-mres" class="level3">
 <h3 class="anchored" data-anchor-id="a-template-for-mres">A template for MREs</h3>
@@ -896,23 +901,22 @@ print(result)</code></pre>
 <p>If you are not sure, include the context once, and then trim based on feedback.</p>
 <section id="environment-context-the-three-lines" class="level3">
 <h3 class="anchored" data-anchor-id="environment-context-the-three-lines">Environment context: the “three lines”</h3>
-<p>For Python projects, the following three lines solve many mysteries:</p>
-<ul>
-<li><p><code>python –version</code></p></li>
-<li><p><code>which python</code> (macOS/Linux) or <code>where python</code> (Windows)</p></li>
-<li><p><code>pip show &lt;package&gt;</code> or <code>conda list &lt;package&gt;</code></p></li>
-</ul>
-<p>These reveal whether you are using the environment you think you are using.</p>
+<p>For Python projects, three short commands resolve a remarkable number of mysteries on their own. The first is <code>python --version</code>, which tells you which language version is running. The second is <code>which python</code> on macOS or Linux (or <code>where python</code> on Windows), which tells you the file path of the interpreter — and therefore which environment it lives in. The third is <code>pip show &lt;package&gt;</code> or <code>conda list &lt;package&gt;</code>, which tells you whether the package you think is installed actually is, and at what version. Together these three answer the most common version of “why isn’t this working”: you are using a different Python than you think.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span> python                <span class="co"># macOS/Linux  (Windows: where python)</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> show pandas <span class="kw">|</span> <span class="fu">head</span> <span class="at">-3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="file-system-context" class="level3">
 <h3 class="anchored" data-anchor-id="file-system-context">File system context</h3>
-<p>If your issue involves missing files, always include:</p>
-<ul>
-<li><p>your current working directory,</p></li>
-<li><p>the relative/absolute path you used, and</p></li>
-<li><p>a directory listing showing whether the file exists.</p></li>
-</ul>
-<p>A surprising number of “file not found” errors are simply “you are in the wrong folder.”</p>
+<p>When your issue involves missing files, always paste three things: your current working directory, the relative or absolute path you used in the code, and a directory listing showing whether the file actually exists where you said it would. A surprising number of “file not found” errors are not really errors at all — they are “you are in the wrong folder.”</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pwd</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/Users/alex/projects/q3-analysis/notebooks</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls ../data <span class="kw">|</span> <span class="fu">head</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">input.csv</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">metadata.json</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python <span class="at">-c</span> <span class="st">"import pandas; pandas.read_csv('data/input.csv')"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">FileNotFoundError:</span> [Errno 2] No such file or directory: <span class="st">'data/input.csv'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Paste exactly that, and the helper can immediately point at the cause: you are inside <code>notebooks/</code>, the file is in <code>../data/</code>, the relative path needs the <code>..</code> prefix or you need to <code>cd</code> up one level first.</p>
 </section>
 </section>
 <section id="choosing-the-right-channel" class="level2" data-number="2.6">
@@ -920,64 +924,27 @@ print(result)</code></pre>
 <p>Different venues have different expectations.</p>
 <section id="in-class-and-office-hours" class="level3">
 <h3 class="anchored" data-anchor-id="in-class-and-office-hours">In-class and office hours</h3>
-<p>When asking instructors or TAs:</p>
-<ul>
-<li><p>Bring your MRE and the error text.</p></li>
-<li><p>Explain what you have tried.</p></li>
-<li><p>Be ready to reproduce the problem live.</p></li>
-</ul>
-<p>Office hours are not just for bugs. They are for clarifying concepts and improving your workflow.</p>
+<p>When you are asking an instructor or TA face to face, the bar is lower than for an online forum, but the same preparation pays off. Bring your MRE and the literal text of the error, explain what you have already tried (so the instructor does not waste the first ten minutes suggesting things you already ruled out), and be ready to reproduce the problem live on your laptop. It also helps to remember that office hours are not just for bugs — they are some of the best venues for clarifying a concept you only half-understand or asking whether your overall workflow is sensible. Bringing an open-ended question is fine, as long as it is specific enough to have a useful answer.</p>
 </section>
 <section id="teammates" class="level3">
 <h3 class="anchored" data-anchor-id="teammates">Teammates</h3>
-<p>When asking teammates:</p>
-<ul>
-<li><p>Respect their time by preparing a concise problem statement.</p></li>
-<li><p>Make it easy to help asynchronously (share a link, paste the error, summarize).</p></li>
-<li><p>Avoid dumping a full repository without guidance.</p></li>
-</ul>
+<p>Teammates have the same time constraints you do. Respect that by writing a concise problem statement <em>before</em> you ping them, by making it easy to help asynchronously — share a link to the failing line, paste the error, summarize what you tried — and by <em>not</em> dumping a full repository on them with no guidance about where to look. The smaller the area of the codebase you ask them to load into their head, the faster they can help.</p>
 </section>
 <section id="issue-trackers" class="level3">
 <h3 class="anchored" data-anchor-id="issue-trackers">Issue trackers</h3>
-<p>If your course uses GitHub Issues (or similar), treat an issue as a formal question with an audit trail.</p>
-<p>A good issue title is specific:</p>
-<blockquote class="blockquote">
-<p>“<code>pd.read_csv</code> fails when <code>sep=’'͡</code> with UTF-8 BOM”</p>
-</blockquote>
-<p>Issues are excellent for:</p>
-<ul>
-<li><p>bugs that affect multiple people,</p></li>
-<li><p>questions whose answer should be preserved,</p></li>
-<li><p>tasks that require follow-up.</p></li>
-</ul>
+<p>If your course (or your team) uses GitHub Issues or a similar tracker, treat an issue as a formal question with an audit trail. Future readers — including future you — will appreciate the structure. The first thing to get right is the title: it should be specific enough to identify the problem at a glance, like <code>pd.read_csv fails when sep=";" with UTF-8 BOM</code>, not vague enough to apply to a hundred other situations like <code>read_csv broken</code>. Issues are the right channel when the bug affects more than one person, when the answer should be preserved for later (rather than evaporating in chat), or when the resolution is going to require follow-up work that someone needs to track.</p>
 </section>
 <section id="public-forums" class="level3">
 <h3 class="anchored" data-anchor-id="public-forums">Public forums</h3>
-<p>Public forums (Stack Overflow, GitHub Discussions, course Discords) can be extremely helpful. They also have norms:</p>
-<ul>
-<li><p>Show that you did basic investigation.</p></li>
-<li><p>Provide an MRE.</p></li>
-<li><p>Use a clear title.</p></li>
-<li><p>Avoid sharing sensitive data.</p></li>
-</ul>
-<p>If you are a beginner, do not worry about perfect terminology. Do worry about reproducibility and clarity.</p>
+<p>Public forums — Stack Overflow, GitHub Discussions, your course Discord — can be enormously helpful, but they have norms you should respect. The expectation is that you will show evidence of your own investigation (so volunteers do not have to triage hundreds of “does anyone know” posts), include a real MRE rather than a vague description, give the question a clear and specific title, and never share sensitive data like API keys, real student records, or anything subject to FERPA / HIPAA / GDPR. If you are a beginner, do not worry about perfect terminology — most communities are forgiving about that. Do worry about reproducibility and clarity, because those are the things that determine whether your question gets answered or scrolls into oblivion.</p>
 </section>
 </section>
 <section id="common-traps-and-how-to-avoid-them" class="level2" data-number="2.7">
 <h2 data-number="2.7" class="anchored" data-anchor-id="common-traps-and-how-to-avoid-them"><span class="header-section-number">2.7</span> Common traps and how to avoid them</h2>
 <section id="the-xy-problem" class="level3">
 <h3 class="anchored" data-anchor-id="the-xy-problem">The XY problem</h3>
-<p>The XY problem is when you ask about your attempted solution (Y) instead of your real goal (X). Example:</p>
-<blockquote class="blockquote">
-<p>“How do I parse this weird string with regex?” (Y)</p>
-<p>Real goal: “How do I extract the year from this date column?” (X)</p>
-</blockquote>
-<p>To avoid XY problems:</p>
-<ul>
-<li><p>State your goal first.</p></li>
-<li><p>Mention your attempted solution as one option.</p></li>
-<li><p>Invite alternatives.</p></li>
-</ul>
+<p>The XY problem is the name for a specific kind of unhelpful question: you ask about your <em>attempted solution</em> (Y) when what you actually need help with is the <em>real goal</em> (X). The classic example is asking “how do I parse this weird string with regex?” when your real goal is “how do I extract the year from this date column?” — a problem regex is the wrong tool for, because pandas already has <code>pd.to_datetime</code> and <code>.dt.year</code>. The helper, given only the regex question, ends up writing you an elaborate regex when one line of pandas would do.</p>
+<p>The fix is mechanical. State the real goal first, in one sentence, before you describe what you tried. Mention your attempted solution as <em>one option</em> you considered, not as the only path forward. And explicitly invite alternatives — something as simple as “open to other approaches” goes a long way. With those three habits, the XY trap mostly goes away on its own.</p>
 </section>
 <section id="copying-errors-by-hand" class="level3">
 <h3 class="anchored" data-anchor-id="copying-errors-by-hand">Copying errors by hand</h3>
@@ -985,43 +952,23 @@ print(result)</code></pre>
 </section>
 <section id="screenshot-only-questions" class="level3">
 <h3 class="anchored" data-anchor-id="screenshot-only-questions">Screenshot-only questions</h3>
-<p>Screenshots are sometimes useful, but text is searchable and copyable. Prefer text for:</p>
-<ul>
-<li><p>stack traces,</p></li>
-<li><p>commands,</p></li>
-<li><p>code snippets.</p></li>
-</ul>
-<p>If you include a screenshot, also include the relevant text.</p>
+<p>Screenshots have their place — they are good for showing the layout of an IDE, the contents of a settings dialog, or a GUI error you cannot copy out of. But for any text the helper might want to search, copy, or paste back to you, screenshots are actively harmful. Stack traces, commands, and code snippets should always be included as text. If you also want to attach a screenshot for context, fine, but include the text alongside it so the helper does not have to retype anything.</p>
 </section>
 <section id="sharing-entire-notebooks" class="level3">
 <h3 class="anchored" data-anchor-id="sharing-entire-notebooks">Sharing entire notebooks</h3>
-<p>Large notebooks make it hard for helpers to find the failing region. If you must share a notebook, also:</p>
-<ul>
-<li><p>identify the cell that fails,</p></li>
-<li><p>provide an MRE,</p></li>
-<li><p>clear irrelevant outputs.</p></li>
-</ul>
+<p>A 200-cell notebook is one of the hardest things to debug for someone who is not you. If you are tempted to share an entire notebook, do at least three things first: identify the specific cell that fails (by index or by name), produce an MRE that reproduces the failure outside the notebook context if possible, and clear cell outputs that are not relevant to the bug — both because they bloat the file and because they sometimes contain things you did not realize were sensitive. Most of the time, the act of preparing the notebook for sharing will reveal the bug to you before you ever send it.</p>
 </section>
 </section>
 <section id="using-ai-tools-when-asking-questions" class="level2" data-number="2.8">
 <h2 data-number="2.8" class="anchored" data-anchor-id="using-ai-tools-when-asking-questions"><span class="header-section-number">2.8</span> Using AI tools when asking questions</h2>
-<p>AI tools can accelerate the process of forming a good question, but they can also produce misleading confidence. Use AI to improve <em>structure</em> and <em>communication</em>, not to outsource verification. <a href="#sec-ai-llm" class="quarto-xref"><span class="quarto-unresolved-ref">sec-ai-llm</span></a> covers disciplined AI workflows in full, including verification loops, risk categories, and prompt patterns.</p>
+<p>AI tools can accelerate the process of forming a good question, but they can also produce misleading confidence. Use AI to improve <em>structure</em> and <em>communication</em>, not to outsource verification. <a href="ai-llm.html" class="quarto-xref"><span>Chapter 7</span></a> covers disciplined AI workflows in full, including verification loops, risk categories, and prompt patterns.</p>
 <section id="good-uses-of-ai-in-question-formation" class="level3">
 <h3 class="anchored" data-anchor-id="good-uses-of-ai-in-question-formation">Good uses of AI in question formation</h3>
-<ul>
-<li><p>Turn a messy description into a structured template (goal, expected, actual, reproduction).</p></li>
-<li><p>Suggest what environment details might matter.</p></li>
-<li><p>Help you reduce code to an MRE by proposing deletions.</p></li>
-<li><p>Propose search terms based on your exact error message.</p></li>
-</ul>
+<p>The most reliable use of AI in question formation is structural: take your messy first description and ask the assistant to convert it into the standard template (goal, expected, actual, reproduction, context, what you tried). The assistant is good at filling in the template and at noticing fields you forgot, which is exactly what you want here. Beyond that, the assistant can suggest what environment details might matter for a given error type, propose deletions to help you shrink your code into an MRE, and turn a noisy error message into a clean search query by stripping the parts that are specific to your machine.</p>
 </section>
 <section id="bad-uses-of-ai-in-question-formation" class="level3">
 <h3 class="anchored" data-anchor-id="bad-uses-of-ai-in-question-formation">Bad uses of AI in question formation</h3>
-<ul>
-<li><p>Asking AI to “fix it” without reproducing the steps yourself.</p></li>
-<li><p>Pasting secrets, tokens, or private data.</p></li>
-<li><p>Accepting AI-suggested commands that you do not understand, especially with <code>sudo</code>.</p></li>
-</ul>
+<p>The worst uses of AI come from asking it to do the parts of the work you should be doing yourself. Asking it to “fix” your error without you actually reproducing the failure is one — you will get a plausible-looking fix that may or may not address the real cause, and you will not have learned anything you can apply to the next bug. Pasting secrets, tokens, or private data into a prompt is another, and it should be treated as a hard rule: once a secret leaves your machine, you have to assume it is no longer secret. And the most dangerous of all is accepting an AI-suggested command without understanding what it does — especially anything involving <code>sudo</code>, recursive deletes, or network configuration. See <a href="ai-llm.html" class="quarto-xref"><span>Chapter 7</span></a> for the full set of rules around verifying AI output.</p>
 </section>
 <section id="a-safe-workflow" class="level3">
 <h3 class="anchored" data-anchor-id="a-safe-workflow">A safe workflow</h3>
@@ -1037,8 +984,8 @@ print(result)</code></pre>
 <section id="worked-examples" class="level2" data-number="2.9">
 <h2 data-number="2.9" class="anchored" data-anchor-id="worked-examples"><span class="header-section-number">2.9</span> Worked examples</h2>
 <p>This section illustrates how vague questions become answerable.</p>
-<section id="example-1-jupyter-shows-no-notebooks" class="level3">
-<h3 class="anchored" data-anchor-id="example-1-jupyter-shows-no-notebooks">Example 1: “Jupyter shows no notebooks”</h3>
+<section id="from-jupyter-shows-no-notebooks-to-a-working-directory-diagnosis" class="level3">
+<h3 class="anchored" data-anchor-id="from-jupyter-shows-no-notebooks-to-a-working-directory-diagnosis">From “Jupyter shows no notebooks” to a working-directory diagnosis</h3>
 <section id="vague-question." class="level5">
 <h5 class="anchored" data-anchor-id="vague-question.">Vague question.</h5>
 <p>“Jupyter opens but my notebook files aren’t there.”</p>
@@ -1058,8 +1005,8 @@ jupyter lab</code></pre>
 <p>Notice how the revised question contains the seed of the solution: Jupyter was launching with a different working directory, and specifying <code>–notebook-dir=.</code> fixed it. Even if you did not know why, the helper can now explain it.</p>
 </section>
 </section>
-<section id="example-2-git-push-rejected" class="level3">
-<h3 class="anchored" data-anchor-id="example-2-git-push-rejected">Example 2: “Git push rejected”</h3>
+<section id="from-git-push-rejected-to-a-fetch-and-merge-plan" class="level3">
+<h3 class="anchored" data-anchor-id="from-git-push-rejected-to-a-fetch-and-merge-plan">From “Git push rejected” to a fetch-and-merge plan</h3>
 <section id="vague-question.-1" class="level5">
 <h5 class="anchored" data-anchor-id="vague-question.-1">Vague question.</h5>
 <p>“Git won’t let me push.”</p>
@@ -1083,8 +1030,8 @@ git push
 <p>Now a helper can quickly guide you: fetch/pull first, resolve conflicts, then push.</p>
 </section>
 </section>
-<section id="example-3-pandas-read_csv-weird-columns" class="level3">
-<h3 class="anchored" data-anchor-id="example-3-pandas-read_csv-weird-columns">Example 3: “pandas read_csv weird columns”</h3>
+<section id="from-pandas-read_csv-weird-columns-to-a-tab-delimited-fix" class="level3">
+<h3 class="anchored" data-anchor-id="from-pandas-read_csv-weird-columns-to-a-tab-delimited-fix">From “pandas read_csv weird columns” to a tab-delimited fix</h3>
 <section id="vague-question.-2" class="level5">
 <h5 class="anchored" data-anchor-id="vague-question.-2">Vague question.</h5>
 <p>“My CSV loads wrong.”</p>

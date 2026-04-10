@@ -30,7 +30,7 @@ By the end of this chapter, you should be able to:
 
 For any question about a library function, the official docs should be your first stop, not your last. Blog posts are for discovery; docs are for correctness.
 
-## 4.1 1. The four genres of documentation
+## 4.1 The four genres of documentation
 
 Not all documentation is for the same kind of question. The [Diátaxis framework](https://diataxis.fr/) (worth a bookmark) divides docs into four genres:
 
@@ -45,37 +45,44 @@ Most novices reach for tutorials first and stop there. The real superpower is kn
 
 The official docs of major libraries usually include all four genres. pandas has a “Getting Started” (tutorials), “User Guide” (explanations), “Cookbook” (how-tos), and “API Reference.” Python itself has a tutorial, a library reference, a language reference, and a “HOWTOs” section. Learn where each lives for the libraries you use most.
 
-## 4.2 2. Reading a function signature
+## 4.2 Reading a function signature
 
-Every library reference page starts with a signature. Read it slowly — it tells you most of what you need.
+Every library reference page starts with a signature. Read it slowly — it tells you most of what you need to know without ever scrolling further.
 
 From the pandas docs, here is the signature of `pandas.read_csv` (abridged):
 
-    pandas.read_csv(
-        filepath_or_buffer,
-        *,
-        sep=',',
-        header='infer',
-        names=None,
-        index_col=None,
-        usecols=None,
-        dtype=None,
-        parse_dates=None,
-        na_values=None,
-        encoding=None,
-        ...
-    )
+``` text
+pandas.read_csv(
+    filepath_or_buffer,
+    *,
+    sep=',',
+    header='infer',
+    names=None,
+    index_col=None,
+    usecols=None,
+    dtype=None,
+    parse_dates=None,
+    na_values=None,
+    encoding=None,
+    ...
+)
+```
 
-Things to notice:
+The first thing to notice is the lone `*` partway through the argument list. In modern Python, that comma after the bare `*` is a marker meaning “everything after this point is keyword-only.” So `filepath_or_buffer` can be passed positionally, but `sep`, `header`, `names`, and the rest must be passed by name. If you try to write `pd.read_csv("data.csv", ";")` thinking the second argument is the separator, Python will raise a `TypeError` because the function refuses to accept `";"` as a positional argument. The fix is to write it as a keyword:
 
-- **Positional vs keyword-only.** Everything after the `*,` is keyword-only — you must pass it as `sep=";"`, not as a positional. This is common in modern Python APIs.
-- **Default values.** `sep=','` tells you that if you don’t pass `sep`, it will be a comma. The default is part of the contract.
-- **Sentinel defaults.** `header='infer'` is not the same as `header=None` (no header) or `header=0` (first row is header). Read the parameter description.
-- **`None` is not “nothing.”** It usually means “use the library’s default behavior,” which might be “no filter” or “infer from data” depending on the parameter.
+``` python
+df = pd.read_csv("data.csv", sep=";")
+```
 
-Each parameter has a description below the signature. Read the ones you use; skim the rest until you need them.
+The next thing to notice is the default values attached to each parameter. `sep=','` is more than a placeholder — it tells you that if you don’t pass `sep`, pandas will use a comma. Defaults are part of the function’s contract; whenever you skip a parameter, you are implicitly accepting its default.
 
-## 4.3 3. Reading a return value
+A subtler trap is what we might call **sentinel defaults**: values that look harmless but have special meaning. `header='infer'` is *not* the same as `header=None` and *not* the same as `header=0`. The string `'infer'` tells pandas to guess based on what the file looks like; `None` tells pandas the file has no header at all and to make up integer column names; `0` tells pandas to use the first row as column names unconditionally. Three nearby behaviors, three different outcomes. The only way to keep them straight is to read the parameter description in the reference, not to guess from the name.
+
+Closely related: `None` in a Python signature almost never means “nothing.” It usually means “use the library’s default behavior,” which might be “no filter,” “infer from data,” or “do not pass through to the underlying call.” For `usecols=None` it means “load every column.” For `dtype=None` it means “infer types from the data.” Whenever you see `None` as a default, treat it as a hint to read the description before you assume.
+
+Each parameter has its own description below the signature. Read the ones you actually pass; skim the rest until you need them.
+
+## 4.3 Reading a return value
 
 Every reference page tells you what the function returns — its type and shape. For a pandas DataFrame method, the return is usually another DataFrame (or Series, or scalar). The important question is always: **is this operation in-place, or does it return a new object?**
 
@@ -86,7 +93,7 @@ df.sort_values("date", inplace=True)   # modifies df directly, returns None
 
 Many pandas operations historically had an `inplace` parameter; the modern convention is to avoid it and use the return value. If your code sorts a DataFrame and then operates on the original unsorted one, you probably forgot to assign: `df = df.sort_values("date")`.
 
-## 4.4 4. Reading docstrings from Python itself
+## 4.4 Reading docstrings from Python itself
 
 You do not have to open a browser to read documentation. Every function, method, and class has a docstring you can read inline.
 
@@ -120,7 +127,7 @@ df = pd.DataFrame({"a": [1, 2, 3]})
 
 For built-in functions and methods, `help` is fast and always available, even on an airplane.
 
-## 4.5 5. Reading a docstring: the canonical shape
+## 4.5 Reading a docstring: the canonical shape
 
 Most Python docstrings follow a structured format with the same sections:
 
@@ -157,35 +164,33 @@ def resample(self, rule, ...):
     """
 ```
 
-The sections you will read most often:
+The sections you will read most often are the **summary line**, the **Parameters** block, the **Returns** block, and the **Examples**. The summary line is one sentence at the very top, and reading it is almost free — half the time it directly answers your question and you can stop. If it does not, skim the Parameters block for the specific argument you care about; each parameter is named, typed, and described, so you can search inside the docstring with your editor’s find tool to jump straight to it. The Returns block tells you what shape of object comes back, which is what you need to know to chain the call into the rest of your code. And the Examples section is, in practice, the fastest way to understand any non-trivial function: it shows the function being called on real data with real output, which is something no English description can match.
 
-- **Summary line.** One sentence, at the top. Read it first; often it answers your question.
-- **Parameters.** Each parameter named, typed, and described. Find the one you care about.
-- **Returns.** What you get back.
-- **Examples.** A working mini-tutorial you can copy. These are almost always the fastest way to understand a function.
+If you only have time to read two of those four sections, read the summary line and the examples.
 
-If you only have time to read two sections, read the summary line and the examples.
+## 4.6 Extracting a minimal example from the docs
 
-## 4.6 6. Extracting a minimal example from the docs
+The examples in a reference page are designed to be self-contained. They usually import everything they need, create any sample data inline, and run top to bottom — meaning you can paste them anywhere and they should work. The workflow for a new function is to find the example that looks closest to what you want, copy it into a notebook cell or a throwaway script, run it as-is, and confirm that it works *before* you change anything. Then modify one variable at a time toward your real use case, running again after each change so that if something breaks you know exactly which change broke it.
 
-The examples in a reference page are designed to be self-contained. They usually import everything they need, create any sample data inline, and run top to bottom. Your workflow for a new function is:
+``` python
+# Step 1: paste the official example unchanged
+import pandas as pd
+df = pd.DataFrame({"a": [1, 2, 3], "b": [4, 5, 6]})
+df.melt(id_vars=["a"], value_vars=["b"])
 
-1.  Find the example closest to what you want.
-2.  Copy it into a notebook cell or a throwaway script.
-3.  Run it. Confirm it works unchanged.
-4.  Modify it one variable at a time toward your real use case.
+# Step 2: substitute your real DataFrame
+df = pd.read_csv("survey.csv")
+df.melt(id_vars=["a"], value_vars=["b"])   # will fail — wrong column names
 
-This workflow beats “try to guess the right incantation” every time.
+# Step 3: substitute the right column names
+df.melt(id_vars=["respondent_id"], value_vars=["q1", "q2", "q3"])
+```
 
-## 4.7 7. Release notes and changelogs
+This iterative workflow beats “try to guess the right incantation” every time, and it gives you something better than a working call: a clear explanation, in your own head, of *why* it works.
 
-Sometimes the docs on the site match a newer version than the one installed in your environment. The library has a release note page (sometimes called “What’s New” or “Changelog”) that lists the behavior changes in each release. Whenever you hit:
+## 4.7 Release notes and changelogs
 
-- “This worked last year and doesn’t now”
-- “The tutorial uses an argument my version doesn’t have”
-- “A deprecation warning I do not understand”
-
-… the changelog is the right place to look. For pandas it is [pandas.pydata.org/docs/whatsnew](https://pandas.pydata.org/docs/whatsnew). For Python it is [docs.python.org/3/whatsnew](https://docs.python.org/3/whatsnew).
+Sometimes the docs on the site match a newer version than the one installed in your environment. Most libraries publish a release note page (sometimes called “What’s New” or “Changelog”) that lists the behavior changes in each release. There are three symptoms that almost always mean “go check the changelog”: code that worked last year stops working now, a tutorial that uses an argument your version does not seem to have, and a deprecation warning whose meaning is opaque. All three are version-mismatch problems, and the changelog is the cheapest way to confirm and resolve them. For pandas the page is at [pandas.pydata.org/docs/whatsnew](https://pandas.pydata.org/docs/whatsnew); for Python itself it is at [docs.python.org/3/whatsnew](https://docs.python.org/3/whatsnew).
 
 Check your installed version first:
 
@@ -196,18 +201,26 @@ print(pd.__version__)
 
 Then go to the “What’s new in X.Y” page for that version and scan for the function you are using.
 
-## 4.8 8. When a blog post is wrong
+## 4.8 When a blog post is wrong
 
-Blog posts are wonderful for discovery — “I didn’t know I could do that” — and dangerous for reference. Two warning signs that a blog is leading you astray:
+Blog posts are wonderful for discovery — “I didn’t know I could do that” — and dangerous for reference. Two warning signs should make you suspicious of any blog code you are about to copy. The first is **no date, or a date older than about two years.** APIs change; an answer that was right in 2018 may be silently wrong in 2026. The second, and more diagnostic, is that **the code in the post does not match the function signature in the official docs.** That mismatch is almost always a sign that the post was written against a different version, and continuing to follow it will land you in a confusing place.
 
-1.  **No date, or a date older than two years.** APIs change. An answer that was right in 2018 may be wrong today.
-2.  **The code doesn’t match the function signature in the docs.** Always sanity-check a blog’s code against `help(func)` or the official reference page for your version.
+A useful workflow is to treat blog posts as discovery aids and the official docs as the authoritative reference. Discover an approach from a blog or Stack Overflow, then open the docs for every function in the snippet and verify that the signature matches your installed version:
 
-A useful workflow: discover an approach from a blog or Stack Overflow, then open the docs for every function in the snippet and verify the signature matches your installed version. If the blog post uses `pd.read_csv(..., skipfooter=1, engine='python')` and your docs say `skipfooter` is supported, you are fine. If the docs say otherwise, trust the docs.
+``` python
+# saw on a blog: pd.read_csv("file.csv", skipfooter=1, engine="python")
+# verify it locally before trusting it:
+import pandas as pd
+help(pd.read_csv)             # search for "skipfooter" in the output
+# or in Jupyter:
+pd.read_csv?
+```
 
-## 4.9 9. Worked examples
+If `skipfooter` shows up in your version’s docstring with the same meaning the blog assumes, you are fine. If your version’s docstring is silent on it, or the description is different, trust the docs and not the blog.
 
-### Example 1: “what does `how='outer'` do in `pd.merge`?”
+## 4.9 Worked examples
+
+### Looking up a parameter: what does `how='outer'` do in `pd.merge`?
 
 **Wrong approach:** Google “pandas merge outer example,” read four blog posts, get confused by inconsistent examples.
 
@@ -224,13 +237,13 @@ A useful workflow: discover an approach from a blog or Stack Overflow, then open
 
 Thirty seconds, definitive answer.
 
-### Example 2: “why is my `.apply` so slow?”
+### Routing to the right genre: why is my `.apply` so slow?
 
 **Wrong approach:** find a tutorial on speeding up pandas, try several unrelated tricks.
 
 **Right approach:** go to the pandas User Guide → “Enhancing performance.” That’s an **explanation** page, and it directly answers “why is .apply slow and what should I do.” It will recommend vectorized operations, `.map`, `numba`, or `pyarrow` depending on your case.
 
-### Example 3: “what arguments does `requests.get` actually take?”
+### Reading a docstring inline: what arguments does `requests.get` actually take?
 
 From within a Jupyter cell:
 
@@ -241,13 +254,13 @@ requests.get?
 
 You get a docstring listing every keyword argument (`params`, `headers`, `timeout`, `auth`, `cookies`, `allow_redirects`, `verify`, `stream`, `cert`) with descriptions — no browser required.
 
-### Example 4: reading the Python language reference
+### Asking a precise question: does Python’s `in` operator work on a dict?
 
 If you find yourself wondering “does Python’s `in` operator work on a dict?”, the fastest answer is the **Python Language Reference** (distinct from the tutorial). The reference for `in` lives under “Expressions → Comparisons → Membership test operations” and tells you that `in` on a dict checks the *keys*, not the values.
 
 The language reference is dense — it is for people who want precise answers to precise questions. You will not read it cover to cover, but you will increasingly rely on it as you get comfortable.
 
-## 4.10 10. Templates
+## 4.10 Templates
 
 **A “read the docs before asking for help” pre-flight checklist:**
 
@@ -260,7 +273,7 @@ The language reference is dense — it is for people who want precise answers to
 
 If yes to all five, then it is time to ask a question (see [sec-asking-questions](#sec-asking-questions)).
 
-## 4.11 11. Exercises
+## 4.11 Exercises
 
 1.  Using `help()` in a Python REPL, read the docstring for `sorted`. What does the `key` parameter do? What does `reverse=True` do?
 2.  In a Jupyter notebook, type `pd.read_csv?` and scroll through every parameter. Pick three you have never used and read their descriptions.
@@ -270,7 +283,7 @@ If yes to all five, then it is time to ask a question (see [sec-asking-questions
 6.  For a library you use often but have not read the docs of (e.g., `matplotlib`, `scikit-learn`), find the entry page for the four Diátaxis genres: tutorial, how-to, reference, explanation. Bookmark each.
 7.  The next time you hit a confusing error message, before searching online, open the docs for the function that raised the error. Read the Parameters and Examples sections. Time how long it took to find the answer.
 
-## 4.12 12. One-page checklist
+## 4.12 One-page checklist
 
 - **Docs first, blog posts second.** Official documentation is almost always faster and more reliable.
 - Know the four genres: tutorials (learn), how-tos (do), references (look up), explanations (understand).

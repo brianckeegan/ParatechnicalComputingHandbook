@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -426,20 +461,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../parts/part-3-python/testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Testing Basics with pytest</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../parts/part-3-python/regex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regular Expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Regular Expressions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-3-python/linting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Code Style, Linting, and Formatting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Code Style, Linting, and Formatting</span></span></a>
   </div>
 </li>
       </ul>
@@ -456,31 +485,31 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/data-file-formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Data File Formats</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Data File Formats</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/tabular-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Tabular Data: Shape, Cleaning, and Validation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Tabular Data: Shape, Cleaning, and Validation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/pandas-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">pandas Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">pandas Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/sql-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">SQL Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">SQL Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/http-apis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">HTTP and Web APIs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">HTTP and Web APIs</span></span></a>
   </div>
 </li>
       </ul>
@@ -497,37 +526,31 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/project-management.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Project Management</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Project Management</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/version-control.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Version Control</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Version Control</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/collaboration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Collaboration Mechanics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Collaboration Mechanics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/automation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Automation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Automation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/secrets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Environment Variables and Secrets</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../parts/part-5-projects/pre-commit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Pre-commit Hooks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Environment Variables and Secrets</span></span></a>
   </div>
 </li>
       </ul>
@@ -544,19 +567,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/llm-internals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">How Language Models Work</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">How Language Models Work</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/ai-agents.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Working with AI Agent Frameworks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Working with AI Agent Frameworks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/evaluating-ai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Evaluating and Auditing AI Outputs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Evaluating and Auditing AI Outputs</span></span></a>
   </div>
 </li>
       </ul>
@@ -564,7 +587,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -603,18 +626,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose">Purpose</a></li>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning objectives</a></li>
   <li><a href="#scope-note" id="toc-scope-note" class="nav-link" data-scroll-target="#scope-note">Scope note</a></li>
-  <li><a href="#a-beginner-mental-model" id="toc-a-beginner-mental-model" class="nav-link" data-scroll-target="#a-beginner-mental-model"><span class="header-section-number">10.1</span> A beginner mental model</a>
-  <ul class="collapse">
-  <li><a href="#terminal-vs-shell" id="toc-terminal-vs-shell" class="nav-link" data-scroll-target="#terminal-vs-shell">Terminal vs shell</a></li>
-  <li><a href="#what-happens-when-you-press-enter" id="toc-what-happens-when-you-press-enter" class="nav-link" data-scroll-target="#what-happens-when-you-press-enter">What happens when you press Enter</a></li>
-  <li><a href="#why-the-command-line-matters" id="toc-why-the-command-line-matters" class="nav-link" data-scroll-target="#why-the-command-line-matters">Why the command line matters</a></li>
-  </ul></li>
-  <li><a href="#orientation-and-safety-first" id="toc-orientation-and-safety-first" class="nav-link" data-scroll-target="#orientation-and-safety-first"><span class="header-section-number">10.2</span> Orientation and safety first</a>
-  <ul class="collapse">
-  <li><a href="#know-where-you-are-the-current-working-directory" id="toc-know-where-you-are-the-current-working-directory" class="nav-link" data-scroll-target="#know-where-you-are-the-current-working-directory">Know where you are (the current working directory)</a></li>
-  <li><a href="#the-guardrails-mindset" id="toc-the-guardrails-mindset" class="nav-link" data-scroll-target="#the-guardrails-mindset">The “guardrails” mindset</a></li>
-  <li><a href="#common-irreversible-mistakes" id="toc-common-irreversible-mistakes" class="nav-link" data-scroll-target="#common-irreversible-mistakes">Common irreversible mistakes</a></li>
-  </ul></li>
+  <li><a href="#a-beginner-mental-model" id="toc-a-beginner-mental-model" class="nav-link" data-scroll-target="#a-beginner-mental-model"><span class="header-section-number">10.1</span> A beginner mental model</a></li>
+  <li><a href="#orientation-and-safety-first" id="toc-orientation-and-safety-first" class="nav-link" data-scroll-target="#orientation-and-safety-first"><span class="header-section-number">10.2</span> Orientation and safety first</a></li>
   <li><a href="#command-anatomy-and-help" id="toc-command-anatomy-and-help" class="nav-link" data-scroll-target="#command-anatomy-and-help"><span class="header-section-number">10.3</span> Command anatomy and help</a>
   <ul class="collapse">
   <li><a href="#basic-syntax" id="toc-basic-syntax" class="nav-link" data-scroll-target="#basic-syntax">Basic syntax</a></li>
@@ -622,38 +635,16 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#built-in-help" id="toc-built-in-help" class="nav-link" data-scroll-target="#built-in-help">Built-in help</a></li>
   <li><a href="#quoting-and-spaces" id="toc-quoting-and-spaces" class="nav-link" data-scroll-target="#quoting-and-spaces">Quoting and spaces</a></li>
   </ul></li>
-  <li><a href="#file-system-navigation" id="toc-file-system-navigation" class="nav-link" data-scroll-target="#file-system-navigation"><span class="header-section-number">10.4</span> File system navigation</a>
-  <ul class="collapse">
-  <li><a href="#key-path-concepts" id="toc-key-path-concepts" class="nav-link" data-scroll-target="#key-path-concepts">Key path concepts</a></li>
-  <li><a href="#core-navigation-commands" id="toc-core-navigation-commands" class="nav-link" data-scroll-target="#core-navigation-commands">Core navigation commands</a></li>
-  <li><a href="#tab-completion-and-history" id="toc-tab-completion-and-history" class="nav-link" data-scroll-target="#tab-completion-and-history">Tab completion and history</a></li>
-  </ul></li>
-  <li><a href="#creating-viewing-and-editing-files" id="toc-creating-viewing-and-editing-files" class="nav-link" data-scroll-target="#creating-viewing-and-editing-files"><span class="header-section-number">10.5</span> Creating, viewing, and editing files</a>
-  <ul class="collapse">
-  <li><a href="#creating-directories-and-empty-files" id="toc-creating-directories-and-empty-files" class="nav-link" data-scroll-target="#creating-directories-and-empty-files">Creating directories and empty files</a></li>
-  <li><a href="#viewing-file-contents-safely" id="toc-viewing-file-contents-safely" class="nav-link" data-scroll-target="#viewing-file-contents-safely">Viewing file contents safely</a></li>
-  <li><a href="#creating-small-files-from-the-command-line" id="toc-creating-small-files-from-the-command-line" class="nav-link" data-scroll-target="#creating-small-files-from-the-command-line">Creating small files from the command line</a></li>
-  <li><a href="#editors-in-the-terminal" id="toc-editors-in-the-terminal" class="nav-link" data-scroll-target="#editors-in-the-terminal">Editors in the terminal</a></li>
-  </ul></li>
-  <li><a href="#file-operations-copy-move-delete-with-safety" id="toc-file-operations-copy-move-delete-with-safety" class="nav-link" data-scroll-target="#file-operations-copy-move-delete-with-safety"><span class="header-section-number">10.6</span> File operations: copy, move, delete (with safety)</a>
-  <ul class="collapse">
-  <li><a href="#copy-and-move" id="toc-copy-and-move" class="nav-link" data-scroll-target="#copy-and-move">Copy and move</a></li>
-  <li><a href="#deleting-files-and-directories" id="toc-deleting-files-and-directories" class="nav-link" data-scroll-target="#deleting-files-and-directories">Deleting files and directories</a></li>
-  <li><a href="#globbing-wildcards-and-why-it-matters" id="toc-globbing-wildcards-and-why-it-matters" class="nav-link" data-scroll-target="#globbing-wildcards-and-why-it-matters">Globbing (wildcards) and why it matters</a></li>
-  </ul></li>
+  <li><a href="#file-system-navigation" id="toc-file-system-navigation" class="nav-link" data-scroll-target="#file-system-navigation"><span class="header-section-number">10.4</span> File system navigation</a></li>
+  <li><a href="#creating-viewing-and-editing-files" id="toc-creating-viewing-and-editing-files" class="nav-link" data-scroll-target="#creating-viewing-and-editing-files"><span class="header-section-number">10.5</span> Creating, viewing, and editing files</a></li>
+  <li><a href="#file-operations-copy-move-delete-with-safety" id="toc-file-operations-copy-move-delete-with-safety" class="nav-link" data-scroll-target="#file-operations-copy-move-delete-with-safety"><span class="header-section-number">10.6</span> File operations: copy, move, delete (with safety)</a></li>
   <li><a href="#searching-and-inspecting" id="toc-searching-and-inspecting" class="nav-link" data-scroll-target="#searching-and-inspecting"><span class="header-section-number">10.7</span> Searching and inspecting</a>
   <ul class="collapse">
   <li><a href="#finding-files" id="toc-finding-files" class="nav-link" data-scroll-target="#finding-files">Finding files</a></li>
   <li><a href="#searching-within-files" id="toc-searching-within-files" class="nav-link" data-scroll-target="#searching-within-files">Searching within files</a></li>
   <li><a href="#inspecting-file-metadata" id="toc-inspecting-file-metadata" class="nav-link" data-scroll-target="#inspecting-file-metadata">Inspecting file metadata</a></li>
   </ul></li>
-  <li><a href="#pipes-and-redirection-building-workflows" id="toc-pipes-and-redirection-building-workflows" class="nav-link" data-scroll-target="#pipes-and-redirection-building-workflows"><span class="header-section-number">10.8</span> Pipes and redirection: building workflows</a>
-  <ul class="collapse">
-  <li><a href="#standard-streams" id="toc-standard-streams" class="nav-link" data-scroll-target="#standard-streams">Standard streams</a></li>
-  <li><a href="#redirection" id="toc-redirection" class="nav-link" data-scroll-target="#redirection">Redirection</a></li>
-  <li><a href="#pipes" id="toc-pipes" class="nav-link" data-scroll-target="#pipes">Pipes</a></li>
-  <li><a href="#exit-codes-and-did-it-work" id="toc-exit-codes-and-did-it-work" class="nav-link" data-scroll-target="#exit-codes-and-did-it-work">Exit codes and “did it work?”</a></li>
-  </ul></li>
+  <li><a href="#pipes-and-redirection-building-workflows" id="toc-pipes-and-redirection-building-workflows" class="nav-link" data-scroll-target="#pipes-and-redirection-building-workflows"><span class="header-section-number">10.8</span> Pipes and redirection: building workflows</a></li>
   <li><a href="#environment-basics-path-variables-and-reproducibility" id="toc-environment-basics-path-variables-and-reproducibility" class="nav-link" data-scroll-target="#environment-basics-path-variables-and-reproducibility"><span class="header-section-number">10.9</span> Environment basics: <code>PATH</code>, variables, and reproducibility</a>
   <ul class="collapse">
   <li><a href="#environment-variables" id="toc-environment-variables" class="nav-link" data-scroll-target="#environment-variables">Environment variables</a></li>
@@ -684,12 +675,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#common-errors-and-what-they-mean" id="toc-common-errors-and-what-they-mean" class="nav-link" data-scroll-target="#common-errors-and-what-they-mean">Common errors and what they mean</a></li>
   <li><a href="#a-disciplined-response" id="toc-a-disciplined-response" class="nav-link" data-scroll-target="#a-disciplined-response">A disciplined response</a></li>
   </ul></li>
-  <li><a href="#worked-examples-outline" id="toc-worked-examples-outline" class="nav-link" data-scroll-target="#worked-examples-outline"><span class="header-section-number">10.14</span> Worked examples (outline)</a>
+  <li><a href="#worked-examples" id="toc-worked-examples" class="nav-link" data-scroll-target="#worked-examples"><span class="header-section-number">10.14</span> Worked examples</a>
   <ul class="collapse">
-  <li><a href="#example-1-build-a-course-workspace" id="toc-example-1-build-a-course-workspace" class="nav-link" data-scroll-target="#example-1-build-a-course-workspace">Example 1: Build a course workspace</a></li>
-  <li><a href="#example-2-create-and-inspect-a-dataset-file" id="toc-example-2-create-and-inspect-a-dataset-file" class="nav-link" data-scroll-target="#example-2-create-and-inspect-a-dataset-file">Example 2: Create and inspect a dataset file</a></li>
-  <li><a href="#example-3-build-a-small-pipeline" id="toc-example-3-build-a-small-pipeline" class="nav-link" data-scroll-target="#example-3-build-a-small-pipeline">Example 3: Build a small pipeline</a></li>
-  <li><a href="#example-4-diagnose-and-fix-a-file-not-found-error" id="toc-example-4-diagnose-and-fix-a-file-not-found-error" class="nav-link" data-scroll-target="#example-4-diagnose-and-fix-a-file-not-found-error">Example 4: Diagnose and fix a “file not found” error</a></li>
+  <li><a href="#building-a-course-workspace-from-the-terminal" id="toc-building-a-course-workspace-from-the-terminal" class="nav-link" data-scroll-target="#building-a-course-workspace-from-the-terminal">Building a course workspace from the terminal</a></li>
+  <li><a href="#inspecting-a-dataset-file-you-have-not-seen-before" id="toc-inspecting-a-dataset-file-you-have-not-seen-before" class="nav-link" data-scroll-target="#inspecting-a-dataset-file-you-have-not-seen-before">Inspecting a dataset file you have not seen before</a></li>
+  <li><a href="#building-a-small-pipeline" id="toc-building-a-small-pipeline" class="nav-link" data-scroll-target="#building-a-small-pipeline">Building a small pipeline</a></li>
+  <li><a href="#diagnosing-a-file-not-found-error" id="toc-diagnosing-a-file-not-found-error" class="nav-link" data-scroll-target="#diagnosing-a-file-not-found-error">Diagnosing a “file not found” error</a></li>
   </ul></li>
   <li><a href="#templates" id="toc-templates" class="nav-link" data-scroll-target="#templates"><span class="header-section-number">10.15</span> Templates</a>
   <ul class="collapse">
@@ -743,8 +734,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>Prerequisites (read first if unfamiliar):</strong> <a href="#sec-os-management" class="quarto-xref"><span class="quarto-unresolved-ref">sec-os-management</span></a>, <a href="#sec-filesystem" class="quarto-xref"><span class="quarto-unresolved-ref">sec-filesystem</span></a>.</p>
-<p><strong>See also:</strong> <a href="#sec-text-editors" class="quarto-xref"><span class="quarto-unresolved-ref">sec-text-editors</span></a>, <a href="#sec-git-github" class="quarto-xref"><span class="quarto-unresolved-ref">sec-git-github</span></a>, <a href="#sec-automation" class="quarto-xref"><span class="quarto-unresolved-ref">sec-automation</span></a>.</p>
+<p><strong>Prerequisites (read first if unfamiliar):</strong> <a href="operating-system.html" class="quarto-xref"><span>Chapter 8</span></a>, <a href="file-system.html" class="quarto-xref"><span>Chapter 9</span></a>.</p>
+<p><strong>See also:</strong> <a href="text-editors.html" class="quarto-xref"><span>Chapter 11</span></a>, <a href="../part-5-projects/version-control.html" class="quarto-xref"><span>Chapter 25</span></a>, <a href="../part-5-projects/automation.html" class="quarto-xref"><span>Chapter 27</span></a>.</p>
 </div>
 </div>
 </div>
@@ -772,61 +763,35 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="a-beginner-mental-model" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="a-beginner-mental-model"><span class="header-section-number">10.1</span> A beginner mental model</h2>
-<section id="terminal-vs-shell" class="level3">
-<h3 class="anchored" data-anchor-id="terminal-vs-shell">Terminal vs shell</h3>
-<ul>
-<li><p><strong>Terminal:</strong> the application window you type in.</p></li>
-<li><p><strong>Shell:</strong> the command interpreter (often <code>bash</code> or <code>zsh</code>) that runs programs.</p></li>
-<li><p><strong>Command:</strong> a program + arguments you ask the shell to run.</p></li>
-</ul>
-</section>
-<section id="what-happens-when-you-press-enter" class="level3">
-<h3 class="anchored" data-anchor-id="what-happens-when-you-press-enter">What happens when you press Enter</h3>
-<ol type="1">
-<li><p>The shell reads your command line.</p></li>
-<li><p>It expands shortcuts (globs, variables).</p></li>
-<li><p>It locates the program (via <code>PATH</code>).</p></li>
-<li><p>It runs the program in a process and prints output.</p></li>
-<li><p>It returns an <strong>exit code</strong>: 0 usually means success.</p></li>
-</ol>
-</section>
-<section id="why-the-command-line-matters" class="level3">
-<h3 class="anchored" data-anchor-id="why-the-command-line-matters">Why the command line matters</h3>
-<ul>
-<li><p>High action-to-keystroke ratio (fast for repetitive work).</p></li>
-<li><p>Composability (small tools + pipes).</p></li>
-<li><p>Automation (scripts; reproducible workflows).</p></li>
-<li><p>Remote access (SSH; see <a href="#sec-remote-computing" class="quarto-xref"><span class="quarto-unresolved-ref">sec-remote-computing</span></a>).</p></li>
-</ul>
-</section>
+<p>The first piece of vocabulary worth getting right is the difference between a <strong>terminal</strong> and a <strong>shell</strong>, because the words are often used interchangeably and the distinction matters when you read documentation. The <strong>terminal</strong> is the application window you type in — Terminal.app on macOS, Windows Terminal or PowerShell on Windows, GNOME Terminal or Konsole on Linux. The <strong>shell</strong> is the program running <em>inside</em> that window — usually <code>bash</code> or <code>zsh</code> on macOS and Linux, <code>pwsh</code> (PowerShell) or <code>cmd.exe</code> on Windows. The terminal is the dumb pipe that handles fonts and key presses; the shell is the smart program that interprets what you type. A <strong>command</strong> is the actual thing you ask the shell to run: a program name followed by some arguments, like <code>ls -l data/</code>.</p>
+<p>When you press Enter on a command line, a small choreographed sequence happens. The shell reads the line of text you typed. It expands any shortcuts you used — globs like <code>*.csv</code>, variables like <code>$HOME</code>, command substitutions like <code>$(date)</code>. It searches a list of folders called <code>PATH</code> to find the program you named. It launches that program as a new process, hands it the arguments you provided, and shows you whatever the program prints. When the program finishes, it returns a small integer called an <strong>exit code</strong> — <code>0</code> conventionally means “everything worked,” and any nonzero value means “something went wrong.” The shell then displays a prompt and waits for your next command.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-l</span> data/             <span class="co"># 1. read the line</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                           <span class="co"># 2. expand any shortcuts (none here)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                           <span class="co"># 3. find 'ls' on PATH</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                           <span class="co"># 4. run it with the argument 'data/'</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                           <span class="co"># 5. print output, return exit code 0</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">total</span> 16</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-r--r--</span> 1 you staff 8421 Apr 10 12:34 input.csv</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="va">$?</span>                  <span class="co"># check the exit code of the previous command</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The reason any of this is worth learning, when GUI file managers are right there, is that the command line gives you four things the GUI cannot. It has a high <strong>action-to-keystroke ratio</strong> for repetitive work — moving fifty files into the right folders is one short command at the prompt and a fifteen-minute drag-and-drop session in the GUI. It is <strong>composable</strong>: small focused tools combined with pipes and redirection give you a flexible toolkit instead of fifty single-purpose buttons. It is <strong>automatable</strong>: anything you can type once, you can save in a script and run again on a schedule. And it is <strong>remote-friendly</strong>, which is the entire reason you can do real work on a server you have never physically seen (see <a href="remote.html" class="quarto-xref"><span>Chapter 12</span></a>). None of those properties are nice-to-haves; they are the difference between doing a job once and doing it reliably for an entire semester.</p>
 </section>
 <section id="orientation-and-safety-first" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="orientation-and-safety-first"><span class="header-section-number">10.2</span> Orientation and safety first</h2>
-<section id="know-where-you-are-the-current-working-directory" class="level3">
-<h3 class="anchored" data-anchor-id="know-where-you-are-the-current-working-directory">Know where you are (the current working directory)</h3>
-<ul>
-<li><p>Use <code>pwd</code> to print the current directory.</p></li>
-<li><p>Use <code>ls</code> to list contents.</p></li>
-<li><p>Use <code>cd</code> to change directories.</p></li>
-</ul>
-</section>
-<section id="the-guardrails-mindset" class="level3">
-<h3 class="anchored" data-anchor-id="the-guardrails-mindset">The “guardrails” mindset</h3>
-<ul>
-<li><p>Prefer <strong>read-only</strong> commands first: <code>pwd</code>, <code>ls</code>, <code>cat</code>, <code>head</code>.</p></li>
-<li><p>Before destructive actions: do a dry run (list the targets).</p></li>
-<li><p>When in doubt: copy instead of move; move instead of delete.</p></li>
-</ul>
-</section>
-<section id="common-irreversible-mistakes" class="level3">
-<h3 class="anchored" data-anchor-id="common-irreversible-mistakes">Common irreversible mistakes</h3>
-<ul>
-<li><p>Deleting the wrong directory (especially with recursive delete).</p></li>
-<li><p>Running a command in the wrong directory.</p></li>
-<li><p>Overwriting files with redirection (<code>&gt;</code>).</p></li>
-<li><p>Using <code>sudo</code> to “fix” permission problems without understanding them.</p></li>
-</ul>
-</section>
+<p>The single most useful habit at the command line is to always know where you are. Three commands give you the answer at any time: <code>pwd</code> prints your current working directory, <code>ls</code> lists the contents of that directory, and <code>cd</code> changes you to a different one. Before you do anything that touches files, run <code>pwd</code> and <code>ls</code> so you can confirm the world is what you think it is.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pwd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/Users/you/Courses/INFO-3010/Project</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">README.md</span>   data/   notebooks/   src/</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd data</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pwd</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">/Users/you/Courses/INFO-3010/Project/data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The mindset that prevents most beginner disasters is what experienced users call <strong>guardrails first</strong>. When you are not sure what a command is going to do, prefer the read-only commands (<code>pwd</code>, <code>ls</code>, <code>cat</code>, <code>head</code>, <code>wc</code>, <code>file</code>) before you reach for anything that modifies the filesystem. When you are about to do something destructive like delete or move files, do a dry run first by listing the targets so you can see exactly what is about to be affected. When you can copy instead of move, copy. When you can move instead of delete, move. Each of these habits costs nothing and protects you from the small number of irreversible mistakes that account for almost all command-line tragedies.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dry run before destructive action: list, then act</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="pp">*</span>.tmp                 <span class="co"># see exactly what *.tmp expands to</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">file1.tmp</span>  file2.tmp  notes.tmp</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> rm <span class="pp">*</span>.tmp                 <span class="co"># only after the listing looked right</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The mistakes worth being paranoid about are a short list. The first is <strong>deleting the wrong directory</strong>, especially with <code>rm -rf</code>, which removes everything underneath a directory and gives you no chance to take it back. The second is <strong>running a command in the wrong directory</strong> — most often a destructive one — because you forgot to <code>cd</code> first. The third is <strong>overwriting a file with output redirection</strong>: <code>python script.py &gt; results.csv</code> will silently obliterate any existing <code>results.csv</code>, with no prompt and no undo. And the fourth is <strong>reflexive <code>sudo</code></strong>, where you use elevated privileges to “fix” a permission problem you do not yet understand. Each of these has cost real students real assignments. Build the habit of pausing for one extra second before any of them, and the disasters never happen.</p>
 </section>
 <section id="command-anatomy-and-help" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="command-anatomy-and-help"><span class="header-section-number">10.3</span> Command anatomy and help</h2>
@@ -861,91 +826,57 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="file-system-navigation" class="level2" data-number="10.4">
 <h2 data-number="10.4" class="anchored" data-anchor-id="file-system-navigation"><span class="header-section-number">10.4</span> File system navigation</h2>
-<section id="key-path-concepts" class="level3">
-<h3 class="anchored" data-anchor-id="key-path-concepts">Key path concepts</h3>
-<ul>
-<li><p><code>/</code> root directory; <code>&nbsp;</code> your home directory.</p></li>
-<li><p><code>.</code> current directory; <code>..</code> parent directory.</p></li>
-<li><p>Absolute vs relative paths (<a href="#sec-filesystem" class="quarto-xref"><span class="quarto-unresolved-ref">sec-filesystem</span></a> covers file system organization in depth).</p></li>
-</ul>
-</section>
-<section id="core-navigation-commands" class="level3">
-<h3 class="anchored" data-anchor-id="core-navigation-commands">Core navigation commands</h3>
-<ul>
-<li><p><code>pwd</code> (where am I?)</p></li>
-<li><p><code>ls</code> (what’s here?) and useful flags (<code>-l</code>, <code>-a</code>, <code>-h</code>)</p></li>
-<li><p><code>cd</code> (go there)</p></li>
-</ul>
-</section>
-<section id="tab-completion-and-history" class="level3">
-<h3 class="anchored" data-anchor-id="tab-completion-and-history">Tab completion and history</h3>
-<ul>
-<li><p>Use <strong>Tab</strong> to complete commands and paths.</p></li>
-<li><p>Use <strong>Up Arrow</strong> (and reverse search if taught) to reuse commands.</p></li>
-<li><p>Best practice: edit a recalled command instead of retyping.</p></li>
-</ul>
-</section>
+<p>A handful of single characters carry most of the load in command-line paths, and learning them is the difference between fluent and stuck. The forward slash <code>/</code> at the start of a path is the <strong>root directory</strong> — the very top of your filesystem. The tilde <code>~</code> is shorthand for <strong>your home directory</strong> (<code>/Users/you</code> on macOS, <code>/home/you</code> on Linux). A single dot <code>.</code> means <strong>the current directory</strong>, and two dots <code>..</code> mean <strong>the parent directory</strong>, one level up. With these, you can build any path you need:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">~/Courses/INFO-3010/Project/data/input.csv</span>   <span class="co"># absolute, from your home</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./data/input.csv</span>                              <span class="co"># relative, from cwd</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">../data/input.csv</span>                             <span class="co"># one folder up, then into data/</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">/Users/you/Documents</span>                          <span class="co"># absolute, from filesystem root</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Absolute paths always work no matter where you are; relative paths depend on your current directory. (<a href="file-system.html" class="quarto-xref"><span>Chapter 9</span></a> covers the broader file-system mental model in depth.)</p>
+<p>The three workhorse navigation commands are <code>pwd</code>, <code>ls</code>, and <code>cd</code>. You already know <code>pwd</code> prints your current location. <code>ls</code> lists the contents of a directory, and a few flags make it dramatically more useful: <code>-l</code> shows the long format (permissions, owner, size, date), <code>-a</code> includes hidden files (those starting with a dot), and <code>-h</code> makes file sizes human-readable. Combine them: <code>ls -lah</code> is the listing you want when you are inspecting a folder for the first time. <code>cd</code> changes directories — <code>cd ~</code> or just <code>cd</code> takes you home, <code>cd ..</code> goes up one level, <code>cd -</code> returns to the previous directory.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-lah</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">total</span> 32K</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxr-xr-x</span>  6 you staff  192B Apr 10 12:34 .</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxr-xr-x</span>  4 you staff  128B Apr 09 10:12 ..</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-r--r--</span>  1 you staff  1.2K Apr 10 12:34 README.md</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxr-xr-x</span>  4 you staff  128B Apr 10 12:34 data</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxr-xr-x</span>  3 you staff   96B Apr 10 12:34 src</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Once you are typing commands and paths, the two keyboard tricks that pay off most are <strong>Tab completion</strong> and <strong>command history</strong>. When you start typing a filename or a command, hit <strong>Tab</strong> and the shell will fill in the rest if there is exactly one match (and beep if there is not — hit Tab twice to see the candidates). This is not just a convenience; it eliminates a huge fraction of typo bugs, because if Tab refuses to complete, the file you are reaching for does not exist by that name. <strong>Up Arrow</strong> scrolls back through commands you have already run, and <code>Ctrl+R</code> lets you search the history for a substring — both let you reuse a slightly-modified version of a command rather than retyping it from scratch.</p>
 </section>
 <section id="creating-viewing-and-editing-files" class="level2" data-number="10.5">
 <h2 data-number="10.5" class="anchored" data-anchor-id="creating-viewing-and-editing-files"><span class="header-section-number">10.5</span> Creating, viewing, and editing files</h2>
-<section id="creating-directories-and-empty-files" class="level3">
-<h3 class="anchored" data-anchor-id="creating-directories-and-empty-files">Creating directories and empty files</h3>
-<ul>
-<li><p><code>mkdir</code> for directories (and <code>-p</code> for nested directories).</p></li>
-<li><p><code>touch</code> to create a file or update its timestamp.</p></li>
-</ul>
-</section>
-<section id="viewing-file-contents-safely" class="level3">
-<h3 class="anchored" data-anchor-id="viewing-file-contents-safely">Viewing file contents safely</h3>
-<ul>
-<li><p>Small files: <code>cat</code></p></li>
-<li><p>Large files: <code>less</code> (scroll/search)</p></li>
-<li><p>Previews: <code>head</code>, <code>tail</code></p></li>
-</ul>
-</section>
-<section id="creating-small-files-from-the-command-line" class="level3">
-<h3 class="anchored" data-anchor-id="creating-small-files-from-the-command-line">Creating small files from the command line</h3>
-<ul>
-<li><p>Redirection to create simple text files.</p></li>
-<li><p>Prefer a text editor for multi-line content.</p></li>
-</ul>
-</section>
-<section id="editors-in-the-terminal" class="level3">
-<h3 class="anchored" data-anchor-id="editors-in-the-terminal">Editors in the terminal</h3>
-<ul>
-<li><p>Use a beginner-friendly editor flow (e.g., <code>nano</code>) for quick edits.</p></li>
-<li><p>Know how to exit without panic.</p></li>
-<li><p>For longer-term work, use a full editor (VS Code, etc.).</p></li>
-</ul>
-</section>
+<p>To make a new directory, use <code>mkdir</code>. The flag worth knowing on day one is <code>-p</code>, which creates any missing parent directories along the way and silently does nothing if the target already exists — both conveniences that make <code>mkdir -p</code> safe to use in scripts. To create an empty file (or to update the timestamp on an existing one), use <code>touch</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/Courses/INFO-3010/Project/data/raw</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> README.md</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> data/raw/.gitkeep</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To look at a file without opening it in an editor, the right command depends on the file’s size. For small text files, <code>cat file</code> dumps the whole thing to your terminal in one shot — fine for a 30-line config file, terrible for a 50,000-line CSV. For files of any meaningful size, <code>less file</code> opens a scrolling viewer where you can move with arrow keys, search forward with <code>/pattern</code>, and quit with <code>q</code>. For just the first or last few lines of a file, <code>head file</code> and <code>tail file</code> show you ten lines by default; use <code>head -n 5</code> or <code>tail -n 20</code> to control how many. The combination <code>head</code> and <code>tail</code> is the fastest way to peek at a CSV without waiting for the whole thing to render.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> config.yml             <span class="co"># small files only</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> data/raw/sales.csv    <span class="co"># any size; q to quit</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> data/raw/sales.csv    <span class="co"># first 10 lines</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-n</span> 20 logs/run.log    <span class="co"># last 20 lines</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To create a small text file directly from the command line, you can use <strong>redirection</strong> with <code>echo</code> — <code>echo "hello" &gt; greeting.txt</code> writes one line into a new file. This is useful for one-line files, but for anything multi-line you should use a real text editor. The terminal-friendly options are <code>nano</code> (the most beginner-friendly — its keyboard shortcuts are listed at the bottom of the screen, and <code>Ctrl+X</code> exits) or <code>vim</code> (much more powerful, much steeper learning curve). For longer-term work, a GUI editor like VS Code is almost always the right choice (see <a href="text-editors.html" class="quarto-xref"><span>Chapter 11</span></a>). The main reason to know <code>nano</code> exists is so that when you SSH into a server and need to fix a single line in a config file, you have a tool you can drive without panic.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> notes.txt    <span class="co"># opens nano; Ctrl+O to save, Ctrl+X to exit</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="file-operations-copy-move-delete-with-safety" class="level2" data-number="10.6">
 <h2 data-number="10.6" class="anchored" data-anchor-id="file-operations-copy-move-delete-with-safety"><span class="header-section-number">10.6</span> File operations: copy, move, delete (with safety)</h2>
-<section id="copy-and-move" class="level3">
-<h3 class="anchored" data-anchor-id="copy-and-move">Copy and move</h3>
-<ul>
-<li><p><code>cp source dest</code> (copy)</p></li>
-<li><p><code>mv source dest</code> (move/rename)</p></li>
-<li><p>Use interactive flags where available to prevent overwrites.</p></li>
-</ul>
-</section>
-<section id="deleting-files-and-directories" class="level3">
-<h3 class="anchored" data-anchor-id="deleting-files-and-directories">Deleting files and directories</h3>
-<ul>
-<li><p><code>rm file</code> deletes a file.</p></li>
-<li><p><code>rm -r dir</code> deletes a directory tree.</p></li>
-<li><p><strong>High-risk:</strong> <code>rm -rf</code>. Teach why it is dangerous.</p></li>
-<li><p>Safe practice: <code>ls</code> the targets first; consider <code>rm -i</code>.</p></li>
-</ul>
-</section>
-<section id="globbing-wildcards-and-why-it-matters" class="level3">
-<h3 class="anchored" data-anchor-id="globbing-wildcards-and-why-it-matters">Globbing (wildcards) and why it matters</h3>
-<ul>
-<li><p><code>*</code> matches many characters; <code>?</code> matches one.</p></li>
-<li><p>Globs expand <em>before</em> the command runs.</p></li>
-<li><p>Safety: run <code>echo *.csv</code> to preview what a glob matches.</p></li>
-</ul>
-</section>
+<p>The three commands you will use most are <code>cp</code>, <code>mv</code>, and <code>rm</code>. <code>cp source dest</code> copies a file from one place to another. <code>mv source dest</code> moves it (or renames it, which is just moving from one name to another in the same folder). <code>rm file</code> deletes a file. All three accept either a single source or multiple sources, and all three accept the <code>-i</code> flag, which makes them prompt you before they overwrite or delete anything. For the first few weeks of using the terminal, using <code>-i</code> by default is a sensible safety net.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> data/raw.csv data/raw-backup.csv      <span class="co"># copy a file</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> old-name.py new-name.py               <span class="co"># rename a file</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> old-name.py ../backup/                <span class="co"># move it to another folder</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> scratch.txt                            <span class="co"># delete a file</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-i</span> scratch.txt                        <span class="co"># delete with confirmation prompt</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Deleting a <em>directory</em> needs the <code>-r</code> flag, which means “recursive”: delete everything inside it as well as the directory itself. <code>rm -r build/</code> removes a build folder and all of its contents. This is genuinely useful, but it is also where every cautionary tale starts. The version with both <code>-r</code> and <code>-f</code> together — <code>rm -rf</code> — recursively deletes <em>and</em> suppresses every confirmation prompt and error message, which means a single typo can vaporize huge amounts of work without any chance to stop it. The most famous version of this is <code>rm -rf /</code> (delete everything starting from the root), but the more common real disaster is <code>rm -rf $VAR/something</code> where <code>$VAR</code> is unset and silently expands to nothing, leaving <code>rm -rf /something</code> — which can delete a system directory you needed. The defense is always the same: list the targets with <code>ls</code> <em>before</em> you <code>rm</code> them, and never combine <code>-r</code> and <code>-f</code> unless you can articulate exactly what is about to be removed.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Safe: confirm what will be deleted, then delete</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-d</span> build/</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">build/</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> rm <span class="at">-r</span> build/</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Dangerous: skips all confirmations and error messages</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> rm <span class="at">-rf</span> <span class="va">$SOME_DIR</span>/   <span class="co"># if SOME_DIR is empty, this becomes rm -rf /</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Closely related are <strong>globs</strong> — the wildcard patterns the shell expands into lists of filenames before passing them to a command. <code>*</code> matches any number of characters (so <code>*.csv</code> matches every CSV in the current directory), and <code>?</code> matches exactly one character. The crucial thing to understand is that globs are expanded by the <em>shell</em>, not by the command, and they are expanded <em>before</em> the command runs. That means <code>rm *.tmp</code> is not “remove any file matching <code>*.tmp</code>” from <code>rm</code>’s perspective; it is “remove <code>file1.tmp</code>, <code>file2.tmp</code>, <code>notes.tmp</code>” — <code>rm</code> has no idea you used a glob at all. The safety habit that follows from this is to preview what a glob will match by running <code>echo</code> with it first:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="pp">*</span>.tmp</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">file1.tmp</span> file2.tmp notes.tmp</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> rm <span class="pp">*</span>.tmp                <span class="co"># only run this after the echo looked right</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Two seconds of preview prevents the entire category of “I deleted way more than I meant to” disasters.</p>
 </section>
 <section id="searching-and-inspecting" class="level2" data-number="10.7">
 <h2 data-number="10.7" class="anchored" data-anchor-id="searching-and-inspecting"><span class="header-section-number">10.7</span> Searching and inspecting</h2>
@@ -974,33 +905,22 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="pipes-and-redirection-building-workflows" class="level2" data-number="10.8">
 <h2 data-number="10.8" class="anchored" data-anchor-id="pipes-and-redirection-building-workflows"><span class="header-section-number">10.8</span> Pipes and redirection: building workflows</h2>
-<section id="standard-streams" class="level3">
-<h3 class="anchored" data-anchor-id="standard-streams">Standard streams</h3>
-<ul>
-<li><code>stdin</code> (input), <code>stdout</code> (output), <code>stderr</code> (errors).</li>
-</ul>
-</section>
-<section id="redirection" class="level3">
-<h3 class="anchored" data-anchor-id="redirection">Redirection</h3>
-<ul>
-<li><p><code>&gt;</code> overwrite output to a file; <code>&gt;&gt;</code> append.</p></li>
-<li><p>Safety: avoid accidental overwrite; teach creating backups.</p></li>
-</ul>
-</section>
-<section id="pipes" class="level3">
-<h3 class="anchored" data-anchor-id="pipes">Pipes</h3>
-<ul>
-<li><p><code>|</code> sends output of one command into the next.</p></li>
-<li><p>Common patterns: <code>ls | less</code>, <code>grep pattern file | head</code>.</p></li>
-</ul>
-</section>
-<section id="exit-codes-and-did-it-work" class="level3">
-<h3 class="anchored" data-anchor-id="exit-codes-and-did-it-work">Exit codes and “did it work?”</h3>
-<ul>
-<li><p>Teach the idea: commands signal success/failure.</p></li>
-<li><p>Encourage checking outputs, not assuming.</p></li>
-</ul>
-</section>
+<p>The reason the command line composes so well is that almost every Unix tool is built around the same three streams of data: <strong>stdin</strong> (where input comes from), <strong>stdout</strong> (where normal output goes), and <strong>stderr</strong> (where error messages go). By default stdin is your keyboard and stdout/stderr are your terminal, but you can redirect any of them to a file or to another command, and that is where the power lives.</p>
+<p>Output redirection uses <code>&gt;</code> to send stdout to a file. The catch is that <code>&gt;</code> <em>overwrites</em> whatever was already in that file, with no warning and no undo. If you want to append instead, use <code>&gt;&gt;</code>. Both are extremely useful; both bite people who confuse them.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="op">&gt;</span> files.txt          <span class="co"># overwrite files.txt with the listing</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="op">&gt;&gt;</span> files.txt         <span class="co"># append the listing instead</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> script.py <span class="op">&gt;</span> output.csv      <span class="co"># save script output to a CSV</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> script.py <span class="dv">2</span><span class="op">&gt;</span> errors.log     <span class="co"># save stderr to a separate log</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The tool that turns redirection into a programming model is the <strong>pipe</strong>, written <code>|</code>. A pipe takes the stdout of one command and feeds it as the stdin of the next, so you can chain small focused programs into larger ones without ever writing a temporary file. Two of the most common patterns are sending a long listing through a pager (<code>ls -la | less</code>) and filtering one tool’s output through <code>grep</code> to keep only the lines you care about (<code>grep ERROR app.log | head</code>). A pipe can have any number of stages, and each stage runs as soon as it has data — which is why pipes can process gigabyte files using almost no memory.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-la</span> <span class="kw">|</span> <span class="fu">less</span>                              <span class="co"># paginate a long directory</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> ERROR logs/<span class="pp">*</span>.log <span class="kw">|</span> <span class="fu">head</span> <span class="at">-20</span>           <span class="co"># first 20 ERROR lines</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ps</span> aux <span class="kw">|</span> <span class="fu">grep</span> python <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-v</span> grep        <span class="co"># currently running python</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Every command that runs at the prompt finishes by returning an <strong>exit code</strong> — a small integer where <code>0</code> conventionally means success and any nonzero value means something went wrong. You can check the exit code of the most recent command with <code>echo $?</code>, and you can chain commands so that one only runs if the previous one succeeded with <code>&amp;&amp;</code>, or only if the previous one failed with <code>||</code>. This is the foundation for writing little shell scripts that fail safely instead of barreling onward after an error.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python clean.py <span class="kw">&amp;&amp;</span> <span class="ex">python</span> analyze.py     <span class="co"># only analyze if clean succeeded</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> make build <span class="kw">||</span> <span class="bu">echo</span> <span class="st">"build failed"</span>        <span class="co"># message on failure</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> command1<span class="kw">;</span> <span class="bu">echo</span> <span class="va">$?</span>                        <span class="co"># see exit code explicitly</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="ex">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The habit that follows from this is to always check that your commands actually succeeded, not to assume they did because the prompt came back. Pay attention to error output, look at exit codes when you are scripting, and treat any nonzero result as evidence to investigate before you move on.</p>
 </section>
 <section id="environment-basics-path-variables-and-reproducibility" class="level2" data-number="10.9">
 <h2 data-number="10.9" class="anchored" data-anchor-id="environment-basics-path-variables-and-reproducibility"><span class="header-section-number">10.9</span> Environment basics: <code>PATH</code>, variables, and reproducibility</h2>
@@ -1039,27 +959,28 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="when-to-use-sudo-and-when-not-to" class="level3">
 <h3 class="anchored" data-anchor-id="when-to-use-sudo-and-when-not-to">When to use <code>sudo</code> (and when not to)</h3>
-<ul>
-<li><p><code>sudo</code> runs a single command with elevated privileges.</p></li>
-<li><p>Use it for system-level changes (installing software, editing system configs) when appropriate.</p></li>
-<li><p>Do <strong>not</strong> use <code>sudo</code> to fix a broken project folder or to run routine scripts.</p></li>
-</ul>
+<p><code>sudo</code> runs a single command with elevated (root) privileges. It exists for one specific purpose: to let you make changes that affect the whole system, like installing software through a system package manager or editing a system configuration file. When you genuinely need that, <code>sudo</code> is the right tool. The trap is using <code>sudo</code> reflexively to “fix” a permission problem you do not yet understand, because the elevated command will succeed whether or not it was the right thing to do — and if it was the wrong thing, you have just made the problem harder to undo.</p>
+<p>A reliable rule of thumb: never use <code>sudo</code> on anything inside your project folder. If a script in <code>~/Courses/INFO-3010/Project/</code> is failing with a permission error, the cause is almost certainly that the file is owned by someone other than you (often root, because of an earlier accidental <code>sudo</code>), and the fix is to restore correct ownership — <em>not</em> to add another <code>sudo</code>. Adding <code>sudo</code> to “make it work” usually creates files owned by root in the middle of your project, which you will then trip over for weeks afterward.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reasonable uses of sudo (system-level changes)</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update <span class="kw">&amp;&amp;</span> <span class="fu">sudo</span> apt install build-essential   <span class="co"># Linux: install system packages</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl restart nginx                           <span class="co"># Linux: restart a service</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad uses (you should never need these)</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> python my_script.py        <span class="co"># never run your own code as root</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> rm <span class="at">-rf</span> ~/project/data       <span class="co"># using sudo on your own files is a code smell</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="safe-sudo-practices" class="level3">
 <h3 class="anchored" data-anchor-id="safe-sudo-practices">Safe <code>sudo</code> practices</h3>
-<ul>
-<li><p>Read the command twice before running.</p></li>
-<li><p>Prefer explicit paths over wildcards.</p></li>
-<li><p>Avoid piping into <code>sudo</code> unless you understand the implications.</p></li>
-<li><p>Never run unreviewed copy-pasted commands with <code>sudo</code>.</p></li>
-</ul>
+<p>When you do reach for <code>sudo</code>, treat it like a loaded tool. Read the command twice before pressing Enter, especially the parts you copy-pasted from somewhere. Prefer explicit paths to wildcards (<code>sudo rm /var/log/old.log</code> is fine; <code>sudo rm -rf /var/log/*</code> is one wrong character away from disaster). Avoid piping random output into <code>sudo</code> from the internet unless you are willing to commit to understanding what each step does (<code>curl ... | sudo bash</code> is the canonical example of the wrong reflex). And the firmest rule is the simplest: never paste a command containing <code>sudo</code> from a forum or AI assistant without first reading every flag and confirming the path it operates on.</p>
 </section>
 <section id="recovering-from-permission-issues" class="level3">
 <h3 class="anchored" data-anchor-id="recovering-from-permission-issues">Recovering from permission issues</h3>
-<ul>
-<li><p>First identify ownership/permissions and the target directory.</p></li>
-<li><p>If you created a mess with <code>sudo</code>, stop and ask for help.</p></li>
-</ul>
+<p>When you hit a permission error, the first move is <em>not</em> to add <code>sudo</code>. The first move is to figure out what the actual ownership and permissions are with <code>ls -l</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-l</span> data/output.csv</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-r--r--</span>  1 root  staff  1234 Apr 10 12:34 output.csv</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                  <span class="ex">^^^^</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                  <span class="ex">owned</span> by root, not you</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If a file in your project ends up owned by <code>root</code> (because an earlier command was run with <code>sudo</code>), the fix is to restore your ownership: <code>sudo chown $(whoami) data/output.csv</code>. If you have created a tangle of root-owned files inside a project — which is a not-uncommon way for a debugging session to go sideways — stop, do not run any more <code>sudo</code> commands, and ask for help. Untangling root-owned files is a small task when you catch it early and a much larger one if you keep adding more.</p>
 </section>
 </section>
 <section id="security-hygiene-for-terminal-users" class="level2" data-number="10.11">
@@ -1150,37 +1071,66 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 </section>
 </section>
-<section id="worked-examples-outline" class="level2" data-number="10.14">
-<h2 data-number="10.14" class="anchored" data-anchor-id="worked-examples-outline"><span class="header-section-number">10.14</span> Worked examples (outline)</h2>
-<section id="example-1-build-a-course-workspace" class="level3">
-<h3 class="anchored" data-anchor-id="example-1-build-a-course-workspace">Example 1: Build a course workspace</h3>
-<ul>
-<li><p>Create directories for <code>courses/</code>, <code>assignments/</code>, <code>project/</code>.</p></li>
-<li><p>Practice navigation and listing.</p></li>
-</ul>
+<section id="worked-examples" class="level2" data-number="10.14">
+<h2 data-number="10.14" class="anchored" data-anchor-id="worked-examples"><span class="header-section-number">10.14</span> Worked examples</h2>
+<section id="building-a-course-workspace-from-the-terminal" class="level3">
+<h3 class="anchored" data-anchor-id="building-a-course-workspace-from-the-terminal">Building a course workspace from the terminal</h3>
+<p>You are starting a new semester with three courses, and you want one stable home for everything. From the terminal, the whole setup is one command:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/Courses/INFO-3010/<span class="dt">{Assignments</span><span class="op">,</span><span class="dt">Labs</span><span class="op">,</span><span class="dt">Project}</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/Courses/INFO-4040/<span class="dt">{Assignments</span><span class="op">,</span><span class="dt">Project}</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/Courses/STAT-2010/<span class="dt">{Assignments</span><span class="op">,</span><span class="dt">Labs}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>{...}</code> part is shell <strong>brace expansion</strong>, which is shorthand for “create one directory for each name inside the braces.” After running it, navigate and list to confirm:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/Courses</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-l</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="ex">total</span> 0</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxr-xr-x</span>  5 you staff  160 Apr 10 12:34 INFO-3010</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxr-xr-x</span>  4 you staff  128 Apr 10 12:34 INFO-4040</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxr-xr-x</span>  4 you staff  128 Apr 10 12:34 STAT-2010</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-l</span> INFO-3010</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="ex">total</span> 0</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxr-xr-x</span>  2 you staff  64 Apr 10 12:34 Assignments</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxr-xr-x</span>  2 you staff  64 Apr 10 12:34 Labs</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxr-xr-x</span>  2 you staff  64 Apr 10 12:34 Project</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Three lines of terminal input replace several minutes of clicking through a file manager.</p>
 </section>
-<section id="example-2-create-and-inspect-a-dataset-file" class="level3">
-<h3 class="anchored" data-anchor-id="example-2-create-and-inspect-a-dataset-file">Example 2: Create and inspect a dataset file</h3>
-<ul>
-<li><p>Download/move a <code>.csv</code>.</p></li>
-<li><p>Preview with <code>head</code> and <code>less</code>.</p></li>
-<li><p>Search for a column name with <code>grep</code>.</p></li>
-</ul>
+<section id="inspecting-a-dataset-file-you-have-not-seen-before" class="level3">
+<h3 class="anchored" data-anchor-id="inspecting-a-dataset-file-you-have-not-seen-before">Inspecting a dataset file you have not seen before</h3>
+<p>A new CSV lands in your <code>data/raw/</code> folder. Before you load it into pandas, look at it from the terminal — sometimes the answer is faster there. The first thing you want is the <em>shape</em> of the file: how big is it, how many lines, what does the first row look like?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-lh</span> data/raw/sales.csv</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-r--r--</span>  1 you staff  4.2M Apr 10 12:34 data/raw/sales.csv</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> wc <span class="at">-l</span> data/raw/sales.csv</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>   <span class="ex">42103</span> data/raw/sales.csv</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> head <span class="at">-n</span> 3 data/raw/sales.csv</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="ex">order_id,date,customer_id,amount</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="ex">1001,2026-01-15,C-447,28.50</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="ex">1002,2026-01-15,C-098,140.00</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now you know the file is 4.2 MB, has 42,103 lines (which is roughly the row count), and uses commas with a header row. To check whether a particular column name actually exists, you can search the header row directly:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> head <span class="at">-n</span> 1 data/raw/sales.csv <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-o</span> <span class="st">"customer_id"</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">customer_id</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If <code>grep</code> finds nothing, the column is not there — and you have just saved yourself a <code>KeyError</code> debugging session.</p>
 </section>
-<section id="example-3-build-a-small-pipeline" class="level3">
-<h3 class="anchored" data-anchor-id="example-3-build-a-small-pipeline">Example 3: Build a small pipeline</h3>
-<ul>
-<li><p>Combine commands with pipes.</p></li>
-<li><p>Redirect output to a file.</p></li>
-<li><p>Verify results.</p></li>
-</ul>
+<section id="building-a-small-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="building-a-small-pipeline">Building a small pipeline</h3>
+<p>A small pipeline that counts how many distinct customers placed orders on a given day, using nothing but standard tools:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep <span class="st">"2026-01-15"</span> data/raw/sales.csv <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d,</span> <span class="at">-f3</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-u</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">142</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The pipeline reads as a sequence of small steps: <code>grep</code> filters the file to lines containing the date; <code>cut -d, -f3</code> extracts the third comma-separated field (the customer id); <code>sort -u</code> removes duplicates; and <code>wc -l</code> counts the remaining lines. That is your answer: 142 distinct customers ordered that day. The same calculation in pandas is one line, but the terminal version is faster to write when you do not yet trust the data and are still inspecting it.</p>
+<p>You can also save the result for later with redirection:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"2026-01-15"</span> data/raw/sales.csv <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d,</span> <span class="at">-f3</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-u</span> <span class="op">&gt;</span> customers-jan15.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="example-4-diagnose-and-fix-a-file-not-found-error" class="level3">
-<h3 class="anchored" data-anchor-id="example-4-diagnose-and-fix-a-file-not-found-error">Example 4: Diagnose and fix a “file not found” error</h3>
-<ul>
-<li><p>Identify working directory mismatch.</p></li>
-<li><p>Repair using relative paths and project root conventions.</p></li>
-</ul>
+<section id="diagnosing-a-file-not-found-error" class="level3">
+<h3 class="anchored" data-anchor-id="diagnosing-a-file-not-found-error">Diagnosing a “file not found” error</h3>
+<p>You run a Python script and it crashes with <code>FileNotFoundError: data/input.csv</code>. Walk through three checks before changing the code. First, confirm where you are:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pwd</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/Users/you/Courses/INFO-3010/Project/notebooks</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If <code>pwd</code> says you are in <code>notebooks/</code> and your script expects to find <code>data/input.csv</code> relative to the project root, then the path it is computing is <code>notebooks/data/input.csv</code> — which does not exist. Two fixes: either <code>cd ..</code> to the project root and rerun, or rewrite the path in the script to be computed from <code>__file__</code>. Second, confirm the file actually exists where you think it does:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-lh</span> ../data/</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">total</span> 8.3M</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-r--r--</span>  1 you staff  4.2M Apr 10 12:34 input.csv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If <code>input.csv</code> does not appear in the listing, the bug is <em>not</em> in the code — the file is genuinely missing. If it appears with a different name (a trailing space, an extra <code>.txt</code> extension), fix the filename. Third, confirm there are no Unicode lookalikes or hidden characters in the name:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls ../data/ <span class="kw">|</span> <span class="fu">od</span> <span class="at">-c</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-3</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ex">0000000</span>   i   n   p   u   t   .   c   s   v  <span class="dt">\n</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If the bytes look like the filename you expected, you are good. If they include surprises, that is the bug. With those three checks, “file not found” becomes diagnosable in under a minute.</p>
 </section>
 </section>
 <section id="templates" class="level2" data-number="10.15">

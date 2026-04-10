@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -426,20 +461,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../parts/part-3-python/testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Testing Basics with pytest</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../parts/part-3-python/regex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regular Expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Regular Expressions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-3-python/linting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Code Style, Linting, and Formatting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Code Style, Linting, and Formatting</span></span></a>
   </div>
 </li>
       </ul>
@@ -456,31 +485,31 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/data-file-formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Data File Formats</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Data File Formats</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/tabular-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Tabular Data: Shape, Cleaning, and Validation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Tabular Data: Shape, Cleaning, and Validation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/pandas-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">pandas Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">pandas Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/sql-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">SQL Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">SQL Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/http-apis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">HTTP and Web APIs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">HTTP and Web APIs</span></span></a>
   </div>
 </li>
       </ul>
@@ -497,37 +526,31 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/project-management.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Project Management</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Project Management</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/version-control.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Version Control</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Version Control</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/collaboration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Collaboration Mechanics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Collaboration Mechanics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/automation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Automation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Automation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/secrets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Environment Variables and Secrets</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../parts/part-5-projects/pre-commit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Pre-commit Hooks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Environment Variables and Secrets</span></span></a>
   </div>
 </li>
       </ul>
@@ -544,19 +567,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/llm-internals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">How Language Models Work</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">How Language Models Work</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/ai-agents.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Working with AI Agent Frameworks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Working with AI Agent Frameworks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/evaluating-ai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Evaluating and Auditing AI Outputs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Evaluating and Auditing AI Outputs</span></span></a>
   </div>
 </li>
       </ul>
@@ -564,7 +587,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -603,25 +626,9 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose">Purpose</a></li>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning objectives</a></li>
   <li><a href="#running-theme-notebooks-are-documents-and-programs" id="toc-running-theme-notebooks-are-documents-and-programs" class="nav-link" data-scroll-target="#running-theme-notebooks-are-documents-and-programs">Running theme: notebooks are documents <em>and</em> programs</a></li>
-  <li><a href="#mental-models-what-jupyter-is-doing" id="toc-mental-models-what-jupyter-is-doing" class="nav-link" data-scroll-target="#mental-models-what-jupyter-is-doing"><span class="header-section-number">15.1</span> Mental models: what Jupyter is doing</a>
-  <ul class="collapse">
-  <li><a href="#notebook-vs-jupyterlab" id="toc-notebook-vs-jupyterlab" class="nav-link" data-scroll-target="#notebook-vs-jupyterlab">Notebook vs JupyterLab</a></li>
-  <li><a href="#server-browser-kernel" id="toc-server-browser-kernel" class="nav-link" data-scroll-target="#server-browser-kernel">Server, browser, kernel</a></li>
-  <li><a href="#state-and-order" id="toc-state-and-order" class="nav-link" data-scroll-target="#state-and-order">State and order</a></li>
-  </ul></li>
-  <li><a href="#launching-jupyter-the-right-way" id="toc-launching-jupyter-the-right-way" class="nav-link" data-scroll-target="#launching-jupyter-the-right-way"><span class="header-section-number">15.2</span> Launching Jupyter the right way</a>
-  <ul class="collapse">
-  <li><a href="#the-rule-start-from-your-project-folder" id="toc-the-rule-start-from-your-project-folder" class="nav-link" data-scroll-target="#the-rule-start-from-your-project-folder">The rule: start from your project folder</a></li>
-  <li><a href="#launch-commands-conceptual" id="toc-launch-commands-conceptual" class="nav-link" data-scroll-target="#launch-commands-conceptual">Launch commands (conceptual)</a></li>
-  <li><a href="#verifying-you-launched-in-the-correct-directory" id="toc-verifying-you-launched-in-the-correct-directory" class="nav-link" data-scroll-target="#verifying-you-launched-in-the-correct-directory">Verifying you launched in the correct directory</a></li>
-  <li><a href="#launching-from-an-environment-important-for-students" id="toc-launching-from-an-environment-important-for-students" class="nav-link" data-scroll-target="#launching-from-an-environment-important-for-students">Launching from an environment (important for students)</a></li>
-  </ul></li>
-  <li><a href="#the-common-failure-jupyter-shows-no-notebooks" id="toc-the-common-failure-jupyter-shows-no-notebooks" class="nav-link" data-scroll-target="#the-common-failure-jupyter-shows-no-notebooks"><span class="header-section-number">15.3</span> The common failure: “Jupyter shows no notebooks”</a>
-  <ul class="collapse">
-  <li><a href="#symptom" id="toc-symptom" class="nav-link" data-scroll-target="#symptom">Symptom</a></li>
-  <li><a href="#root-cause-wrong-working-directory-wrong-server" id="toc-root-cause-wrong-working-directory-wrong-server" class="nav-link" data-scroll-target="#root-cause-wrong-working-directory-wrong-server">Root cause: wrong working directory / wrong server</a></li>
-  <li><a href="#fix-checklist" id="toc-fix-checklist" class="nav-link" data-scroll-target="#fix-checklist">Fix checklist</a></li>
-  </ul></li>
+  <li><a href="#mental-models-what-jupyter-is-doing" id="toc-mental-models-what-jupyter-is-doing" class="nav-link" data-scroll-target="#mental-models-what-jupyter-is-doing"><span class="header-section-number">15.1</span> Mental models: what Jupyter is doing</a></li>
+  <li><a href="#launching-jupyter-the-right-way" id="toc-launching-jupyter-the-right-way" class="nav-link" data-scroll-target="#launching-jupyter-the-right-way"><span class="header-section-number">15.2</span> Launching Jupyter the right way</a></li>
+  <li><a href="#the-common-failure-jupyter-shows-no-notebooks" id="toc-the-common-failure-jupyter-shows-no-notebooks" class="nav-link" data-scroll-target="#the-common-failure-jupyter-shows-no-notebooks"><span class="header-section-number">15.3</span> The common failure: “Jupyter shows no notebooks”</a></li>
   <li><a href="#notebook-mechanics-cells-and-execution" id="toc-notebook-mechanics-cells-and-execution" class="nav-link" data-scroll-target="#notebook-mechanics-cells-and-execution"><span class="header-section-number">15.4</span> Notebook mechanics: cells and execution</a>
   <ul class="collapse">
   <li><a href="#cell-types" id="toc-cell-types" class="nav-link" data-scroll-target="#cell-types">Cell types</a></li>
@@ -657,12 +664,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#script-strengths" id="toc-script-strengths" class="nav-link" data-scroll-target="#script-strengths">Script strengths</a></li>
   <li><a href="#a-practical-boundary-for-students" id="toc-a-practical-boundary-for-students" class="nav-link" data-scroll-target="#a-practical-boundary-for-students">A practical boundary for students</a></li>
   </ul></li>
-  <li><a href="#worked-examples-outline" id="toc-worked-examples-outline" class="nav-link" data-scroll-target="#worked-examples-outline"><span class="header-section-number">15.9</span> Worked examples (outline)</a>
+  <li><a href="#worked-examples" id="toc-worked-examples" class="nav-link" data-scroll-target="#worked-examples"><span class="header-section-number">15.9</span> Worked examples</a>
   <ul class="collapse">
-  <li><a href="#example-1-launch-jupyter-in-the-right-place" id="toc-example-1-launch-jupyter-in-the-right-place" class="nav-link" data-scroll-target="#example-1-launch-jupyter-in-the-right-place">Example 1: Launch Jupyter in the right place</a></li>
-  <li><a href="#example-2-debug-no-files-wrong-directory" id="toc-example-2-debug-no-files-wrong-directory" class="nav-link" data-scroll-target="#example-2-debug-no-files-wrong-directory">Example 2: Debug “no files” / wrong directory</a></li>
-  <li><a href="#example-3-shell-commands-for-file-checks" id="toc-example-3-shell-commands-for-file-checks" class="nav-link" data-scroll-target="#example-3-shell-commands-for-file-checks">Example 3: Shell commands for file checks</a></li>
-  <li><a href="#example-4-make-a-notebook-reproducible" id="toc-example-4-make-a-notebook-reproducible" class="nav-link" data-scroll-target="#example-4-make-a-notebook-reproducible">Example 4: Make a notebook reproducible</a></li>
+  <li><a href="#launching-jupyter-in-the-right-place" id="toc-launching-jupyter-in-the-right-place" class="nav-link" data-scroll-target="#launching-jupyter-in-the-right-place">Launching Jupyter in the right place</a></li>
+  <li><a href="#debugging-no-files" id="toc-debugging-no-files" class="nav-link" data-scroll-target="#debugging-no-files">Debugging “no files”</a></li>
+  <li><a href="#making-a-notebook-reproducible" id="toc-making-a-notebook-reproducible" class="nav-link" data-scroll-target="#making-a-notebook-reproducible">Making a notebook reproducible</a></li>
   </ul></li>
   <li><a href="#templates" id="toc-templates" class="nav-link" data-scroll-target="#templates"><span class="header-section-number">15.10</span> Templates</a>
   <ul class="collapse">
@@ -711,8 +717,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>Prerequisites (read first if unfamiliar):</strong> <a href="#sec-pkg-mgmt" class="quarto-xref"><span class="quarto-unresolved-ref">sec-pkg-mgmt</span></a>, <a href="#sec-virtual-environments" class="quarto-xref"><span class="quarto-unresolved-ref">sec-virtual-environments</span></a>.</p>
-<p><strong>See also:</strong> <a href="#sec-scripts-vs-notebooks" class="quarto-xref"><span class="quarto-unresolved-ref">sec-scripts-vs-notebooks</span></a>, <a href="#sec-tracebacks" class="quarto-xref"><span class="quarto-unresolved-ref">sec-tracebacks</span></a>.</p>
+<p><strong>Prerequisites (read first if unfamiliar):</strong> <a href="package-management.html" class="quarto-xref"><span>Chapter 13</span></a>, <a href="virtual-environments.html" class="quarto-xref"><span>Chapter 14</span></a>.</p>
+<p><strong>See also:</strong> <a href="scripting.html" class="quarto-xref"><span>Chapter 16</span></a>, <a href="../part-1-practice/tracebacks.html" class="quarto-xref"><span>Chapter 6</span></a>.</p>
 </div>
 </div>
 </div>
@@ -740,92 +746,33 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="mental-models-what-jupyter-is-doing" class="level2" data-number="15.1">
 <h2 data-number="15.1" class="anchored" data-anchor-id="mental-models-what-jupyter-is-doing"><span class="header-section-number">15.1</span> Mental models: what Jupyter is doing</h2>
-<section id="notebook-vs-jupyterlab" class="level3">
-<h3 class="anchored" data-anchor-id="notebook-vs-jupyterlab">Notebook vs JupyterLab</h3>
-<ul>
-<li><p><strong>Jupyter Notebook</strong> (classic) is a single-document interface.</p></li>
-<li><p><strong>JupyterLab</strong> is a multi-document environment (files, terminals, notebooks, consoles).</p></li>
-<li><p>Both run on the same concepts: a server, a browser UI, and kernels.</p></li>
-</ul>
-</section>
-<section id="server-browser-kernel" class="level3">
-<h3 class="anchored" data-anchor-id="server-browser-kernel">Server, browser, kernel</h3>
-<ul>
-<li><p><strong>Server:</strong> the process you start (the thing listening on <code>localhost:8888</code>).</p></li>
-<li><p><strong>Browser UI:</strong> where you edit and run cells.</p></li>
-<li><p><strong>Kernel:</strong> the language runtime executing your code (Python, R, etc.).</p></li>
-</ul>
-</section>
-<section id="state-and-order" class="level3">
-<h3 class="anchored" data-anchor-id="state-and-order">State and order</h3>
-<ul>
-<li><p>Notebooks allow executing cells out of order.</p></li>
-<li><p>The kernel remembers variables from prior cells.</p></li>
-<li><p>“It works on my notebook” often means hidden state.</p></li>
-</ul>
-</section>
+<p>You will encounter two flavors of Jupyter and they are sometimes confused with each other. <strong>Jupyter Notebook</strong> (often called “classic”) is the original single-document interface — one notebook per browser tab, no built-in file browser, very simple. <strong>JupyterLab</strong> is the newer multi-document environment that gives you a file browser sidebar, multiple notebooks open as tabs, integrated terminals, and side-by-side panes. Most modern courses use JupyterLab. Both flavors run on the same underlying machinery, so anything you learn about kernels and execution state applies to either.</p>
+<p>That underlying machinery has three pieces, and you should be able to name all three when something goes wrong. The <strong>server</strong> is the process you start when you run <code>jupyter lab</code> from the terminal — it listens on a port (usually <code>localhost:8888</code>) and is the actual program your browser is talking to. The <strong>browser UI</strong> is the HTML interface where you edit cells, click Run, and see output; it is just a thin shell around the server. The <strong>kernel</strong> is a separate process that runs your code — for Python notebooks it is a Python interpreter, but Jupyter also supports R, Julia, Bash, and others. When you press Shift+Enter on a cell, the browser sends the code to the server, the server hands it to the kernel, the kernel runs it, and the result comes back through the same chain.</p>
+<pre class="text"><code>You type in a cell  →  browser  →  Jupyter server  →  kernel  →  result back up the chain</code></pre>
+<p>The single most important thing to internalize about notebooks is that <strong>the kernel keeps state across cells</strong>. When you assign <code>df = pd.read_csv("data.csv")</code> in one cell, that variable lives in the kernel’s memory until you restart it. You can run cells out of order, redefine variables, delete cells whose results are still in memory, and end up in a situation where the notebook on screen does not match the state in the kernel — a phenomenon called <strong>hidden state</strong>. “It works on my notebook” almost always means “it works against the specific hidden state in my kernel right now,” and the only reliable way to find out whether your notebook is actually correct is to <strong>Restart Kernel and Run All</strong> and watch every cell execute from a clean slate. Build that habit early.</p>
 </section>
 <section id="launching-jupyter-the-right-way" class="level2" data-number="15.2">
 <h2 data-number="15.2" class="anchored" data-anchor-id="launching-jupyter-the-right-way"><span class="header-section-number">15.2</span> Launching Jupyter the right way</h2>
-<section id="the-rule-start-from-your-project-folder" class="level3">
-<h3 class="anchored" data-anchor-id="the-rule-start-from-your-project-folder">The rule: start from your project folder</h3>
-<ul>
-<li><p>Open a terminal.</p></li>
-<li><p><strong>Navigate</strong> to the folder containing your notebooks (your project root).</p></li>
-<li><p>Start Jupyter there.</p></li>
-</ul>
-</section>
-<section id="launch-commands-conceptual" class="level3">
-<h3 class="anchored" data-anchor-id="launch-commands-conceptual">Launch commands (conceptual)</h3>
-<ul>
-<li><p><code>jupyter lab</code></p></li>
-<li><p><code>jupyter notebook</code></p></li>
-<li><p>Common pattern: pass a directory path if you are not already in it.</p></li>
-</ul>
-</section>
-<section id="verifying-you-launched-in-the-correct-directory" class="level3">
-<h3 class="anchored" data-anchor-id="verifying-you-launched-in-the-correct-directory">Verifying you launched in the correct directory</h3>
-<ul>
-<li><p>In the terminal: confirm the current directory before launching.</p></li>
-<li><p>In the UI: confirm the file browser shows your expected folder tree.</p></li>
-<li><p>Create a small marker file (e.g., <code>PROJECT_ROOT.txt</code>) so you can tell when you are in the right place.</p></li>
-</ul>
-</section>
-<section id="launching-from-an-environment-important-for-students" class="level3">
-<h3 class="anchored" data-anchor-id="launching-from-an-environment-important-for-students">Launching from an environment (important for students)</h3>
-<ul>
-<li><p>Ensure you started the correct environment (conda/venv) before launching Jupyter.</p></li>
-<li><p>Know how to confirm which Python/kernel is in use (kernel name, version cell).</p></li>
-</ul>
-</section>
+<p>The single rule that prevents most “Jupyter cannot find my files” frustration is: <strong>always launch Jupyter from your project’s folder</strong>. The folder you are in when you start the server becomes Jupyter’s root — the file browser shows the contents of that folder and nothing above it. If you launch from your home directory, you will see all of your home; if you launch from the wrong project, you will see the wrong project; if you launch from <code>Downloads</code>, you will see Downloads.</p>
+<p>The full opening sequence for a project is three commands:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/Courses/INFO-3010/Project          <span class="co"># 1. go to the project root</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate                <span class="co"># 2. activate the project's environment</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> lab                              <span class="co"># 3. start the server</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Each command matters. The <code>cd</code> puts Jupyter in the right folder. Activating the venv ensures Jupyter starts with your project’s interpreter and packages, not the system Python. And <code>jupyter lab</code> (or <code>jupyter notebook</code> for the classic interface) is what actually launches the server. After running them, your default browser opens with the JupyterLab UI, and the file browser on the left should show the contents of your project — <code>data/</code>, <code>notebooks/</code>, <code>src/</code>, the README. If it shows something else, stop and try again from the correct folder.</p>
+<p>To verify you are in the right place once Jupyter is up, run a single cell at the top of any notebook:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(os.getcwd())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If the path it prints is your project root, you are good. If it is anything else, close the server (Ctrl+C in the terminal) and relaunch from the right place. Some people leave a <code>PROJECT_ROOT.txt</code> file in their project root specifically so they can <code>ls</code> for it from inside a notebook as a quick “am I in the right place” check.</p>
 </section>
 <section id="the-common-failure-jupyter-shows-no-notebooks" class="level2" data-number="15.3">
 <h2 data-number="15.3" class="anchored" data-anchor-id="the-common-failure-jupyter-shows-no-notebooks"><span class="header-section-number">15.3</span> The common failure: “Jupyter shows no notebooks”</h2>
-<section id="symptom" class="level3">
-<h3 class="anchored" data-anchor-id="symptom">Symptom</h3>
-<ul>
-<li><p>The Jupyter file browser is empty or shows a different folder than expected.</p></li>
-<li><p>Your notebook cannot find <code>data/</code> even though it exists.</p></li>
-</ul>
-</section>
-<section id="root-cause-wrong-working-directory-wrong-server" class="level3">
-<h3 class="anchored" data-anchor-id="root-cause-wrong-working-directory-wrong-server">Root cause: wrong working directory / wrong server</h3>
-<ul>
-<li><p>You launched Jupyter from a different folder.</p></li>
-<li><p>You have multiple Jupyter servers running and you opened the wrong tab.</p></li>
-<li><p>You launched from the wrong environment, so kernels and paths differ.</p></li>
-</ul>
-</section>
-<section id="fix-checklist" class="level3">
-<h3 class="anchored" data-anchor-id="fix-checklist">Fix checklist</h3>
-<ol type="1">
-<li><p>Stop Jupyter (Ctrl+C in the terminal) and close the browser tab.</p></li>
-<li><p>In the terminal: <strong>navigate</strong> to the correct folder.</p></li>
-<li><p>Relaunch Jupyter.</p></li>
-<li><p>If still wrong: check for other running Jupyter servers and shut them down.</p></li>
-<li><p>Add a first cell in notebooks that prints the working directory.</p></li>
-</ol>
-</section>
+<p>The most common Jupyter complaint is some variant of “I opened JupyterLab and my files are not there,” or “my notebook cannot find <code>data/input.csv</code> even though I can clearly see it in Finder.” Both are usually the same problem: the Jupyter server is running in a different folder than the one you think it is. The file browser shows whatever folder the server was launched in, and your code’s relative paths resolve relative to that folder — so if the server is in the wrong place, both symptoms appear at once.</p>
+<p>There are three common ways to end up here. The first is launching Jupyter from your home directory or <code>Downloads</code> instead of your project folder. The second is having multiple Jupyter servers running at once on different ports — you click an old browser tab and end up looking at a different server than you just started. The third is launching from the wrong environment, so the kernel paths and packages do not match what your project expects.</p>
+<p>The fix checklist is short. First, stop the misbehaving server: go back to the terminal where you launched it and press <code>Ctrl+C</code> (twice if it asks you to confirm). Close the browser tab. Second, in the terminal, <code>cd</code> into the correct project folder and confirm with <code>pwd</code>. Third, activate the correct environment and run <code>jupyter lab</code> again. Fourth, if you still see the wrong files, you may have another Jupyter server running on a different port — <code>jupyter server list</code> will show every running server, and you can shut down any stragglers. Finally, get into the habit of putting a “where am I” check at the top of every notebook so this is always visible:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"cwd:"</span>, os.getcwd())</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"contents:"</span>, <span class="bu">sorted</span>(os.listdir(<span class="st">"."</span>))[:<span class="dv">10</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>That single cell turns “Jupyter is broken” into a clear, immediately diagnosable state.</p>
 </section>
 <section id="notebook-mechanics-cells-and-execution" class="level2" data-number="15.4">
 <h2 data-number="15.4" class="anchored" data-anchor-id="notebook-mechanics-cells-and-execution"><span class="header-section-number">15.4</span> Notebook mechanics: cells and execution</h2>
@@ -980,7 +927,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="when-to-move-from-notebooks-to-scripts-and-back" class="level2" data-number="15.8">
 <h2 data-number="15.8" class="anchored" data-anchor-id="when-to-move-from-notebooks-to-scripts-and-back"><span class="header-section-number">15.8</span> When to move from notebooks to scripts (and back)</h2>
-<p><a href="#sec-scripts-vs-notebooks" class="quarto-xref"><span class="quarto-unresolved-ref">sec-scripts-vs-notebooks</span></a> covers the scripting workflow in full; this section explains how notebooks and scripts fit together.</p>
+<p><a href="scripting.html" class="quarto-xref"><span>Chapter 16</span></a> covers the scripting workflow in full; this section explains how notebooks and scripts fit together.</p>
 <section id="notebook-strengths" class="level3">
 <h3 class="anchored" data-anchor-id="notebook-strengths">Notebook strengths</h3>
 <ul>
@@ -1002,34 +949,39 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </section>
 </section>
-<section id="worked-examples-outline" class="level2" data-number="15.9">
-<h2 data-number="15.9" class="anchored" data-anchor-id="worked-examples-outline"><span class="header-section-number">15.9</span> Worked examples (outline)</h2>
-<section id="example-1-launch-jupyter-in-the-right-place" class="level3">
-<h3 class="anchored" data-anchor-id="example-1-launch-jupyter-in-the-right-place">Example 1: Launch Jupyter in the right place</h3>
-<ul>
-<li><p>Navigate to a project folder.</p></li>
-<li><p>Start JupyterLab.</p></li>
-<li><p>Create a notebook and verify the working directory.</p></li>
-</ul>
+<section id="worked-examples" class="level2" data-number="15.9">
+<h2 data-number="15.9" class="anchored" data-anchor-id="worked-examples"><span class="header-section-number">15.9</span> Worked examples</h2>
+<section id="launching-jupyter-in-the-right-place" class="level3">
+<h3 class="anchored" data-anchor-id="launching-jupyter-in-the-right-place">Launching Jupyter in the right place</h3>
+<p>You have a project at <code>~/Courses/INFO-3010/Project</code> and you want to start a notebook session for it. The full sequence:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/Courses/INFO-3010/Project</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> source .venv/bin/activate</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">.venv</span><span class="kw">)</span> <span class="ex">$</span> jupyter lab</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[I</span> 2026-04-10 12:34:56.789 ServerApp] http://localhost:8888/lab<span class="pp">?</span>token=abc...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Click the URL Jupyter prints (or it will open automatically), then create a new Python 3 notebook. In the first cell, confirm you are where you think you are:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os, sys</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"python:"</span>, sys.executable)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"cwd:"</span>, os.getcwd())</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"files:"</span>, <span class="bu">sorted</span>(os.listdir(<span class="st">"."</span>))[:<span class="dv">5</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Expected output (paths abbreviated for clarity):</p>
+<pre class="text"><code>python: /Users/you/Courses/INFO-3010/Project/.venv/bin/python
+cwd: /Users/you/Courses/INFO-3010/Project
+files: ['README.md', 'data', 'notebooks', 'src']</code></pre>
+<p>If all three lines look right — the Python is from your project’s venv, the cwd is the project root, and the files include what you expect — you are ready to work.</p>
 </section>
-<section id="example-2-debug-no-files-wrong-directory" class="level3">
-<h3 class="anchored" data-anchor-id="example-2-debug-no-files-wrong-directory">Example 2: Debug “no files” / wrong directory</h3>
-<ul>
-<li><p>Demonstrate launching from the wrong folder.</p></li>
-<li><p>Diagnose and fix by relaunching from the correct path.</p></li>
-<li><p>Add a working-directory check cell.</p></li>
-</ul>
+<section id="debugging-no-files" class="level3">
+<h3 class="anchored" data-anchor-id="debugging-no-files">Debugging “no files”</h3>
+<p>You open JupyterLab and the file browser shows your home directory instead of your project. Stop the server (<code>Ctrl+C</code> in the terminal twice), then reopen the terminal:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pwd</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/Users/you</span>                   <span class="co"># the wrong place</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd Courses/INFO-3010/Project</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> source .venv/bin/activate</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">.venv</span><span class="kw">)</span> <span class="ex">$</span> jupyter lab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now the file browser shows the project, and the working-directory check cell from the previous example confirms it. The whole fix is “go to the right folder before starting the server,” which is also why the previous example put <code>cd</code> first.</p>
 </section>
-<section id="example-3-shell-commands-for-file-checks" class="level3">
-<h3 class="anchored" data-anchor-id="example-3-shell-commands-for-file-checks">Example 3: Shell commands for file checks</h3>
-</section>
-<section id="example-4-make-a-notebook-reproducible" class="level3">
-<h3 class="anchored" data-anchor-id="example-4-make-a-notebook-reproducible">Example 4: Make a notebook reproducible</h3>
-<ul>
-<li><p>Add headings and narrative.</p></li>
-<li><p>Extract repeated code into functions.</p></li>
-<li><p>Restart kernel and run all; fix hidden-state bugs.</p></li>
-</ul>
+<section id="making-a-notebook-reproducible" class="level3">
+<h3 class="anchored" data-anchor-id="making-a-notebook-reproducible">Making a notebook reproducible</h3>
+<p>A notebook that runs once but fails on a clean kernel is not really finished. Three habits make a notebook genuinely reproducible. The first is to give it a clear linear structure: a title in a markdown cell, a one-paragraph purpose statement, then an “imports and setup” code cell, then the analysis cells in execution order, then a “results” section. The second is to extract any logic that you might want to reuse into functions in <code>src/</code>, and import them rather than copy-pasting code between cells. The third is the discipline of <strong>Restart Kernel and Run All</strong> every time you finish a meaningful chunk of work — and <em>especially</em> before you commit the notebook to git or share it with anyone. If “Restart and Run All” produces an error that interactive use never did, you have just discovered a hidden-state bug, and now is the right time to fix it. Better to find it now than to ship a notebook that quietly does not reproduce.</p>
 </section>
 </section>
 <section id="templates" class="level2" data-number="15.10">

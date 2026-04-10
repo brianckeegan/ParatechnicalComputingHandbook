@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -426,20 +461,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../parts/part-3-python/testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Testing Basics with pytest</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../parts/part-3-python/regex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regular Expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Regular Expressions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-3-python/linting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Code Style, Linting, and Formatting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Code Style, Linting, and Formatting</span></span></a>
   </div>
 </li>
       </ul>
@@ -456,31 +485,31 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/data-file-formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Data File Formats</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Data File Formats</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/tabular-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Tabular Data: Shape, Cleaning, and Validation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Tabular Data: Shape, Cleaning, and Validation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/pandas-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">pandas Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">pandas Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/sql-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">SQL Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">SQL Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/http-apis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">HTTP and Web APIs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">HTTP and Web APIs</span></span></a>
   </div>
 </li>
       </ul>
@@ -497,37 +526,31 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/project-management.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Project Management</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Project Management</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/version-control.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Version Control</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Version Control</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/collaboration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Collaboration Mechanics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Collaboration Mechanics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/automation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Automation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Automation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/secrets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Environment Variables and Secrets</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../parts/part-5-projects/pre-commit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Pre-commit Hooks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Environment Variables and Secrets</span></span></a>
   </div>
 </li>
       </ul>
@@ -544,19 +567,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/llm-internals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">How Language Models Work</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">How Language Models Work</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/ai-agents.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Working with AI Agent Frameworks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Working with AI Agent Frameworks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/evaluating-ai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Evaluating and Auditing AI Outputs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Evaluating and Auditing AI Outputs</span></span></a>
   </div>
 </li>
       </ul>
@@ -564,7 +587,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -603,25 +626,9 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose">Purpose</a></li>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning objectives</a></li>
   <li><a href="#running-theme-environments-are-disposable-projects-are-not" id="toc-running-theme-environments-are-disposable-projects-are-not" class="nav-link" data-scroll-target="#running-theme-environments-are-disposable-projects-are-not">Running theme: environments are disposable, projects are not</a></li>
-  <li><a href="#mental-models-and-vocabulary" id="toc-mental-models-and-vocabulary" class="nav-link" data-scroll-target="#mental-models-and-vocabulary"><span class="header-section-number">13.1</span> Mental models and vocabulary</a>
-  <ul class="collapse">
-  <li><a href="#packages-and-dependencies" id="toc-packages-and-dependencies" class="nav-link" data-scroll-target="#packages-and-dependencies">Packages and dependencies</a></li>
-  <li><a href="#environments-and-interpreters" id="toc-environments-and-interpreters" class="nav-link" data-scroll-target="#environments-and-interpreters">Environments and interpreters</a></li>
-  <li><a href="#reproducibility-artifacts" id="toc-reproducibility-artifacts" class="nav-link" data-scroll-target="#reproducibility-artifacts">Reproducibility artifacts</a></li>
-  </ul></li>
-  <li><a href="#choosing-tools-conda-vs-pip-vs-venv" id="toc-choosing-tools-conda-vs-pip-vs-venv" class="nav-link" data-scroll-target="#choosing-tools-conda-vs-pip-vs-venv"><span class="header-section-number">13.2</span> Choosing tools: <code>conda</code> vs <code>pip</code> vs <code>venv</code></a>
-  <ul class="collapse">
-  <li><a href="#what-conda-is-good-at" id="toc-what-conda-is-good-at" class="nav-link" data-scroll-target="#what-conda-is-good-at">What conda is good at</a></li>
-  <li><a href="#what-pip-is-good-at" id="toc-what-pip-is-good-at" class="nav-link" data-scroll-target="#what-pip-is-good-at">What pip is good at</a></li>
-  <li><a href="#practical-student-guidance" id="toc-practical-student-guidance" class="nav-link" data-scroll-target="#practical-student-guidance">Practical student guidance</a></li>
-  </ul></li>
-  <li><a href="#baseline-hygiene-rules-non-negotiable" id="toc-baseline-hygiene-rules-non-negotiable" class="nav-link" data-scroll-target="#baseline-hygiene-rules-non-negotiable"><span class="header-section-number">13.3</span> Baseline hygiene rules (non-negotiable)</a>
-  <ul class="collapse">
-  <li><a href="#rule-1-never-work-in-the-baseroot-conda-environment" id="toc-rule-1-never-work-in-the-baseroot-conda-environment" class="nav-link" data-scroll-target="#rule-1-never-work-in-the-baseroot-conda-environment">Rule 1: never work in the base/root conda environment</a></li>
-  <li><a href="#rule-2-one-project-one-environment" id="toc-rule-2-one-project-one-environment" class="nav-link" data-scroll-target="#rule-2-one-project-one-environment">Rule 2: one project, one environment</a></li>
-  <li><a href="#rule-3-prefer-explicit-specs-over-memory" id="toc-rule-3-prefer-explicit-specs-over-memory" class="nav-link" data-scroll-target="#rule-3-prefer-explicit-specs-over-memory">Rule 3: prefer explicit specs over memory</a></li>
-  <li><a href="#rule-4-avoid-mixing-managers-casually" id="toc-rule-4-avoid-mixing-managers-casually" class="nav-link" data-scroll-target="#rule-4-avoid-mixing-managers-casually">Rule 4: avoid mixing managers casually</a></li>
-  </ul></li>
+  <li><a href="#mental-models-and-vocabulary" id="toc-mental-models-and-vocabulary" class="nav-link" data-scroll-target="#mental-models-and-vocabulary"><span class="header-section-number">13.1</span> Mental models and vocabulary</a></li>
+  <li><a href="#choosing-tools-conda-vs-pip-vs-venv" id="toc-choosing-tools-conda-vs-pip-vs-venv" class="nav-link" data-scroll-target="#choosing-tools-conda-vs-pip-vs-venv"><span class="header-section-number">13.2</span> Choosing tools: <code>conda</code> vs <code>pip</code> vs <code>venv</code></a></li>
+  <li><a href="#baseline-hygiene-rules-non-negotiable" id="toc-baseline-hygiene-rules-non-negotiable" class="nav-link" data-scroll-target="#baseline-hygiene-rules-non-negotiable"><span class="header-section-number">13.3</span> Baseline hygiene rules (non-negotiable)</a></li>
   <li><a href="#core-workflows-with-conda" id="toc-core-workflows-with-conda" class="nav-link" data-scroll-target="#core-workflows-with-conda"><span class="header-section-number">13.4</span> Core workflows with conda</a>
   <ul class="collapse">
   <li><a href="#create-and-activate-an-environment" id="toc-create-and-activate-an-environment" class="nav-link" data-scroll-target="#create-and-activate-an-environment">Create and activate an environment</a></li>
@@ -676,12 +683,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#conda-solver-is-slow-or-failing" id="toc-conda-solver-is-slow-or-failing" class="nav-link" data-scroll-target="#conda-solver-is-slow-or-failing">Conda solver is slow or failing</a></li>
   <li><a href="#pip-is-backtracking-forever" id="toc-pip-is-backtracking-forever" class="nav-link" data-scroll-target="#pip-is-backtracking-forever">Pip is backtracking forever</a></li>
   </ul></li>
-  <li><a href="#worked-examples-outline" id="toc-worked-examples-outline" class="nav-link" data-scroll-target="#worked-examples-outline"><span class="header-section-number">13.12</span> Worked examples (outline)</a>
+  <li><a href="#worked-examples" id="toc-worked-examples" class="nav-link" data-scroll-target="#worked-examples"><span class="header-section-number">13.12</span> Worked examples</a>
   <ul class="collapse">
-  <li><a href="#example-1-create-a-clean-conda-environment-for-a-project" id="toc-example-1-create-a-clean-conda-environment-for-a-project" class="nav-link" data-scroll-target="#example-1-create-a-clean-conda-environment-for-a-project">Example 1: Create a clean conda environment for a project</a></li>
-  <li><a href="#example-2-use-pip-inside-a-venv-for-a-small-script" id="toc-example-2-use-pip-inside-a-venv-for-a-small-script" class="nav-link" data-scroll-target="#example-2-use-pip-inside-a-venv-for-a-small-script">Example 2: Use pip inside a venv for a small script</a></li>
-  <li><a href="#example-3-diagnose-a-dependency-conflict" id="toc-example-3-diagnose-a-dependency-conflict" class="nav-link" data-scroll-target="#example-3-diagnose-a-dependency-conflict">Example 3: Diagnose a dependency conflict</a></li>
-  <li><a href="#example-4-notebookide-kernel-mismatch" id="toc-example-4-notebookide-kernel-mismatch" class="nav-link" data-scroll-target="#example-4-notebookide-kernel-mismatch">Example 4: Notebook/IDE kernel mismatch</a></li>
+  <li><a href="#creating-a-clean-conda-environment-for-a-project" id="toc-creating-a-clean-conda-environment-for-a-project" class="nav-link" data-scroll-target="#creating-a-clean-conda-environment-for-a-project">Creating a clean conda environment for a project</a></li>
+  <li><a href="#using-pip-inside-a-venv-for-a-small-script" id="toc-using-pip-inside-a-venv-for-a-small-script" class="nav-link" data-scroll-target="#using-pip-inside-a-venv-for-a-small-script">Using pip inside a venv for a small script</a></li>
+  <li><a href="#diagnosing-a-dependency-conflict" id="toc-diagnosing-a-dependency-conflict" class="nav-link" data-scroll-target="#diagnosing-a-dependency-conflict">Diagnosing a dependency conflict</a></li>
+  <li><a href="#diagnosing-a-notebookide-kernel-mismatch" id="toc-diagnosing-a-notebookide-kernel-mismatch" class="nav-link" data-scroll-target="#diagnosing-a-notebookide-kernel-mismatch">Diagnosing a notebook/IDE kernel mismatch</a></li>
   </ul></li>
   <li><a href="#templates" id="toc-templates" class="nav-link" data-scroll-target="#templates"><span class="header-section-number">13.13</span> Templates</a>
   <ul class="collapse">
@@ -745,8 +752,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>Prerequisites (read first if unfamiliar):</strong> <a href="#sec-terminal" class="quarto-xref"><span class="quarto-unresolved-ref">sec-terminal</span></a>.</p>
-<p><strong>See also:</strong> <a href="#sec-virtual-environments" class="quarto-xref"><span class="quarto-unresolved-ref">sec-virtual-environments</span></a>, <a href="#sec-jupyter" class="quarto-xref"><span class="quarto-unresolved-ref">sec-jupyter</span></a>, <a href="#sec-scripts-vs-notebooks" class="quarto-xref"><span class="quarto-unresolved-ref">sec-scripts-vs-notebooks</span></a>.</p>
+<p><strong>Prerequisites (read first if unfamiliar):</strong> <a href="../part-2-environment/terminal.html" class="quarto-xref"><span>Chapter 10</span></a>.</p>
+<p><strong>See also:</strong> <a href="virtual-environments.html" class="quarto-xref"><span>Chapter 14</span></a>, <a href="jupyter.html" class="quarto-xref"><span>Chapter 15</span></a>, <a href="scripting.html" class="quarto-xref"><span>Chapter 16</span></a>.</p>
 </div>
 </div>
 </div>
@@ -774,88 +781,28 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="mental-models-and-vocabulary" class="level2" data-number="13.1">
 <h2 data-number="13.1" class="anchored" data-anchor-id="mental-models-and-vocabulary"><span class="header-section-number">13.1</span> Mental models and vocabulary</h2>
-<section id="packages-and-dependencies" class="level3">
-<h3 class="anchored" data-anchor-id="packages-and-dependencies">Packages and dependencies</h3>
-<ul>
-<li><p><strong>Package:</strong> third-party code you install (e.g., <code>pandas</code>).</p></li>
-<li><p><strong>Dependency:</strong> another package your package needs.</p></li>
-<li><p><strong>Version constraints:</strong> rules like <code>&gt;=</code>, <code>&lt;</code>, <code>==</code> that restrict compatible versions.</p></li>
-</ul>
-</section>
-<section id="environments-and-interpreters" class="level3">
-<h3 class="anchored" data-anchor-id="environments-and-interpreters">Environments and interpreters</h3>
-<ul>
-<li><p>A Python <strong>interpreter</strong> runs your code (and determines where packages are installed).</p></li>
-<li><p>An <strong>environment</strong> is an isolated set of installed packages tied to a specific interpreter.</p></li>
-<li><p>You can have many environments on one computer; each project should use one.</p></li>
-</ul>
-</section>
-<section id="reproducibility-artifacts" class="level3">
-<h3 class="anchored" data-anchor-id="reproducibility-artifacts">Reproducibility artifacts</h3>
-<ul>
-<li><p><code>environment.yml</code>: conda-style environment specification.</p></li>
-<li><p><code>requirements.txt</code>: pip-style install list.</p></li>
-<li><p><strong>Lockfile:</strong> a fully resolved, exact list of versions for repeatable installs.</p></li>
-</ul>
-</section>
+<p>A <strong>package</strong> is third-party code you install — <code>pandas</code>, <code>numpy</code>, <code>requests</code>. A <strong>dependency</strong> is another package that your package needs to function: pandas depends on numpy, and matplotlib depends on Pillow, so installing pandas pulls in numpy and installing matplotlib pulls in Pillow. Each dependency relationship can carry a <strong>version constraint</strong>, expressed with operators like <code>&gt;=</code>, <code>&lt;</code>, <code>==</code>, <code>!=</code>. A line like <code>numpy&gt;=1.24,&lt;2.0</code> means “any 1.x version greater than or equal to 1.24, but not 2.0 or above.” When you install a package, the package manager has to find a set of versions that satisfies <em>every</em> constraint involved at once — and that is where conflicts come from.</p>
+<p>A Python <strong>interpreter</strong> is the actual <code>python</code> executable that runs your code, and where it lives on disk determines where packages get installed. An <strong>environment</strong> is an isolated set of installed packages bound to one specific interpreter. You can have many environments on the same computer — one for each project — and they will not interfere with each other, because each one has its own copy of the interpreter and its own folder of installed packages.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How many environments are typical for a serious user</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">~/projects/q3-analysis/.venv/</span>        <span class="co"># one project's venv</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">~/projects/thesis/.venv/</span>             <span class="co"># another project's venv</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">~/miniconda3/envs/ds101/</span>             <span class="co"># a conda env for one course</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">~/miniconda3/envs/research/</span>          <span class="co"># another conda env</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The way you make environments <strong>reproducible</strong> is by writing down what is installed in them, in a small text file you commit alongside your code. Conda’s version of that file is <code>environment.yml</code>; pip’s version is <code>requirements.txt</code>. Both list package names and (optionally) version constraints. A more rigorous version is a <strong>lockfile</strong>, which records the <em>exact</em> version of every package and every transitive dependency that was actually resolved — so that installing from the lockfile gives you a bit-for-bit identical environment, even months later. For coursework, <code>environment.yml</code> or <code>requirements.txt</code> is usually enough; lockfiles are more common in production teams.</p>
 </section>
 <section id="choosing-tools-conda-vs-pip-vs-venv" class="level2" data-number="13.2">
 <h2 data-number="13.2" class="anchored" data-anchor-id="choosing-tools-conda-vs-pip-vs-venv"><span class="header-section-number">13.2</span> Choosing tools: <code>conda</code> vs <code>pip</code> vs <code>venv</code></h2>
-<section id="what-conda-is-good-at" class="level3">
-<h3 class="anchored" data-anchor-id="what-conda-is-good-at">What conda is good at</h3>
-<ul>
-<li><p>Cross-language, compiled dependencies (e.g., scientific stacks, system libraries).</p></li>
-<li><p>Environments that include non-Python packages.</p></li>
-<li><p>Solving complex dependency graphs across compiled packages.</p></li>
-</ul>
-</section>
-<section id="what-pip-is-good-at" class="level3">
-<h3 class="anchored" data-anchor-id="what-pip-is-good-at">What pip is good at</h3>
-<ul>
-<li><p>Installing Python packages from PyPI.</p></li>
-<li><p>Lightweight environments using the standard library <code>venv</code>.</p></li>
-<li><p>Working with Python packaging metadata (<code>pyproject.toml</code>, wheels).</p></li>
-</ul>
-</section>
-<section id="practical-student-guidance" class="level3">
-<h3 class="anchored" data-anchor-id="practical-student-guidance">Practical student guidance</h3>
-<ul>
-<li><p>If your course provides a conda environment file, use conda.</p></li>
-<li><p>If a library is only on PyPI, use pip (inside an environment).</p></li>
-<li><p>Do not install packages globally for coursework.</p></li>
-</ul>
-</section>
+<p>The Python ecosystem has two major package management traditions, and you will encounter both. <strong>conda</strong> comes from the scientific Python world; it manages not only Python packages but also non-Python compiled libraries, system dependencies like CUDA, and even other languages like R and C++ libraries. It is the right choice for projects with heavy compiled dependencies — anything that involves GPU acceleration, GIS tools, bioinformatics stacks, or scientific libraries that are hard to install via pip. Its solver is also better at untangling complex dependency graphs across compiled packages.</p>
+<p><strong>pip</strong> is the standard installer that ships with Python itself, and it installs packages from PyPI (the Python Package Index). Combined with the standard-library <code>venv</code> module, it gives you lightweight isolated environments using just what comes with Python. For pure-Python work — most web development, most data analysis with no exotic libraries — pip + venv is simpler, lighter, and works identically on every machine.</p>
+<p>The practical guidance for a student is straightforward. If your course provides a conda environment file, use conda — your instructor has thought about which channel to use and which versions to pin. If you need a library that exists only on PyPI (which is most of them), use pip inside an active environment. And no matter which tool you pick, <strong>never install packages globally</strong> for course work — every project gets its own environment, period.</p>
 </section>
 <section id="baseline-hygiene-rules-non-negotiable" class="level2" data-number="13.3">
 <h2 data-number="13.3" class="anchored" data-anchor-id="baseline-hygiene-rules-non-negotiable"><span class="header-section-number">13.3</span> Baseline hygiene rules (non-negotiable)</h2>
-<section id="rule-1-never-work-in-the-baseroot-conda-environment" class="level3">
-<h3 class="anchored" data-anchor-id="rule-1-never-work-in-the-baseroot-conda-environment">Rule 1: never work in the base/root conda environment</h3>
-<ul>
-<li><p>Keep base/root for conda itself.</p></li>
-<li><p>Create a separate environment per project.</p></li>
-</ul>
-</section>
-<section id="rule-2-one-project-one-environment" class="level3">
-<h3 class="anchored" data-anchor-id="rule-2-one-project-one-environment">Rule 2: one project, one environment</h3>
-<ul>
-<li><p>Avoid “one giant environment for everything”.</p></li>
-<li><p>Name environments clearly (e.g., <code>ds101-week3</code>, <code>housing-audit</code>).</p></li>
-</ul>
-</section>
-<section id="rule-3-prefer-explicit-specs-over-memory" class="level3">
-<h3 class="anchored" data-anchor-id="rule-3-prefer-explicit-specs-over-memory">Rule 3: prefer explicit specs over memory</h3>
-<ul>
-<li><p>Record dependencies in a file in the project repository.</p></li>
-<li><p>Make install steps repeatable.</p></li>
-</ul>
-</section>
-<section id="rule-4-avoid-mixing-managers-casually" class="level3">
-<h3 class="anchored" data-anchor-id="rule-4-avoid-mixing-managers-casually">Rule 4: avoid mixing managers casually</h3>
-<ul>
-<li><p>If you combine conda and pip: install as much as possible with conda first.</p></li>
-<li><p>After using pip inside a conda environment, prefer recreating the environment rather than adding more conda packages.</p></li>
-</ul>
-</section>
+<p>A small number of rules will save you from almost all of the package management pain you would otherwise inflict on yourself. They are not optional, and ignoring them is the most reliable way to spend an entire afternoon untangling an environment.</p>
+<p><strong>Rule 1: never work in the base or root conda environment.</strong> When you install Anaconda or Miniconda, it creates a default environment called <code>base</code>. That environment is for conda itself and a handful of utilities; it is <em>not</em> where your project packages should live. The moment you start <code>pip install</code>-ing things into <code>base</code>, you risk breaking conda’s own machinery, and you have no isolation between projects. Create a fresh environment for each project and leave base alone.</p>
+<p><strong>Rule 2: one project, one environment.</strong> It is tempting to maintain one giant “everything I do” environment because creating a new one feels like overhead. Resist the temptation. Two projects with different requirements will eventually conflict, and untangling a giant shared environment is much more work than recreating two clean small ones. Give each environment a clear, project-specific name (<code>ds101-week3</code>, <code>housing-audit</code>, <code>thesis-cleaning</code>) so you can tell at a glance which one is which.</p>
+<p><strong>Rule 3: prefer explicit specs over memory.</strong> Whatever you install, record it in a file (<code>environment.yml</code> or <code>requirements.txt</code>) inside the project repository. If your install steps live only in your head, your project is not reproducible — not on a teammate’s machine, not on a server, not even on your own laptop in three months when you have forgotten which packages mattered.</p>
+<p><strong>Rule 4: avoid mixing conda and pip casually.</strong> Combining them in the same environment is officially supported but practically fragile. If you must mix, install everything you can with conda <em>first</em>, and then use pip for the few packages that conda does not have. Once you have pip-installed something into a conda environment, treat that environment as more brittle: if you need to add more conda packages later, the safer move is usually to recreate the environment from scratch with the new spec rather than to keep adding to it.</p>
 </section>
 <section id="core-workflows-with-conda" class="level2" data-number="13.4">
 <h2 data-number="13.4" class="anchored" data-anchor-id="core-workflows-with-conda"><span class="header-section-number">13.4</span> Core workflows with conda</h2>
@@ -1119,39 +1066,59 @@ python -m pip install -r requirements.txt</code></pre>
 </ul>
 </section>
 </section>
-<section id="worked-examples-outline" class="level2" data-number="13.12">
-<h2 data-number="13.12" class="anchored" data-anchor-id="worked-examples-outline"><span class="header-section-number">13.12</span> Worked examples (outline)</h2>
-<section id="example-1-create-a-clean-conda-environment-for-a-project" class="level3">
-<h3 class="anchored" data-anchor-id="example-1-create-a-clean-conda-environment-for-a-project">Example 1: Create a clean conda environment for a project</h3>
-<ul>
-<li><p>Create env, install core packages.</p></li>
-<li><p>Export environment spec.</p></li>
-<li><p>Recreate from spec on a second machine.</p></li>
-</ul>
+<section id="worked-examples" class="level2" data-number="13.12">
+<h2 data-number="13.12" class="anchored" data-anchor-id="worked-examples"><span class="header-section-number">13.12</span> Worked examples</h2>
+<section id="creating-a-clean-conda-environment-for-a-project" class="level3">
+<h3 class="anchored" data-anchor-id="creating-a-clean-conda-environment-for-a-project">Creating a clean conda environment for a project</h3>
+<p>You are starting a new analysis project that needs pandas, scikit-learn, and matplotlib. The full lifecycle:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a fresh environment with a specific Python version</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> housing-audit python=3.12 pandas scikit-learn matplotlib jupyter</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate housing-audit</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Confirm you are using the new environment's Python, not base</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span> python</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import sys; print(sys.executable)"</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Export the spec so a teammate can reproduce it</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env export <span class="at">--from-history</span> <span class="op">&gt;</span> environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>--from-history</code> flag matters: it tells conda to record only the packages you explicitly asked for, rather than every transitive dependency. The resulting <code>environment.yml</code> is short, portable, and works across operating systems. Commit it to git. To recreate the environment on another machine:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> environment.yml</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate housing-audit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>That is the entire reproducibility loop.</p>
 </section>
-<section id="example-2-use-pip-inside-a-venv-for-a-small-script" class="level3">
-<h3 class="anchored" data-anchor-id="example-2-use-pip-inside-a-venv-for-a-small-script">Example 2: Use pip inside a venv for a small script</h3>
-<ul>
-<li><p>Create <code>.venv</code>, install two packages.</p></li>
-<li><p>Freeze to <code>requirements.txt</code>.</p></li>
-<li><p>Recreate and verify with a smoke test.</p></li>
-</ul>
+<section id="using-pip-inside-a-venv-for-a-small-script" class="level3">
+<h3 class="anchored" data-anchor-id="using-pip-inside-a-venv-for-a-small-script">Using pip inside a venv for a small script</h3>
+<p>For a project with no exotic dependencies, the venv + pip workflow is even simpler:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> tiny-script <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> tiny-script</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .venv</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate     <span class="co"># Windows: .venv\Scripts\activate</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install <span class="at">--upgrade</span> pip</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install requests beautifulsoup4</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip freeze <span class="op">&gt;</span> requirements.txt</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">".venv/"</span> <span class="op">&gt;</span> .gitignore</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>requirements.txt</code> file is what you commit; the <code>.venv/</code> directory itself stays out of git. To verify the environment works, run a smoke test that imports your packages:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import requests, bs4; print(requests.__version__, bs4.__version__)"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If both imports succeed and print versions, you are ready to work.</p>
 </section>
-<section id="example-3-diagnose-a-dependency-conflict" class="level3">
-<h3 class="anchored" data-anchor-id="example-3-diagnose-a-dependency-conflict">Example 3: Diagnose a dependency conflict</h3>
-<ul>
-<li><p>Trigger a conflict.</p></li>
-<li><p>Read the error output to find the incompatible dependency.</p></li>
-<li><p>Resolve by pinning or splitting environments.</p></li>
-</ul>
+<section id="diagnosing-a-dependency-conflict" class="level3">
+<h3 class="anchored" data-anchor-id="diagnosing-a-dependency-conflict">Diagnosing a dependency conflict</h3>
+<p>You try to install two packages and pip refuses, printing a long “ResolutionImpossible” error. The fix is not to keep retrying — it is to read the error and find the constraint that is causing the trouble.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip install package-a==1.0 package-b==2.0</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">ERROR:</span> Cannot install package-a==1.0 and package-b==2.0 because these</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">package</span> versions have conflicting dependencies.</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ex">The</span> conflict is caused by:</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">package-a</span> 1.0 depends on shared-dep<span class="op">&gt;</span>=2.0,<span class="op">&lt;</span>3.0</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">package-b</span> 2.0 depends on shared-dep<span class="op">&gt;</span>=3.0,<span class="op">&lt;</span>4.0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Pip is telling you exactly what is wrong: both <code>package-a</code> and <code>package-b</code> depend on <code>shared-dep</code>, but they want incompatible versions of it. The resolutions are limited and clearly defined. You can pin one of the two packages to a different version that uses a compatible <code>shared-dep</code>. You can split the work into two separate environments, one for each package. Or you can find out whether a newer release of either package has loosened its constraint. None of those is satisfying, but all are better than retrying the same install hoping the universe changes.</p>
 </section>
-<section id="example-4-notebookide-kernel-mismatch" class="level3">
-<h3 class="anchored" data-anchor-id="example-4-notebookide-kernel-mismatch">Example 4: Notebook/IDE kernel mismatch</h3>
-<ul>
-<li><p>Symptom: notebook cannot import a package that the terminal can.</p></li>
-<li><p>Diagnosis: wrong kernel/interpreter (see <a href="#sec-jupyter" class="quarto-xref"><span class="quarto-unresolved-ref">sec-jupyter</span></a> for kernel management in Jupyter).</p></li>
-<li><p>Fix: select the correct kernel; verify versions.</p></li>
-</ul>
+<section id="diagnosing-a-notebookide-kernel-mismatch" class="level3">
+<h3 class="anchored" data-anchor-id="diagnosing-a-notebookide-kernel-mismatch">Diagnosing a notebook/IDE kernel mismatch</h3>
+<p>The classic confusing failure: you have pandas working perfectly in your terminal, you open a Jupyter notebook in the same directory, type <code>import pandas</code>, and Python tells you <code>ModuleNotFoundError: No module named 'pandas'</code>. The cause is almost always that the notebook is running in a different Python interpreter than the one your terminal is using.</p>
+<p>The diagnostic is one cell:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sys.executable)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If the path it prints contains your project’s <code>.venv/bin/python</code>, the notebook is using the right interpreter and the bug is something else (perhaps you forgot to install pandas into this environment). If the path is something like <code>/usr/bin/python3</code> or <code>/opt/anaconda3/bin/python</code>, the notebook is running a <em>different</em> Python — usually because the Jupyter kernel was registered against the system Python before you ever created the project venv. The fix is to register your project’s venv as a Jupyter kernel and switch to it; see <a href="jupyter.html" class="quarto-xref"><span>Chapter 15</span></a> for kernel management in detail.</p>
 </section>
 </section>
 <section id="templates" class="level2" data-number="13.13">
@@ -1229,7 +1196,7 @@ python -m pip install -r requirements.txt
 python -m pip freeze &gt; requirements.txt
 python -m pip check</code></pre>
 <p>The steps for downloading, installing, using, and maintaining Python with <code>conda</code> will differ based on your operating system. <code>conda</code> can be used by Macs running macOS (OS X), PCs running Windows, and PCs running Linux. <code>conda</code> cannot be installed or used on managed operating systems like ChromeOS (<em>e.g.</em>, Chromebooks) or iOS (<em>e.g.</em>, iPads). It is unlikely that you will be able to install or configure <code>conda</code> yourself on “managed” computers like those found in libraries or computer labs.</p>
-<p><code>conda</code> is only a package manager: it does not include Python or any of its libraries for data retrieval, analysis, visualization, <em>etc</em>. At this stage you can either (1) install Anaconda Individual Edition<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> that includes hundreds of popular libraries and their dependencies or (2) install “miniconda”<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> and choose which libraries you want installed. In either case, <code>conda</code> will be the package manager that helps you install and maintain these libraries. <a href="#fig-conda-mini-ana" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-conda-mini-ana</span></a> captures the relationships between <code>conda</code>, miniconda, and Anaconda. Anaconda is easier to install and harder to keep up-to-date while miniconda is harder to install and a easier to keep up-to-date.</p>
+<p><code>conda</code> is only a package manager: it does not include Python or any of its libraries for data retrieval, analysis, visualization, <em>etc</em>. At this stage you can either (1) install Anaconda Individual Edition<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> that includes hundreds of popular libraries and their dependencies or (2) install “miniconda”<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> and choose which libraries you want installed. In either case, <code>conda</code> will be the package manager that helps you install and maintain these libraries. <a href="#fig-conda-mini-ana" class="quarto-xref">Figure&nbsp;<span>13.1</span></a> captures the relationships between <code>conda</code>, miniconda, and Anaconda. Anaconda is easier to install and harder to keep up-to-date while miniconda is harder to install and a easier to keep up-to-date.</p>
 <div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;<a href="https://www.anaconda.com/products/individual" class="uri">https://www.anaconda.com/products/individual</a></p></div><div id="fn2"><p><sup>2</sup>&nbsp;<a href="https://docs.conda.io/en/latest/miniconda.html" class="uri">https://docs.conda.io/en/latest/miniconda.html</a></p></div><div class="">
 <div id="fig-conda-mini-ana" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">

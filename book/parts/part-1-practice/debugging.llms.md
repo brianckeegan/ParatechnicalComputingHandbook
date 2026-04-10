@@ -4,7 +4,7 @@
 >
 > **Prerequisites (read first if unfamiliar):** [sec-terminal](#sec-terminal).
 >
-> **See also:** [sec-tracebacks](#sec-tracebacks), [sec-testing](#sec-testing), [sec-asking-questions](#sec-asking-questions).
+> **See also:** [sec-tracebacks](#sec-tracebacks), [sec-asking-questions](#sec-asking-questions).
 
 ## Purpose
 
@@ -64,15 +64,9 @@ This loop is not linear. You may circle back several times. But it is structured
 
 ### Why the “random edits” strategy fails
 
-Beginners often respond to a bug by changing multiple lines, rerunning, and hoping. This fails for three reasons:
+Beginners often respond to a bug by changing multiple lines, rerunning, and hoping the symptom goes away. This feels productive, but it fails for three connected reasons. First, you lose causality: if the bug does happen to disappear, you do not know which of your changes was responsible, which means you have not actually learned anything you can apply to the next bug. Second, random edits routinely break code that was already working — the bug “moves” instead of vanishing, and you now have two problems instead of one. Third, even when this approach eventually works, it is the slowest possible way to solve the problem: you spend effort without building understanding, so the same kind of bug will trap you again next week.
 
-- **No causality.** If the bug disappears, you do not know why.
-
-- **New bugs.** Random edits can break working code.
-
-- **Wasted time.** You spend effort without learning.
-
-A disciplined debugging workflow is not slower; it is faster because it avoids loops of confusion.
+A disciplined debugging workflow feels slower for the first few minutes and is dramatically faster after that, because it spends each minute reducing uncertainty rather than spinning in confusion.
 
 ## 5.2 Start with a clear problem statement
 
@@ -96,19 +90,18 @@ If you cannot reproduce a bug, you cannot reliably confirm a fix. Reproduction d
 
 ### What to capture
 
-When something fails, capture the evidence immediately:
+When something fails, the very first move is to capture the evidence before it disappears. Record the exact commands you ran and the directory you were in when you ran them — `pwd` and your shell history are your friends here. Copy and paste the exact error message rather than retyping it, because retyping introduces tiny mistakes and you need the literal text to search for it later. Save the full stack trace if there is one (not just the bottom line). Note the inputs that triggered the failure: the file path, the parameters you passed, and a small sample of the data if it is something you can share. And capture the environment: your OS, your Python version, the versions of the key packages, and *which* environment is currently active.
 
-- The exact command(s) you ran (including directory).
+``` bash
+# What to capture, all in one go
+pwd                                # working directory
+python --version
+python -c "import sys; print(sys.executable)"
+pip show pandas | head -2          # package + version
+# then copy-paste the failing command and its full output
+```
 
-- The exact error message (copy/paste, do not retype).
-
-- The stack trace (if present).
-
-- The inputs: file path, parameters, small sample data.
-
-- The environment: OS, Python version, key package versions, and which environment is active.
-
-A practical rule: if the information disappears when you close the terminal or restart the notebook, write it down.
+A practical rule of thumb: if the information would disappear when you close the terminal or restart the notebook, write it down somewhere persistent before you start trying fixes.
 
 ### Reproduction in notebooks versus scripts
 
@@ -144,21 +137,11 @@ Common novice mistake: trying to “fix” library code in `site-packages`. If t
 
 ### Error taxonomies: learn a few recurring families
 
-You do not need to memorize every error, but it helps to recognize common families:
+You do not need to memorize every Python exception, but it helps to recognize a small number of *families* and what each one usually means about where to look. **Name and scope errors** like `NameError` are about variables that Python has never heard of — almost always a typo, a forgotten import, or a cell in the notebook that you have not run yet. **Type mismatches** like `TypeError` are about operations applied to the wrong kind of object: adding a string to an integer, calling something that is not a function, or passing the wrong number of arguments. **Indexing and key errors** (`IndexError`, `KeyError`) are about reaching for an element of a list, dict, or DataFrame column that does not exist — usually a column name typo or an off-by-one in a loop. **File and path errors** like `FileNotFoundError` are about the working directory or permissions, not the code itself. **Parsing and format errors**, almost always raised as `ValueError`, are about a value that has the right type but the wrong shape — a string `'N/A'` where a number was expected, or a date in a format Python cannot parse. And **import and environment errors** like `ModuleNotFoundError` are about which Python is running and which packages are installed in *that* Python (see [sec-pkg-mgmt](#sec-pkg-mgmt)).
 
-- **Name and scope errors**: `NameError`, variables not defined, typos.
+Each family points you at a different first move. A `KeyError` should make you reach for `print(df.columns.tolist())`. A `ModuleNotFoundError` should make you reach for `which python` and `pip list`. A `FileNotFoundError` should make you reach for `pwd` and `ls`. The taxonomy is useful precisely because it tells you *what to do next*, not just what went wrong.
 
-- **Type mismatches**: `TypeError`, operations on wrong data type.
-
-- **Indexing and keys**: `IndexError`, `KeyError`, missing columns or out-of-range indices.
-
-- **Files and paths**: `FileNotFoundError`, wrong directory, permissions.
-
-- **Parsing and formats**: `ValueError` when converting strings to numbers/dates.
-
-- **Imports and environments**: `ModuleNotFoundError`, version conflicts (see [sec-pkg-mgmt](#sec-pkg-mgmt)).
-
-Each family suggests a different debugging move. For example, `KeyError` suggests printing available keys/columns; `ModuleNotFoundError` suggests checking environments.
+For a fuller treatment of the most common Python exceptions and how to read the surrounding stack frames, see [sec-tracebacks](#sec-tracebacks).
 
 ## 5.5 Decomposition: make the problem smaller
 
@@ -166,51 +149,38 @@ Decomposition is the most important debugging skill. You reduce a complex failur
 
 ### Three decomposition strategies
 
-##### 1) Divide and conquer.
+The first strategy is **divide and conquer**: split the workflow into stages and find where the bug first appears. A typical data-science pipeline has six stages — load data, clean and transform, compute features, fit a model, evaluate it, and produce outputs — and the bug almost always lives at the boundary between two of them. Run each stage separately, inspect the intermediate result, and ask “is this what I expected at this point?” The first place where the answer is “no” is the place where the bug actually happens, even if the symptom shows up much later.
 
-Split the workflow into stages and find where the bug first appears. In data science pipelines:
+``` python
+# Divide and conquer: check the intermediate after every stage
+df = load_raw_data("data.csv");        print("loaded:", df.shape)
+df = clean_columns(df);                 print("cleaned:", df.shape)
+df = compute_features(df);              print("features:", df.shape)
+# the first stage where shape or columns surprise you is the bug site
+```
 
-1.  load data,
+The second strategy is **binary search over history**: if the code worked yesterday and is broken today, look at what changed. Version control makes this dramatically faster — `git log --oneline` lists the recent commits, `git diff HEAD~5` shows the cumulative diff over the last five, and `git bisect` will literally do the binary search for you, asking you to mark commits as “good” or “bad” until it isolates the exact one that introduced the bug. Even without git, you can usually copy your last working version into a separate folder and diff the two.
 
-2.  clean/transform,
-
-3.  compute features,
-
-4.  fit model,
-
-5.  evaluate,
-
-6.  produce outputs.
-
-Run each stage separately and inspect the intermediate result.
-
-##### 2) Binary search over history.
-
-If the code worked yesterday, look at what changed. Version control makes this dramatically easier. Even without Git, you can copy a working version and compare.
-
-##### 3) Strip to a minimal reproducible example.
-
-Remove everything unrelated until the failure remains.
+The third strategy is to **strip to a minimal reproducible example**: take the failing code and aggressively delete anything that is not essential to triggering the bug. Each deletion that *still* fails is a piece of evidence about which code is irrelevant. The endpoint is a tiny script — usually fewer than 20 lines — that reproduces the failure with no surrounding noise. At that point, the bug is almost always obvious, and even if it is not, you have produced exactly the artifact you need to ask for help (see [sec-asking-questions](#sec-asking-questions)).
 
 ### The minimal reproducible example (MRE) as a debugging tool
 
-An MRE is not only for asking questions. It is a debugging instrument. If you can recreate the problem in 15 lines, you have already learned:
-
-- which inputs matter,
-
-- which library call triggers the failure,
-
-- what assumptions were hidden.
+An MRE is often described as a tool for asking questions, but it is just as valuable as a debugging instrument in its own right. The act of producing a 15-line script that recreates your bug forces you to learn three things you may not have noticed: *which inputs actually matter* (the ones you can’t delete without losing the failure), *which library call is the immediate trigger* (the line you can’t remove), and *what assumptions you were silently making* (the things you have to add to the MRE to get it to fail at all). Most of the time, by the time you finish reducing the example, you have already found the bug.
 
 ### Practical MRE techniques
 
-1.  **Replace real data with synthetic data.** Use `io.StringIO` or small lists.
+A few mechanical techniques make MRE construction faster. The single most useful one is to **replace real data with synthetic data** — pandas reads from `io.StringIO` exactly as it does from a file, so a few lines of inline CSV are enough to recreate most data-loading bugs without any external file:
 
-2.  **Hard-code a small example.** A 3-row dataframe is often enough.
+``` python
+import pandas as pd
+from io import StringIO
 
-3.  **Delete code aggressively.** If removing a block does not change the failure, it was not relevant.
+raw = "name,age\nada,35\nlin,N/A\n"
+df = pd.read_csv(StringIO(raw))
+df["age"].mean()           # reproduces the ValueError without a real file
+```
 
-4.  **Freeze randomness.** Set random seeds so behavior is repeatable.
+Closely related: **hard-code a small example.** A three-row DataFrame or a five-element list is almost always enough to reproduce a logic bug, and it’s small enough to reason about end to end. **Delete code aggressively** — pull out everything that isn’t required to trigger the failure, and if removing a block does not change the symptom, it was not relevant. Finally, **freeze any randomness**. If your bug only sometimes appears, set the random seeds (`random.seed(0)`, `numpy.random.seed(0)`, `torch.manual_seed(0)`) so that “sometimes” becomes “every time on this seed,” which is debuggable.
 
 ## 5.6 Hypotheses and controlled experiments
 
@@ -218,33 +188,24 @@ Once you have localized the issue, do not jump straight to a fix. First, form a 
 
 ### What a good hypothesis looks like
 
-A good debugging hypothesis is specific and falsifiable:
+A useful debugging hypothesis is specific and *falsifiable*: it makes a concrete claim about cause and effect that you can test in a few minutes. “The file path is relative to the working directory, and I am running from the wrong folder” is a good hypothesis — you can test it with `pwd` and `ls` in 30 seconds. “This column is stored as strings with embedded commas, so numeric conversion silently fails” is a good hypothesis — you can test it with `df["price"].dtype` and `df["price"].head()`. “I installed pandas into a different environment than the one running my notebook” is a good hypothesis — you can test it with `import sys; print(sys.executable)` from inside the notebook.
 
-- “The file path is relative to the working directory, and I am running from the wrong folder.”
-
-- “This column is stored as strings with commas, so numeric conversion fails.”
-
-- “I installed the package into a different environment than the one running Jupyter.”
-
-A weak hypothesis is vague:
-
-- “Something is wrong with pandas.”
-
-- “My computer is broken.”
+The contrast is with vague non-hypotheses like “something is wrong with pandas” or “my computer is broken.” These are not hypotheses at all, because there is no test you could run that would prove them right or wrong. When you find yourself reaching for one of those, that is the moment to slow down and ask, “What concretely do I think is happening, and how would I know?”
 
 ### Designing a controlled experiment
 
-A controlled experiment changes one factor and observes one outcome. Common experiments include:
+A controlled experiment changes exactly one factor and observes exactly one outcome. The “one factor” rule is the entire point: if you change two things at once, you cannot interpret the result. The most common experiments are tiny — printing a variable right before the line that crashes, replacing a single suspect input with a known-good value, running the same code in a fresh shell or a new venv to rule out environment state, or commenting out a single transformation step to see whether the bug is upstream or downstream of it.
 
-- Print a variable right before the error line.
+``` python
+# Two controlled experiments, one factor each
+print("--- before merge ---")
+print(df_a.shape, df_b.shape)              # experiment 1: shapes upstream
+result = df_a.merge(df_b, on="id")
+print("--- after merge ---")
+print(result.shape)                         # experiment 2: shape downstream
+```
 
-- Replace one input value (e.g., a date string) with a known-good value.
-
-- Run the same code in a fresh environment.
-
-- Comment out one transformation step.
-
-When you run an experiment, record the result. The result is progress even if the bug remains, because you ruled something out.
+Whatever experiment you run, *write down* what you tried and what happened. Even when the bug remains, the run is progress: you have ruled something out, and your search space just got smaller.
 
 ## 5.7 Instrumentation: print statements and sanity checks
 
@@ -397,39 +358,23 @@ Different environments create different failure modes.
 
 ### Notebook-specific hazards
 
-Common notebook debugging pitfalls:
+Notebooks are wonderful for exploration and treacherous for debugging, because they invite *hidden state*. The four classic traps are running cells out of order (so the variable on screen is not the variable in memory), redefining a function in a later cell and forgetting that the earlier cells still hold the old version, keeping a stale DataFrame around after you thought you had replaced it, and installing a package into one environment while the notebook kernel is running in another.
 
-- Running cells out of order.
+The single most reliable countermeasure is **Kernel → Restart and Run All**. If your code does not work after a clean restart, it does not work, and any “success” you saw before was an illusion produced by leftover state. Beyond that, give your cells single, well-defined responsibilities so it is harder to introduce side effects accidentally, and when something is mysterious, print `sys.executable`, `pandas.__version__`, and the relevant variable’s `type(...)` and `id(...)` to confirm that the world is what you think it is.
 
-- Redefining functions and forgetting which version is active.
-
-- Keeping old dataframes in memory and thinking they updated.
-
-- Installing a package in one environment while Jupyter uses another.
-
-Countermeasures:
-
-1.  Restart kernel + run all.
-
-2.  Use clearly named cells and avoid hidden side effects.
-
-3.  Print versions and environment information when uncertain.
+``` python
+# When confused, dump the basics
+import sys, pandas as pd
+print("python:", sys.executable)
+print("pandas:", pd.__version__)
+print("df type:", type(df), "df id:", id(df), "df shape:", df.shape)
+```
 
 ### Command-line and OS-level bugs
 
-Some “code” bugs are actually environment bugs (see [sec-terminal](#sec-terminal) for the full command-line skill set):
+Not every bug lives in the code. A surprising number of “code” bugs are actually environment bugs in disguise: you are in the wrong working directory, the file you are trying to read does not have the right permissions, your shell’s `PATH` does not point at the Python you think it does, the file is encoded in something other than UTF-8, or you are hitting a line-ending difference between Windows and macOS. Each of these can manifest as something that looks like a Python error but cannot be fixed by changing Python code. (See [sec-terminal](#sec-terminal) for the full command-line toolbox.)
 
-- wrong working directory,
-
-- missing permissions,
-
-- PATH not set,
-
-- file encoding,
-
-- line-ending differences (Windows vs macOS).
-
-If a command works in one terminal but not another, treat the environment as a suspect.
+The diagnostic move that catches most of these in one go is to compare environments: if a command works in one terminal but not another, the environment is the suspect, not the code. Run the same command in both and compare the output of `pwd`, `which python`, `echo $PATH`, and `python --version`. The first place these diverge is the place to investigate.
 
 ## 5.11 A practical debugging checklist
 
@@ -457,70 +402,38 @@ Print it and keep it near your desk.
 
 The goal of case studies is to show the loop in action.
 
-### Case study 1: “File not found” that is really “wrong folder”
+### “File not found” that is really “wrong folder”
 
-##### Symptom.
+You run a script and Python tells you `FileNotFoundError: data/input.csv`. Rather than editing the path at random, you stop and gather evidence about where the script thinks it is. Two commands settle it:
 
-You run a script and get `FileNotFoundError: data/input.csv`.
+``` python
+import os
+print("cwd:", os.getcwd())
+print("data dir:", os.listdir("data") if os.path.isdir("data") else "missing")
+```
 
-##### Investigation.
+If `cwd` is the project root, the path is fine and the file is genuinely missing. If `cwd` is some other directory, the path is *relative* to that other directory and the bug is not in your code at all — you just ran the script from the wrong place. The hypothesis is: the script uses a relative path and you are running it from the wrong directory. The experiment is: run the script from the project root, or rewrite the path so it is computed from `__file__` and is independent of the working directory:
 
-Rather than editing the path randomly, you gather evidence:
+``` python
+from pathlib import Path
+HERE = Path(__file__).resolve().parent
+DATA = HERE / "data" / "input.csv"
+assert DATA.exists(), f"Missing {DATA}"
+```
 
-- Print the current working directory.
+That assertion is the verification step: it turns the silent assumption (“the file is here”) into a loud check that fails immediately if the assumption ever breaks again. The lesson generalizes: many “code” failures are really about context, not logic. Always confirm where you are before you change what you do.
 
-- List the `data/` folder.
+### “It runs but the results are wrong”
 
-##### Hypothesis.
+Silent wrongness is much harder than a crash. Suppose you compute the average age in your dataset and get back `0.0`, which is obviously wrong but does not raise any exception. The investigation is decomposition: break the pipeline into stages — load the ages, convert them to numeric, compute the average — and inspect the intermediate result after each stage:
 
-The script uses a relative path, and you are running it from the wrong directory.
+``` python
+print(df["age"].head())              # what do the values actually look like?
+print(df["age"].dtype)               # is the column numeric or object?
+print(df["age"].isna().mean())       # how many are NaN?
+```
 
-##### Experiment.
-
-Run the script from the project root, or change the script to compute absolute paths based on `__file__`.
-
-##### Verification.
-
-Add a small check:
-
-    from pathlib import Path
-    assert Path("data/input.csv").exists(), "Missing data/input.csv"
-
-This case illustrates a common debugging lesson: many failures are about context, not about code logic.
-
-### Case study 2: “It runs but results are wrong”
-
-Silent wrongness is harder than crashes. Suppose you compute an average age and get 0.0.
-
-##### Decomposition.
-
-Break the pipeline:
-
-1.  Load ages.
-
-2.  Convert ages to numeric.
-
-3.  Compute average.
-
-##### Instrumentation.
-
-Print:
-
-- `df[’age’].head()`
-
-- `df[’age’].dtype`
-
-- `df[’age’].isna().mean()`
-
-##### Hypothesis.
-
-Ages are strings with non-numeric values; conversion produced NaNs, and the computation treated NaNs as zeros (or you filled missing values incorrectly).
-
-##### Fix + test.
-
-Fix conversion and add a test that the NaN rate is below an expected threshold.
-
-The lesson: debugging is often about inspecting intermediate representations.
+In this case the column is `object`, the head shows `'35'`, `'42'`, `'unknown'`, and the NaN rate is 80%. Hypothesis: ages were read as strings because of the `'unknown'` sentinel, so `pd.to_numeric` produced mostly NaNs, and your average call ignored them — leaving a near-zero result. The fix is to handle the missing values explicitly at load time (`na_values=['unknown']`) and to add a test that locks in an expected non-NaN rate going forward, so the next time someone changes the ingestion the silent failure cannot return. The general lesson is that debugging silent wrongness almost always comes down to inspecting intermediate representations rather than the final answer.
 
 ## 5.13 Using AI tools in debugging
 

@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -33,7 +68,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../parts/part-3-python/testing.html" rel="next">
+<link href="../../parts/part-3-python/regex.html" rel="next">
 <link href="../../parts/part-3-python/jupyter.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -426,20 +461,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../parts/part-3-python/testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Testing Basics with pytest</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../parts/part-3-python/regex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regular Expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Regular Expressions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-3-python/linting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Code Style, Linting, and Formatting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Code Style, Linting, and Formatting</span></span></a>
   </div>
 </li>
       </ul>
@@ -456,31 +485,31 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/data-file-formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Data File Formats</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Data File Formats</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/tabular-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Tabular Data: Shape, Cleaning, and Validation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Tabular Data: Shape, Cleaning, and Validation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/pandas-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">pandas Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">pandas Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/sql-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">SQL Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">SQL Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/http-apis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">HTTP and Web APIs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">HTTP and Web APIs</span></span></a>
   </div>
 </li>
       </ul>
@@ -497,37 +526,31 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/project-management.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Project Management</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Project Management</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/version-control.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Version Control</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Version Control</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/collaboration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Collaboration Mechanics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Collaboration Mechanics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/automation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Automation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Automation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/secrets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Environment Variables and Secrets</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../parts/part-5-projects/pre-commit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Pre-commit Hooks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Environment Variables and Secrets</span></span></a>
   </div>
 </li>
       </ul>
@@ -544,19 +567,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/llm-internals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">How Language Models Work</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">How Language Models Work</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/ai-agents.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Working with AI Agent Frameworks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Working with AI Agent Frameworks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/evaluating-ai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Evaluating and Auditing AI Outputs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Evaluating and Auditing AI Outputs</span></span></a>
   </div>
 </li>
       </ul>
@@ -564,7 +587,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -609,13 +632,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#entry-point-vs-library-code" id="toc-entry-point-vs-library-code" class="nav-link" data-scroll-target="#entry-point-vs-library-code">Entry point vs library code</a></li>
   <li><a href="#working-directory-and-paths" id="toc-working-directory-and-paths" class="nav-link" data-scroll-target="#working-directory-and-paths">Working directory and paths</a></li>
   </ul></li>
-  <li><a href="#writing-scripts-the-essentials" id="toc-writing-scripts-the-essentials" class="nav-link" data-scroll-target="#writing-scripts-the-essentials"><span class="header-section-number">16.2</span> Writing scripts: the essentials</a>
-  <ul class="collapse">
-  <li><a href="#a-minimal-script-structure" id="toc-a-minimal-script-structure" class="nav-link" data-scroll-target="#a-minimal-script-structure">A minimal script structure</a></li>
-  <li><a href="#why-main-matters" id="toc-why-main-matters" class="nav-link" data-scroll-target="#why-main-matters">Why <code>main()</code> matters</a></li>
-  <li><a href="#inputs-outputs-and-side-effects" id="toc-inputs-outputs-and-side-effects" class="nav-link" data-scroll-target="#inputs-outputs-and-side-effects">Inputs, outputs, and side effects</a></li>
-  <li><a href="#print-vs-logging-intro-level" id="toc-print-vs-logging-intro-level" class="nav-link" data-scroll-target="#print-vs-logging-intro-level">Print vs logging (intro level)</a></li>
-  </ul></li>
+  <li><a href="#writing-scripts-the-essentials" id="toc-writing-scripts-the-essentials" class="nav-link" data-scroll-target="#writing-scripts-the-essentials"><span class="header-section-number">16.2</span> Writing scripts: the essentials</a></li>
   <li><a href="#organizing-reusable-code-from-one-file-to-src" id="toc-organizing-reusable-code-from-one-file-to-src" class="nav-link" data-scroll-target="#organizing-reusable-code-from-one-file-to-src"><span class="header-section-number">16.3</span> Organizing reusable code: from one file to <code>src/</code></a>
   <ul class="collapse">
   <li><a href="#from-monolith-to-functions" id="toc-from-monolith-to-functions" class="nav-link" data-scroll-target="#from-monolith-to-functions">From monolith to functions</a></li>
@@ -633,7 +650,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#why-parameterize-scripts" id="toc-why-parameterize-scripts" class="nav-link" data-scroll-target="#why-parameterize-scripts">Why parameterize scripts</a></li>
   <li><a href="#three-levels-of-parameterization" id="toc-three-levels-of-parameterization" class="nav-link" data-scroll-target="#three-levels-of-parameterization">Three levels of parameterization</a></li>
-  <li><a href="#the-cli-pattern-student-baseline" id="toc-the-cli-pattern-student-baseline" class="nav-link" data-scroll-target="#the-cli-pattern-student-baseline">The CLI pattern (student baseline)</a></li>
+  <li><a href="#the-cli-pattern" id="toc-the-cli-pattern" class="nav-link" data-scroll-target="#the-cli-pattern">The CLI pattern</a></li>
   <li><a href="#validating-inputs" id="toc-validating-inputs" class="nav-link" data-scroll-target="#validating-inputs">Validating inputs</a></li>
   <li><a href="#reproducibility-and-auditability" id="toc-reproducibility-and-auditability" class="nav-link" data-scroll-target="#reproducibility-and-auditability">Reproducibility and auditability</a></li>
   </ul></li>
@@ -648,9 +665,8 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#notebooks-are-best-for" id="toc-notebooks-are-best-for" class="nav-link" data-scroll-target="#notebooks-are-best-for">Notebooks are best for</a></li>
   <li><a href="#scripts-are-best-for" id="toc-scripts-are-best-for" class="nav-link" data-scroll-target="#scripts-are-best-for">Scripts are best for</a></li>
-  <li><a href="#common-hybrid-pattern-recommended" id="toc-common-hybrid-pattern-recommended" class="nav-link" data-scroll-target="#common-hybrid-pattern-recommended">Common hybrid pattern (recommended)</a></li>
-  <li><a href="#smells-that-suggest-move-to-a-script" id="toc-smells-that-suggest-move-to-a-script" class="nav-link" data-scroll-target="#smells-that-suggest-move-to-a-script">Smells that suggest “move to a script”</a></li>
-  <li><a href="#smells-that-suggest-stay-in-a-notebook" id="toc-smells-that-suggest-stay-in-a-notebook" class="nav-link" data-scroll-target="#smells-that-suggest-stay-in-a-notebook">Smells that suggest “stay in a notebook”</a></li>
+  <li><a href="#a-common-hybrid-pattern" id="toc-a-common-hybrid-pattern" class="nav-link" data-scroll-target="#a-common-hybrid-pattern">A common hybrid pattern</a></li>
+  <li><a href="#when-to-move-from-a-notebook-to-a-script" id="toc-when-to-move-from-a-notebook-to-a-script" class="nav-link" data-scroll-target="#when-to-move-from-a-notebook-to-a-script">When to move from a notebook to a script</a></li>
   </ul></li>
   <li><a href="#best-practices-making-scripts-and-notebooks-play-well-together" id="toc-best-practices-making-scripts-and-notebooks-play-well-together" class="nav-link" data-scroll-target="#best-practices-making-scripts-and-notebooks-play-well-together"><span class="header-section-number">16.8</span> Best practices: making scripts and notebooks play well together</a>
   <ul class="collapse">
@@ -659,13 +675,13 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#document-how-to-run" id="toc-document-how-to-run" class="nav-link" data-scroll-target="#document-how-to-run">Document how to run</a></li>
   <li><a href="#version-control-discipline" id="toc-version-control-discipline" class="nav-link" data-scroll-target="#version-control-discipline">Version control discipline</a></li>
   </ul></li>
-  <li><a href="#worked-examples-outline" id="toc-worked-examples-outline" class="nav-link" data-scroll-target="#worked-examples-outline"><span class="header-section-number">16.9</span> Worked examples (outline)</a>
+  <li><a href="#worked-examples" id="toc-worked-examples" class="nav-link" data-scroll-target="#worked-examples"><span class="header-section-number">16.9</span> Worked examples</a>
   <ul class="collapse">
-  <li><a href="#example-1-turn-notebook-code-into-importable-functions" id="toc-example-1-turn-notebook-code-into-importable-functions" class="nav-link" data-scroll-target="#example-1-turn-notebook-code-into-importable-functions">Example 1: Turn notebook code into importable functions</a></li>
-  <li><a href="#example-2-write-a-cli-script-around-your-functions" id="toc-example-2-write-a-cli-script-around-your-functions" class="nav-link" data-scroll-target="#example-2-write-a-cli-script-around-your-functions">Example 2: Write a CLI script around your functions</a></li>
-  <li><a href="#example-3-debug-it-imports-in-the-terminal-but-not-in-the-notebook" id="toc-example-3-debug-it-imports-in-the-terminal-but-not-in-the-notebook" class="nav-link" data-scroll-target="#example-3-debug-it-imports-in-the-terminal-but-not-in-the-notebook">Example 3: Debug “it imports in the terminal but not in the notebook”</a></li>
-  <li><a href="#example-4-convert-a-notebook-to-a-script-and-refactor" id="toc-example-4-convert-a-notebook-to-a-script-and-refactor" class="nav-link" data-scroll-target="#example-4-convert-a-notebook-to-a-script-and-refactor">Example 4: Convert a notebook to a script and refactor</a></li>
-  <li><a href="#example-5-parameterize-a-notebook-for-repeated-execution-optional" id="toc-example-5-parameterize-a-notebook-for-repeated-execution-optional" class="nav-link" data-scroll-target="#example-5-parameterize-a-notebook-for-repeated-execution-optional">Example 5: Parameterize a notebook for repeated execution (optional)</a></li>
+  <li><a href="#turning-notebook-code-into-importable-functions" id="toc-turning-notebook-code-into-importable-functions" class="nav-link" data-scroll-target="#turning-notebook-code-into-importable-functions">Turning notebook code into importable functions</a></li>
+  <li><a href="#writing-a-cli-script-around-your-functions" id="toc-writing-a-cli-script-around-your-functions" class="nav-link" data-scroll-target="#writing-a-cli-script-around-your-functions">Writing a CLI script around your functions</a></li>
+  <li><a href="#debugging-it-imports-in-the-terminal-but-not-in-the-notebook" id="toc-debugging-it-imports-in-the-terminal-but-not-in-the-notebook" class="nav-link" data-scroll-target="#debugging-it-imports-in-the-terminal-but-not-in-the-notebook">Debugging “it imports in the terminal but not in the notebook”</a></li>
+  <li><a href="#converting-a-notebook-to-a-script-and-refactoring" id="toc-converting-a-notebook-to-a-script-and-refactoring" class="nav-link" data-scroll-target="#converting-a-notebook-to-a-script-and-refactoring">Converting a notebook to a script and refactoring</a></li>
+  <li><a href="#parameterizing-a-notebook-with-papermill" id="toc-parameterizing-a-notebook-with-papermill" class="nav-link" data-scroll-target="#parameterizing-a-notebook-with-papermill">Parameterizing a notebook with <code>papermill</code></a></li>
   </ul></li>
   <li><a href="#templates" id="toc-templates" class="nav-link" data-scroll-target="#templates"><span class="header-section-number">16.10</span> Templates</a>
   <ul class="collapse">
@@ -714,8 +730,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>Prerequisites (read first if unfamiliar):</strong> <a href="#sec-pkg-mgmt" class="quarto-xref"><span class="quarto-unresolved-ref">sec-pkg-mgmt</span></a>, <a href="#sec-jupyter" class="quarto-xref"><span class="quarto-unresolved-ref">sec-jupyter</span></a>.</p>
-<p><strong>See also:</strong> <a href="#sec-testing" class="quarto-xref"><span class="quarto-unresolved-ref">sec-testing</span></a>, <a href="#sec-automation" class="quarto-xref"><span class="quarto-unresolved-ref">sec-automation</span></a>, <a href="#sec-git-github" class="quarto-xref"><span class="quarto-unresolved-ref">sec-git-github</span></a>.</p>
+<p><strong>Prerequisites (read first if unfamiliar):</strong> <a href="package-management.html" class="quarto-xref"><span>Chapter 13</span></a>, <a href="jupyter.html" class="quarto-xref"><span>Chapter 15</span></a>.</p>
+<p><strong>See also:</strong> <a href="../part-5-projects/automation.html" class="quarto-xref"><span>Chapter 27</span></a>, <a href="../part-5-projects/version-control.html" class="quarto-xref"><span>Chapter 25</span></a>.</p>
 </div>
 </div>
 </div>
@@ -776,38 +792,39 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="writing-scripts-the-essentials" class="level2" data-number="16.2">
 <h2 data-number="16.2" class="anchored" data-anchor-id="writing-scripts-the-essentials"><span class="header-section-number">16.2</span> Writing scripts: the essentials</h2>
-<section id="a-minimal-script-structure" class="level3">
-<h3 class="anchored" data-anchor-id="a-minimal-script-structure">A minimal script structure</h3>
-<ul>
-<li><p>Imports</p></li>
-<li><p>Constants/config</p></li>
-<li><p>Functions</p></li>
-<li><p><code>main()</code> function</p></li>
-<li><p><code>if __name__ == "__main__":</code> block</p></li>
-</ul>
-</section>
-<section id="why-main-matters" class="level3">
-<h3 class="anchored" data-anchor-id="why-main-matters">Why <code>main()</code> matters</h3>
-<ul>
-<li><p>Enables clean separation between code that runs on import vs code that runs on execution.</p></li>
-<li><p>Makes the file usable both as a script and as an importable module.</p></li>
-</ul>
-</section>
-<section id="inputs-outputs-and-side-effects" class="level3">
-<h3 class="anchored" data-anchor-id="inputs-outputs-and-side-effects">Inputs, outputs, and side effects</h3>
-<ul>
-<li><p>Inputs: file paths, URLs, parameters.</p></li>
-<li><p>Outputs: files (CSV, figures), printed summaries, logs.</p></li>
-<li><p>Prefer writing outputs to named folders (e.g., <code>data/processed</code>, <code>figures/</code>).</p></li>
-</ul>
-</section>
-<section id="print-vs-logging-intro-level" class="level3">
-<h3 class="anchored" data-anchor-id="print-vs-logging-intro-level">Print vs logging (intro level)</h3>
-<ul>
-<li><p>Use print for small, human-facing status.</p></li>
-<li><p>Introduce logging as a structured alternative for larger scripts.</p></li>
-</ul>
-</section>
+<p>A minimal Python script has a predictable shape: imports at the top, then constants and configuration, then the functions that do the work, then a <code>main()</code> function that orchestrates them, and finally the <code>if __name__ == "__main__":</code> block at the bottom that runs <code>main()</code> when the file is executed as a script.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""Clean and summarize the Q3 sales CSV."""</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>INPUT <span class="op">=</span> Path(<span class="st">"data/raw/sales.csv"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>OUTPUT <span class="op">=</span> Path(<span class="st">"data/processed/sales_clean.csv"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean(df):</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    df.columns <span class="op">=</span> df.columns.<span class="bu">str</span>.strip().<span class="bu">str</span>.lower()</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"amount"</span>] <span class="op">=</span> pd.to_numeric(df[<span class="st">"amount"</span>], errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df.dropna(subset<span class="op">=</span>[<span class="st">"amount"</span>])</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(INPUT)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    cleaned <span class="op">=</span> clean(df)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    cleaned.to_csv(OUTPUT, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"wrote </span><span class="sc">{</span><span class="bu">len</span>(cleaned)<span class="sc">:,}</span><span class="ss"> rows to </span><span class="sc">{</span>OUTPUT<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    main()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The reason that little <code>if __name__ == "__main__":</code> line at the bottom matters is that it lets the same file work as <em>both</em> a script and an importable module. When you run <code>python clean.py</code> from the command line, Python sets the special variable <code>__name__</code> to <code>"__main__"</code> and the body of the <code>if</code> runs — calling <code>main()</code>, doing the work. When some other file does <code>from clean import clean</code> to import just the function, Python sets <code>__name__</code> to <code>"clean"</code> and the <code>main()</code> call does <em>not</em> run. This pattern is the difference between a script that you can only run one way and a script that other people (and your future notebooks) can also import the useful pieces of.</p>
+<p>Inside <code>main()</code>, the script’s job is to take some inputs (file paths, URLs, parameters) and produce some outputs (cleaned CSVs, figures, summaries, logs). A good habit is to write outputs to predictable folders — <code>data/processed/</code> for cleaned tables, <code>figures/</code> for plots, <code>reports/</code> for finished artifacts — so your collaborators (and future you) always know where to look.</p>
+<p>For small status messages while a script is running, <code>print()</code> is fine — “loaded 42,103 rows,” “starting cleaning step.” For longer-lived scripts, especially anything that runs on a schedule or that you want to debug after the fact, switch to the standard library <code>logging</code> module instead. Logging gives you levels (INFO, WARNING, ERROR), timestamps, and the ability to send output to a file. The simplest possible setup is:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> logging</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>logging.basicConfig(level<span class="op">=</span>logging.INFO,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">format</span><span class="op">=</span><span class="st">"</span><span class="sc">%(asctime)s</span><span class="st"> </span><span class="sc">%(levelname)s</span><span class="st"> </span><span class="sc">%(message)s</span><span class="st">"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>log <span class="op">=</span> logging.getLogger(<span class="va">__name__</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>log.info(<span class="st">"loaded </span><span class="sc">%d</span><span class="st"> rows"</span>, <span class="bu">len</span>(df))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Stick with <code>print</code> for course assignments; reach for logging when you start writing scripts that other people will depend on or that run unattended.</p>
 </section>
 <section id="organizing-reusable-code-from-one-file-to-src" class="level2" data-number="16.3">
 <h2 data-number="16.3" class="anchored" data-anchor-id="organizing-reusable-code-from-one-file-to-src"><span class="header-section-number">16.3</span> Organizing reusable code: from one file to <code>src/</code></h2>
@@ -891,44 +908,45 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="three-levels-of-parameterization" class="level3">
 <h3 class="anchored" data-anchor-id="three-levels-of-parameterization">Three levels of parameterization</h3>
-<dl>
-<dt>Level 1: constants</dt>
-<dd>
-<p>edit values in the script (fast, not scalable).</p>
-</dd>
-<dt>Level 2: config files</dt>
-<dd>
-<p>store parameters in a small text file (scalable for teams).</p>
-</dd>
-<dt>Level 3: CLI arguments</dt>
-<dd>
-<p>pass parameters at run time (best for automation).</p>
-</dd>
-</dl>
+<p>Parameterization comes in three flavors that scale with how serious the project is. The simplest level is <strong>constants in the script itself</strong>: you put <code>INPUT = "data/q3.csv"</code> near the top and edit it whenever you need a different dataset. This is fast and fine for one-off work; it does not scale to running the same script against many inputs without becoming a copy-paste mess. The next level is <strong>a config file</strong> — a small <code>.yml</code> or <code>.toml</code> file that holds parameters and that the script reads at startup. Config files are good when several teammates need to adjust parameters without editing code. The most flexible level is <strong>command-line arguments</strong>, where parameters are passed when the script is invoked. CLI scripts are the right shape for automation, scheduled runs, and any workflow where the same code needs to run with different inputs.</p>
 </section>
-<section id="the-cli-pattern-student-baseline" class="level3">
-<h3 class="anchored" data-anchor-id="the-cli-pattern-student-baseline">The CLI pattern (student baseline)</h3>
-<ul>
-<li><p>Define required positional arguments (e.g., input file).</p></li>
-<li><p>Define optional flags (e.g., <code>–out</code>, <code>–seed</code>, <code>–limit</code>).</p></li>
-<li><p>Provide clear help text and defaults.</p></li>
-</ul>
+<section id="the-cli-pattern" class="level3">
+<h3 class="anchored" data-anchor-id="the-cli-pattern">The CLI pattern</h3>
+<p>The standard way to give a Python script command-line arguments is the built-in <code>argparse</code> module. You define each argument once, with a description and (where appropriate) a default value, and <code>argparse</code> handles parsing the user’s input, generating a <code>--help</code> message, and rejecting invalid arguments before your code ever runs.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> argparse</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> parse_args():</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> argparse.ArgumentParser(description<span class="op">=</span><span class="st">"Clean a sales CSV."</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    p.add_argument(<span class="st">"--input"</span>, <span class="bu">type</span><span class="op">=</span>Path, required<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                   <span class="bu">help</span><span class="op">=</span><span class="st">"path to the raw CSV"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    p.add_argument(<span class="st">"--output"</span>, <span class="bu">type</span><span class="op">=</span>Path, required<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                   <span class="bu">help</span><span class="op">=</span><span class="st">"where to write the cleaned CSV"</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    p.add_argument(<span class="st">"--seed"</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>, default<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                   <span class="bu">help</span><span class="op">=</span><span class="st">"random seed for reproducibility"</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> p.parse_args()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now <code>python clean.py --input data/raw/q3.csv --output data/processed/q3_clean.csv</code> works, and <code>python clean.py --help</code> prints a friendly summary of every option.</p>
 </section>
 <section id="validating-inputs" class="level3">
 <h3 class="anchored" data-anchor-id="validating-inputs">Validating inputs</h3>
-<ul>
-<li><p>Check that input paths exist.</p></li>
-<li><p>Validate parameter ranges (e.g., nonnegative integers).</p></li>
-<li><p>Fail fast with helpful error messages.</p></li>
-</ul>
+<p>A good habit is to <em>fail fast</em> when an input is wrong, with a message that tells the user what to do. Check that input paths exist before you try to read from them. Validate that numeric parameters are in sensible ranges (a sample size cannot be negative, a percentage must be between 0 and 100). And produce clear error messages, not stack traces — <code>argparse.ArgumentTypeError</code> is the canonical way to do this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    args <span class="op">=</span> parse_args()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> args.<span class="bu">input</span>.exists():</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">SystemExit</span>(<span class="ss">f"input not found: </span><span class="sc">{</span>args<span class="sc">.</span><span class="bu">input</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> args.seed <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">SystemExit</span>(<span class="ss">f"seed must be non-negative, got </span><span class="sc">{</span>args<span class="sc">.</span>seed<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The script aborts immediately with a one-line message instead of running for ten minutes and then crashing on a missing file.</p>
 </section>
 <section id="reproducibility-and-auditability" class="level3">
 <h3 class="anchored" data-anchor-id="reproducibility-and-auditability">Reproducibility and auditability</h3>
-<ul>
-<li><p>Print or log the resolved parameters at start.</p></li>
-<li><p>Write outputs to a deterministic location based on parameters.</p></li>
-<li><p>Record the command used to run the script in <code>README.md</code> or an output metadata file.</p></li>
-</ul>
+<p>Every parameterized script should print or log its resolved parameters at startup, so that anyone reading the output later can tell exactly what configuration produced it. The same goes for outputs: write them to a path that includes the relevant parameters (a date, a seed, an input filename) so you can tell two runs apart at a glance. And record the <em>exact command used to run the script</em> in a <code>README.md</code> or a metadata file alongside the output, so someone can reproduce the run six months from now without guessing.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    args <span class="op">=</span> parse_args()</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"INPUT=</span><span class="sc">{</span>args<span class="sc">.</span><span class="bu">input</span><span class="sc">}</span><span class="ss">  OUTPUT=</span><span class="sc">{</span>args<span class="sc">.</span>output<span class="sc">}</span><span class="ss">  SEED=</span><span class="sc">{</span>args<span class="sc">.</span>seed<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Three small habits, almost no extra effort, and your work is dramatically more reproducible.</p>
 </section>
 </section>
 <section id="translating-notebooks-into-scripts-and-vice-versa" class="level2" data-number="16.6">
@@ -967,45 +985,20 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="16.7" class="anchored" data-anchor-id="notebook-versus-script-trade-offs-and-decision-rules"><span class="header-section-number">16.7</span> Notebook versus script: trade-offs and decision rules</h2>
 <section id="notebooks-are-best-for" class="level3">
 <h3 class="anchored" data-anchor-id="notebooks-are-best-for">Notebooks are best for</h3>
-<ul>
-<li><p>Exploration and rapid iteration.</p></li>
-<li><p>Teaching, explanation, and narrative analysis.</p></li>
-<li><p>Sharing a computational story with plots and commentary.</p></li>
-</ul>
+<p>Notebooks shine when the primary goal is exploration, learning, or communication. They are the right tool when you are still figuring out what your data looks like, when you want to iterate rapidly between code and visualization, and when the final artifact is a narrative analysis with plots and commentary that someone else will read. The mix of code, prose, and inline output is what makes a notebook a <em>document</em>, and that is what scripts cannot do well.</p>
 </section>
 <section id="scripts-are-best-for" class="level3">
 <h3 class="anchored" data-anchor-id="scripts-are-best-for">Scripts are best for</h3>
-<ul>
-<li><p>Repeatable runs with parameters.</p></li>
-<li><p>Automation (cron, schedulers, CI).</p></li>
-<li><p>Long-running jobs and robust logging.</p></li>
-<li><p>Clean version control diffs and code review.</p></li>
-</ul>
+<p>Scripts shine when the primary goal is repeatable execution. The same code, applied to many inputs, on a schedule, possibly in CI, with predictable logs and outputs that go to predictable locations. Anything that needs to run unattended — at 3 AM as a cron job, on every push to GitHub, in a batch over a hundred files — should be a script. Scripts also produce dramatically cleaner diffs in version control than notebooks (which serialize as JSON with embedded outputs), which makes them easier to code review.</p>
 </section>
-<section id="common-hybrid-pattern-recommended" class="level3">
-<h3 class="anchored" data-anchor-id="common-hybrid-pattern-recommended">Common hybrid pattern (recommended)</h3>
-<ul>
-<li><p><strong>Notebook:</strong> narrative driver, figures, interpretation.</p></li>
-<li><p><strong>src/:</strong> reusable functions.</p></li>
-<li><p><strong>scripts/:</strong> CLI entry points for batch runs.</p></li>
-</ul>
+<section id="a-common-hybrid-pattern" class="level3">
+<h3 class="anchored" data-anchor-id="a-common-hybrid-pattern">A common hybrid pattern</h3>
+<p>In practice the right shape for a serious project is usually neither pure-notebook nor pure-script, but a layered hybrid. The reusable computational logic — cleaning functions, modeling utilities, plot helpers — lives in <code>src/</code> as plain Python modules with no notebook ceremony. CLI entry points for batch runs live in <code>scripts/</code>, importing from <code>src/</code>. And one or more notebooks in <code>notebooks/</code> orchestrate the analysis and provide the narrative, <em>also</em> importing from <code>src/</code>. The notebook is the story; the scripts are the engine; <code>src/</code> is the shared library that both depend on. With this structure, the same cleaning function gets exercised both in the interactive notebook and in the unattended pipeline, so you do not have two slightly-different copies that drift apart.</p>
 </section>
-<section id="smells-that-suggest-move-to-a-script" class="level3">
-<h3 class="anchored" data-anchor-id="smells-that-suggest-move-to-a-script">Smells that suggest “move to a script”</h3>
-<ul>
-<li><p>You manually rerun the same notebook with small changes.</p></li>
-<li><p>The notebook takes a long time and you want it to run unattended.</p></li>
-<li><p>You need command-line parameters or scheduled runs.</p></li>
-<li><p>You need robust logs, retries, or consistent outputs.</p></li>
-</ul>
-</section>
-<section id="smells-that-suggest-stay-in-a-notebook" class="level3">
-<h3 class="anchored" data-anchor-id="smells-that-suggest-stay-in-a-notebook">Smells that suggest “stay in a notebook”</h3>
-<ul>
-<li><p>The primary goal is interpretation and communication.</p></li>
-<li><p>The analysis is exploratory and changing quickly.</p></li>
-<li><p>You are teaching or documenting reasoning.</p></li>
-</ul>
+<section id="when-to-move-from-a-notebook-to-a-script" class="level3">
+<h3 class="anchored" data-anchor-id="when-to-move-from-a-notebook-to-a-script">When to move from a notebook to a script</h3>
+<p>There are clear smells that signal “this notebook should become (or call) a script.” If you find yourself manually rerunning the same notebook with small parameter changes, you want a script with arguments. If the notebook takes long enough that you want to run it overnight, you want a script. If the work needs to happen on a schedule, in CI, or as a step in a pipeline, you want a script. And if you find yourself wishing for proper logs, retries, or consistent file outputs, that is the moment to extract the logic.</p>
+<p>The complementary smells say “this should stay in a notebook”: the primary goal is interpretation or communication, the analysis is still exploratory and changing quickly, or you are teaching or documenting reasoning rather than producing a deliverable. Notebooks are the wrong tool for production but the right tool for thinking; do not let “scripts are more professional” push you out of a notebook when a notebook is what you actually need.</p>
 </section>
 </section>
 <section id="best-practices-making-scripts-and-notebooks-play-well-together" class="level2" data-number="16.8">
@@ -1040,46 +1033,79 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </section>
 </section>
-<section id="worked-examples-outline" class="level2" data-number="16.9">
-<h2 data-number="16.9" class="anchored" data-anchor-id="worked-examples-outline"><span class="header-section-number">16.9</span> Worked examples (outline)</h2>
-<section id="example-1-turn-notebook-code-into-importable-functions" class="level3">
-<h3 class="anchored" data-anchor-id="example-1-turn-notebook-code-into-importable-functions">Example 1: Turn notebook code into importable functions</h3>
-<ul>
-<li><p>Identify a repeated transform.</p></li>
-<li><p>Extract into <code>src/cleaning.py</code>.</p></li>
-<li><p>Import and call from the notebook.</p></li>
-</ul>
+<section id="worked-examples" class="level2" data-number="16.9">
+<h2 data-number="16.9" class="anchored" data-anchor-id="worked-examples"><span class="header-section-number">16.9</span> Worked examples</h2>
+<section id="turning-notebook-code-into-importable-functions" class="level3">
+<h3 class="anchored" data-anchor-id="turning-notebook-code-into-importable-functions">Turning notebook code into importable functions</h3>
+<p>Your notebook has the same five lines of cleaning code in three different cells: lower-case the column names, parse the date column, drop rows with no customer id. Time to extract them.</p>
+<p>Create <code>src/cleaning.py</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># src/cleaning.py</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_sales(df: pd.DataFrame) <span class="op">-&gt;</span> pd.DataFrame:</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    df.columns <span class="op">=</span> df.columns.<span class="bu">str</span>.strip().<span class="bu">str</span>.lower()</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"date"</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">"date"</span>], errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df.dropna(subset<span class="op">=</span>[<span class="st">"customer_id"</span>, <span class="st">"date"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>In the notebook, replace those three repeated cells with a single import and call:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> src.cleaning <span class="im">import</span> clean_sales</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> clean_sales(pd.read_csv(<span class="st">"data/raw/sales.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now there is exactly one place where the cleaning logic lives. Improvements to it apply everywhere automatically.</p>
 </section>
-<section id="example-2-write-a-cli-script-around-your-functions" class="level3">
-<h3 class="anchored" data-anchor-id="example-2-write-a-cli-script-around-your-functions">Example 2: Write a CLI script around your functions</h3>
-<ul>
-<li><p>Create <code>scripts/run_cleaning.py</code>.</p></li>
-<li><p>Parse <code>–input</code> and <code>–output</code>.</p></li>
-<li><p>Write outputs and print a short run summary.</p></li>
-</ul>
+<section id="writing-a-cli-script-around-your-functions" class="level3">
+<h3 class="anchored" data-anchor-id="writing-a-cli-script-around-your-functions">Writing a CLI script around your functions</h3>
+<p>Now turn the same cleaning logic into something you can run from the command line on any input file:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># scripts/run_cleaning.py</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> argparse</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> src.cleaning <span class="im">import</span> clean_sales</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> argparse.ArgumentParser()</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    p.add_argument(<span class="st">"--input"</span>, <span class="bu">type</span><span class="op">=</span>Path, required<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    p.add_argument(<span class="st">"--output"</span>, <span class="bu">type</span><span class="op">=</span>Path, required<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    args <span class="op">=</span> p.parse_args()</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(args.<span class="bu">input</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    cleaned <span class="op">=</span> clean_sales(df)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    cleaned.to_csv(args.output, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"wrote </span><span class="sc">{</span><span class="bu">len</span>(cleaned)<span class="sc">:,}</span><span class="ss"> rows to </span><span class="sc">{</span>args<span class="sc">.</span>output<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    main()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Run it like any script:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> scripts/run_cleaning.py <span class="dt">\</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input</span> data/raw/sales.csv <span class="dt">\</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--output</span> data/processed/sales_clean.csv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The cleaning function is unchanged, the notebook is unchanged, and you now have a third way to invoke the same logic. Parameter changes are command-line flags rather than code edits.</p>
 </section>
-<section id="example-3-debug-it-imports-in-the-terminal-but-not-in-the-notebook" class="level3">
-<h3 class="anchored" data-anchor-id="example-3-debug-it-imports-in-the-terminal-but-not-in-the-notebook">Example 3: Debug “it imports in the terminal but not in the notebook”</h3>
-<ul>
-<li><p>Diagnose kernel/environment mismatch.</p></li>
-<li><p>Diagnose project root/working directory mismatch.</p></li>
-<li><p>Fix by selecting the correct kernel and running from the project root.</p></li>
-</ul>
+<section id="debugging-it-imports-in-the-terminal-but-not-in-the-notebook" class="level3">
+<h3 class="anchored" data-anchor-id="debugging-it-imports-in-the-terminal-but-not-in-the-notebook">Debugging “it imports in the terminal but not in the notebook”</h3>
+<p>You can <code>from src.cleaning import clean_sales</code> from <code>python</code> at the terminal, but the same line in your notebook fails with <code>ModuleNotFoundError: No module named 'src'</code>. The cause is one of two things, and the diagnostic is one cell:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys, os</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"python:"</span>, sys.executable)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"cwd:   "</span>, os.getcwd())</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"path[0]:"</span>, sys.path[<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If <code>python</code> is not your project’s venv interpreter, the kernel is wrong — switch kernels or register a new one (see <a href="jupyter.html" class="quarto-xref"><span>Chapter 15</span></a>). If <code>cwd</code> is not the project root, you are running the notebook from a subdirectory and Python cannot find <code>src/</code> from there — move the notebook, or <code>cd</code> into the project root before launching Jupyter, or add the project root to <code>sys.path</code> explicitly. Either way, the diagnostic cell tells you which problem you have within seconds.</p>
 </section>
-<section id="example-4-convert-a-notebook-to-a-script-and-refactor" class="level3">
-<h3 class="anchored" data-anchor-id="example-4-convert-a-notebook-to-a-script-and-refactor">Example 4: Convert a notebook to a script and refactor</h3>
-<ul>
-<li><p>Convert <code>analysis.ipynb</code> to <code>analysis.py</code>.</p></li>
-<li><p>Clean the result: remove interactive-only cells, extract functions.</p></li>
-<li><p>Add a minimal <code>main()</code> and CLI args.</p></li>
-</ul>
+<section id="converting-a-notebook-to-a-script-and-refactoring" class="level3">
+<h3 class="anchored" data-anchor-id="converting-a-notebook-to-a-script-and-refactoring">Converting a notebook to a script and refactoring</h3>
+<p>The standard tool for this is <code>jupyter nbconvert</code>, which produces a <code>.py</code> file from a notebook in one command:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> nbconvert <span class="at">--to</span> script notebooks/analysis.ipynb <span class="dt">\</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">--output</span> ../scripts/analysis</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The result is rarely a clean script on its own — it has every cell concatenated, including the interactive <code>df.head()</code> calls that were just for inspection, the cells you wrote and then commented out, and any markdown cells (which become code comments). The conversion is the <em>starting point</em> of a refactor, not the finished product. From there, walk through the file and remove anything that was only there for interactive inspection, extract repeated logic into functions, and wrap the whole thing in a <code>main()</code> and <code>if __name__ == "__main__":</code> block. The end product is a real script you can run unattended; the original notebook stays for narrative use.</p>
 </section>
-<section id="example-5-parameterize-a-notebook-for-repeated-execution-optional" class="level3">
-<h3 class="anchored" data-anchor-id="example-5-parameterize-a-notebook-for-repeated-execution-optional">Example 5: Parameterize a notebook for repeated execution (optional)</h3>
-<ul>
-<li><p>Add a parameters cell.</p></li>
-<li><p>Execute with different parameter sets and save outputs.</p></li>
-</ul>
+<section id="parameterizing-a-notebook-with-papermill" class="level3">
+<h3 class="anchored" data-anchor-id="parameterizing-a-notebook-with-papermill">Parameterizing a notebook with <code>papermill</code></h3>
+<p>Sometimes you want the <em>notebook</em> to be parameterized rather than rewriting it as a script. The <code>papermill</code> tool lets you tag a cell as the “parameters” cell and then execute the notebook from the command line with different values injected. In the notebook, put a code cell at the top with the cell tag <code>parameters</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># parameters</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>input_file <span class="op">=</span> <span class="st">"data/raw/sales.csv"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>output_file <span class="op">=</span> <span class="st">"data/processed/sales_clean.csv"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then from the command line, execute the notebook with whatever parameters you like:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">papermill</span> notebooks/analysis.ipynb outputs/analysis_q3.ipynb <span class="dt">\</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">-p</span> input_file data/raw/sales_q3.csv <span class="dt">\</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">-p</span> output_file data/processed/sales_q3_clean.csv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>papermill</code> writes a new copy of the notebook with the executed outputs and the new parameter values baked in. This is the right tool when you want to keep the notebook narrative form but run it many times — for example, generating one report per month from the same template.</p>
 </section>
 </section>
 <section id="templates" class="level2" data-number="16.10">
@@ -1594,8 +1620,8 @@ main()</code></pre>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../parts/part-3-python/testing.html" class="pagination-link" aria-label="Testing Basics with pytest">
-        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Testing Basics with pytest</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../parts/part-3-python/regex.html" class="pagination-link" aria-label="Regular Expressions">
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Regular Expressions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

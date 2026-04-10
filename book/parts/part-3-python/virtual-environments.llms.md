@@ -30,7 +30,7 @@ By the end of this chapter, you should be able to:
 
 A venv that is not activated is not helping you. Make activation the first thing you do when you open a terminal for a project, and verify with a one-liner that the right Python is in use before you install anything.
 
-## 14.1 1. What a virtual environment actually is
+## 14.1 What a virtual environment actually is
 
 A venv is, mechanically, a directory on disk (typically named `.venv` or `venv` inside your project folder) that contains:
 
@@ -46,7 +46,7 @@ The benefits are enormous:
 - **Reproducibility.** You can record exactly which packages your project needs in a `requirements.txt` file and a collaborator can recreate the same environment in 30 seconds.
 - **Cleanup.** If an environment gets corrupted, you delete the directory and make a new one. No system-wide uninstalls.
 
-## 14.2 2. Creating and activating a venv
+## 14.2 Creating and activating a venv
 
 The standard Python library ships with the `venv` module. There is no install step; if you have Python 3, you have venv.
 
@@ -103,7 +103,7 @@ deactivate
 
 Deactivation just removes the venv from your `PATH`; it does not touch the files.
 
-## 14.3 3. Which Python am I running?
+## 14.3 Which Python am I running?
 
 This is the single most valuable diagnostic in this chapter. Paste it into your shell any time you are confused:
 
@@ -128,7 +128,7 @@ python -m pip show pandas
 
 Look at the `Location:` line. If it says `.../.venv/lib/python3.11/site-packages`, pandas lives in your venv. If it says `.../.local/lib/python3.11/site-packages` or `/usr/lib/python3/dist-packages`, the install leaked out of the venv.
 
-## 14.4 4. `venv` vs. `conda`
+## 14.4 `venv` vs. `conda`
 
 Both `venv` and `conda` create isolated environments. They differ in a few important ways:
 
@@ -144,7 +144,7 @@ As a rough rule: **start with `venv` for most projects**. It is simpler, ships w
 
 You can have both on the same machine — they do not conflict. Just do not try to “activate” a venv while a conda env is also active. Activate one or the other.
 
-## 14.5 5. Jupyter and venvs
+## 14.5 Jupyter and venvs
 
 Jupyter does not automatically see your venv. A Jupyter notebook runs Python through a [kernel](../../appendix-glossary.llms.md#term-kernel), and by default it may be pointed at your system Python. This causes the classic bug: you `pip install pandas` in your venv, open a notebook, and `import pandas` fails.
 
@@ -164,7 +164,7 @@ print(sys.executable)
 
 If that path points at your `.venv/bin/python`, you are good. If it points at `/usr/bin/python3`, switch the kernel. See [sec-jupyter](#sec-jupyter) for more on kernel management.
 
-## 14.6 6. VS Code and venvs
+## 14.6 VS Code and venvs
 
 VS Code auto-detects venvs in your project directory. When you open a workspace with a `.venv/` folder inside, VS Code prompts: *“We noticed a new virtual environment. Would you like to select it?”* Click yes and VS Code will use that interpreter for IntelliSense, linting, and the integrated terminal.
 
@@ -176,9 +176,9 @@ If it does not auto-detect, you can pick manually:
 
 The selected interpreter shows in the bottom-right of the VS Code status bar. Click it any time to switch.
 
-## 14.7 7. Worked examples
+## 14.7 Worked examples
 
-### Example 1: a new project from scratch
+### Starting a new project from scratch
 
 You are starting a term project that will use pandas and matplotlib.
 
@@ -203,7 +203,7 @@ jupyter lab
 
 In Jupyter, the new kernel appears in the launcher. Open a notebook with it and you are good to go.
 
-### Example 2: “it worked yesterday”
+### Diagnosing “it worked yesterday”
 
 You open your terminal the next morning, run `python analysis.py`, and get:
 
@@ -238,7 +238,7 @@ If this says `WARNING: Package(s) not found: pandas`, reinstall:
 python -m pip install -r requirements.txt
 ```
 
-### Example 3: a collaborator clones your project
+### A collaborator clones your project
 
 ``` bash
 git clone https://github.com/you/term-project.git
@@ -250,7 +250,7 @@ python -m pip install -r requirements.txt
 
 That is the whole setup. Five commands and any machine is running your project with the exact package versions you committed.
 
-## 14.8 8. Templates
+## 14.8 Templates
 
 **`.gitignore` entries for a venv project:**
 
@@ -268,7 +268,7 @@ That is the whole setup. Five commands and any machine is running your project w
 
 A version-pinned `requirements.txt` is reproducible but brittle. For libraries (code you publish for others to install), prefer loose constraints (`pandas>=2.0`). For application projects (your course work), prefer pins.
 
-## 14.9 9. Exercises
+## 14.9 Exercises
 
 1.  Create a fresh venv in an empty directory, activate it, and install `pandas`. Run `python -m pip show pandas` and confirm the `Location:` line is inside your venv.
 2.  Write down the output of `which python` (or `where python`) before and after activating a venv. Notice the path change.
@@ -278,7 +278,7 @@ A version-pinned `requirements.txt` is reproducible but brittle. For libraries (
 6.  Clone a classmate’s project (or your own on another machine) and get it running from scratch using only `git clone`, `python -m venv`, `activate`, and `pip install -r requirements.txt`. Time yourself — it should take under two minutes.
 7.  Delete your `.venv/` directory and recreate it from `requirements.txt`. Confirm the project still runs. This is the key reproducibility test.
 
-## 14.10 10. One-page checklist
+## 14.10 One-page checklist
 
 - Every project gets its own venv: `python -m venv .venv` at the project root.
 - Add `.venv/` to `.gitignore`. Never commit a venv.

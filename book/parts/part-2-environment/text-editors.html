@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -426,20 +461,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../parts/part-3-python/testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Testing Basics with pytest</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../parts/part-3-python/regex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regular Expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Regular Expressions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-3-python/linting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Code Style, Linting, and Formatting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Code Style, Linting, and Formatting</span></span></a>
   </div>
 </li>
       </ul>
@@ -456,31 +485,31 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/data-file-formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Data File Formats</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Data File Formats</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/tabular-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Tabular Data: Shape, Cleaning, and Validation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Tabular Data: Shape, Cleaning, and Validation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/pandas-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">pandas Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">pandas Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/sql-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">SQL Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">SQL Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/http-apis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">HTTP and Web APIs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">HTTP and Web APIs</span></span></a>
   </div>
 </li>
       </ul>
@@ -497,37 +526,31 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/project-management.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Project Management</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Project Management</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/version-control.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Version Control</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Version Control</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/collaboration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Collaboration Mechanics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Collaboration Mechanics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/automation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Automation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Automation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/secrets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Environment Variables and Secrets</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../parts/part-5-projects/pre-commit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Pre-commit Hooks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Environment Variables and Secrets</span></span></a>
   </div>
 </li>
       </ul>
@@ -544,19 +567,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/llm-internals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">How Language Models Work</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">How Language Models Work</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/ai-agents.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Working with AI Agent Frameworks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Working with AI Agent Frameworks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/evaluating-ai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Evaluating and Auditing AI Outputs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Evaluating and Auditing AI Outputs</span></span></a>
   </div>
 </li>
       </ul>
@@ -564,7 +587,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -603,19 +626,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose">Purpose</a></li>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning objectives</a></li>
   <li><a href="#running-theme-editors-are-tools-not-identities" id="toc-running-theme-editors-are-tools-not-identities" class="nav-link" data-scroll-target="#running-theme-editors-are-tools-not-identities">Running theme: editors are tools, not identities</a></li>
-  <li><a href="#a-beginner-mental-model" id="toc-a-beginner-mental-model" class="nav-link" data-scroll-target="#a-beginner-mental-model"><span class="header-section-number">11.1</span> A beginner mental model</a>
-  <ul class="collapse">
-  <li><a href="#text-files-are-infrastructure" id="toc-text-files-are-infrastructure" class="nav-link" data-scroll-target="#text-files-are-infrastructure">Text files are infrastructure</a></li>
-  <li><a href="#what-an-editor-does-conceptually" id="toc-what-an-editor-does-conceptually" class="nav-link" data-scroll-target="#what-an-editor-does-conceptually">What an editor does (conceptually)</a></li>
-  <li><a href="#key-terms" id="toc-key-terms" class="nav-link" data-scroll-target="#key-terms">Key terms</a></li>
-  </ul></li>
-  <li><a href="#choosing-your-tool-three-editor-classes" id="toc-choosing-your-tool-three-editor-classes" class="nav-link" data-scroll-target="#choosing-your-tool-three-editor-classes"><span class="header-section-number">11.2</span> Choosing your tool: three editor classes</a>
-  <ul class="collapse">
-  <li><a href="#terminal-editors-nano-vim-emacs" id="toc-terminal-editors-nano-vim-emacs" class="nav-link" data-scroll-target="#terminal-editors-nano-vim-emacs">Terminal editors (nano, vim, emacs)</a></li>
-  <li><a href="#gui-code-editors-vs-code-sublime-etc." id="toc-gui-code-editors-vs-code-sublime-etc." class="nav-link" data-scroll-target="#gui-code-editors-vs-code-sublime-etc.">GUI code editors (VS Code, Sublime, etc.)</a></li>
-  <li><a href="#ides-visual-studio-eclipse-xcode-etc." id="toc-ides-visual-studio-eclipse-xcode-etc." class="nav-link" data-scroll-target="#ides-visual-studio-eclipse-xcode-etc.">IDEs (Visual Studio, Eclipse, Xcode, etc.)</a></li>
-  <li><a href="#a-decision-table-student-version" id="toc-a-decision-table-student-version" class="nav-link" data-scroll-target="#a-decision-table-student-version">A decision table (student version)</a></li>
-  </ul></li>
+  <li><a href="#a-beginner-mental-model" id="toc-a-beginner-mental-model" class="nav-link" data-scroll-target="#a-beginner-mental-model"><span class="header-section-number">11.1</span> A beginner mental model</a></li>
+  <li><a href="#choosing-your-tool-three-editor-classes" id="toc-choosing-your-tool-three-editor-classes" class="nav-link" data-scroll-target="#choosing-your-tool-three-editor-classes"><span class="header-section-number">11.2</span> Choosing your tool: three editor classes</a></li>
   <li><a href="#essential-editor-skills-transfer-across-tools" id="toc-essential-editor-skills-transfer-across-tools" class="nav-link" data-scroll-target="#essential-editor-skills-transfer-across-tools"><span class="header-section-number">11.3</span> Essential editor skills (transfer across tools)</a>
   <ul class="collapse">
   <li><a href="#open-save-and-where-did-it-go" id="toc-open-save-and-where-did-it-go" class="nav-link" data-scroll-target="#open-save-and-where-did-it-go">Open, save, and "where did it go?"</a></li>
@@ -663,12 +675,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#keep-text-files-boring" id="toc-keep-text-files-boring" class="nav-link" data-scroll-target="#keep-text-files-boring">Keep text files boring</a></li>
   <li><a href="#use-version-control-as-an-editor-safety-net" id="toc-use-version-control-as-an-editor-safety-net" class="nav-link" data-scroll-target="#use-version-control-as-an-editor-safety-net">Use version control as an editor safety net</a></li>
   </ul></li>
-  <li><a href="#worked-examples-outline" id="toc-worked-examples-outline" class="nav-link" data-scroll-target="#worked-examples-outline"><span class="header-section-number">11.10</span> Worked examples (outline)</a>
+  <li><a href="#worked-examples" id="toc-worked-examples" class="nav-link" data-scroll-target="#worked-examples"><span class="header-section-number">11.10</span> Worked examples</a>
   <ul class="collapse">
-  <li><a href="#example-1-write-and-run-a-tiny-script" id="toc-example-1-write-and-run-a-tiny-script" class="nav-link" data-scroll-target="#example-1-write-and-run-a-tiny-script">Example 1: Write and run a tiny script</a></li>
-  <li><a href="#example-2-debug-a-broken-config-file" id="toc-example-2-debug-a-broken-config-file" class="nav-link" data-scroll-target="#example-2-debug-a-broken-config-file">Example 2: Debug a broken config file</a></li>
-  <li><a href="#example-3-safe-renamerefactor-with-findreplace" id="toc-example-3-safe-renamerefactor-with-findreplace" class="nav-link" data-scroll-target="#example-3-safe-renamerefactor-with-findreplace">Example 3: Safe rename/refactor with find/replace</a></li>
-  <li><a href="#example-4-remote-emergency-edit-over-ssh" id="toc-example-4-remote-emergency-edit-over-ssh" class="nav-link" data-scroll-target="#example-4-remote-emergency-edit-over-ssh">Example 4: Remote emergency edit over SSH</a></li>
+  <li><a href="#writing-and-running-a-tiny-script" id="toc-writing-and-running-a-tiny-script" class="nav-link" data-scroll-target="#writing-and-running-a-tiny-script">Writing and running a tiny script</a></li>
+  <li><a href="#debugging-a-broken-config-file" id="toc-debugging-a-broken-config-file" class="nav-link" data-scroll-target="#debugging-a-broken-config-file">Debugging a broken config file</a></li>
+  <li><a href="#a-safe-findreplace-across-a-project" id="toc-a-safe-findreplace-across-a-project" class="nav-link" data-scroll-target="#a-safe-findreplace-across-a-project">A safe find/replace across a project</a></li>
+  <li><a href="#a-remote-emergency-edit-over-ssh" id="toc-a-remote-emergency-edit-over-ssh" class="nav-link" data-scroll-target="#a-remote-emergency-edit-over-ssh">A remote emergency edit over SSH</a></li>
   </ul></li>
   <li><a href="#templates" id="toc-templates" class="nav-link" data-scroll-target="#templates"><span class="header-section-number">11.11</span> Templates</a>
   <ul class="collapse">
@@ -721,8 +733,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>Prerequisites (read first if unfamiliar):</strong> <a href="#sec-filesystem" class="quarto-xref"><span class="quarto-unresolved-ref">sec-filesystem</span></a>.</p>
-<p><strong>See also:</strong> <a href="#sec-terminal" class="quarto-xref"><span class="quarto-unresolved-ref">sec-terminal</span></a>, <a href="#sec-git-github" class="quarto-xref"><span class="quarto-unresolved-ref">sec-git-github</span></a>, <a href="#sec-scripts-vs-notebooks" class="quarto-xref"><span class="quarto-unresolved-ref">sec-scripts-vs-notebooks</span></a>.</p>
+<p><strong>Prerequisites (read first if unfamiliar):</strong> <a href="file-system.html" class="quarto-xref"><span>Chapter 9</span></a>.</p>
+<p><strong>See also:</strong> <a href="terminal.html" class="quarto-xref"><span>Chapter 10</span></a>, <a href="../part-5-projects/version-control.html" class="quarto-xref"><span>Chapter 25</span></a>, <a href="../part-3-python/scripting.html" class="quarto-xref"><span>Chapter 16</span></a>.</p>
 </div>
 </div>
 </div>
@@ -749,88 +761,17 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="a-beginner-mental-model" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="a-beginner-mental-model"><span class="header-section-number">11.1</span> A beginner mental model</h2>
-<section id="text-files-are-infrastructure" class="level3">
-<h3 class="anchored" data-anchor-id="text-files-are-infrastructure">Text files are infrastructure</h3>
-<ul>
-<li><p>Code, configuration, logs, and data dictionaries are often plain text.</p></li>
-<li><p>Editors are the "workbench" for these artifacts.</p></li>
-</ul>
-</section>
-<section id="what-an-editor-does-conceptually" class="level3">
-<h3 class="anchored" data-anchor-id="what-an-editor-does-conceptually">What an editor does (conceptually)</h3>
-<ul>
-<li><p>Reads bytes from disk and interprets them as text using an <strong>encoding</strong> (often UTF-8).</p></li>
-<li><p>Displays text with line breaks and whitespace.</p></li>
-<li><p>Writes bytes back to disk when you save.</p></li>
-</ul>
-</section>
-<section id="key-terms" class="level3">
-<h3 class="anchored" data-anchor-id="key-terms">Key terms</h3>
-<dl>
-<dt>Encoding</dt>
-<dd>
-<p>How bytes become characters (UTF-8, etc.).</p>
-</dd>
-<dt>Line endings</dt>
-<dd>
-<p>Newline conventions (LF vs CRLF) that affect cross-platform projects.</p>
-</dd>
-<dt>Whitespace</dt>
-<dd>
-<p>Spaces/tabs/newlines that can change program behavior.</p>
-</dd>
-<dt>Syntax highlighting</dt>
-<dd>
-<p>Visual cues based on language rules.</p>
-</dd>
-<dt>Linting/formatting</dt>
-<dd>
-<p>Automated checks and style normalization.</p>
-</dd>
-<dt>IDE</dt>
-<dd>
-<p>Integrated Development Environment: editor + build + run + debug + tooling.</p>
-</dd>
-</dl>
-</section>
+<p>A surprising amount of computing happens inside plain text files. Your code is plain text. Your configuration files (<code>.gitignore</code>, <code>pyproject.toml</code>, <code>_quarto.yml</code>, <code>requirements.txt</code>) are plain text. Your data, when it is in a friendly format like CSV or JSON, is plain text. Your logs are plain text. Your README is plain text. The text editor is the universal workbench you use to read and modify all of those, and learning to drive one well pays back across every other tool in this book.</p>
+<p>What an editor actually <em>does</em> under the hood is conceptually simple. It reads bytes from disk and interprets them as characters using an <strong>encoding</strong> (usually UTF-8 in modern projects). It displays those characters on your screen with line breaks and whitespace where they belong, and it lets you change them. When you save, it writes the bytes back to disk in the same encoding. Most editor problems — strange characters, files that look fine in one tool and broken in another, mysterious “invalid syntax” errors — come from a mismatch somewhere in that pipeline: wrong encoding, wrong line endings, or invisible whitespace where the language did not expect it.</p>
+<p>A small vocabulary will save you a lot of confusion. <strong>Encoding</strong> is the rule for turning raw bytes into characters; UTF-8 is the modern default and you should not save files in anything else unless you have a specific reason. <strong>Line endings</strong> are the invisible characters that mark the end of each line; macOS and Linux use a single newline (LF, byte <code>\n</code>), while Windows uses a carriage-return-then-newline pair (CRLF, bytes <code>\r\n</code>), and projects shared between OSes can produce noisy diffs and parser errors when they get mixed. <strong>Whitespace</strong> is the catch-all term for spaces, tabs, and newlines, and it matters more in some languages than others — Python, YAML, and Makefiles in particular treat whitespace as significant and will fail on tabs-vs-spaces confusion. <strong>Syntax highlighting</strong> is when an editor colors keywords, strings, and comments differently so the structure of the code is visually obvious. <strong>Linting and formatting</strong> are automated tools that check style and normalize it (see <a href="../part-3-python/linting.html" class="quarto-xref"><span>Chapter 18</span></a>). And an <strong>IDE</strong> (“integrated development environment”) is a heavier kind of editor that bundles a build system, a debugger, and language tooling into one package — useful for some ecosystems, overkill for others.</p>
 </section>
 <section id="choosing-your-tool-three-editor-classes" class="level2" data-number="11.2">
 <h2 data-number="11.2" class="anchored" data-anchor-id="choosing-your-tool-three-editor-classes"><span class="header-section-number">11.2</span> Choosing your tool: three editor classes</h2>
-<section id="terminal-editors-nano-vim-emacs" class="level3">
-<h3 class="anchored" data-anchor-id="terminal-editors-nano-vim-emacs">Terminal editors (nano, vim, emacs)</h3>
-<ul>
-<li><p>Best for: remote servers, quick config edits, minimal environments.</p></li>
-<li><p>Strengths: always available, low overhead, works over SSH.</p></li>
-<li><p>Trade-offs: steeper learning curve (especially modal editing), fewer visual affordances.</p></li>
-<li><p>Recommended student baseline: learn <strong>nano</strong> for emergencies; optionally learn <strong>vim</strong> motions over time.</p></li>
-</ul>
-</section>
-<section id="gui-code-editors-vs-code-sublime-etc." class="level3">
-<h3 class="anchored" data-anchor-id="gui-code-editors-vs-code-sublime-etc.">GUI code editors (VS Code, Sublime, etc.)</h3>
-<ul>
-<li><p>Best for: daily coursework, scripting, notebooks, lightweight projects.</p></li>
-<li><p>Strengths: search across files, integrated terminal, extensions, formatting, linting.</p></li>
-<li><p>Trade-offs: can become plugin-heavy; configuration drift across machines.</p></li>
-<li><p>Recommended student default: choose one primary GUI editor and learn it well.</p></li>
-</ul>
-</section>
-<section id="ides-visual-studio-eclipse-xcode-etc." class="level3">
-<h3 class="anchored" data-anchor-id="ides-visual-studio-eclipse-xcode-etc.">IDEs (Visual Studio, Eclipse, Xcode, etc.)</h3>
-<ul>
-<li><p>Best for: large language ecosystems and complex build systems (Java, C#, Swift, etc.).</p></li>
-<li><p>Strengths: deep refactoring, project models, integrated debugging/build tooling.</p></li>
-<li><p>Trade-offs: heavier setup; more concepts up front; project configuration can be fragile.</p></li>
-</ul>
-</section>
-<section id="a-decision-table-student-version" class="level3">
-<h3 class="anchored" data-anchor-id="a-decision-table-student-version">A decision table (student version)</h3>
-<ul>
-<li><p><strong>Quick edit on a remote server:</strong> terminal editor.</p></li>
-<li><p><strong>Python scripting + small projects:</strong> GUI editor.</p></li>
-<li><p><strong>Course uses a specific ecosystem (e.g., Java/C#/iOS):</strong> IDE.</p></li>
-<li><p><strong>When unsure:</strong> GUI editor with an integrated terminal.</p></li>
-</ul>
-</section>
+<p>Editors come in three rough sizes, and it is worth knowing which size fits which job.</p>
+<p>The smallest are <strong>terminal editors</strong> like <code>nano</code>, <code>vim</code>, and <code>emacs</code>. They run inside a terminal window, so they work over SSH on any server you can log into, they have almost no startup time, and they are always available — even on the most stripped-down Linux box. Their downside is the learning curve: <code>vim</code>’s modal editing in particular feels alien for a few days before it clicks. Most students do not need to live in a terminal editor, but every student should learn enough <code>nano</code> to confidently open a file, change one line, and save and exit. That single skill turns “I have to fix one character on a remote server and I cannot do it” from an impasse into a thirty-second task.</p>
+<p>The middle tier is <strong>GUI code editors</strong> — VS Code is by far the most popular today, with Sublime Text and Cursor as alternatives. These run as desktop apps, give you a multi-tab interface with a file tree on the left, and combine the best of a text editor (fast, lightweight, language-agnostic) with the convenient parts of an IDE (find-across-files, an integrated terminal, formatting on save, linter integration, Git integration). For day-to-day coursework, scripting, notebooks, and lightweight projects, this is the right default. Pick one — almost everyone picks VS Code — and invest in learning it well.</p>
+<p>The largest tier is <strong>IDEs</strong>: Visual Studio for C# and .NET work, IntelliJ for Java, Xcode for Swift and iOS, RStudio for R, and so on. IDEs win when you are working in an ecosystem with a heavy build system, a complicated project model, or specialized debugging needs. They are powerful but heavy, and their project configuration can be fragile in ways that occasionally eat hours of your day.</p>
+<p>The decision rule for a typical Python data student is straightforward. For a quick edit on a remote server, use <code>nano</code> (or <code>vim</code> if you are comfortable with it). For everything else — Python scripting, notebooks, small projects — use a GUI editor with an integrated terminal, defaulting to VS Code. Reach for a full IDE only if your course or project specifically requires it.</p>
 </section>
 <section id="essential-editor-skills-transfer-across-tools" class="level2" data-number="11.3">
 <h2 data-number="11.3" class="anchored" data-anchor-id="essential-editor-skills-transfer-across-tools"><span class="header-section-number">11.3</span> Essential editor skills (transfer across tools)</h2>
@@ -910,39 +851,23 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="11.5" class="anchored" data-anchor-id="debugging-files-common-student-failure-modes"><span class="header-section-number">11.5</span> Debugging files (common student failure modes)</h2>
 <section id="wrong-file-wrong-place" class="level3">
 <h3 class="anchored" data-anchor-id="wrong-file-wrong-place">Wrong file, wrong place</h3>
-<ul>
-<li><p>Symptom: edits do not change program behavior.</p></li>
-<li><p>Cause: you edited a duplicate file or ran from a different directory.</p></li>
-<li><p>Fix: confirm the working directory; search for duplicates; use absolute paths temporarily.</p></li>
-</ul>
+<p>The most disorienting editor failure is when your edits seem to have no effect — you save, you rerun, and the program behaves as if you changed nothing. The cause is almost always one of two things: you edited a <em>different copy</em> of the file from the one your code is actually loading, or you ran the code from a directory where the file you edited does not live. Both are failures of “where am I” awareness rather than failures of the editor. The fix is to confirm your working directory (<code>pwd</code>), search the project for any duplicate filenames so you know which copy you are looking at, and — as a temporary diagnostic — switch to absolute paths in the failing code so the question of “which file?” is unambiguous. Once the bug is found, you can usually go back to relative paths.</p>
 </section>
 <section id="wrong-extension-or-hidden-extension" class="level3">
 <h3 class="anchored" data-anchor-id="wrong-extension-or-hidden-extension">Wrong extension or hidden extension</h3>
-<ul>
-<li><p>Symptom: file opens in the wrong program or fails to run.</p></li>
-<li><p>Fix: show file extensions; confirm <code>.py</code>, <code>.csv</code>, <code>.txt</code>.</p></li>
-</ul>
+<p>A file that opens in the wrong program, or that “isn’t a Python file” even though you saved it as Python, is almost always a victim of a hidden or wrong extension. The classic version: you save <code>script.py</code> in an editor that adds <code>.txt</code> for you, end up with <code>script.py.txt</code>, and your file manager’s “hide extensions” setting makes it look identical to a real <code>script.py</code>. The fix is to turn on <strong>show file extensions</strong> in your file manager (see <a href="file-system.html" class="quarto-xref"><span>Chapter 9</span></a>) and to look at the actual filename in your editor’s title bar, which always shows the truth.</p>
 </section>
 <section id="encoding-and-invisible-characters" class="level3">
 <h3 class="anchored" data-anchor-id="encoding-and-invisible-characters">Encoding and invisible characters</h3>
-<ul>
-<li><p>Symptom: weird symbols, parsing errors, or "invalid character" errors.</p></li>
-<li><p>Fix: re-save as UTF-8; inspect for non-printing characters; normalize line endings.</p></li>
-</ul>
+<p>When you see weird symbols (<code>â€™</code> where a curly apostrophe should be, or boxes where letters should be), parser errors that mention “invalid character,” or sudden Python <code>SyntaxError</code>s on lines that look fine, the cause is almost always an encoding mismatch or an invisible character. The fix is to re-save the file explicitly as UTF-8 (every modern editor has a “Save with Encoding” or similar option), and to turn on visible whitespace so non-printing characters become visible. A common culprit is a non-breaking space (<code>U+00A0</code>) that crept in from a copy-paste — it looks like a space but Python treats it as something else entirely.</p>
 </section>
 <section id="line-endings-windowsmacos-collaboration" class="level3">
 <h3 class="anchored" data-anchor-id="line-endings-windowsmacos-collaboration">Line endings (Windows/macOS collaboration)</h3>
-<ul>
-<li><p>Symptom: scripts fail, diffs look huge, or tools complain about CRLF/LF.</p></li>
-<li><p>Fix: configure editor to use consistent line endings; rely on repo configuration if provided.</p></li>
-</ul>
+<p>When a project is shared between Windows and macOS or Linux developers, you can hit a class of bugs that show up as scripts failing with strange “command not found” errors, diffs that look enormous because every line “changed,” or tools complaining about CRLF vs LF. The cause is the line-ending convention: Windows uses <code>\r\n</code> and Unix systems use <code>\n</code>, and tools that expect one and find the other will misbehave. The fix is to configure your editor to use a consistent style (LF is the cross-platform-friendly default), and to let Git normalize line endings on commit if your repository has a <code>.gitattributes</code> file — most well-set-up repositories do.</p>
 </section>
 <section id="config-files-and-indentation-sensitive-formats" class="level3">
 <h3 class="anchored" data-anchor-id="config-files-and-indentation-sensitive-formats">Config files and indentation-sensitive formats</h3>
-<ul>
-<li><p>YAML and similar formats can break with tabs or incorrect indentation.</p></li>
-<li><p>Use visible whitespace; validate with the tool that reads the config.</p></li>
-</ul>
+<p>YAML, Python, and Makefiles all care about the difference between tabs and spaces, and YAML in particular breaks in subtle ways when you mix them. The symptom is usually a parser error pointing at a line that looks correct to your eyes. The fix is to turn on visible whitespace so you can <em>see</em> whether a line is using tabs or spaces, and to validate the file with the tool that reads it — <code>python -c "import yaml; yaml.safe_load(open('config.yml'))"</code> will tell you immediately whether your YAML is parseable.</p>
 </section>
 </section>
 <section id="terminal-editors-survival-skills" class="level2" data-number="11.6">
@@ -1061,39 +986,47 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </section>
 </section>
-<section id="worked-examples-outline" class="level2" data-number="11.10">
-<h2 data-number="11.10" class="anchored" data-anchor-id="worked-examples-outline"><span class="header-section-number">11.10</span> Worked examples (outline)</h2>
-<section id="example-1-write-and-run-a-tiny-script" class="level3">
-<h3 class="anchored" data-anchor-id="example-1-write-and-run-a-tiny-script">Example 1: Write and run a tiny script</h3>
-<ul>
-<li><p>Create <code>hello.py</code>.</p></li>
-<li><p>Run from the terminal.</p></li>
-<li><p>Fix a syntax error using the editor’s line/column cues.</p></li>
-</ul>
+<section id="worked-examples" class="level2" data-number="11.10">
+<h2 data-number="11.10" class="anchored" data-anchor-id="worked-examples"><span class="header-section-number">11.10</span> Worked examples</h2>
+<section id="writing-and-running-a-tiny-script" class="level3">
+<h3 class="anchored" data-anchor-id="writing-and-running-a-tiny-script">Writing and running a tiny script</h3>
+<p>The simplest possible loop: write a small Python script in your editor, run it from the integrated terminal, and fix the first error you hit. Open VS Code (or your editor of choice) in your project folder, create a new file called <code>hello.py</code>, and type:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greet(name):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"hello, </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>greet(<span class="st">"world"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>(Yes, the missing closing parenthesis on the <code>print</code> call is intentional.) Save the file and open the integrated terminal (<code>Ctrl+\`` in VS Code, or</code>View → Terminal`). Run it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python hello.py</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">File</span> <span class="st">"hello.py"</span>, line 3</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">greet</span><span class="er">(</span><span class="st">"world"</span><span class="kw">)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">^^^^^</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">SyntaxError:</span> <span class="st">'('</span> was never closed</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The error message points at line 3, but it says “‘(’ was never closed” — Python is telling you that an open parenthesis somewhere <em>before</em> line 3 was never matched. Click on the file in your editor and look at line 2: there is the missing <code>)</code>. Add it, save, and rerun:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python hello.py</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">hello,</span> world!</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>That is the entire write-run-read-fix loop. It will run thousands of times over the course of your degree, and the editor’s job is to make each iteration as fast as possible.</p>
 </section>
-<section id="example-2-debug-a-broken-config-file" class="level3">
-<h3 class="anchored" data-anchor-id="example-2-debug-a-broken-config-file">Example 2: Debug a broken config file</h3>
-<ul>
-<li><p>Identify indentation and invisible-character issues.</p></li>
-<li><p>Turn on visible whitespace.</p></li>
-<li><p>Validate by re-running the tool.</p></li>
-</ul>
+<section id="debugging-a-broken-config-file" class="level3">
+<h3 class="anchored" data-anchor-id="debugging-a-broken-config-file">Debugging a broken config file</h3>
+<p>A teammate sends you a <code>config.yml</code> and says “Quarto won’t load it.” You open it and it looks fine to your eyes. The problem is almost always invisible whitespace. Turn on visible whitespace in your editor (<code>View → Render Whitespace</code> in VS Code) and look again — now you can see whether each indentation step is a tab or a space. YAML requires spaces, and a single tab character can break the entire file. Fix the offending tabs by replacing them with the same number of spaces, save, and validate from the terminal:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-c</span> <span class="st">"import yaml; yaml.safe_load(open('config.yml'))"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If the command produces no output, the YAML now parses. If it raises a <code>YAMLError</code>, the message will name the line and column of the next problem. Repeat until clean.</p>
 </section>
-<section id="example-3-safe-renamerefactor-with-findreplace" class="level3">
-<h3 class="anchored" data-anchor-id="example-3-safe-renamerefactor-with-findreplace">Example 3: Safe rename/refactor with find/replace</h3>
-<ul>
-<li><p>Use multi-file search.</p></li>
-<li><p>Replace with confirmation.</p></li>
-<li><p>Run tests.</p></li>
-</ul>
+<section id="a-safe-findreplace-across-a-project" class="level3">
+<h3 class="anchored" data-anchor-id="a-safe-findreplace-across-a-project">A safe find/replace across a project</h3>
+<p>You decide to rename a function from <code>compute_mean</code> to <code>weighted_mean</code> everywhere in your project. The unsafe version is to use a one-shot global replace and hope. The safe version is three steps. First, search for the old name across the project (<code>Cmd+Shift+F</code> in VS Code) and look at every match — confirm that they all really are references to the function, not, say, a variable named <code>compute_mean_squared</code>. Second, replace with confirmation: VS Code’s search panel has a “Replace” button on each individual match, so you can step through them one at a time. Third, run your tests immediately afterward:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span> tests/ <span class="at">-q</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If anything broke, the tests catch it while the change is still small enough to undo. The whole protocol takes longer than a one-shot replace by maybe a minute, and it has saved many people from very long days.</p>
 </section>
-<section id="example-4-remote-emergency-edit-over-ssh" class="level3">
-<h3 class="anchored" data-anchor-id="example-4-remote-emergency-edit-over-ssh">Example 4: Remote emergency edit over SSH</h3>
-<ul>
-<li><p>Open a config file in nano.</p></li>
-<li><p>Make a minimal change.</p></li>
-<li><p>Save/exit; verify.</p></li>
-</ul>
+<section id="a-remote-emergency-edit-over-ssh" class="level3">
+<h3 class="anchored" data-anchor-id="a-remote-emergency-edit-over-ssh">A remote emergency edit over SSH</h3>
+<p>You SSH into a server and discover that one config file has a wrong value that is keeping a service from starting. You do not have time to set up a full remote-development workflow. The minimal sequence is:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> you@server</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> /etc/myservice/config.conf</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># arrow keys to navigate; type the change; Ctrl+O to save; Ctrl+X to exit</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl restart myservice</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">exit</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The whole interaction is under a minute if you know the basic <code>nano</code> keystrokes. The reason the chapter recommended learning <code>nano</code> for emergencies is exactly this scenario: you want a tool that is already installed on every Unix box you might log into and that you can drive without a tutorial open in front of you.</p>
 </section>
 </section>
 <section id="templates" class="level2" data-number="11.11">

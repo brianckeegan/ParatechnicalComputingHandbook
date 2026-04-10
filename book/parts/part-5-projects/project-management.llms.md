@@ -1,4 +1,4 @@
-# 25  Project Management
+# 24  Project Management
 
 > **TIP:**
 >
@@ -30,45 +30,39 @@ By the end of this chapter, you should be able to:
 
 A well-managed project makes its assumptions and status legible: what the data are, what changed, what remains, and how to rerun.
 
-## 25.1 Mental model: a project is a system of artifacts
+## 24.1 Mental model: a project is a system of artifacts
 
-### Artifacts you must manage
+A project is not just “the code.” It is a system of artifacts that have to be kept consistent with each other for the project to make sense. There are five categories worth managing explicitly. **Data** includes raw inputs, processed outputs, and the intermediate files in between. **Code** includes the scripts that do the work, the reusable modules that get imported, and the notebooks that drive the analysis. The **environment** is the set of dependencies and runtime assumptions that make the code actually run — Python version, package versions, OS quirks. **Documentation** captures the purpose of the project, the consequential decisions you made along the way, how to use the artifacts, and how to interpret the results. And **work tracking** is the record of tasks, bugs, questions, and priorities that lets you (and your collaborators) know what is happening and what comes next. Every artifact category needs a stable home in the project, and a project that ignores any of them eventually pays for it.
 
-- **Data:** raw inputs, processed outputs, intermediate files.
+The **lifecycle** of a project moves through four phases. You **plan** by deciding what success looks like — the goal, the deliverables, the constraints. You **build** by implementing the data pipelines and the analysis. You **verify** by checking quality and reproducing the outputs from a clean state. And you **deliver** by packaging the results, writing up the findings, and communicating any limitations a reader needs to know. The phases overlap and iterate, but if you skip one of them, the project tends to fall over at exactly that point — projects that skipped planning produce results nobody asked for, projects that skipped verification ship wrong numbers, projects that skipped delivery are technically done but never actually used.
 
-- **Code:** scripts, reusable modules, notebooks.
-
-- **Environment:** dependencies and runtime assumptions.
-
-- **Documentation:** purpose, decisions, usage, and interpretation.
-
-- **Work tracking:** tasks, bugs, questions, and priorities.
-
-### The lifecycle: plan → build → verify → deliver
-
-- **Plan:** decide what success looks like.
-
-- **Build:** implement data pipelines/analysis.
-
-- **Verify:** check quality, reproduce outputs.
-
-- **Deliver:** package results and communicate limitations.
-
-## 25.2 Project planning for novices (lightweight, not bureaucratic)
+## 24.2 Project planning for novices (lightweight, not bureaucratic)
 
 ### The one-page project brief
 
-- Problem statement (one paragraph).
+Before writing any code, write a one-page project brief. It should never grow longer than a page — the constraint is the point. Six things go in it. **A problem statement** in one paragraph: what are you trying to find out, fix, or build? **The audience and use case**: who is the result for, and what will they do with it? **The deliverables**: what concrete artifacts will exist when the project is done — tables, plots, a memo, a dashboard, a trained model, a slide deck? **Success criteria**: what specifically does “done” look like, and how will you know you got there? **Constraints**: time budget, compute or data access limits, privacy rules, anything else that bounds the design space. **Risks and unknowns**: which assumptions might turn out to be wrong, which data sources might fail, which definitions might shift?
 
-- Audience and use case.
+``` markdown
+# Q3 Sales Trend Analysis
 
-- Deliverables (tables, plots, memo, dashboard, model).
+**Problem.** Identify which product categories drove revenue growth in Q3.
 
-- Success criteria (what “done” means).
+**Audience.** Brian (instructor), as part of INFO-3010 final project.
 
-- Constraints (time, compute, access, privacy).
+**Deliverables.**
+- A 3-page memo summarizing findings.
+- Two figures: monthly revenue by category, top-10 SKUs.
+- A data dictionary for the cleaned table.
 
-- Risks and unknowns (data availability, definitions, biases).
+**Success criteria.** Findings reproduce end-to-end from raw data with
+one command. Figures and tables are explicitly cited in the memo.
+
+**Constraints.** Two weeks. Local laptop. Public dataset only.
+
+**Risks.** Category labels may change between months. Some prices missing.
+```
+
+That whole brief is one page and it answers most of the questions a future reviewer (including future you) will ask about the project.
 
 ### Decompose work into milestones
 
@@ -86,7 +80,7 @@ A well-managed project makes its assumptions and status legible: what the data a
 
 - Where will you record those decisions? (issues, changelog, notebook narrative)
 
-## 25.3 Reproducible project structure
+## 24.3 Reproducible project structure
 
 ### Design principles
 
@@ -141,49 +135,38 @@ A well-managed project makes its assumptions and status legible: what the data a
 
 - Avoid storing secrets or credentials anywhere in the repo.
 
-## 25.4 Data management hygiene
+## 24.4 Data management hygiene
 
 ### Provenance: where did this data come from?
 
-- Source URL or file origin.
+Every dataset in the project should answer four questions before you do anything else with it: **where it came from** (a URL, a file path, an API endpoint), **when you retrieved it** (the date and time of download), **what its license or terms of use are**, and **any access restrictions or privacy considerations** that apply. Write these four things down somewhere persistent — a `provenance.md` file in the dataset’s folder, a section in the project README, the `meta` field of an `environment.yml`. The right time to record provenance is the moment you download the data, because three weeks later you will not remember.
 
-- Retrieval date/time.
+``` markdown
+# data/raw/sales/
 
-- License/terms of use.
-
-- Any access restrictions or privacy considerations.
+source:    https://example.org/datasets/q3-2026-sales.csv
+retrieved: 2026-04-10 10:14
+license:   CC-BY 4.0
+notes:     Public release; no PII. Column "rep_id" is a hashed identifier.
+```
 
 ### Raw data immutability
 
-- Treat raw data as evidence: do not edit.
-
-- If you must fix an obvious error, do it in a processing step that is documented.
+Treat raw data as evidence: never modify it in place. If you discover an obvious error in the source — a typo in a header, a corrupted byte, a column with the wrong name — do not fix it by overwriting the raw file. Fix it in a *cleaning step* that is documented in code, so anyone reading the project can see what was changed and why. The raw file stays as-shipped; the cleaned version is a derivative.
 
 ### Data dictionary and codebook
 
-- One table with: variable name, type, meaning, units, allowable values, missingness codes.
-
-- Record transformations: derived fields, recodes, joins.
+For every dataset you load, maintain a small **data dictionary**: a one-table reference that lists each variable’s name, its type (numeric, string, date, categorical), its meaning in plain English, its units if applicable, the range or set of allowable values, and any sentinel values used for missingness (`-999`, `"unknown"`, blank). The data dictionary is what makes a dataset usable by someone other than the person who created it — and it is what you will reach for when you come back to the project six months later and cannot remember what `qty_alt2` meant. Record any transformations the same way: derived columns, recodes, joins, every change from raw to clean.
 
 ### Versioning data
 
-- When datasets change, create dated snapshots or version tags.
-
-- Record checksums or file sizes for integrity (intro concept).
-
-- Keep “what changed” notes (new rows, new columns, schema shifts).
+When the dataset itself changes — a new monthly export, a corrected version, a rerun of an upstream process — do not just overwrite. Create a dated snapshot (`sales-2026-04-10.csv`) or tag the version, and write down what changed: new rows? new columns? schema shifts? renamed values? Recording the file size or a checksum alongside it gives you a way to detect silent corruption later. None of this needs to be fancy; a `data/raw/CHANGELOG.md` with one paragraph per snapshot is plenty.
 
 ### Sensitive data hygiene (baseline)
 
-- Identify whether data contain identifiers.
+If the data might contain personal identifiers, treat it as sensitive from the moment it lands. Identify which columns are identifiers (names, emails, phone numbers, addresses, student IDs). Minimize who has access — sensitive data often should not live inside the repository at all, even with `.gitignore`, since one accidental `git add -A` can leak it forever. Never commit secrets, API keys, or tokens (see [sec-secrets](#sec-secrets)). And before sharing aggregate results, double-check that you cannot accidentally re-identify individuals through small group sizes or distinctive combinations of attributes. The cost of accidentally leaking a participant’s data is large; the cost of being a little paranoid about it is small.
 
-- Minimize access: store sensitive data outside repos when required.
-
-- Never commit secrets, API keys, or tokens.
-
-- Redact or aggregate before sharing.
-
-## 25.5 Documentation that makes a project runnable
+## 24.5 Documentation that makes a project runnable
 
 [sec-documentation](#sec-documentation) covers how to find, read, and write technical documentation in depth; this section focuses on the documentation artifacts specific to a project.
 
@@ -219,7 +202,7 @@ A well-managed project makes its assumptions and status legible: what the data a
 
 - Include a small “smoke test” script or notebook cell.
 
-## 25.6 Issue tracking fundamentals (for students)
+## 24.6 Issue tracking fundamentals (for students)
 
 ### Why issues are not just for bugs
 
@@ -255,7 +238,7 @@ A well-managed project makes its assumptions and status legible: what the data a
 
 - Keep it lightweight: avoid over-customization early.
 
-## 25.7 Quality gates: make “done” meaningful
+## 24.7 Quality gates: make “done” meaningful
 
 ### The reproducibility check
 
@@ -283,7 +266,7 @@ A well-managed project makes its assumptions and status legible: what the data a
 
 - Narrative explains limitations and uncertainty.
 
-## 25.8 Common failure modes and how to prevent them
+## 24.8 Common failure modes and how to prevent them
 
 ### Folder chaos and lost files
 
@@ -307,9 +290,9 @@ A well-managed project makes its assumptions and status legible: what the data a
 
 - Prevention: issues for tasks/questions; link decisions and artifacts.
 
-## 25.9 Worked examples (outline)
+## 24.9 Worked examples (outline)
 
-### Example 1: Start a new course project in 20 minutes
+### Start a new course project in 20 minutes
 
 - Create the folder structure.
 
@@ -317,7 +300,7 @@ A well-managed project makes its assumptions and status legible: what the data a
 
 - Write a README with “how to run”.
 
-### Example 2: Intake a dataset with provenance and a data dictionary
+### Intake a dataset with provenance and a data dictionary
 
 - Place raw file.
 
@@ -325,13 +308,13 @@ A well-managed project makes its assumptions and status legible: what the data a
 
 - Draft codebook and a first-pass quality report.
 
-### Example 3: Use issues to manage a cleaning pipeline
+### Use issues to manage a cleaning pipeline
 
 - Create issues for missingness, type conversions, duplicates, joins.
 
 - Close each issue with a summary and link to outputs.
 
-### Example 4: Final reproducibility check before submission
+### Final reproducibility check before submission
 
 - Recreate env.
 
@@ -339,7 +322,7 @@ A well-managed project makes its assumptions and status legible: what the data a
 
 - Confirm outputs and update README.
 
-## 25.10 Templates
+## 24.10 Templates
 
 ### Template A: One-page project brief
 
@@ -392,7 +375,7 @@ A well-managed project makes its assumptions and status legible: what the data a
     Evidence (errors, screenshots, links):
     Definition of done:
 
-## 25.11 Exercises
+## 24.11 Exercises
 
 1.  Create a new project folder using the template and write a README that someone else could follow.
 
@@ -404,7 +387,7 @@ A well-managed project makes its assumptions and status legible: what the data a
 
 5.  Perform a reproducibility check by recreating your environment and rerunning the pipeline.
 
-## 25.12 One-page checklist
+## 24.12 One-page checklist
 
 - I have a clear project goal and definition of done.
 
@@ -420,7 +403,7 @@ A well-managed project makes its assumptions and status legible: what the data a
 
 - I can reproduce results from a clean environment.
 
-## 25.13 Quick reference: “minimum viable” project operations
+## 24.13 Quick reference: “minimum viable” project operations
 
 - Create structure.
 

@@ -1,8 +1,8 @@
-# 33  Evaluating and Auditing AI Outputs
+# 31  Evaluating and Auditing AI Outputs
 
 > **TIP:**
 >
-> **Prerequisites (read first if unfamiliar):** [sec-llm-internals](#sec-llm-internals), [sec-testing](#sec-testing).
+> **Prerequisites (read first if unfamiliar):** [sec-llm-internals](#sec-llm-internals).
 >
 > **See also:** [sec-ai-agents](#sec-ai-agents), [sec-debugging](#sec-debugging).
 
@@ -38,7 +38,7 @@ By the end of this chapter, you should be able to:
 
 A system you cannot measure is a system you cannot improve. Before deploying any AI application, decide how you will know if it is working. After deploying, keep measuring. AI systems that seem fine during development regularly surprise you in production.
 
-## 33.1 Why evaluation is hard
+## 31.1 Why evaluation is hard
 
 Evaluating traditional software is relatively tractable: given input `X`, the function should return `Y`. If it returns something else, it is wrong. AI systems break this assumption in several ways.
 
@@ -52,7 +52,7 @@ Evaluating traditional software is relatively tractable: given input `X`, the fu
 
 **Human judgment is expensive.** The most reliable evaluation is careful human review. But human review does not scale to thousands of outputs, and human raters disagree with each other. Building a scalable evaluation system requires a combination of automated and human methods.
 
-## 33.2 Dimensions of quality
+## 31.2 Dimensions of quality
 
 Before you can measure quality, you need to decide what quality means for your specific application. Different tasks call for different dimensions.
 
@@ -72,7 +72,7 @@ Before you can measure quality, you need to decide what quality means for your s
 
 Not every dimension matters for every application. A classification system needs correctness and consistency. A customer-facing chatbot needs relevance, safety, and tone. Decide which dimensions matter for your task before designing your evaluation.
 
-## 33.3 Verification workflows at scale
+## 31.3 Verification workflows at scale
 
 [sec-ai-llm](#sec-ai-llm) introduced a risk-based verification policy for individual outputs: low-risk outputs get a quick sanity check; high-risk outputs get careful verification against authoritative sources. The same principle scales to evaluation systems.
 
@@ -82,7 +82,7 @@ Not every dimension matters for every application. A classification system needs
 
 **For high-stakes applications** (medical, legal, financial, safety-critical): manual review of every output may be necessary. AI systems in these domains typically require human in the loop for the final decision regardless of how good the model is.
 
-## 33.4 Manual evaluation and auditing
+## 31.4 Manual evaluation and auditing
 
 Manual evaluation is slower than automation but more reliable. It is your ground truth, and it is necessary for building and calibrating automated evaluators.
 
@@ -127,7 +127,7 @@ Red-teaming is the practice of deliberately trying to break your system. Write i
 
 Red-teaming is most useful when done by someone other than the system’s author. You are too close to the system to imagine all the ways a user might misuse or confuse it.
 
-## 33.5 Automated evaluation
+## 31.5 Automated evaluation
 
 Manual evaluation does not scale. Once you have calibrated your rubric against human judgments, you can automate significant parts of evaluation.
 
@@ -187,7 +187,7 @@ When you have a ground-truth reference answer (a correct summary, the right extr
 
 No automated metric perfectly captures quality. Treat automated scores as signals that require human interpretation, especially when making deployment decisions.
 
-## 33.6 Building an evaluation set
+## 31.6 Building an evaluation set
 
 Your evaluation set is only as good as its coverage. A set of 50 easy examples that all succeed gives you false confidence; a set of 20 well-chosen examples that probe known failure modes is more informative.
 
@@ -219,7 +219,7 @@ Include examples specifically designed to probe failures you have already observ
 
 Treat your evaluation set like code: version it, document the rationale for each example, and review it when the system’s requirements change. Remove examples that are no longer relevant; add examples that cover new functionality.
 
-## 33.7 Managing outputs at scale
+## 31.7 Managing outputs at scale
 
 Evaluation does not end at deployment. Production systems change in ways that are hard to predict.
 
@@ -261,7 +261,7 @@ Model providers silently update models. Prompt behavior that was consistent may 
 
 Treat any change to the system — prompt, model version, tool definition, retrieval parameters — as requiring a fresh evaluation run before redeployment. Track evaluation scores across versions so you can compare and roll back if a change causes regression.
 
-## 33.8 Auditing for bias and unexpected behaviors
+## 31.8 Auditing for bias and unexpected behaviors
 
 Beyond measuring performance on intended inputs, auditing looks for systematic patterns in how a system fails — particularly patterns that affect some users or groups differently.
 
@@ -291,51 +291,21 @@ If outputs differ systematically when only names change, the system may be ampli
 
 Test how the system responds to sensitive topics: political subjects, medical advice, legal guidance, crisis situations. Verify that the system’s handling matches your intended policy. A customer support bot should not be giving legal advice; a research assistant should express appropriate uncertainty about medical claims.
 
-## 33.9 Worked examples (outline)
+## 31.9 Worked examples
 
 ### Building an evaluation suite for a summarization system
 
-- Collect 20 real documents from the intended domain
-
-- Write a rubric with three dimensions: completeness, accuracy, conciseness (each 0–2)
-
-- Have two human raters score 10 summaries with the rubric; compute inter-rater agreement
-
-- Revise rubric where agreement is low; establish a calibration set of rated examples
-
-- Set up an LLM judge using the calibrated rubric; validate it on the 10 human-rated examples
-
-- Run the full suite and establish a baseline score; track scores across future prompt changes
+You want to know whether your summarization prompt is actually any good — and whether it gets better or worse when you change it. Start by collecting **20 real documents** from the domain your system will be summarizing. Toy examples are tempting, but they will mislead you about real performance. Then write a **rubric** with three concrete dimensions — say, completeness (does it include the key findings?), accuracy (no fabrications?), and conciseness (no padding?), each scored 0–2. Have **two human raters** independently score 10 summaries with the rubric and **compute inter-rater agreement**. Wherever the raters disagree, the rubric is underspecified — revise the question until the raters land on the same score. The final 10 rated examples become your **calibration set**, the ground truth against which you can test automated evaluators. Now build an LLM judge using the calibrated rubric, run it on the same 10 examples, and compare its scores to the human ratings. If they agree closely, you have a scalable evaluator. If not, refine the judge’s prompt or fall back to human review for the dimensions it cannot score reliably. Run the validated suite on the full set of 20 documents to establish a **baseline**, and rerun it after every prompt change so you can see whether you are making things better or worse.
 
 ### Auditing a classification system for demographic disparities
 
-- Identify the group-identifying signals in typical inputs (names, locations, writing style)
-
-- Create paired counterfactual examples for each group signal, holding all other content constant
-
-- Run the system on each pair; record classification, confidence, and any qualitative differences
-
-- Compute aggregate pass rates and score distributions broken down by group
-
-- Flag any dimension with a statistically meaningful difference for follow-up investigation
-
-- Document findings, whether or not they indicate a problem; maintain an audit log
+You suspect your classification system might treat different groups inconsistently, and you want concrete evidence one way or the other. Begin by identifying the **group-identifying signals** in typical inputs — names, locations, writing styles, dialects, anything that might serve as a demographic proxy. Then construct **paired counterfactual examples**: identical inputs that differ only in the group signal (a resume with the same qualifications but a different name, a complaint with the same content but a different location). Run the system on each pair and record the classification, the model’s confidence, and any qualitative differences you notice in the response. Aggregate the results: pass rates broken down by group, score distributions, false-positive and false-negative rates. **Flag any dimension** where the difference is large enough to be statistically meaningful, and follow up with deeper investigation. Document the findings *whether or not they indicate a problem* — a clean audit is itself a valuable artifact, and the trail of “we looked and here is what we found” is what makes future audits cheaper.
 
 ### Setting up production monitoring for an AI application
 
-- Instrument the application to log inputs, outputs, metadata, and any user feedback
+You have shipped an AI feature and you want to know if it is silently degrading in the wild. The first step is **instrumentation**: log every input, every output, the metadata (model version, temperature, prompt version), and any user feedback signals (thumbs up, thumbs down, escalation to human). Then define **key metrics** that map to the dimensions you care about — format compliance rate (what percentage of outputs parse as valid JSON?), the average rubric score on sampled evaluations, the explicit error rate. Set **alert thresholds** that match the stakes of your application (alert if format compliance drops below 95%, alert if error rate exceeds 1%, alert if user satisfaction signals degrade by more than X%). Schedule a **weekly evaluation run** on a stratified sample of production traffic so you can compare current behavior to your baseline. Maintain a **changelog** that records every model update, every prompt change, every configuration change — this is what lets you correlate degradations with specific changes. Review alerts on a regular cadence and investigate every metric that crosses a threshold *before* you ship the next change, not after.
 
-- Define key metrics: format compliance rate, average score on sampled evaluations, error rate
-
-- Set alert thresholds: alert if format compliance drops below 95%, if error rate exceeds 1%
-
-- Schedule a weekly evaluation run on a stratified sample of production traffic
-
-- Create a changelog that records every model update, prompt change, and configuration change
-
-- Review alerts weekly; investigate any metric that crosses a threshold before the next deployment
-
-## 33.10 Exercises
+## 31.10 Exercises
 
 1.  Choose a simple AI task (classify sentiment, extract named entities, summarize a paragraph). Write a rubric with three dimensions, each scored 0–2. Write three test cases that would each score differently on at least one dimension. Explain your scoring.
 
@@ -347,7 +317,7 @@ Test how the system responds to sensitive topics: political subjects, medical ad
 
 5.  You deploy a summarization tool and after two weeks notice that user complaints have increased but your evaluation scores look the same. List three possible explanations and describe what log data you would examine to distinguish between them.
 
-## 33.11 One-page checklist
+## 31.11 One-page checklist
 
 - Define which quality dimensions matter for your specific task before building evaluation
 

@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -426,20 +461,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../parts/part-3-python/testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Testing Basics with pytest</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../parts/part-3-python/regex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regular Expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Regular Expressions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-3-python/linting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Code Style, Linting, and Formatting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Code Style, Linting, and Formatting</span></span></a>
   </div>
 </li>
       </ul>
@@ -456,31 +485,31 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/data-file-formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Data File Formats</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Data File Formats</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/tabular-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Tabular Data: Shape, Cleaning, and Validation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Tabular Data: Shape, Cleaning, and Validation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/pandas-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">pandas Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">pandas Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/sql-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">SQL Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">SQL Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/http-apis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">HTTP and Web APIs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">HTTP and Web APIs</span></span></a>
   </div>
 </li>
       </ul>
@@ -497,37 +526,31 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/project-management.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Project Management</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Project Management</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/version-control.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Version Control</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Version Control</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/collaboration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Collaboration Mechanics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Collaboration Mechanics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/automation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Automation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Automation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/secrets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Environment Variables and Secrets</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../parts/part-5-projects/pre-commit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Pre-commit Hooks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Environment Variables and Secrets</span></span></a>
   </div>
 </li>
       </ul>
@@ -544,19 +567,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/llm-internals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">How Language Models Work</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">How Language Models Work</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/ai-agents.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Working with AI Agent Frameworks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Working with AI Agent Frameworks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/evaluating-ai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Evaluating and Auditing AI Outputs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Evaluating and Auditing AI Outputs</span></span></a>
   </div>
 </li>
       </ul>
@@ -564,7 +587,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -603,34 +626,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose">Purpose</a></li>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning objectives</a></li>
   <li><a href="#running-theme-location-is-a-dependency" id="toc-running-theme-location-is-a-dependency" class="nav-link" data-scroll-target="#running-theme-location-is-a-dependency">Running theme: “Location is a dependency’’</a></li>
-  <li><a href="#a-beginner-mental-model" id="toc-a-beginner-mental-model" class="nav-link" data-scroll-target="#a-beginner-mental-model"><span class="header-section-number">9.1</span> A beginner mental model</a>
-  <ul class="collapse">
-  <li><a href="#files-vs-folders" id="toc-files-vs-folders" class="nav-link" data-scroll-target="#files-vs-folders">Files vs folders</a></li>
-  <li><a href="#paths-how-the-computer-points-to-a-location" id="toc-paths-how-the-computer-points-to-a-location" class="nav-link" data-scroll-target="#paths-how-the-computer-points-to-a-location">Paths: how the computer points to a location</a></li>
-  <li><a href="#windows-vs-macos-path-conventions-what-novices-must-know" id="toc-windows-vs-macos-path-conventions-what-novices-must-know" class="nav-link" data-scroll-target="#windows-vs-macos-path-conventions-what-novices-must-know">Windows vs macOS path conventions (what novices must know)</a></li>
-  <li><a href="#extensions-and-file-types" id="toc-extensions-and-file-types" class="nav-link" data-scroll-target="#extensions-and-file-types">Extensions and file types</a></li>
-  </ul></li>
-  <li><a href="#access-and-navigation-on-windows-file-explorer" id="toc-access-and-navigation-on-windows-file-explorer" class="nav-link" data-scroll-target="#access-and-navigation-on-windows-file-explorer"><span class="header-section-number">9.2</span> Access and navigation on Windows (File Explorer)</a>
-  <ul class="collapse">
-  <li><a href="#opening-and-orienting" id="toc-opening-and-orienting" class="nav-link" data-scroll-target="#opening-and-orienting">Opening and orienting</a></li>
-  <li><a href="#core-navigation-skills" id="toc-core-navigation-skills" class="nav-link" data-scroll-target="#core-navigation-skills">Core navigation skills</a></li>
-  <li><a href="#make-file-extensions-and-hidden-items-visible-when-troubleshooting" id="toc-make-file-extensions-and-hidden-items-visible-when-troubleshooting" class="nav-link" data-scroll-target="#make-file-extensions-and-hidden-items-visible-when-troubleshooting">Make file extensions and hidden items visible (when troubleshooting)</a></li>
-  <li><a href="#local-vs-synced-locations-onedrive" id="toc-local-vs-synced-locations-onedrive" class="nav-link" data-scroll-target="#local-vs-synced-locations-onedrive">Local vs synced locations (OneDrive)</a></li>
-  </ul></li>
-  <li><a href="#access-and-navigation-on-macos-finder" id="toc-access-and-navigation-on-macos-finder" class="nav-link" data-scroll-target="#access-and-navigation-on-macos-finder"><span class="header-section-number">9.3</span> Access and navigation on macOS (Finder)</a>
-  <ul class="collapse">
-  <li><a href="#opening-and-orienting-1" id="toc-opening-and-orienting-1" class="nav-link" data-scroll-target="#opening-and-orienting-1">Opening and orienting</a></li>
-  <li><a href="#core-navigation-skills-1" id="toc-core-navigation-skills-1" class="nav-link" data-scroll-target="#core-navigation-skills-1">Core navigation skills</a></li>
-  <li><a href="#hidden-files-and-system-folders-what-to-avoid" id="toc-hidden-files-and-system-folders-what-to-avoid" class="nav-link" data-scroll-target="#hidden-files-and-system-folders-what-to-avoid">Hidden files and system folders (what to avoid)</a></li>
-  <li><a href="#local-vs-icloud-behavior" id="toc-local-vs-icloud-behavior" class="nav-link" data-scroll-target="#local-vs-icloud-behavior">Local vs iCloud behavior</a></li>
-  </ul></li>
-  <li><a href="#organizing-work-conventions-that-scale" id="toc-organizing-work-conventions-that-scale" class="nav-link" data-scroll-target="#organizing-work-conventions-that-scale"><span class="header-section-number">9.4</span> Organizing work: conventions that scale</a>
-  <ul class="collapse">
-  <li><a href="#a-default-structure-for-students" id="toc-a-default-structure-for-students" class="nav-link" data-scroll-target="#a-default-structure-for-students">A default structure for students</a></li>
-  <li><a href="#a-default-structure-for-data-projects" id="toc-a-default-structure-for-data-projects" class="nav-link" data-scroll-target="#a-default-structure-for-data-projects">A default structure for data projects</a></li>
-  <li><a href="#naming-conventions" id="toc-naming-conventions" class="nav-link" data-scroll-target="#naming-conventions">Naming conventions</a></li>
-  <li><a href="#provenance-and-duplicates" id="toc-provenance-and-duplicates" class="nav-link" data-scroll-target="#provenance-and-duplicates">Provenance and duplicates</a></li>
-  </ul></li>
+  <li><a href="#a-beginner-mental-model" id="toc-a-beginner-mental-model" class="nav-link" data-scroll-target="#a-beginner-mental-model"><span class="header-section-number">9.1</span> A beginner mental model</a></li>
+  <li><a href="#access-and-navigation-on-windows" id="toc-access-and-navigation-on-windows" class="nav-link" data-scroll-target="#access-and-navigation-on-windows"><span class="header-section-number">9.2</span> Access and navigation on Windows</a></li>
+  <li><a href="#access-and-navigation-on-macos" id="toc-access-and-navigation-on-macos" class="nav-link" data-scroll-target="#access-and-navigation-on-macos"><span class="header-section-number">9.3</span> Access and navigation on macOS</a></li>
+  <li><a href="#organizing-work-conventions-that-scale" id="toc-organizing-work-conventions-that-scale" class="nav-link" data-scroll-target="#organizing-work-conventions-that-scale"><span class="header-section-number">9.4</span> Organizing work: conventions that scale</a></li>
   <li><a href="#search-metadata-and-finding-it-later" id="toc-search-metadata-and-finding-it-later" class="nav-link" data-scroll-target="#search-metadata-and-finding-it-later"><span class="header-section-number">9.5</span> Search, metadata, and “finding it later’’</a>
   <ul class="collapse">
   <li><a href="#search-strategies-that-work" id="toc-search-strategies-that-work" class="nav-link" data-scroll-target="#search-strategies-that-work">Search strategies that work</a></li>
@@ -642,23 +641,17 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#delete-and-recover" id="toc-delete-and-recover" class="nav-link" data-scroll-target="#delete-and-recover">Delete and recover</a></li>
   <li><a href="#permissions-basics-just-enough" id="toc-permissions-basics-just-enough" class="nav-link" data-scroll-target="#permissions-basics-just-enough">Permissions basics (just enough)</a></li>
   </ul></li>
-  <li><a href="#common-student-pitfalls-and-how-to-avoid-them" id="toc-common-student-pitfalls-and-how-to-avoid-them" class="nav-link" data-scroll-target="#common-student-pitfalls-and-how-to-avoid-them"><span class="header-section-number">9.7</span> Common student pitfalls (and how to avoid them)</a>
-  <ul class="collapse">
-  <li><a href="#pitfall-working-from-downloadsdesktop-forever" id="toc-pitfall-working-from-downloadsdesktop-forever" class="nav-link" data-scroll-target="#pitfall-working-from-downloadsdesktop-forever">Pitfall: working from Downloads/Desktop forever</a></li>
-  <li><a href="#pitfall-confusing-cloud-sync-with-local-storage" id="toc-pitfall-confusing-cloud-sync-with-local-storage" class="nav-link" data-scroll-target="#pitfall-confusing-cloud-sync-with-local-storage">Pitfall: confusing cloud-sync with local storage</a></li>
-  <li><a href="#pitfall-accidental-extension-changes" id="toc-pitfall-accidental-extension-changes" class="nav-link" data-scroll-target="#pitfall-accidental-extension-changes">Pitfall: accidental extension changes</a></li>
-  <li><a href="#pitfall-moving-folders-after-writing-code" id="toc-pitfall-moving-folders-after-writing-code" class="nav-link" data-scroll-target="#pitfall-moving-folders-after-writing-code">Pitfall: moving folders after writing code</a></li>
-  </ul></li>
+  <li><a href="#common-student-pitfalls-and-how-to-avoid-them" id="toc-common-student-pitfalls-and-how-to-avoid-them" class="nav-link" data-scroll-target="#common-student-pitfalls-and-how-to-avoid-them"><span class="header-section-number">9.7</span> Common student pitfalls (and how to avoid them)</a></li>
   <li><a href="#bridging-to-the-terminal-and-programming" id="toc-bridging-to-the-terminal-and-programming" class="nav-link" data-scroll-target="#bridging-to-the-terminal-and-programming"><span class="header-section-number">9.8</span> Bridging to the terminal and programming</a>
   <ul class="collapse">
   <li><a href="#why-file-habits-matter-for-code" id="toc-why-file-habits-matter-for-code" class="nav-link" data-scroll-target="#why-file-habits-matter-for-code">Why file habits matter for code</a></li>
   <li><a href="#cross-platform-path-handling-conceptual" id="toc-cross-platform-path-handling-conceptual" class="nav-link" data-scroll-target="#cross-platform-path-handling-conceptual">Cross-platform path handling (conceptual)</a></li>
   </ul></li>
-  <li><a href="#worked-examples-outline" id="toc-worked-examples-outline" class="nav-link" data-scroll-target="#worked-examples-outline"><span class="header-section-number">9.9</span> Worked examples (outline)</a>
+  <li><a href="#worked-examples" id="toc-worked-examples" class="nav-link" data-scroll-target="#worked-examples"><span class="header-section-number">9.9</span> Worked examples</a>
   <ul class="collapse">
-  <li><a href="#example-1-build-a-course-workspace-on-windows-and-macos" id="toc-example-1-build-a-course-workspace-on-windows-and-macos" class="nav-link" data-scroll-target="#example-1-build-a-course-workspace-on-windows-and-macos">Example 1: Build a course workspace on Windows and macOS</a></li>
-  <li><a href="#example-2-turn-a-messy-downloads-folder-into-a-clean-project" id="toc-example-2-turn-a-messy-downloads-folder-into-a-clean-project" class="nav-link" data-scroll-target="#example-2-turn-a-messy-downloads-folder-into-a-clean-project">Example 2: Turn a messy Downloads folder into a clean project</a></li>
-  <li><a href="#example-3-diagnose-file-not-found" id="toc-example-3-diagnose-file-not-found" class="nav-link" data-scroll-target="#example-3-diagnose-file-not-found">Example 3: Diagnose “file not found’’</a></li>
+  <li><a href="#building-a-course-workspace-from-scratch" id="toc-building-a-course-workspace-from-scratch" class="nav-link" data-scroll-target="#building-a-course-workspace-from-scratch">Building a course workspace from scratch</a></li>
+  <li><a href="#turning-a-messy-downloads-folder-into-a-clean-project" id="toc-turning-a-messy-downloads-folder-into-a-clean-project" class="nav-link" data-scroll-target="#turning-a-messy-downloads-folder-into-a-clean-project">Turning a messy Downloads folder into a clean project</a></li>
+  <li><a href="#diagnosing-file-not-found" id="toc-diagnosing-file-not-found" class="nav-link" data-scroll-target="#diagnosing-file-not-found">Diagnosing “file not found”</a></li>
   </ul></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">9.10</span> Exercises</a></li>
   <li><a href="#one-page-checklist" id="toc-one-page-checklist" class="nav-link" data-scroll-target="#one-page-checklist"><span class="header-section-number">9.11</span> One-page checklist</a></li>
@@ -707,8 +700,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>Prerequisites (read first if unfamiliar):</strong> <a href="#sec-os-management" class="quarto-xref"><span class="quarto-unresolved-ref">sec-os-management</span></a>.</p>
-<p><strong>See also:</strong> <a href="#sec-terminal" class="quarto-xref"><span class="quarto-unresolved-ref">sec-terminal</span></a>, <a href="#sec-project-management" class="quarto-xref"><span class="quarto-unresolved-ref">sec-project-management</span></a>.</p>
+<p><strong>Prerequisites (read first if unfamiliar):</strong> <a href="operating-system.html" class="quarto-xref"><span>Chapter 8</span></a>.</p>
+<p><strong>See also:</strong> <a href="terminal.html" class="quarto-xref"><span>Chapter 10</span></a>, <a href="../part-5-projects/project-management.html" class="quarto-xref"><span>Chapter 24</span></a>.</p>
 </div>
 </div>
 </div>
@@ -734,141 +727,50 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="a-beginner-mental-model" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="a-beginner-mental-model"><span class="header-section-number">9.1</span> A beginner mental model</h2>
-<section id="files-vs-folders" class="level3">
-<h3 class="anchored" data-anchor-id="files-vs-folders">Files vs folders</h3>
-<ul>
-<li><p><strong>File:</strong> a named unit of stored data (e.g., <code>report.docx</code>, <code>data.csv</code>).</p></li>
-<li><p><strong>Folder/directory:</strong> a container that holds files and other folders.</p></li>
-<li><p><strong>Hierarchy:</strong> folders inside folders form a tree.</p></li>
-</ul>
+<p>The smallest piece of vocabulary you need is the difference between a <strong>file</strong> and a <strong>folder</strong>. A file is a single named unit of stored data — a <code>report.docx</code> document, a <code>data.csv</code> table, a <code>cleaning.py</code> script. A folder (sometimes called a <em>directory</em>; the words are interchangeable) is a container that holds files, and it can hold other folders too. Folders inside folders form a tree, and your entire computer’s file system is one big tree growing out of a single root.</p>
+<p>Every file in that tree has a <strong>path</strong>, which is the address that points at it. There are two flavors. An <strong>absolute path</strong> describes where a file is starting from the very root of the tree, so it works no matter where you currently are. A <strong>relative path</strong> describes where a file is starting from wherever you happen to be right now — it is shorter, but it depends on context. Both kinds use a separator character to divide each step of the descent into the tree, and the choice of separator differs between operating systems: Windows uses a backslash (<code>\</code>), while macOS and Linux use a forward slash (<code>/</code>). On Windows, paths usually start with a drive letter like <code>C:\Users\you\Documents</code>, and there are also network paths that begin with <code>\\server\share</code>. On macOS, the root is just <code>/</code>, your home folder lives at <code>/Users/you</code>, and your Documents at <code>/Users/you/Documents</code>.</p>
+<pre class="text"><code>Absolute path (Windows):   C:\Users\you\Documents\project\data.csv
+Absolute path (macOS):     /Users/you/Documents/project/data.csv
+Relative path (either):    project/data.csv         (from inside Documents)
+Relative path (either):    ../data.csv              (one folder up)</code></pre>
+<p>A practical Windows quirk worth knowing: the operating system has historical limits on how long a path can be, and some tools still trip over paths longer than 260 characters. The mitigation is the same one you would adopt for readability anyway: keep project paths short and avoid burying things ten folders deep.</p>
+<p>Each filename usually ends with an <strong>extension</strong> like <code>.csv</code>, <code>.py</code>, or <code>.docx</code>, separated from the name by a dot. Extensions are how your operating system (and most applications) decide which program to open a file with — <code>.csv</code> opens in Excel or a text editor, <code>.py</code> opens in Python, <code>.docx</code> opens in Word. When you can choose the format you save in, prefer stable plain-text formats like <code>.csv</code>, <code>.txt</code>, and <code>.md</code> over proprietary binary ones (<code>.xlsx</code>, <code>.docx</code>, <code>.pdf</code>). Plain-text files can be read by any tool, version-controlled cleanly with <code>git diff</code>, and recovered from when something goes wrong; binary formats can do none of those things well.</p>
 </section>
-<section id="paths-how-the-computer-points-to-a-location" class="level3">
-<h3 class="anchored" data-anchor-id="paths-how-the-computer-points-to-a-location">Paths: how the computer points to a location</h3>
-<ul>
-<li><p><strong>Absolute path:</strong> full location from a root.</p></li>
-<li><p><strong>Relative path:</strong> location relative to your current folder.</p></li>
-<li><p><strong>Separators:</strong> Windows uses backslashes (<code>\</code>); macOS uses forward slashes (<code>/</code>).</p></li>
-</ul>
+<section id="access-and-navigation-on-windows" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="access-and-navigation-on-windows"><span class="header-section-number">9.2</span> Access and navigation on Windows</h2>
+<p>When you open File Explorer on Windows (the icon is a manila folder, usually pinned to the taskbar), you see three things you should learn to recognize: a <strong>sidebar</strong> down the left with shortcuts to common locations like Quick Access and This PC, a <strong>main pane</strong> in the middle showing the contents of whichever folder you have selected, and an <strong>address bar</strong> along the top showing your current location as a sequence of clickable segments. Those segments are called <em>breadcrumbs</em>, and clicking any one of them jumps you back to that folder — so if you are deep inside <code>C:\Users\you\Documents\project\notebooks\drafts</code>, you can click <code>Documents</code> once and land in your Documents folder without using the Back button five times.</p>
+<p>Beyond pointing and clicking, File Explorer rewards a few specific skills. <strong>Search</strong> can be scoped to the current folder or the entire machine, and the difference matters: searching all of <code>This PC</code> for <code>data.csv</code> will find every CSV on your computer, which is rarely what you want, while searching from inside your project folder limits the result to that project. <strong>Sort</strong> and <strong>view</strong> options (right-click in the main pane or use the View tab) let you order files by name, date modified, type, or size; sorting by date modified is especially useful when you are trying to remember “what did I save yesterday?” In the View tab there are also two toggles you should know exist before you need them: <strong>show file name extensions</strong> and <strong>show hidden items</strong>. The first prevents the classic confusion where <code>data.csv</code> and <code>data.csv.txt</code> look identical to you in the GUI but are completely different files to your code. The second is occasionally needed when troubleshooting <code>.env</code> files, <code>.git</code> folders, or other dotfiles. Turn these on temporarily for diagnostics, and turn them off again when you are done so you do not accidentally delete a system file.</p>
+<p>A second important Windows-specific concept is <strong>OneDrive sync</strong>. If your account uses OneDrive, your <code>Documents</code> folder may not actually live on your laptop — it may live in the cloud, with placeholder files on disk that download on demand when you open them. Sync status icons next to each file or folder tell you what state things are in: a cloud icon means “in the cloud only, not local,” a green checkmark means “always kept on this device,” and a circular arrow means “currently syncing.” For programming and data work, this matters because a script that tries to read a 2 GB CSV will silently trigger a download that may or may not finish before the script tries to use the file. The fix is to right-click any folder you actively work in and select “Always keep on this device,” which forces a full local copy.</p>
 </section>
-<section id="windows-vs-macos-path-conventions-what-novices-must-know" class="level3">
-<h3 class="anchored" data-anchor-id="windows-vs-macos-path-conventions-what-novices-must-know">Windows vs macOS path conventions (what novices must know)</h3>
-<ul>
-<li><p><strong>Windows:</strong> drive letters and fully-qualified paths like <code>C:\Users\name\Documents</code>; also network (UNC) paths like <code>\server \share</code>.</p></li>
-<li><p><strong>macOS:</strong> volume-and-directory paths like <code>/Users/name/Documents</code> (POSIX-style).</p></li>
-<li><p><strong>Path length and odd edge cases:</strong> Windows has historical maximum path-length constraints and special path forms; you should keep project paths short and avoid deeply nested folders when possible.</p></li>
-</ul>
-</section>
-<section id="extensions-and-file-types" class="level3">
-<h3 class="anchored" data-anchor-id="extensions-and-file-types">Extensions and file types</h3>
-<ul>
-<li><p>Extensions (e.g., <code>.csv</code>, <code>.py</code>) help your OS and apps guess how to open a file.</p></li>
-<li><p>For reproducible work, prefer stable, plain formats (<code>.csv</code>, <code>.txt</code>, <code>.md</code>) over opaque or proprietary formats when possible.</p></li>
-</ul>
-</section>
-</section>
-<section id="access-and-navigation-on-windows-file-explorer" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="access-and-navigation-on-windows-file-explorer"><span class="header-section-number">9.2</span> Access and navigation on Windows (File Explorer)</h2>
-<section id="opening-and-orienting" class="level3">
-<h3 class="anchored" data-anchor-id="opening-and-orienting">Opening and orienting</h3>
-<ul>
-<li><p>Open File Explorer; identify the sidebar (Quick access/Home), main pane, and address bar.</p></li>
-<li><p>Learn the breadcrumbs: click segments in the path bar to jump to parent folders.</p></li>
-</ul>
-</section>
-<section id="core-navigation-skills" class="level3">
-<h3 class="anchored" data-anchor-id="core-navigation-skills">Core navigation skills</h3>
-<ul>
-<li><p>Move up/down the hierarchy, open in new tabs/windows, and return to recent locations.</p></li>
-<li><p>Use search correctly: search within the current folder vs across the whole machine.</p></li>
-<li><p>Use sort and view options: by name, date modified, type, size.</p></li>
-</ul>
-</section>
-<section id="make-file-extensions-and-hidden-items-visible-when-troubleshooting" class="level3">
-<h3 class="anchored" data-anchor-id="make-file-extensions-and-hidden-items-visible-when-troubleshooting">Make file extensions and hidden items visible (when troubleshooting)</h3>
-<ul>
-<li><p>Toggle viewing extensions to avoid confusion (<code>data.csv</code> vs <code>data.csv.txt</code>).</p></li>
-<li><p>Toggle hidden items when necessary for diagnostics.</p></li>
-</ul>
-</section>
-<section id="local-vs-synced-locations-onedrive" class="level3">
-<h3 class="anchored" data-anchor-id="local-vs-synced-locations-onedrive">Local vs synced locations (OneDrive)</h3>
-<ul>
-<li><p>Understand sync status indicators and what they imply about local availability.</p></li>
-<li><p>Recognize online-only” vs always keep on this device’’ behaviors, especially when working offline.</p></li>
-</ul>
-</section>
-</section>
-<section id="access-and-navigation-on-macos-finder" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="access-and-navigation-on-macos-finder"><span class="header-section-number">9.3</span> Access and navigation on macOS (Finder)</h2>
-<section id="opening-and-orienting-1" class="level3">
-<h3 class="anchored" data-anchor-id="opening-and-orienting-1">Opening and orienting</h3>
-<ul>
-<li><p>Open Finder; identify the sidebar (Favorites, iCloud Drive), toolbar, and path location.</p></li>
-<li><p>Understand view modes: icons, list, columns, gallery (choose based on task).</p></li>
-</ul>
-</section>
-<section id="core-navigation-skills-1" class="level3">
-<h3 class="anchored" data-anchor-id="core-navigation-skills-1">Core navigation skills</h3>
-<ul>
-<li><p>Use the hierarchy: parent folders, column view for rapid browsing.</p></li>
-<li><p>Use Finder search and filters; search this Mac vs this folder.</p></li>
-<li><p>Use tags to create lightweight categories without moving files.</p></li>
-</ul>
-</section>
-<section id="hidden-files-and-system-folders-what-to-avoid" class="level3">
-<h3 class="anchored" data-anchor-id="hidden-files-and-system-folders-what-to-avoid">Hidden files and system folders (what to avoid)</h3>
-<ul>
-<li><p>Finder hides some system locations by default; treat hidden/system folders as “do not edit unless you know why.’’</p></li>
-<li><p>If you must inspect hidden files for troubleshooting, do so carefully and revert the view when done.</p></li>
-</ul>
-</section>
-<section id="local-vs-icloud-behavior" class="level3">
-<h3 class="anchored" data-anchor-id="local-vs-icloud-behavior">Local vs iCloud behavior</h3>
-<ul>
-<li><p>macOS can optimize storage by moving less-used files to iCloud and downloading them on demand.</p></li>
-<li><p>Implication for projects: ensure critical files are actually present locally before running analyses.</p></li>
-</ul>
-</section>
+<section id="access-and-navigation-on-macos" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="access-and-navigation-on-macos"><span class="header-section-number">9.3</span> Access and navigation on macOS</h2>
+<p>Finder on macOS plays the same role as File Explorer on Windows. You open it by clicking the smiley-face icon in the Dock, and you immediately see a <strong>sidebar</strong> with Favorites and iCloud Drive on the left, a <strong>toolbar</strong> with view-mode buttons across the top, and the <strong>main pane</strong> showing whichever folder is selected. The view-mode buttons are worth learning: icon view is good for browsing photos, list view is good for sorting by date or size, column view is the fastest way to drill down through several folders in a row, and gallery view is mostly useful for media. Column view in particular is the best macOS feature for “where am I?” — each column shows the contents of the next level down, so you can navigate a deep folder hierarchy without losing your place.</p>
+<p>Finder’s search box (top-right or <code>Command + F</code>) is powerful but defaults to searching your entire Mac. If you only want to search inside the current folder, click the scope button in the search bar and choose the folder name. You can also refine results by file kind, modification date, and other metadata, which is the easiest way to find that “report from last week” you cannot remember the name of. macOS also has <strong>tags</strong> (the colored circles you sometimes see on file icons), which act as lightweight categories — tag a file as “Course X” or “needs review” without moving it, and then filter by that tag later. Tags are an underused habit that pays off for long-running projects.</p>
+<p>A few system folders are hidden by default — the macOS root, the <code>~/Library</code> folder, anything starting with a dot. Treat them as off-limits unless you have a reason to be there: they hold configuration files for the operating system and your applications, and editing them by mistake can break things in subtle ways. When you do need to see them (most often <code>~/.ssh</code> for key files, see <a href="remote.html" class="quarto-xref"><span>Chapter 12</span></a>), the keystroke <code>Command + Shift + .</code> toggles hidden items in any Finder window. Use it for the diagnosis you need, then toggle it off so you do not accidentally drag the wrong thing into the trash.</p>
+<p>The macOS equivalent of OneDrive’s “files on demand” behavior is <strong>iCloud Drive optimization</strong>. If macOS thinks you are running low on disk space, it will quietly evict the least-used files in <code>Documents</code> and <code>Desktop</code> to iCloud, leaving placeholder icons that re-download when you open them. Same problem, same fix: for any folder where you actually run code, make sure the files are present locally. You can confirm by selecting a file and pressing <code>Command + I</code> to bring up the Get Info window, which says whether the file is on your Mac or only in iCloud.</p>
 </section>
 <section id="organizing-work-conventions-that-scale" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="organizing-work-conventions-that-scale"><span class="header-section-number">9.4</span> Organizing work: conventions that scale</h2>
-<section id="a-default-structure-for-students" class="level3">
-<h3 class="anchored" data-anchor-id="a-default-structure-for-students">A default structure for students</h3>
-<p>Recommend a stable home for course work:</p>
-<ul>
-<li><p><code>School/</code> or <code>Courses/</code></p></li>
-<li><p><code>CourseName/</code></p></li>
-<li><p><code>Assignments/</code>, <code>Labs/</code>, <code>Project/</code></p></li>
-</ul>
-</section>
-<section id="a-default-structure-for-data-projects" class="level3">
-<h3 class="anchored" data-anchor-id="a-default-structure-for-data-projects">A default structure for data projects</h3>
-<ul>
-<li><p><code>README.md</code> (how to run, where things are)</p></li>
-<li><p><code>data/raw/</code> (immutable inputs)</p></li>
-<li><p><code>data/processed/</code> (derived outputs)</p></li>
-<li><p><code>src/</code> (scripts and reusable code)</p></li>
-<li><p><code>notebooks/</code> (exploration, not production)</p></li>
-<li><p><code>reports/</code> or <code>figures/</code></p></li>
-</ul>
-</section>
-<section id="naming-conventions" class="level3">
-<h3 class="anchored" data-anchor-id="naming-conventions">Naming conventions</h3>
-<ul>
-<li><p>Use meaningful, stable names: <code>YYYY-MM-DD</code> prefixes for dated artifacts.</p></li>
-<li><p>Avoid spaces and special characters when files will be used in code.</p></li>
-<li><p>Prefer lowercase with hyphens/underscores: <code>clean-survey-2026-01.csv</code>.</p></li>
-<li><p>Never use <code>final.docx</code>, <code>final-final.docx</code>; use semantic versioning or dates.</p></li>
-</ul>
-</section>
-<section id="provenance-and-duplicates" class="level3">
-<h3 class="anchored" data-anchor-id="provenance-and-duplicates">Provenance and duplicates</h3>
-<ul>
-<li><p>Keep raw files read-only; do not edit original data in place.</p></li>
-<li><p>When you must create variants, record why and how (notes in README or a changelog).</p></li>
-<li><p>Learn to detect duplicates (same name, different content; same content, different name).</p></li>
-</ul>
-</section>
+<p>The single biggest improvement most students can make to their file management is to <strong>stop working out of <code>Downloads/</code> and <code>Desktop/</code></strong> and instead create a stable top-level home for everything school-related. The exact name does not matter — <code>School/</code>, <code>Courses/</code>, <code>Coursework/</code> are all fine — but the existence of one designated place does matter, because it gives every assignment, lab, and project a predictable parent. Inside that home, give each course its own folder, and inside each course folder, separate <code>Assignments/</code>, <code>Labs/</code>, and <code>Project/</code>. The reward is enormous: when you come back to the work in three weeks, you do not have to remember where you put things; you just open the path you always use.</p>
+<pre class="text"><code>~/Courses/
+├── INFO-3010/
+│   ├── Assignments/
+│   ├── Labs/
+│   └── Project/
+└── INFO-4040/
+    ├── Assignments/
+    └── Project/</code></pre>
+<p>For data-science projects specifically, one folder layout has become a near-universal standard, and adopting it from day one will save you grief. At the project root you put a <code>README.md</code> describing what the project is and how to run it. You put your inputs in <code>data/raw/</code> and treat them as <strong>read-only</strong> — never edit raw data in place, no matter how tempting. Anything derived from those raw files (cleaned versions, joined tables, intermediate aggregates) goes in <code>data/processed/</code>. Reusable Python code lives in <code>src/</code>, exploratory notebooks live in <code>notebooks/</code>, and final figures or tables go in <code>reports/</code> or <code>figures/</code>. The whole point of the layout is that someone — including future you — should be able to delete <code>data/processed/</code>, run one command, and rebuild it. That property only holds if you respect the read-only rule on <code>data/raw/</code>.</p>
+<pre class="text"><code>project/
+├── README.md
+├── data/
+│   ├── raw/         # immutable inputs — never overwrite
+│   └── processed/   # rebuildable outputs
+├── src/             # importable Python code
+├── notebooks/       # exploration only, not production
+└── reports/         # figures and tables for sharing</code></pre>
+<p>Naming conventions are the other lever that pays back compounding interest. Use meaningful, stable names that describe the file’s contents — <code>clean-survey-2026-01.csv</code> instead of <code>data2.csv</code>. Prefix dated artifacts with <code>YYYY-MM-DD</code> so they sort chronologically when you list them: <code>2026-01-15-pilot-results.csv</code> will always sort next to <code>2026-01-22-pilot-results.csv</code> no matter what tool you use. Avoid spaces and special characters in any filename you might pass to code — <code>survey results.csv</code> is a recipe for shell quoting bugs, while <code>survey-results.csv</code> or <code>survey_results.csv</code> will work everywhere. And never, ever fall into the <code>final.docx</code> / <code>final-final.docx</code> / <code>final-final-USE-THIS.docx</code> trap. Use dates or version numbers, not adjectives, to track iterations.</p>
+<p>The provenance habit is the same idea applied to data. Keep raw files read-only; if you need a variant of one (a smaller subset, a column rename, an encoding fix), save the variant under a new name in <code>data/processed/</code> and write down in your README or a changelog <em>what</em> you changed and <em>why</em>. The same week, this seems like overkill. Six weeks later, when you cannot reproduce your own results, it is the difference between five minutes of investigation and an afternoon of guessing.</p>
 </section>
 <section id="search-metadata-and-finding-it-later" class="level2" data-number="9.5">
 <h2 data-number="9.5" class="anchored" data-anchor-id="search-metadata-and-finding-it-later"><span class="header-section-number">9.5</span> Search, metadata, and “finding it later’’</h2>
@@ -915,34 +817,10 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="common-student-pitfalls-and-how-to-avoid-them" class="level2" data-number="9.7">
 <h2 data-number="9.7" class="anchored" data-anchor-id="common-student-pitfalls-and-how-to-avoid-them"><span class="header-section-number">9.7</span> Common student pitfalls (and how to avoid them)</h2>
-<section id="pitfall-working-from-downloadsdesktop-forever" class="level3">
-<h3 class="anchored" data-anchor-id="pitfall-working-from-downloadsdesktop-forever">Pitfall: working from Downloads/Desktop forever</h3>
-<ul>
-<li><p>Symptom: files disappear, duplicates accumulate, paths break.</p></li>
-<li><p>Fix: move projects into a stable <code>Courses/</code> or <code>Projects/</code> location.</p></li>
-</ul>
-</section>
-<section id="pitfall-confusing-cloud-sync-with-local-storage" class="level3">
-<h3 class="anchored" data-anchor-id="pitfall-confusing-cloud-sync-with-local-storage">Pitfall: confusing cloud-sync with local storage</h3>
-<ul>
-<li><p>Symptom: notebook cannot find data, or files are not available offline.”</p></li>
-<li><p>Fix: confirm local availability; understand sync icons and on demand’’ downloads.</p></li>
-</ul>
-</section>
-<section id="pitfall-accidental-extension-changes" class="level3">
-<h3 class="anchored" data-anchor-id="pitfall-accidental-extension-changes">Pitfall: accidental extension changes</h3>
-<ul>
-<li><p>Symptom: file opens in the wrong program or fails to load.</p></li>
-<li><p>Fix: show extensions when working with data/code; avoid manual extension edits unless you understand the effect.</p></li>
-</ul>
-</section>
-<section id="pitfall-moving-folders-after-writing-code" class="level3">
-<h3 class="anchored" data-anchor-id="pitfall-moving-folders-after-writing-code">Pitfall: moving folders after writing code</h3>
-<ul>
-<li><p>Symptom: scripts break because paths are hard-coded.</p></li>
-<li><p>Fix: keep a stable project root; use relative paths inside projects.</p></li>
-</ul>
-</section>
+<p>A small number of mistakes account for almost all the file-management pain that beginners suffer, and they are all preventable. The most common one is <strong>working out of <code>Downloads/</code> or <code>Desktop/</code> forever</strong>: every assignment lands wherever it was downloaded, duplicates accumulate, version <code>final-2.csv</code> ends up next to <code>final-3.csv</code> next to <code>data.csv</code>, and three weeks later nothing can be found. The fix is the one from the previous section — create a stable project root under <code>Courses/</code> or <code>Projects/</code> and move work there immediately, every time.</p>
+<p>The second is <strong>confusing cloud sync with local storage</strong>, which usually shows up as a notebook that cannot find the data file you can clearly see on your screen. The file is not really there; it is a placeholder that OneDrive or iCloud is going to download on demand, and your code reached the read before the download finished (or while you were offline). The fix is to make the project folder always-local: right-click and “Always keep on this device” on Windows, or “Download Now” / “Keep Downloaded” on macOS, before you ever try to run the code.</p>
+<p>The third is <strong>accidental extension changes</strong>, where you rename <code>data.csv</code> to <code>data</code> (because the GUI was hiding the extension and you thought you were renaming the whole filename), or where you save a CSV “as text” and end up with <code>data.csv.txt</code>. Both produce the same kind of confusing failure: the file opens in the wrong program, or your code says “no such file.” The fix is to turn on <strong>show file extensions</strong> in your file manager and leave it on. The few seconds of cognitive overhead are worth never being burned by this again.</p>
+<p>The fourth is <strong>moving folders after you have written code that depends on them</strong>. A script that references <code>data/input.csv</code> works fine until you reorganize and the data file moves. The fix is twofold: pick your project root early, do not move it casually, and inside the project use <em>relative</em> paths so that everything is stable as long as the project root stays put. If you must use absolute paths, compute them at runtime from <code>__file__</code> rather than hard-coding <code>/Users/alex/...</code>, since hard-coded absolute paths immediately break when anyone else clones the project — including future you on a different laptop.</p>
 </section>
 <section id="bridging-to-the-terminal-and-programming" class="level2" data-number="9.8">
 <h2 data-number="9.8" class="anchored" data-anchor-id="bridging-to-the-terminal-and-programming"><span class="header-section-number">9.8</span> Bridging to the terminal and programming</h2>
@@ -961,31 +839,35 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </section>
 </section>
-<section id="worked-examples-outline" class="level2" data-number="9.9">
-<h2 data-number="9.9" class="anchored" data-anchor-id="worked-examples-outline"><span class="header-section-number">9.9</span> Worked examples (outline)</h2>
-<section id="example-1-build-a-course-workspace-on-windows-and-macos" class="level3">
-<h3 class="anchored" data-anchor-id="example-1-build-a-course-workspace-on-windows-and-macos">Example 1: Build a course workspace on Windows and macOS</h3>
-<ul>
-<li><p>Create the <code>Courses/</code> directory.</p></li>
-<li><p>Create an assignment folder with a consistent template.</p></li>
-<li><p>Pin/favorite the folder for quick access.</p></li>
-</ul>
+<section id="worked-examples" class="level2" data-number="9.9">
+<h2 data-number="9.9" class="anchored" data-anchor-id="worked-examples"><span class="header-section-number">9.9</span> Worked examples</h2>
+<section id="building-a-course-workspace-from-scratch" class="level3">
+<h3 class="anchored" data-anchor-id="building-a-course-workspace-from-scratch">Building a course workspace from scratch</h3>
+<p>You are starting a new semester with three classes. The first thing to do, before you download any handouts, is to create the home that will hold all of them. Open a terminal in your user directory and run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/Courses/INFO-3010/<span class="dt">{Assignments</span><span class="op">,</span><span class="dt">Labs</span><span class="op">,</span><span class="dt">Project}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/Courses/INFO-4040/<span class="dt">{Assignments</span><span class="op">,</span><span class="dt">Project}</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/Courses/STAT-2010/<span class="dt">{Labs</span><span class="op">,</span><span class="dt">Assignments}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>(On Windows, do the same in PowerShell with <code>New-Item -ItemType Directory -Force -Path</code> or just create them by right-clicking in File Explorer.) Then add the top-level <code>Courses</code> folder to your file manager’s favorites: drag it to the Finder sidebar on macOS, or right-click and choose “Pin to Quick access” in File Explorer on Windows. From this point on, every assignment you save lives somewhere predictable, and you can get to any of them in two clicks.</p>
 </section>
-<section id="example-2-turn-a-messy-downloads-folder-into-a-clean-project" class="level3">
-<h3 class="anchored" data-anchor-id="example-2-turn-a-messy-downloads-folder-into-a-clean-project">Example 2: Turn a messy Downloads folder into a clean project</h3>
-<ul>
-<li><p>Identify project files by extension and date.</p></li>
-<li><p>Move into a new project root.</p></li>
-<li><p>Create <code>data/raw</code> vs <code>data/processed</code> and update references.</p></li>
-</ul>
+<section id="turning-a-messy-downloads-folder-into-a-clean-project" class="level3">
+<h3 class="anchored" data-anchor-id="turning-a-messy-downloads-folder-into-a-clean-project">Turning a messy Downloads folder into a clean project</h3>
+<p>You started a project a month ago by downloading a few CSVs into <code>~/Downloads/</code> and writing some throwaway code. Now there are seventeen files mixed up with a semester’s worth of unrelated downloads, and the project is starting to matter. Time to rescue it.</p>
+<p>The mechanical version of the rescue is just three steps. First, create the new project root and the standard subfolders:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/Courses/INFO-3010/Project/<span class="dt">{data/raw</span><span class="op">,</span><span class="dt">data/processed</span><span class="op">,</span><span class="dt">src</span><span class="op">,</span><span class="dt">notebooks</span><span class="op">,</span><span class="dt">reports}</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/Courses/INFO-3010/Project</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> README.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Second, move the project files out of <code>Downloads</code>. Sort <code>Downloads</code> by date or by filename to identify them, and move everything related to this project — <code>*.csv</code> data files into <code>data/raw/</code>, notebooks into <code>notebooks/</code>, scripts into <code>src/</code> — into the new project. Third, open every script and notebook, find any path that points at <code>~/Downloads/something.csv</code>, and rewrite it to a relative path like <code>data/raw/something.csv</code> so the project no longer depends on the absolute location of your old Downloads folder. Run the code from the project root once to confirm everything still works. Now the project is portable, reproducible, and almost impossible to lose.</p>
 </section>
-<section id="example-3-diagnose-file-not-found" class="level3">
-<h3 class="anchored" data-anchor-id="example-3-diagnose-file-not-found">Example 3: Diagnose “file not found’’</h3>
-<ul>
-<li><p>Confirm the file exists, the name matches exactly, and the extension is correct.</p></li>
-<li><p>Confirm you are searching/running from the intended directory.</p></li>
-<li><p>Confirm cloud-sync availability and permissions.</p></li>
-</ul>
+<section id="diagnosing-file-not-found" class="level3">
+<h3 class="anchored" data-anchor-id="diagnosing-file-not-found">Diagnosing “file not found”</h3>
+<p>You run a script and Python tells you <code>FileNotFoundError: data/input.csv</code>. Resist the urge to immediately edit the path. Instead, gather evidence in three short steps. First, confirm the file actually exists where you think it does by listing the directory:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-la</span> data/        <span class="co"># macOS / Linux</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dir</span> data<span class="dt">\ </span>          <span class="co"># Windows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If <code>input.csv</code> does not appear in the listing, the bug is not in the code — the file is genuinely missing or has a different name (a trailing space, a typo, a <code>.csv.txt</code> extension you cannot see). Fix the file or the filename; do not fix the code.</p>
+<p>If the file <em>does</em> appear in the listing but Python still cannot find it, the second check is your current working directory:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span>                 <span class="co"># macOS / Linux  (Windows: cd with no arguments)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A relative path like <code>data/input.csv</code> is interpreted relative to whatever directory you launched Python from. If you launched Python from the project root, <code>data/input.csv</code> works. If you launched it from inside <code>notebooks/</code> or <code>src/</code>, the same path no longer resolves. Either <code>cd</code> to the project root before running, or rewrite the path so it is computed from <code>__file__</code>.</p>
+<p>The third check, only if the first two pass, is whether the file is sync-stranded: you can see a placeholder for it but the bytes are still in the cloud. On macOS you can confirm with <code>Command + I</code> in Finder; on Windows the sync icon next to the file tells you. Force a local copy and try again. Most “file not found” errors will be solved by one of these three checks; only after all three should you start looking at code.</p>
 </section>
 </section>
 <section id="exercises" class="level2" data-number="9.10">
@@ -1090,7 +972,7 @@ Figure&nbsp;9.1: Changing the Chrome download location.
 </div>
 </div></div><section id="chrome." class="level5 page-columns page-full">
 <h5 class="anchored" data-anchor-id="chrome.">Chrome.</h5>
-<p><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Open Chrome, click the <img src="graphics/hamburger_trail.png" class="img-fluid" alt="hamburger menu icon"> button in the upper right corner, select “Settings”, and scroll to the bottom and click “Advanced”. Under the “Downloads” section, click “Change”. Use the Finder (macOS) or File Explorer (Windows) window that pops up to navigate to your “Downloads” folder and click “Select Folder”. See <a href="#fig-download-location-chrome" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-download-location-chrome</span></a>.</p>
+<p><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Open Chrome, click the <img src="graphics/hamburger_trail.png" class="img-fluid" alt="hamburger menu icon"> button in the upper right corner, select “Settings”, and scroll to the bottom and click “Advanced”. Under the “Downloads” section, click “Change”. Use the Finder (macOS) or File Explorer (Windows) window that pops up to navigate to your “Downloads” folder and click “Select Folder”. See <a href="#fig-download-location-chrome" class="quarto-xref">Figure&nbsp;<span>9.1</span></a>.</p>
 <div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;<a href="https://support.google.com/chrome/answer/95759" class="uri">https://support.google.com/chrome/answer/95759</a></p></div><div class="">
 <div id="fig-download-location-safari" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1106,11 +988,11 @@ Figure&nbsp;9.2: Changing the Safari download location.
 </section>
 <section id="safari." class="level5 page-columns page-full">
 <h5 class="anchored" data-anchor-id="safari.">Safari.</h5>
-<p><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> This should be set to your “Downloads” folder by default but here are the steps to change it. Open Safari, select “Safari” from the menu bar, and click “Preferences…”. In the “General” tab, click the drop-down next to “File download location. User the Finder window that pops up to navigate to your”Downloads” folder. See <a href="#fig-download-location-safari" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-download-location-safari</span></a>.</p>
+<p><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> This should be set to your “Downloads” folder by default but here are the steps to change it. Open Safari, select “Safari” from the menu bar, and click “Preferences…”. In the “General” tab, click the drop-down next to “File download location. User the Finder window that pops up to navigate to your”Downloads” folder. See <a href="#fig-download-location-safari" class="quarto-xref">Figure&nbsp;<span>9.2</span></a>.</p>
 <div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;<a href="https://www.macrumors.com/how-to/change-safari-download-save-location-mac/" class="uri">https://www.macrumors.com/how-to/change-safari-download-save-location-mac/</a></p></div></div></section>
 <section id="mozilla." class="level5 page-columns page-full">
 <h5 class="anchored" data-anchor-id="mozilla.">Mozilla.</h5>
-<p><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> Open Firefox, click the <img src="graphics/hamburger_menu.png" class="img-fluid" alt="hamburger menu icon"> button in the upper-right, and select “Settings”. In the “General” panel, scroll down to the “Files and Applications” section, and click the “Browse…” button. Use the Finder (macOS) or File Explorer (Windows) window that pops up to navigate to your “Downloads” folder and click “Select Folder”. See <a href="#fig-download-location-mozilla" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-download-location-mozilla</span></a>.</p>
+<p><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> Open Firefox, click the <img src="graphics/hamburger_menu.png" class="img-fluid" alt="hamburger menu icon"> button in the upper-right, and select “Settings”. In the “General” panel, scroll down to the “Files and Applications” section, and click the “Browse…” button. Use the Finder (macOS) or File Explorer (Windows) window that pops up to navigate to your “Downloads” folder and click “Select Folder”. See <a href="#fig-download-location-mozilla" class="quarto-xref">Figure&nbsp;<span>9.3</span></a>.</p>
 <div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;<a href="https://support.mozilla.org/en-US/kb/where-find-and-manage-downloaded-files-firefox" class="uri">https://support.mozilla.org/en-US/kb/where-find-and-manage-downloaded-files-firefox</a></p></div><div class="">
 <div id="fig-download-location-mozilla" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1126,7 +1008,7 @@ Figure&nbsp;9.3: Changing the Firefox download location.
 </section>
 <section id="edge." class="level5 page-columns page-full">
 <h5 class="anchored" data-anchor-id="edge.">Edge.</h5>
-<p><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Open Edge, slick the <img src="graphics/three_dots.png" class="img-fluid" alt="three-dot menu icon"> button in the upper-right, and click “Settings”. Select “Downloads” in the menu on the left and in the “Location” area click the click the “Change” button. Use the File Explorer window that pops up to navigate to your “Downloads” folder and click “Select Folder”. See <a href="#fig-download-location-edge" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-download-location-edge</span></a>.</p>
+<p><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Open Edge, slick the <img src="graphics/three_dots.png" class="img-fluid" alt="three-dot menu icon"> button in the upper-right, and click “Settings”. Select “Downloads” in the menu on the left and in the “Location” area click the click the “Change” button. Use the File Explorer window that pops up to navigate to your “Downloads” folder and click “Select Folder”. See <a href="#fig-download-location-edge" class="quarto-xref">Figure&nbsp;<span>9.4</span></a>.</p>
 <div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;<a href="https://support.microsoft.com/en-us/microsoft-edge/change-the-downloads-folder-location-in-microsoft-edge-4049e93b-0ef6-e44f-aca0-7d5f37a39294" class="uri">https://support.microsoft.com/en-us/microsoft-edge/change-the-downloads-folder-location-in-microsoft-edge-4049e93b-0ef6-e44f-aca0-7d5f37a39294</a></p></div></div></section>
 <section id="file-types." class="level5 page-columns page-full">
 <h5 class="anchored" data-anchor-id="file-types.">File types.</h5>

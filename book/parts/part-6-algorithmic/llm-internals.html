@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>31&nbsp; How Language Models Work – Paratechnical Computing Handbook</title>
+<title>29&nbsp; How Language Models Work – Paratechnical Computing Handbook</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -34,7 +69,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
 <link href="../../parts/part-6-algorithmic/ai-agents.html" rel="next">
-<link href="../../parts/part-5-projects/pre-commit.html" rel="prev">
+<link href="../../parts/part-5-projects/secrets.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -251,7 +286,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../parts/part-6-algorithmic/llm-internals.html">Part VI — Algorithmic Systems</a></li><li class="breadcrumb-item"><a href="../../parts/part-6-algorithmic/llm-internals.html"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">How Language Models Work</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../parts/part-6-algorithmic/llm-internals.html">Part VI — Algorithmic Systems</a></li><li class="breadcrumb-item"><a href="../../parts/part-6-algorithmic/llm-internals.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">How Language Models Work</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -426,20 +461,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../parts/part-3-python/testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Testing Basics with pytest</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../parts/part-3-python/regex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regular Expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Regular Expressions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-3-python/linting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Code Style, Linting, and Formatting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Code Style, Linting, and Formatting</span></span></a>
   </div>
 </li>
       </ul>
@@ -456,31 +485,31 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/data-file-formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Data File Formats</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Data File Formats</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/tabular-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Tabular Data: Shape, Cleaning, and Validation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Tabular Data: Shape, Cleaning, and Validation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/pandas-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">pandas Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">pandas Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/sql-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">SQL Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">SQL Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-4-data/http-apis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">HTTP and Web APIs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">HTTP and Web APIs</span></span></a>
   </div>
 </li>
       </ul>
@@ -497,37 +526,31 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/project-management.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Project Management</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Project Management</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/version-control.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Version Control</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Version Control</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/collaboration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Collaboration Mechanics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Collaboration Mechanics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/automation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Automation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Automation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-5-projects/secrets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Environment Variables and Secrets</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../parts/part-5-projects/pre-commit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Pre-commit Hooks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Environment Variables and Secrets</span></span></a>
   </div>
 </li>
       </ul>
@@ -544,19 +567,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/llm-internals.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">How Language Models Work</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">How Language Models Work</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/ai-agents.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Working with AI Agent Frameworks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Working with AI Agent Frameworks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../parts/part-6-algorithmic/evaluating-ai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Evaluating and Auditing AI Outputs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Evaluating and Auditing AI Outputs</span></span></a>
   </div>
 </li>
       </ul>
@@ -564,7 +587,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -603,30 +626,30 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose">Purpose</a></li>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning objectives</a></li>
   <li><a href="#running-theme-the-model-sees-text-not-meaning" id="toc-running-theme-the-model-sees-text-not-meaning" class="nav-link" data-scroll-target="#running-theme-the-model-sees-text-not-meaning">Running theme: the model sees text, not meaning</a></li>
-  <li><a href="#tokens-and-tokenization" id="toc-tokens-and-tokenization" class="nav-link" data-scroll-target="#tokens-and-tokenization"><span class="header-section-number">31.1</span> Tokens and tokenization</a></li>
-  <li><a href="#context-windows" id="toc-context-windows" class="nav-link" data-scroll-target="#context-windows"><span class="header-section-number">31.2</span> Context windows</a></li>
-  <li><a href="#sampling-and-temperature" id="toc-sampling-and-temperature" class="nav-link" data-scroll-target="#sampling-and-temperature"><span class="header-section-number">31.3</span> Sampling and temperature</a></li>
-  <li><a href="#embeddings" id="toc-embeddings" class="nav-link" data-scroll-target="#embeddings"><span class="header-section-number">31.4</span> Embeddings</a></li>
-  <li><a href="#prompting-best-practices" id="toc-prompting-best-practices" class="nav-link" data-scroll-target="#prompting-best-practices"><span class="header-section-number">31.5</span> Prompting best practices</a>
+  <li><a href="#tokens-and-tokenization" id="toc-tokens-and-tokenization" class="nav-link" data-scroll-target="#tokens-and-tokenization"><span class="header-section-number">29.1</span> Tokens and tokenization</a></li>
+  <li><a href="#context-windows" id="toc-context-windows" class="nav-link" data-scroll-target="#context-windows"><span class="header-section-number">29.2</span> Context windows</a></li>
+  <li><a href="#sampling-and-temperature" id="toc-sampling-and-temperature" class="nav-link" data-scroll-target="#sampling-and-temperature"><span class="header-section-number">29.3</span> Sampling and temperature</a></li>
+  <li><a href="#embeddings" id="toc-embeddings" class="nav-link" data-scroll-target="#embeddings"><span class="header-section-number">29.4</span> Embeddings</a></li>
+  <li><a href="#prompting-best-practices" id="toc-prompting-best-practices" class="nav-link" data-scroll-target="#prompting-best-practices"><span class="header-section-number">29.5</span> Prompting best practices</a>
   <ul class="collapse">
   <li><a href="#the-anatomy-of-a-prompt" id="toc-the-anatomy-of-a-prompt" class="nav-link" data-scroll-target="#the-anatomy-of-a-prompt">The anatomy of a prompt</a></li>
   <li><a href="#principles-for-reliable-prompts" id="toc-principles-for-reliable-prompts" class="nav-link" data-scroll-target="#principles-for-reliable-prompts">Principles for reliable prompts</a></li>
   </ul></li>
-  <li><a href="#api-versus-chatbot-interfaces" id="toc-api-versus-chatbot-interfaces" class="nav-link" data-scroll-target="#api-versus-chatbot-interfaces"><span class="header-section-number">31.6</span> API versus chatbot interfaces</a>
+  <li><a href="#api-versus-chatbot-interfaces" id="toc-api-versus-chatbot-interfaces" class="nav-link" data-scroll-target="#api-versus-chatbot-interfaces"><span class="header-section-number">29.6</span> API versus chatbot interfaces</a>
   <ul class="collapse">
   <li><a href="#what-a-chatbot-gives-you" id="toc-what-a-chatbot-gives-you" class="nav-link" data-scroll-target="#what-a-chatbot-gives-you">What a chatbot gives you</a></li>
   <li><a href="#what-an-api-gives-you" id="toc-what-an-api-gives-you" class="nav-link" data-scroll-target="#what-an-api-gives-you">What an API gives you</a></li>
   </ul></li>
-  <li><a href="#tools-and-function-calling" id="toc-tools-and-function-calling" class="nav-link" data-scroll-target="#tools-and-function-calling"><span class="header-section-number">31.7</span> Tools and function calling</a></li>
-  <li><a href="#why-models-hallucinate" id="toc-why-models-hallucinate" class="nav-link" data-scroll-target="#why-models-hallucinate"><span class="header-section-number">31.8</span> Why models hallucinate</a></li>
-  <li><a href="#worked-examples-outline" id="toc-worked-examples-outline" class="nav-link" data-scroll-target="#worked-examples-outline"><span class="header-section-number">31.9</span> Worked examples (outline)</a>
+  <li><a href="#tools-and-function-calling" id="toc-tools-and-function-calling" class="nav-link" data-scroll-target="#tools-and-function-calling"><span class="header-section-number">29.7</span> Tools and function calling</a></li>
+  <li><a href="#why-models-hallucinate" id="toc-why-models-hallucinate" class="nav-link" data-scroll-target="#why-models-hallucinate"><span class="header-section-number">29.8</span> Why models hallucinate</a></li>
+  <li><a href="#worked-examples" id="toc-worked-examples" class="nav-link" data-scroll-target="#worked-examples"><span class="header-section-number">29.9</span> Worked examples</a>
   <ul class="collapse">
   <li><a href="#diagnosing-why-a-prompt-produces-inconsistent-output" id="toc-diagnosing-why-a-prompt-produces-inconsistent-output" class="nav-link" data-scroll-target="#diagnosing-why-a-prompt-produces-inconsistent-output">Diagnosing why a prompt produces inconsistent output</a></li>
   <li><a href="#converting-a-chatbot-workflow-to-an-api-call" id="toc-converting-a-chatbot-workflow-to-an-api-call" class="nav-link" data-scroll-target="#converting-a-chatbot-workflow-to-an-api-call">Converting a chatbot workflow to an API call</a></li>
   <li><a href="#building-a-simple-semantic-search-with-embeddings" id="toc-building-a-simple-semantic-search-with-embeddings" class="nav-link" data-scroll-target="#building-a-simple-semantic-search-with-embeddings">Building a simple semantic search with embeddings</a></li>
   </ul></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">31.10</span> Exercises</a></li>
-  <li><a href="#one-page-checklist" id="toc-one-page-checklist" class="nav-link" data-scroll-target="#one-page-checklist"><span class="header-section-number">31.11</span> One-page checklist</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">29.10</span> Exercises</a></li>
+  <li><a href="#one-page-checklist" id="toc-one-page-checklist" class="nav-link" data-scroll-target="#one-page-checklist"><span class="header-section-number">29.11</span> One-page checklist</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/brianckeegan/ParatechnicalComputingHandbook/edit/main/parts/part-6-algorithmic/llm-internals.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/brianckeegan/ParatechnicalComputingHandbook/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -634,9 +657,9 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../parts/part-6-algorithmic/llm-internals.html">Part VI — Algorithmic Systems</a></li><li class="breadcrumb-item"><a href="../../parts/part-6-algorithmic/llm-internals.html"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">How Language Models Work</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../parts/part-6-algorithmic/llm-internals.html">Part VI — Algorithmic Systems</a></li><li class="breadcrumb-item"><a href="../../parts/part-6-algorithmic/llm-internals.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">How Language Models Work</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-llm-internals" class="quarto-section-identifier"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">How Language Models Work</span></span></h1>
+<h1 class="title"><span id="sec-llm-internals" class="quarto-section-identifier"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">How Language Models Work</span></span></h1>
 </div>
 
 
@@ -665,8 +688,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>Prerequisites (read first if unfamiliar):</strong> <a href="#sec-ai-llm" class="quarto-xref"><span class="quarto-unresolved-ref">sec-ai-llm</span></a>.</p>
-<p><strong>See also:</strong> <a href="#sec-ai-agents" class="quarto-xref"><span class="quarto-unresolved-ref">sec-ai-agents</span></a>, <a href="#sec-evaluating-ai" class="quarto-xref"><span class="quarto-unresolved-ref">sec-evaluating-ai</span></a>.</p>
+<p><strong>Prerequisites (read first if unfamiliar):</strong> <a href="../part-1-practice/ai-llm.html" class="quarto-xref"><span>Chapter 7</span></a>.</p>
+<p><strong>See also:</strong> <a href="ai-agents.html" class="quarto-xref"><span>Chapter 30</span></a>, <a href="evaluating-ai.html" class="quarto-xref"><span>Chapter 31</span></a>.</p>
 </div>
 </div>
 </div>
@@ -693,8 +716,8 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="unnumbered anchored" data-anchor-id="running-theme-the-model-sees-text-not-meaning">Running theme: the model sees text, not meaning</h2>
 <p>Every behavior of a language model — useful and frustrating — follows from one fact: the model processes sequences of tokens and predicts likely continuations. It does not understand your intent, look things up, or reason the way a person does. The better you understand what the model actually sees, the better you can guide it toward what you actually want.</p>
 </section>
-<section id="tokens-and-tokenization" class="level2" data-number="31.1">
-<h2 data-number="31.1" class="anchored" data-anchor-id="tokens-and-tokenization"><span class="header-section-number">31.1</span> Tokens and tokenization</h2>
+<section id="tokens-and-tokenization" class="level2" data-number="29.1">
+<h2 data-number="29.1" class="anchored" data-anchor-id="tokens-and-tokenization"><span class="header-section-number">29.1</span> Tokens and tokenization</h2>
 <p>When you type a message into a language model, the first thing that happens is not reading. It is tokenization: your text is split into small chunks called <strong>tokens</strong>, and those tokens — not characters, not words — are what the model processes.</p>
 <p>A token is roughly four characters of English text on average, which works out to about three-quarters of a word. The sentence “the quick brown fox” might become five tokens: <code>the</code>, <code>quick</code>, <code>brown</code>, <code>fox</code> (approximately). But tokenization is not simply splitting on spaces. Subword tokenization means common words become single tokens while rare or compound words get split further. The word <code>unbelievable</code> might be three tokens: <code>un</code>, <code>believ</code>, <code>able</code>.</p>
 <p>Several practical implications follow from this:</p>
@@ -706,8 +729,8 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>When diagnosing unexpected model behavior, tokenization is worth checking. If a model consistently misinterprets a technical term, it may be seeing it as two or three tokens with different meanings rather than one cohesive concept.</p>
 </section>
-<section id="context-windows" class="level2" data-number="31.2">
-<h2 data-number="31.2" class="anchored" data-anchor-id="context-windows"><span class="header-section-number">31.2</span> Context windows</h2>
+<section id="context-windows" class="level2" data-number="29.2">
+<h2 data-number="29.2" class="anchored" data-anchor-id="context-windows"><span class="header-section-number">29.2</span> Context windows</h2>
 <p>A language model does not have persistent memory between conversations. Everything the model “knows” about your current task is contained in the <strong>context window</strong>: the full sequence of tokens that is sent to the model for a given request.</p>
 <p>The context window includes your system prompt, the conversation history, any documents or code you paste in, and the model’s own previous responses. All of that must fit within a fixed limit — typically measured in thousands of tokens, with limits ranging from a few thousand to over a million tokens depending on the model.</p>
 <p>When your input exceeds the context window, the model does not crash or warn you in an obvious way. Depending on the implementation, older content is silently truncated from the beginning of the context, which means the model may answer as if it never saw your earlier instructions or data.</p>
@@ -719,8 +742,8 @@ ul.task-list li input[type="checkbox"] {
 <li><p><strong>Context windows are not permanent storage.</strong> If you start a new conversation, the model has no memory of previous sessions unless you explicitly provide that history.</p></li>
 </ul>
 </section>
-<section id="sampling-and-temperature" class="level2" data-number="31.3">
-<h2 data-number="31.3" class="anchored" data-anchor-id="sampling-and-temperature"><span class="header-section-number">31.3</span> Sampling and temperature</h2>
+<section id="sampling-and-temperature" class="level2" data-number="29.3">
+<h2 data-number="29.3" class="anchored" data-anchor-id="sampling-and-temperature"><span class="header-section-number">29.3</span> Sampling and temperature</h2>
 <p>Language models do not produce a single deterministic answer. They produce a <strong>probability distribution</strong> over what token might come next, and then sample from that distribution. This is why the same prompt can produce different outputs each time you run it.</p>
 <p><strong>Temperature</strong> is the parameter that controls how that distribution is shaped before sampling:</p>
 <ul>
@@ -737,8 +760,8 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>When you need reproducible output (unit tests, data pipelines, evaluations), set temperature to 0. When you need variety (brainstorming, multiple drafts), raise it. When a model is giving you boring, repetitive answers, try increasing temperature slightly before rewriting your prompt.</p>
 </section>
-<section id="embeddings" class="level2" data-number="31.4">
-<h2 data-number="31.4" class="anchored" data-anchor-id="embeddings"><span class="header-section-number">31.4</span> Embeddings</h2>
+<section id="embeddings" class="level2" data-number="29.4">
+<h2 data-number="29.4" class="anchored" data-anchor-id="embeddings"><span class="header-section-number">29.4</span> Embeddings</h2>
 <p>Embeddings are a different use of language models from text generation. An <strong>embedding model</strong> converts text into a list of numbers — a vector — that encodes the meaning of that text in a high-dimensional space. Similar texts produce similar vectors; dissimilar texts produce vectors that are far apart.</p>
 <p>Embeddings are the foundation of several practical applications:</p>
 <ul>
@@ -749,8 +772,8 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>Embeddings come from specialized embedding models (distinct from chat models) and are typically cheaper and faster to generate. If your task involves finding similar text, organizing documents by topic, or connecting a model to a large knowledge base, embeddings are usually the right tool — not just pasting everything into a chat window.</p>
 </section>
-<section id="prompting-best-practices" class="level2" data-number="31.5">
-<h2 data-number="31.5" class="anchored" data-anchor-id="prompting-best-practices"><span class="header-section-number">31.5</span> Prompting best practices</h2>
+<section id="prompting-best-practices" class="level2" data-number="29.5">
+<h2 data-number="29.5" class="anchored" data-anchor-id="prompting-best-practices"><span class="header-section-number">29.5</span> Prompting best practices</h2>
 <p>A prompt is not just a question. It is structured input that shapes the model’s behavior across the entire response. Understanding the anatomy of a well-constructed prompt lets you get more reliable, predictable output.</p>
 <section id="the-anatomy-of-a-prompt" class="level3">
 <h3 class="anchored" data-anchor-id="the-anatomy-of-a-prompt">The anatomy of a prompt</h3>
@@ -775,8 +798,8 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 </section>
 </section>
-<section id="api-versus-chatbot-interfaces" class="level2" data-number="31.6">
-<h2 data-number="31.6" class="anchored" data-anchor-id="api-versus-chatbot-interfaces"><span class="header-section-number">31.6</span> API versus chatbot interfaces</h2>
+<section id="api-versus-chatbot-interfaces" class="level2" data-number="29.6">
+<h2 data-number="29.6" class="anchored" data-anchor-id="api-versus-chatbot-interfaces"><span class="header-section-number">29.6</span> API versus chatbot interfaces</h2>
 <p>The two primary ways to interact with a language model are the <strong>chatbot interface</strong> (a web or app UI like ChatGPT, Claude.ai, or Gemini) and the <strong>API</strong> (a programmatic interface you call from code). Understanding the difference helps you choose the right tool.</p>
 <section id="what-a-chatbot-gives-you" class="level3">
 <h3 class="anchored" data-anchor-id="what-a-chatbot-gives-you">What a chatbot gives you</h3>
@@ -815,8 +838,8 @@ print(message.content[0].text)</code></pre>
 <p>When to use an API: any time you need to run the same prompt over multiple inputs, integrate AI into a script or pipeline, control parameters precisely, or build something reproducible.</p>
 </section>
 </section>
-<section id="tools-and-function-calling" class="level2" data-number="31.7">
-<h2 data-number="31.7" class="anchored" data-anchor-id="tools-and-function-calling"><span class="header-section-number">31.7</span> Tools and function calling</h2>
+<section id="tools-and-function-calling" class="level2" data-number="29.7">
+<h2 data-number="29.7" class="anchored" data-anchor-id="tools-and-function-calling"><span class="header-section-number">29.7</span> Tools and function calling</h2>
 <p>Language models on their own cannot browse the web, run code, read files, or query databases. <strong>Function calling</strong> (also called tool use) is the mechanism by which a model can invoke external capabilities that you define.</p>
 <p>The pattern works as follows:</p>
 <ol type="1">
@@ -841,10 +864,10 @@ print(message.content[0].text)</code></pre>
   }
 }</code></pre>
 <p>The model does not run the function. It decides whether to call it and constructs the arguments. Your code does the actual execution. This design keeps the model sandboxed: it can only invoke what you expose to it, with the parameters you define.</p>
-<p>Function calling is powerful for connecting language models to live data, APIs, and databases. It is also where safety considerations become important: if a tool can modify files, send emails, or execute code, you need to be deliberate about what you expose and when you actually run what the model requests (see <a href="#sec-ai-llm" class="quarto-xref"><span class="quarto-unresolved-ref">sec-ai-llm</span></a> for risk-based verification policies).</p>
+<p>Function calling is powerful for connecting language models to live data, APIs, and databases. It is also where safety considerations become important: if a tool can modify files, send emails, or execute code, you need to be deliberate about what you expose and when you actually run what the model requests (see <a href="../part-1-practice/ai-llm.html" class="quarto-xref"><span>Chapter 7</span></a> for risk-based verification policies).</p>
 </section>
-<section id="why-models-hallucinate" class="level2" data-number="31.8">
-<h2 data-number="31.8" class="anchored" data-anchor-id="why-models-hallucinate"><span class="header-section-number">31.8</span> Why models hallucinate</h2>
+<section id="why-models-hallucinate" class="level2" data-number="29.8">
+<h2 data-number="29.8" class="anchored" data-anchor-id="why-models-hallucinate"><span class="header-section-number">29.8</span> Why models hallucinate</h2>
 <p>“Hallucination” is the common term for when a language model confidently states something that is false. Understanding why this happens helps you anticipate and check for it.</p>
 <ul>
 <li><p><strong>The model predicts likely text, not true statements.</strong> Training on human-written text means the model learned what fluent, plausible-sounding sentences look like — not what is factually correct. A confident tone is common in training data even for false claims.</p></li>
@@ -863,44 +886,53 @@ print(message.content[0].text)</code></pre>
 <li><p>Ask “Are you confident in this?” or “What might be wrong here?” — models often acknowledge uncertainty when asked directly.</p></li>
 </ul>
 </section>
-<section id="worked-examples-outline" class="level2" data-number="31.9">
-<h2 data-number="31.9" class="anchored" data-anchor-id="worked-examples-outline"><span class="header-section-number">31.9</span> Worked examples (outline)</h2>
+<section id="worked-examples" class="level2" data-number="29.9">
+<h2 data-number="29.9" class="anchored" data-anchor-id="worked-examples"><span class="header-section-number">29.9</span> Worked examples</h2>
 <section id="diagnosing-why-a-prompt-produces-inconsistent-output" class="level3">
 <h3 class="anchored" data-anchor-id="diagnosing-why-a-prompt-produces-inconsistent-output">Diagnosing why a prompt produces inconsistent output</h3>
-<ul>
-<li><p>Start with the current prompt and several sample outputs that show the inconsistency</p></li>
-<li><p>Check token count; verify the prompt fits comfortably within the context window</p></li>
-<li><p>Lower temperature to 0 and re-run to isolate sampling variance from prompt variance</p></li>
-<li><p>Add explicit format instructions (JSON schema, numbered list) and re-run</p></li>
-<li><p>Add one or two few-shot examples showing the desired output format</p></li>
-<li><p>Compare outputs across each change; identify which change resolved the inconsistency</p></li>
-</ul>
+<p>You have a prompt that “usually works” but sometimes returns garbage, and you want to find out why before throwing more wording at it. The trick is to change one variable at a time. Start by writing down the current prompt and three or four sample outputs that demonstrate the inconsistency — actual text, side by side. Check the <strong>token count</strong> of your prompt with your provider’s tokenizer tool: if you are anywhere near the context window, that alone could be the cause. Then <strong>set temperature to 0 and re-run</strong> the same prompt several times. If outputs are now identical, the inconsistency was sampling variance; if they still vary, the inconsistency is in something else (maybe an external tool or retrieval step). Next, <strong>add explicit format instructions</strong> (“Return JSON with keys <code>summary</code> and <code>tags</code>”) and re-run; format failures often disappear instantly when the format is named. If the model is still wandering, <strong>add one or two few-shot examples</strong> showing exactly the output you want. After each change, compare against your original samples and note which change actually fixed the inconsistency — that is the lesson you want to keep.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> anthropic</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> anthropic.Anthropic()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> call(prompt, temperature<span class="op">=</span><span class="dv">0</span>):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> client.messages.create(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"claude-opus-4-6"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        max_tokens<span class="op">=</span><span class="dv">512</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        temperature<span class="op">=</span>temperature,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        messages<span class="op">=</span>[{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: prompt}],</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    ).content[<span class="dv">0</span>].text</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(call(prompt))                       <span class="co"># baseline</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(call(prompt, temperature<span class="op">=</span><span class="dv">0</span>))        <span class="co"># remove sampling variance</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(call(prompt <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">Return JSON."</span>))    <span class="co"># add format instruction</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="converting-a-chatbot-workflow-to-an-api-call" class="level3">
 <h3 class="anchored" data-anchor-id="converting-a-chatbot-workflow-to-an-api-call">Converting a chatbot workflow to an API call</h3>
-<ul>
-<li><p>Identify what you are currently doing interactively: the prompt, any pasted documents, the expected output format</p></li>
-<li><p>Extract the system prompt (the instructions you repeat each time) and the user turn (the per-request input)</p></li>
-<li><p>Set up an API client and write the call with explicit temperature and max tokens</p></li>
-<li><p>Run the API call on a single example and compare the output to your chatbot result</p></li>
-<li><p>Parameterize the user turn to accept a variable (file path, query string) and wrap in a loop</p></li>
-<li><p>Log inputs, outputs, and token counts for review</p></li>
-</ul>
+<p>You have been running the same task in a chatbot UI — paste a document, ask the same question, copy the answer — and you are tired of doing it by hand. Time to convert it to an API call. Identify exactly what you are doing interactively: the question (which probably has a stable structure), any pasted documents (the per-request input), and the format you want back. Pull the stable parts out as a <strong>system prompt</strong> (the instructions you repeat every time) and leave the variable parts as the <strong>user turn</strong> (the actual document or query). Set up an API client, write the call with explicit <code>temperature</code> and <code>max_tokens</code> so behavior is reproducible, and run it on a single example to compare against your chatbot result. Once they agree, <strong>parameterize</strong> the user turn to take a file path or query string from the command line, and wrap the whole thing in a loop over inputs. Log every input, output, and token count so you can audit later.</p>
 </section>
 <section id="building-a-simple-semantic-search-with-embeddings" class="level3">
 <h3 class="anchored" data-anchor-id="building-a-simple-semantic-search-with-embeddings">Building a simple semantic search with embeddings</h3>
-<ul>
-<li><p>Assemble a small document collection (e.g., 50 paragraphs from a dataset)</p></li>
-<li><p>Use an embedding API to generate a vector for each document; store as a matrix</p></li>
-<li><p>When a query arrives, embed the query with the same model</p></li>
-<li><p>Compute cosine similarity between the query vector and all document vectors</p></li>
-<li><p>Return the top-3 most similar documents</p></li>
-<li><p>Test with several queries; compare semantic search results to keyword search results</p></li>
-</ul>
+<p>You want to search a small document collection by <em>meaning</em>, not just keywords. Embeddings make this a 50-line script. Assemble your collection (50 paragraphs from a dataset is enough to play with), call an embedding API to generate a vector for each one, and store the vectors as a matrix. When a query arrives, embed it with the <strong>same</strong> embedding model — different models produce incompatible vector spaces. Compute cosine similarity between the query vector and every document vector, sort by score, and return the top three.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>docs <span class="op">=</span> [...]  <span class="co"># 50 paragraph strings</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> embed(text):</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># pseudo-code; replace with your provider's embedding call</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(provider.embed(text))</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>doc_vecs <span class="op">=</span> np.stack([embed(d) <span class="cf">for</span> d <span class="kw">in</span> docs])</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> search(query, k<span class="op">=</span><span class="dv">3</span>):</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    q <span class="op">=</span> embed(query)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    sims <span class="op">=</span> doc_vecs <span class="op">@</span> q <span class="op">/</span> (np.linalg.norm(doc_vecs, axis<span class="op">=</span><span class="dv">1</span>) <span class="op">*</span> np.linalg.norm(q))</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    top <span class="op">=</span> sims.argsort()[::<span class="op">-</span><span class="dv">1</span>][:k]</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [(docs[i], <span class="bu">float</span>(sims[i])) <span class="cf">for</span> i <span class="kw">in</span> top]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Test it with a handful of real queries and compare against grep over the same documents — you will quickly see the cases where keyword search misses paraphrases that semantic search catches.</p>
 </section>
 </section>
-<section id="exercises" class="level2" data-number="31.10">
-<h2 data-number="31.10" class="anchored" data-anchor-id="exercises"><span class="header-section-number">31.10</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="29.10">
+<h2 data-number="29.10" class="anchored" data-anchor-id="exercises"><span class="header-section-number">29.10</span> Exercises</h2>
 <ol type="1">
 <li><p>Use your model provider’s tokenizer tool to count the tokens in a 500-word essay. Then count the tokens in the same content in another language (use a translation tool if needed). How does the token count differ, and what does this imply for cost?</p></li>
 <li><p>Write the same request (e.g., “Explain what a p-value is”) as both a vague prompt and a structured prompt with role, format instructions, and audience specification. Compare the outputs and describe what changed.</p></li>
@@ -910,8 +942,8 @@ print(message.content[0].text)</code></pre>
 <li><p>Make an API call from a Python script (using any model you have access to) that takes a string from the command line, sends it to the model with a system prompt you write, and prints the response. Confirm that the output changes when you change the system prompt.</p></li>
 </ol>
 </section>
-<section id="one-page-checklist" class="level2" data-number="31.11">
-<h2 data-number="31.11" class="anchored" data-anchor-id="one-page-checklist"><span class="header-section-number">31.11</span> One-page checklist</h2>
+<section id="one-page-checklist" class="level2" data-number="29.11">
+<h2 data-number="29.11" class="anchored" data-anchor-id="one-page-checklist"><span class="header-section-number">29.11</span> One-page checklist</h2>
 <ul>
 <li><p>Before sending a long prompt, check the token count to ensure it fits within the context window</p></li>
 <li><p>Set temperature to 0 for tasks requiring consistency; raise it only when variation is desirable</p></li>
@@ -1351,13 +1383,13 @@ print(message.content[0].text)</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../parts/part-5-projects/pre-commit.html" class="pagination-link" aria-label="Pre-commit Hooks">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Pre-commit Hooks</span></span>
+      <a href="../../parts/part-5-projects/secrets.html" class="pagination-link" aria-label="Environment Variables and Secrets">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Environment Variables and Secrets</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../parts/part-6-algorithmic/ai-agents.html" class="pagination-link" aria-label="Working with AI Agent Frameworks">
-        <span class="nav-page-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Working with AI Agent Frameworks</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Working with AI Agent Frameworks</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

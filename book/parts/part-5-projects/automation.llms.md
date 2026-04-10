@@ -1,10 +1,10 @@
-# 28  Automation
+# 27  Automation
 
 > **TIP:**
 >
 > **Prerequisites (read first if unfamiliar):** [sec-terminal](#sec-terminal), [sec-scripts-vs-notebooks](#sec-scripts-vs-notebooks).
 >
-> **See also:** [sec-git-github](#sec-git-github), [sec-testing](#sec-testing), [sec-remote-computing](#sec-remote-computing).
+> **See also:** [sec-git-github](#sec-git-github), [sec-remote-computing](#sec-remote-computing).
 
 ## Purpose
 
@@ -34,95 +34,71 @@ By the end of this chapter, you should be able to:
 
 If running checks and builds is one command, people will do it. If it is a long checklist, people will skip it.
 
-## 28.1 A mental model: the automation ladder
+## 27.1 A mental model: the automation ladder
 
-### Level 0: manual commands
+It helps to think of automation as a ladder with five rungs, each one strictly more capable than the last and each one worth climbing only when the rung below has become a real chore.
 
-- You type commands repeatedly.
+The bottom rung is **Level 0: manual commands.** You type the same sequence by hand every time you need to do a task. This works fine when the task is rare and small, but it has the obvious failure mode: as soon as the sequence has more than two or three steps, you start forgetting them in stressful moments, and the risk of an inconsistent run grows.
 
-- Risk: missed steps, inconsistent runs.
+The next rung is **Level 1: scripts.** You put the sequence into a `.py`, `.sh`, or `.ps1` file and run that file instead of the individual commands. The benefit is enormous and basically free: the sequence is now repeatable, shareable, and reviewable.
 
-### Level 1: scripts
+``` bash
+#!/usr/bin/env bash
+# scripts/build_report.sh
+set -e
+python src/clean.py --input data/raw/sales.csv --output data/processed/sales.parquet
+python src/analyze.py --input data/processed/sales.parquet --output reports/q3.html
+echo "report ready: reports/q3.html"
+```
 
-- Put the sequence in a `.py`, `.sh`, or `.ps1` file.
+**Level 2: task runners and rebuild tools.** Once you have several scripts, you start wanting *named* tasks rather than long file paths. `make test`, `make report`, `make clean`. A task runner lets you label common workflows with short names and (in the case of build tools like `make`) lets you skip work whose inputs have not changed. This is the level where “rebuild only the parts that changed” becomes possible.
 
-- Benefit: repeatability and shareability.
+**Level 3: schedulers.** Once a task is scripted and named, you can run it on a time-based schedule — every night at 2 AM, every hour, every Monday morning — without anyone being at the keyboard. This is the level where unattended operation becomes possible. `cron` on macOS and Linux and Task Scheduler on Windows are the basic tools.
 
-### Level 2: task runners and rebuild tools
+**Level 4: continuous integration (CI).** The top rung is having checks run *automatically on every push and pull request* to your repository, with the results visible to your collaborators. CI is what catches integration errors before they land on `main`, and it is what creates the “shared quality gate” that lets a team move faster than any one person could alone.
 
-- Named tasks: `make test`, `make report`.
+The right level depends on what you are doing. Solo coursework lives happily at Level 1. A team project usually wants Level 4 for the things that matter most (tests, linting, build) and Level 1 for everything else. Climbing the ladder before you need to is busywork; refusing to climb it after a chore has bitten you is a slow form of procrastination.
 
-- Rebuild only what changed (dependency graph).
-
-### Level 3: schedulers
-
-- Run tasks on a time-based schedule (daily, hourly).
-
-- Benefit: unattended operation.
-
-### Level 4: CI
-
-- Run checks automatically on every push/PR.
-
-- Benefit: catches integration errors early; creates a shared quality gate.
-
-## 28.2 Deciding what to automate (student-friendly heuristics)
+## 27.2 Deciding what to automate (student-friendly heuristics)
 
 ### Automate if
 
-- you repeat the task more than twice,
-
-- you need the task to be done the same way every time,
-
-- mistakes are costly (grading, publication, deployment),
-
-- teammates need a one-command workflow.
+A useful rule of thumb: automate something the third time you do it. The first time, you are still figuring out the steps; the second time, you might do them differently; by the third, the sequence is stable enough that writing it down repays the investment. Beyond that, four signs argue strongly for automation: you repeat the task more than twice, you need it done the *same way* every time, the cost of getting it wrong is real (grading, publication, anything other people depend on), or your teammates need a one-command workflow they can run without your help.
 
 ### Do not automate (yet) if
 
-- the process is still unclear,
-
-- the task changes every hour,
-
-- automation would hide important learning.
+The opposite is also true. Automation has its own cost — writing it, debugging it, maintaining it — and you can pay that cost prematurely. Hold off if the process is still unclear (you do not know what the right steps *are* yet), if the task is changing every hour (you will spend more time updating the automation than running the task), or if automating away the manual version would hide learning you actually need. There is no virtue in automating an analysis you do not yet understand.
 
 ### The “minimum viable automation” set
 
-- One command to set up environment.
+For most student projects, three commands cover almost everything. **One command to set up the environment** (creating a venv or conda env and installing dependencies). **One command to run a smoke test** (a small check that the code can load, the data is reachable, and nothing is wildly broken). **One command to build the core outputs** (whichever scripts produce the figures, tables, or report you care about). Once those three exist, your project is reproducible by anyone who clones it, including future you.
 
-- One command to run a smoke test.
+## 27.3 Automation fundamentals: scripts that behave well
 
-- One command to build core outputs.
+A handful of properties separate scripts that automate cleanly from scripts that automate “almost.” Get into the habit of building all of them in from the start.
 
-## 28.3 Automation fundamentals: scripts that behave well
+The first is **clean exit codes and failure modes**. By long Unix convention, a successful script exits with code `0` and a failing script exits with any nonzero code. Schedulers, task runners, and CI systems all read that exit code to decide whether the run succeeded — so if your script swallows errors and exits 0 anyway, every downstream system thinks everything is fine when it is not. In bash, `set -e` makes the script exit immediately on any error; in Python, raise an exception or call `sys.exit(1)` on failure rather than just printing a warning.
 
-### Exit codes and failure
+``` bash
+#!/usr/bin/env bash
+set -e                       # exit on first error
+python src/clean.py          # if this fails, the script stops
+python src/analyze.py        # only runs if clean.py succeeded
+```
 
-- Success should exit with code 0.
+The second is **idempotence**, which is a fancy word for “running this twice produces the same result as running it once.” An idempotent script can be safely re-run after a partial failure without manual cleanup. A non-idempotent script appends to a log file every run, or fails the second time because it tries to create a directory that already exists. Aim for the first kind: use `mkdir -p` instead of plain `mkdir`, write outputs by overwriting rather than appending, and design so that “rerun the whole thing” is always safe.
 
-- Failure should exit nonzero and print a clear message.
+The third is **explicit inputs and outputs**. Treat file paths and parameters as first-class arguments rather than constants buried in the middle of the script. Write outputs to predictable, named locations (`data/processed/`, `reports/`, `logs/`). Never overwrite raw data — the rule from [sec-tabular-data](#sec-tabular-data) still applies: raw is sacred, derivatives go elsewhere.
 
-### Idempotence and safe re-runs
+The fourth is **logging and observability**. For a script that runs unattended, you cannot watch its terminal — so print useful progress markers as it goes, and save them somewhere you can read after the fact. For long tasks, mark the start and end of each stage. For scheduled or CI runs, redirect stdout and stderr to a log file so you can investigate what happened when something fails:
 
-- A task is idempotent if re-running it yields the same final state.
+``` bash
+python src/run_pipeline.py >> logs/pipeline.log 2>&1
+```
 
-- Avoid scripts that require manual cleanup to rerun.
+The combination of clean exits, idempotence, explicit I/O, and logging is what turns “a script that works on my machine when I babysit it” into “a script my teammates can rely on.”
 
-### Inputs/outputs as first-class
-
-- Treat file paths and parameters as explicit.
-
-- Write outputs to predictable locations.
-
-- Never overwrite raw data.
-
-### Logging and observability (intro)
-
-- Print progress markers for long tasks.
-
-- Save logs for scheduled/CI runs.
-
-## 28.4 Repeatable tasks with `make` (and the idea of rebuilds)
+## 27.4 Repeatable tasks with `make` (and the idea of rebuilds)
 
 ### Why use a task runner/build tool
 
@@ -173,7 +149,7 @@ Commands to build/update the target.
 
 - Benefit: change one input and only downstream targets rebuild.
 
-## 28.5 Scheduling scripts
+## 27.5 Scheduling scripts
 
 ### Scheduling on macOS/Linux: cron (concept + safe usage)
 
@@ -199,7 +175,7 @@ Commands to build/update the target.
 
 - Alerting concept: what should happen if the job fails.
 
-## 28.6 Rebuilds and repeatable workflows beyond `make`
+## 27.6 Rebuilds and repeatable workflows beyond `make`
 
 ### Task runners as interfaces
 
@@ -213,7 +189,7 @@ Commands to build/update the target.
 
 - Artifact: save outputs of a run for inspection/download.
 
-## 28.7 Continuous Integration (CI): automation as a quality gate
+## 27.7 Continuous Integration (CI): automation as a quality gate
 
 ### What CI is (student definition)
 
@@ -267,7 +243,60 @@ Commands to build/update the target.
 
 - Use least privilege for tokens and permissions.
 
-## 28.8 Incorporating AI tools into automation (responsibly)
+## 27.8 Local quality gates: pre-commit hooks
+
+CI is the team’s safety net, but it only runs *after* you push. The local equivalent is a **git hook**: a small check that runs automatically right before every `git commit` and aborts the commit if something looks wrong. The most common tool for managing these is [`pre-commit`](https://pre-commit.com), a small framework that takes a config file and runs a pipeline of checks on the files you are about to commit ([pre-commit contributors, n.d.](#ref-precommit_framework)).
+
+You do not need pre-commit to do good work, and for solo coursework you can skip it entirely. But once you start collaborating, the same class of small mistakes will keep landing on `main`: trailing whitespace in a diff, an accidentally committed `.env` file, an unformatted Python file someone forgot to run through their linter (see [sec-linting](#sec-linting)). A pre-commit hook is a tripwire that catches each of these at the earliest possible moment — before they ever become a commit.
+
+The setup is two commands and one file. Install the tool into your project’s environment and wire it into git:
+
+``` bash
+python -m pip install pre-commit
+pre-commit install
+```
+
+Then drop a `.pre-commit-config.yaml` at the repo root listing the checks you want. A reasonable starter set for a Python data-science project is just two upstream “repos”:
+
+``` yaml
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: detect-private-key
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.5.7
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+```
+
+The first block catches the file-hygiene mistakes: trailing whitespace, missing final newlines, broken YAML, files larger than 500 KB, and private SSH keys that wandered into the repo. The second block runs `ruff` (your linter and formatter) on every staged Python file. Together they handle most of the small things that would otherwise show up in a code review.
+
+When you `git commit`, the hooks run. If a hook auto-fixes a file, the commit aborts so you can re-stage and re-commit:
+
+``` text
+$ git commit -m "Add cleaning helper"
+trim trailing whitespace.................................................Failed
+- files were modified by this hook
+ruff.....................................................................Passed
+
+$ git add src/cleaning.py
+$ git commit -m "Add cleaning helper"
+trim trailing whitespace.................................................Passed
+ruff.....................................................................Passed
+[main a1b2c3d] Add cleaning helper
+```
+
+This “commit twice” rhythm feels weird for a day, then becomes invisible. A few practical points worth knowing. `git commit --no-verify` skips the hooks entirely — treat it as an emergency exit, not a daily convenience. The config is versioned with the code, so when a teammate clones the repo they only need to run `pre-commit install` once and they pick up all the same checks. And you can run every hook against every file at any time with `pre-commit run --all-files`, which is what you want when you first add pre-commit to an existing project. Anything beyond that — debugging individual hooks, writing your own, wiring pre-commit into CI as a redundant check — you can pick up from the official documentation at <https://pre-commit.com> when the need arises.
+
+## 27.9 Incorporating AI tools into automation (responsibly)
 
 ### What AI is good for
 
@@ -309,7 +338,7 @@ Commands to build/update the target.
 
 5.  You open a PR and request review.
 
-## 28.9 Common failure modes and fixes
+## 27.10 Common failure modes and fixes
 
 ### “Works on my machine” automation
 
@@ -331,15 +360,15 @@ Commands to build/update the target.
 
 - Fix: write outputs to dedicated folders; add “are you sure” safeguards for destructive steps.
 
-## 28.10 Worked examples (outline)
+## 27.11 Worked examples (outline)
 
-### Example 1: Turn a 6-step checklist into `make` targets
+### Turn a 6-step checklist into `make` targets
 
 - Create `make format`, `make test`, `make report`.
 
 - Add a default target `make all`.
 
-### Example 2: Schedule a daily pipeline run
+### Schedule a daily pipeline run
 
 - Create a script with logs.
 
@@ -347,7 +376,7 @@ Commands to build/update the target.
 
 - Verify outputs and failure behavior.
 
-### Example 3: Add GitHub Actions CI
+### Add GitHub Actions CI
 
 - Run on push and pull request.
 
@@ -355,19 +384,19 @@ Commands to build/update the target.
 
 - Upload artifacts on failure.
 
-### Example 4: Speed up CI with caching
+### Speed up CI with caching
 
 - Add dependency caching.
 
 - Compare runtimes before/after.
 
-### Example 5: Add pre-commit hooks + CI enforcement
+### Add pre-commit hooks + CI enforcement
 
 - Run lightweight checks before commit.
 
 - Ensure CI runs the same checks.
 
-### Example 6: Use AI to draft a workflow, then validate
+### Use AI to draft a workflow, then validate
 
 - Draft YAML with AI.
 
@@ -375,7 +404,7 @@ Commands to build/update the target.
 
 - Run locally and via PR.
 
-## 28.11 Templates
+## 27.12 Templates
 
 ### Template A: Makefile skeleton (task interface)
 
@@ -441,7 +470,7 @@ Commands to build/update the target.
     * Any permissions/secrets involved?
     * Links to documentation
 
-## 28.12 Exercises
+## 27.13 Exercises
 
 1.  Identify three repeated tasks in your project and turn them into `make` targets.
 
@@ -457,7 +486,7 @@ Commands to build/update the target.
 
 7.  Use an AI tool to draft a workflow file, then validate it against official docs and run a test PR.
 
-## 28.13 One-page checklist
+## 27.14 One-page checklist
 
 - I can turn multi-step tasks into one-command targets.
 
@@ -473,7 +502,7 @@ Commands to build/update the target.
 
 - AI assistance is used to draft, not to bypass verification.
 
-## 28.14 Quick reference: common automation concepts
+## 27.15 Quick reference: common automation concepts
 
 - Targets, prerequisites, recipes (rebuild logic).
 
@@ -482,3 +511,5 @@ Commands to build/update the target.
 - CI: triggers, runners, jobs, artifacts, caches.
 
 - Hygiene: idempotence, exit codes, logs, secrets.
+
+pre-commit contributors. n.d. *Pre-Commit: A Framework for Managing and Maintaining Multi-Language Pre-Commit Hooks*. Project documentation. <https://pre-commit.com/>.

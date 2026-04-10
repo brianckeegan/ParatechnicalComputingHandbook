@@ -1,4 +1,4 @@
-# 27  Collaboration Mechanics
+# 26  Collaboration Mechanics
 
 > **TIP:**
 >
@@ -30,35 +30,15 @@ By the end of this chapter, you should be able to:
 
 If teammates can understand what changed, why it changed, and how to verify it, collaboration scales.
 
-## 27.1 A beginner mental model: collaboration surfaces
+## 26.1 A beginner mental model: collaboration surfaces
 
-### Where collaboration happens
+Effective collaboration on a software or data-science project happens across several distinct **surfaces**, and a healthy team uses each one for what it is good at. The **repository** holds the code, notebooks, and documentation — it is the canonical source of what the project actually *is*. **Issues** are where tasks, bugs, questions, and decision records live — anything that needs to be tracked over time but is not itself code. **Pull requests** are where proposed changes get reviewed and discussed before they become part of the repository. **Code review comments** are tied to specific lines of a diff and capture the back-and-forth that produced the merged version. **Project boards or milestones** show the overall status: what is in progress, what is blocked, what is done. And **chat and meetings** are the lightweight coordination layer — useful for unblocking each other quickly, but explicitly *not* the system of record. If a decision happens in chat, write it down somewhere persistent before the conversation scrolls off.
 
-- **Repository**: code, notebooks, documentation.
+The **core collaboration loop** that ties these surfaces together is short and repeatable: plan in issues → implement on a branch → open a PR → review and comment → revise → merge → document the outcome → repeat. Every healthy collaborative project works some variant of this loop, and the rituals you build around it (PR templates, review checklists, definition of done) all exist to make the loop itself reliable.
 
-- **Issues**: tasks, bugs, questions, decision records.
+Three roles show up in almost every collaboration. The **author** proposes a change, provides the context a reviewer needs to evaluate it, and responds to feedback. The **reviewer** protects quality, asks clarifying questions when intent is unclear, and mentors less-experienced authors through the process. The **maintainer** or **lead** sets the policies (which branches are protected, which merge strategy is used, who can approve), arbitrates decisions when reviewers disagree, and makes sure things actually get followed through to completion. On a small student project, one person may play all three roles at different times; on a larger team, they are usually different people.
 
-- **Pull requests**: proposed changes + discussion + review.
-
-- **Code review comments**: feedback and decisions tied to specific diffs.
-
-- **Project board/milestones**: status tracking.
-
-- **Chat/meetings**: coordination, but not the system of record.
-
-### The core collaboration loop
-
-Plan in issues → implement on a branch → open PR → review/comment → revise → merge → document → repeat
-
-### Roles and responsibilities
-
-- **Author**: proposes changes, provides context, responds to review.
-
-- **Reviewer**: protects quality, asks clarifying questions, mentors.
-
-- **Maintainer/lead**: sets policy, arbitrates decisions, ensures follow-through.
-
-## 27.2 Documentation as collaboration infrastructure
+## 26.2 Documentation as collaboration infrastructure
 
 ### What documentation is for (student framing)
 
@@ -98,7 +78,7 @@ Plan in issues → implement on a branch → open PR → review/comment → revi
 
 - If documentation is missing, file an issue.
 
-## 27.3 Work planning mechanics: issues and task decomposition
+## 26.3 Work planning mechanics: issues and task decomposition
 
 ### Why issues beat chat threads
 
@@ -128,41 +108,23 @@ Plan in issues → implement on a branch → open PR → review/comment → revi
 
 - Split by reviewability: tasks that fit in a small PR.
 
-## 27.4 Code review fundamentals (what it is and why it works)
+## 26.4 Code review fundamentals (what it is and why it works)
 
 ### Goals of review
 
-- Improve correctness, readability, and maintainability.
-
-- Catch bugs and edge cases.
-
-- Transfer knowledge across the team.
-
-- Align changes with project standards.
+Code review has four jobs running at once. The most obvious is to improve **correctness, readability, and maintainability** — to catch the bug, the unclear name, the function that is doing too much. The second is to **catch edge cases** the author may not have considered, since fresh eyes see the empty list, the missing key, the off-by-one. The third is to **transfer knowledge across the team**: the reviewer learns what the author has been working on, the author learns what the reviewer cares about, and the project’s collective understanding grows with every PR. The fourth is to **align changes with project standards** — the conventions, the architecture, the things “we always do this way” — so that the codebase stays coherent over time.
 
 ### What review is not
 
-- Not a personal critique.
-
-- Not a substitute for testing.
-
-- Not a place to redesign the whole system in one comment.
+Equally important is what review is *not*. It is **not a personal critique**: the comments are about the code, not the author. It is **not a substitute for verification**: a reviewer cannot manually run every code path, and “two reviewers approved” does not mean “the code works.” Running the change is how you know it works. And it is **not a place to redesign the whole system in one comment** — if the PR’s approach is fundamentally wrong, that conversation belongs in an issue *before* the code is written, not buried in line-by-line comments after.
 
 ### Review checklists (student baseline)
 
-- Correctness and clarity: does it do what it says?
+When you sit down to review a PR, walk through six questions in roughly this order. **Correctness and clarity:** does the code actually do what its description says it does, and is the intent obvious? **Verification steps:** how does the author know it works? Did they include a clear “how to test” section in the PR description, with commands a reviewer can run? **Reproducibility:** could someone else clone the repo and run the change end to end? **Documentation:** are the README, docstrings, and inline comments updated to match the new behavior? **Data impacts:** if the change touches data — new schema, renamed columns, new file paths, new assumptions — are those changes documented? **Security and privacy:** are there any new secrets accidentally committed, any new ways for sensitive data to leak, any commands that need elevated privileges?
 
-- Tests or verification steps: how do we know?
+Most PRs only need one or two of those checks to be substantive — but knowing the full list keeps you from missing the kind of issue that is easy to spot if you remember to look.
 
-- Reproducibility: can someone else run it?
-
-- Documentation: README/comments updated?
-
-- Data impacts: schema changes, file paths, assumptions documented?
-
-- Security/privacy: secrets avoided, sensitive data handled properly?
-
-## 27.5 Authoring reviewable changes
+## 26.5 Authoring reviewable changes
 
 ### Small PR discipline
 
@@ -194,7 +156,7 @@ Plan in issues → implement on a branch → open PR → review/comment → revi
 
 - Ensure no secrets or large accidental files are included.
 
-## 27.6 Reviewing and commenting mechanics
+## 26.6 Reviewing and commenting mechanics
 
 ### Comment taxonomy (so feedback is legible)
 
@@ -246,7 +208,7 @@ Minor style/detail; non-blocking.
 
 - Avoid “drive-by” changes that introduce new behavior without explanation.
 
-## 27.7 Merging, ownership, and handoffs
+## 26.7 Merging, ownership, and handoffs
 
 ### Definition of done (team agreement)
 
@@ -264,7 +226,7 @@ Minor style/detail; non-blocking.
 
 - Identify next steps and open questions.
 
-## 27.8 Collaboration practices for data science artifacts
+## 26.8 Collaboration practices for data science artifacts
 
 ### Notebooks and noisy diffs
 
@@ -288,7 +250,7 @@ Minor style/detail; non-blocking.
 
 - Include a minimal “how to reproduce” section in the PR.
 
-## 27.9 Cadences and rituals (lightweight, student-friendly)
+## 26.9 Cadences and rituals (lightweight, student-friendly)
 
 ### Weekly planning
 
@@ -308,7 +270,7 @@ Minor style/detail; non-blocking.
 
 - Convert pain points into issues and documentation improvements.
 
-## 27.10 Common failure modes and fixes
+## 26.10 Common failure modes and fixes
 
 ### Work hidden in private messages
 
@@ -330,25 +292,25 @@ Minor style/detail; non-blocking.
 
 - Fix: require doc updates in PR checklist; treat missing docs as a bug.
 
-## 27.11 Worked examples (outline)
+## 26.11 Worked examples (outline)
 
-### Example 1: Turn a chat question into a good issue
+### Turn a chat question into a good issue
 
 - Convert vague request into context + definition of done.
 
-### Example 2: Author a reviewable PR
+### Author a reviewable PR
 
 - Create a small branch, open PR with testing steps, request review.
 
-### Example 3: Perform a constructive code review
+### Perform a constructive code review
 
 - Use the comment taxonomy; request one blocker and one suggestion.
 
-### Example 4: Close the loop after merge
+### Close the loop after merge
 
 - Update docs, close issue with summary, tag next steps.
 
-## 27.12 Templates
+## 26.12 Templates
 
 ### Template A: PR checklist
 
@@ -386,7 +348,7 @@ Minor style/detail; non-blocking.
     * Style/testing expectations
     * Where to ask questions
 
-## 27.13 Exercises
+## 26.13 Exercises
 
 1.  Write a README for a small class project that a classmate can run.
 
@@ -398,7 +360,7 @@ Minor style/detail; non-blocking.
 
 5.  Close an issue by summarizing what changed, what remains, and how to reproduce.
 
-## 27.14 One-page checklist
+## 26.14 One-page checklist
 
 - Work is tracked in issues/PRs, not only chat.
 
@@ -412,7 +374,7 @@ Minor style/detail; non-blocking.
 
 - After merge, issues are closed with a clear summary and links.
 
-## 27.15 Quick reference: collaboration norms
+## 26.15 Quick reference: collaboration norms
 
 - Prefer artifacts over memory.
 

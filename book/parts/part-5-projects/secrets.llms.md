@@ -1,4 +1,4 @@
-# 29  Environment Variables and Secrets
+# 28  Environment Variables and Secrets
 
 > **TIP:**
 >
@@ -28,7 +28,7 @@ By the end of this chapter, you should be able to:
 
 If a credential is in a file tracked by git, you should treat it as compromised the moment you stage it. Rotate it, remove it, and put the new one in an environment variable.
 
-## 29.1 1. What an environment variable is
+## 28.1 What an environment variable is
 
 Every running process on your computer has a set of key-value pairs called its **environment**. These are inherited from the shell that started the process. Typical entries include `PATH` (where to find executables), `HOME` (your home directory), and `USER` (your login name). You can add anything else you like.
 
@@ -44,7 +44,7 @@ api_key = os.getenv("GITHUB_TOKEN", "")      # returns default if missing
 
 Use the `os.environ[...]` form when the program *requires* the variable — the `KeyError` will tell you immediately that something is misconfigured, instead of silently passing `None` to `requests` and failing with a confusing 401.
 
-## 29.2 2. Setting environment variables in your shell
+## 28.2 Setting environment variables in your shell
 
 You can set them on the command line before running your program:
 
@@ -71,7 +71,7 @@ These set the variable for the current shell session only. Close the terminal an
 
 For a variable you want every time you open a shell, add the `export` line to your shell profile (`~/.bashrc`, `~/.zshrc`, or `~/.profile`). This is fine for truly personal, always-needed secrets. For project-scoped secrets, prefer a `.env` file so they stay with the project.
 
-## 29.3 3. `.env` files
+## 28.3 `.env` files
 
 A `.env` file is a plain-text file in your project directory that contains `KEY=value` lines. It is the de facto standard for project-scoped environment variables.
 
@@ -88,7 +88,7 @@ A few rules:
 - Values are strings. Do not quote them unless they contain spaces.
 - Do not put secrets in comments. (Yes, people do this.)
 
-## 29.4 4. `python-dotenv`: loading a `.env` file into your program
+## 28.4 `python-dotenv`: loading a `.env` file into your program
 
 The `python-dotenv` package reads a `.env` file and populates `os.environ` from it, so the rest of your code can just read environment variables as usual.
 
@@ -114,7 +114,7 @@ Conventions:
 - It is a no-op if `.env` does not exist — your program still runs, it just relies on system environment variables instead.
 - By default, `load_dotenv` does *not* overwrite variables that are already set in the environment. This is the behavior you want for CI — production overrides `.env`.
 
-## 29.5 5. `.gitignore`: the line that matters most in this chapter
+## 28.5 `.gitignore`: the line that matters most in this chapter
 
 **Every project that uses `.env` must have this line in `.gitignore`:**
 
@@ -148,14 +148,14 @@ This file is safe to commit and tells collaborators (and future you) which secre
 
 See [sec-git-github](#sec-git-github) for the full `.gitignore` story.
 
-## 29.6 6. Secrets in Jupyter notebooks
+## 28.6 Secrets in Jupyter notebooks
 
 Notebooks have a special trap: cell output gets saved with the notebook. If you `print(os.environ["API_KEY"])` in a cell, the key is now embedded in the `.ipynb` file and will be committed on your next `git add`.
 
 Three rules for notebooks:
 
 1.  **Never print a secret.** Even to check. If you must verify, print `len(api_key)` or the first 4 characters (`api_key[:4]`).
-2.  **Clear outputs before committing.** `Cell → All Output → Clear` in Jupyter Lab, or use a git pre-commit hook (see [sec-pre-commit](#sec-pre-commit)) to strip outputs automatically.
+2.  **Clear outputs before committing.** `Cell → All Output → Clear` in Jupyter Lab, or set up a git pre-commit hook with `nbstripout` to strip outputs automatically (the pre-commit framework is covered briefly in [sec-automation](#sec-automation)).
 3.  **Load secrets in the first cell** and do not reference them by value again; pass them into function calls so they never become a standalone cell result.
 
 ``` python
@@ -167,7 +167,7 @@ API_KEY = os.environ["OPENWEATHER_API_KEY"]
 # Do NOT add `API_KEY` as the last expression in a cell.
 ```
 
-## 29.7 7. What if I already leaked a secret?
+## 28.7 What if I already leaked a secret?
 
 The bad news: if you committed and pushed a secret to a public repository, assume it is compromised. People actively scan GitHub for exposed credentials within seconds of a push.
 
@@ -194,9 +194,9 @@ The right emergency response, in order:
 
 GitHub also offers **secret scanning** for public repos — it detects known secret formats and emails you (and sometimes the issuing service) automatically. Do not rely on it as your only line of defense, but it is a useful last-ditch safety net.
 
-## 29.8 8. Worked examples
+## 28.8 Worked examples
 
-### Example 1: a new project from scratch
+### A new project from scratch
 
 ``` bash
 mkdir weather-dashboard && cd weather-dashboard
@@ -224,7 +224,7 @@ git commit -m "Initial project with secrets hygiene"
 
 The first commit has no secrets in it, and cannot accidentally grow any because `.env` is ignored from the start.
 
-### Example 2: a script that uses the secret
+### A script that uses the secret
 
 ``` python
 # fetch_weather.py
@@ -258,7 +258,7 @@ python fetch_weather.py
 
 The script works on your machine because `.env` is there. When a collaborator clones the repo, they will get a `KeyError` telling them exactly which variable is missing. That is the error message you want.
 
-### Example 3: verifying without printing
+### Verifying without printing
 
 ``` python
 api_key = os.environ["OPENWEATHER_API_KEY"]
@@ -267,7 +267,7 @@ print(f"loaded key: length={len(api_key)}, starts with {api_key[:4]}...")
 
 Now you can tell the key loaded correctly without broadcasting it.
 
-## 29.9 9. Templates
+## 28.9 Templates
 
 **A minimal `.env.example`:**
 
@@ -300,7 +300,7 @@ if missing:
 
 This gives you a useful error on day one instead of a confusing 401 on day three.
 
-## 29.10 10. Exercises
+## 28.10 Exercises
 
 1.  Create a new project folder, initialize a git repo, and set up `.env`, `.env.example`, and `.gitignore` in the right order. Confirm with `git status` that `.env` does not appear.
 2.  Write a `check_secrets.py` that loads `.env`, reads a variable, and prints its length (not its value). Run it and confirm the length matches your key.
@@ -310,7 +310,7 @@ This gives you a useful error on day one instead of a confusing 401 on day three
 6.  Find a GitHub repo that has accidentally committed a `.env` (they exist — search for `filename:.env DB_PASSWORD`). Read the comments from other users. Note how the maintainer responded. Do not copy the credentials.
 7.  Set an environment variable in your shell profile and a conflicting one in `.env`. Run a program and observe which one wins (hint: by default, system env wins over `load_dotenv`).
 
-## 29.11 11. One-page checklist
+## 28.11 One-page checklist
 
 - `.env` goes in `.gitignore` **before** you add any secrets.
 - Commit a `.env.example` with variable names but no values.
