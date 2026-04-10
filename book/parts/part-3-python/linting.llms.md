@@ -1,4 +1,4 @@
-# 18  Code Style, Linting, and Formatting
+# 18  Code Style
 
 > **TIP:**
 >

@@ -3065,166 +3065,166 @@
   {
     "objectID": "parts/part-3-python/linting.html",
     "href": "parts/part-3-python/linting.html",
-    "title": "18  Code Style, Linting, and Formatting",
+    "title": "18  Code Style",
     "section": "",
     "text": "Purpose\nCode style is one of those skills people assume you will absorb by osmosis. You will not. Without being taught, most novices write code that is technically correct but visually noisy — inconsistent indentation, trailing whitespace, unused imports, variable names that start with a lowercase letter here and an uppercase letter there. In solo work, this is a cosmetic problem. In collaborative work, it becomes a real one: code review time is wasted on style nitpicks, diffs are noisy, and merge conflicts multiply.\nThe fix is simple and has two parts:\nTogether, these two tools take about ten minutes to set up and pay for themselves within a week. This chapter teaches you the two tools that are now standard in Python: black (formatter) and ruff (linter and optional formatter). You will be up and running by the end.",
     "crumbs": [
       "Part III — Python Management",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style, Linting, and Formatting</span>"
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style</span>"
     ]
   },
   {
     "objectID": "parts/part-3-python/linting.html#purpose",
     "href": "parts/part-3-python/linting.html#purpose",
-    "title": "18  Code Style, Linting, and Formatting",
+    "title": "18  Code Style",
     "section": "",
     "text": "A formatter rewrites your code to a canonical style automatically. You stop making style decisions.\nA linter scans your code for problems that a formatter cannot fix — unused variables, shadowed builtins, likely bugs, style guide violations.",
     "crumbs": [
       "Part III — Python Management",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style, Linting, and Formatting</span>"
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style</span>"
     ]
   },
   {
     "objectID": "parts/part-3-python/linting.html#learning-objectives",
     "href": "parts/part-3-python/linting.html#learning-objectives",
-    "title": "18  Code Style, Linting, and Formatting",
+    "title": "18  Code Style",
     "section": "Learning objectives",
     "text": "Learning objectives\nBy the end of this chapter, you should be able to:\n\nExplain the difference between a formatter and a linter.\nInstall and run black to format a Python file or project.\nInstall and run ruff check to lint a Python file or project, and ruff format as a faster alternative to black.\nConfigure style rules in pyproject.toml.\nIntegrate a formatter with VS Code / PyCharm so your editor formats on save.\nExplain what PEP 8 is and why you will almost never need to read it directly.\nRecognize when a style rule is worth fighting and when it is worth accepting.\nSet up a minimum viable linting workflow for a student project.",
     "crumbs": [
       "Part III — Python Management",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style, Linting, and Formatting</span>"
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style</span>"
     ]
   },
   {
     "objectID": "parts/part-3-python/linting.html#running-theme-make-the-machine-handle-style-so-humans-can-focus-on-logic",
     "href": "parts/part-3-python/linting.html#running-theme-make-the-machine-handle-style-so-humans-can-focus-on-logic",
-    "title": "18  Code Style, Linting, and Formatting",
+    "title": "18  Code Style",
     "section": "Running theme: make the machine handle style so humans can focus on logic",
     "text": "Running theme: make the machine handle style so humans can focus on logic\nIf you find yourself debating spaces or import order with a collaborator, you have already lost. Delegate the decision to a formatter and a linter, commit their config to git, and move on to the actual code review.",
     "crumbs": [
       "Part III — Python Management",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style, Linting, and Formatting</span>"
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style</span>"
     ]
   },
   {
     "objectID": "parts/part-3-python/linting.html#pep-8-in-one-paragraph",
     "href": "parts/part-3-python/linting.html#pep-8-in-one-paragraph",
-    "title": "18  Code Style, Linting, and Formatting",
+    "title": "18  Code Style",
     "section": "18.1 PEP 8 in one paragraph",
     "text": "18.1 PEP 8 in one paragraph\nPEP 8 is the official Python style guide. It is short and sensible: 4-space indents, 79-character lines (most people now use 88 or 100), snake_case for functions and variables, PascalCase for classes, UPPER_SNAKE for constants, imports at the top, one blank line between functions, two between top-level definitions, no trailing whitespace. The modern formatters (black, ruff format) implement PEP 8 with a handful of opinionated choices baked in, so you almost never need to read PEP 8 yourself — you just run the formatter and the code comes out compliant.",
     "crumbs": [
       "Part III — Python Management",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style, Linting, and Formatting</span>"
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style</span>"
     ]
   },
   {
     "objectID": "parts/part-3-python/linting.html#formatters-vs.-linters",
     "href": "parts/part-3-python/linting.html#formatters-vs.-linters",
-    "title": "18  Code Style, Linting, and Formatting",
+    "title": "18  Code Style",
     "section": "18.2 Formatters vs. linters",
     "text": "18.2 Formatters vs. linters\nA formatter rewrites your code to look a certain way. It will not change what the code does. You run it, the file is rewritten, and the diff is entirely cosmetic. black is the canonical Python formatter.\nA linter reads your code and reports problems — without changing it. Problems can be anything from “you imported os but never used it” to “this function might return None on a path your caller doesn’t handle.” ruff check and pylint are linters.\nThey are complementary. Formatters fix style; linters find mistakes.",
     "crumbs": [
       "Part III — Python Management",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style, Linting, and Formatting</span>"
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style</span>"
     ]
   },
   {
     "objectID": "parts/part-3-python/linting.html#black-the-boring-formatter",
     "href": "parts/part-3-python/linting.html#black-the-boring-formatter",
-    "title": "18  Code Style, Linting, and Formatting",
+    "title": "18  Code Style",
     "section": "18.3 black: the boring formatter",
     "text": "18.3 black: the boring formatter\nblack is called “the uncompromising Python code formatter” for a reason: it does not take many options. You install it, you run it, your code is black-formatted. No discussions about whether to use single or double quotes. Black picks; you move on.\nInstall it in your venv (see Chapter 14):\npython -m pip install black\nRun it on a single file:\nblack src/analysis.py\nRun it on a whole project:\nblack .\nRun it in check-only mode (no changes, just exit non-zero if files would change — useful in CI):\nblack --check .\nSee what it would change, without changing it:\nblack --diff src/analysis.py\n\nConfiguration\nBlack takes its config from pyproject.toml:\n[tool.black]\nline-length = 100\ntarget-version = [\"py311\"]\nThat is almost everything you can configure. The point of black is that it is opinionated; you are not meant to tune it much.",
     "crumbs": [
       "Part III — Python Management",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style, Linting, and Formatting</span>"
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style</span>"
     ]
   },
   {
     "objectID": "parts/part-3-python/linting.html#ruff-the-fast-linter-and-formatter",
     "href": "parts/part-3-python/linting.html#ruff-the-fast-linter-and-formatter",
-    "title": "18  Code Style, Linting, and Formatting",
+    "title": "18  Code Style",
     "section": "18.4 ruff: the fast linter (and formatter)",
     "text": "18.4 ruff: the fast linter (and formatter)\nruff is a modern Python linter written in Rust. It is 10–100× faster than the older tools (flake8, pylint), implements hundreds of rules, and increasingly doubles as a formatter compatible with black. If you are starting a new project today, the straightforward choice is “use ruff for both linting and formatting.”\nInstall:\npython -m pip install ruff\nLint a file or project:\nruff check .\nAuto-fix problems that are safely auto-fixable (unused imports, trailing whitespace, import order):\nruff check --fix .\nFormat (this is a newer feature; ruff format is drop-in compatible with black):\nruff format .\n\nConfiguration\nLike black, ruff reads from pyproject.toml:\n[tool.ruff]\nline-length = 100\ntarget-version = \"py311\"\n\n[tool.ruff.lint]\n# Which rule sets to enable. See https://docs.astral.sh/ruff/rules/\nselect = [\n    \"E\",    # pycodestyle errors (PEP 8)\n    \"F\",    # pyflakes (logic errors)\n    \"I\",    # isort (import order)\n    \"B\",    # bugbear (likely bugs)\n    \"UP\",   # pyupgrade (modernize syntax)\n]\nignore = [\n    \"E501\", # line too long — let the formatter handle it\n]\n\n[tool.ruff.lint.per-file-ignores]\n\"__init__.py\" = [\"F401\"]   # allow unused imports in package init files\nA sensible starting config for a student project: select E, F, I, B, UP, ignore line-length (the formatter controls that), and let per-file ignores handle the rest as you run into them.",
     "crumbs": [
       "Part III — Python Management",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style, Linting, and Formatting</span>"
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style</span>"
     ]
   },
   {
     "objectID": "parts/part-3-python/linting.html#editor-integration-format-on-save",
     "href": "parts/part-3-python/linting.html#editor-integration-format-on-save",
-    "title": "18  Code Style, Linting, and Formatting",
+    "title": "18  Code Style",
     "section": "18.5 Editor integration: format on save",
     "text": "18.5 Editor integration: format on save\nThe real magic happens when your editor runs the formatter automatically on every save. Your code is never in an unformatted state for more than a split second, and you stop thinking about style entirely.\n\nVS Code\nInstall the Black Formatter or Ruff extension, then add to your workspace settings.json:\n{\n  \"editor.formatOnSave\": true,\n  \"[python]\": {\n    \"editor.defaultFormatter\": \"charliermarsh.ruff\",\n    \"editor.codeActionsOnSave\": {\n      \"source.fixAll\": \"explicit\",\n      \"source.organizeImports\": \"explicit\"\n    }\n  }\n}\nNow every time you hit Cmd+S / Ctrl+S, Ruff formats and fixes imports and unused variables.\n\n\nPyCharm\nSettings → Tools → External Tools → add Black or Ruff. Or use the built-in integrations: Settings → Tools → Black / Ruff, and enable “On save.”\n\n\nJupyter\nNotebooks are harder to lint because the cell model breaks some assumptions. jupyter_black is a drop-in package:\npython -m pip install jupyter_black\nIn the first cell of a notebook:\n%load_ext jupyter_black\nEvery code cell is formatted on execution from then on.",
     "crumbs": [
       "Part III — Python Management",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style, Linting, and Formatting</span>"
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style</span>"
     ]
   },
   {
     "objectID": "parts/part-3-python/linting.html#rule-sets-what-do-e-f-i-b-up-mean",
     "href": "parts/part-3-python/linting.html#rule-sets-what-do-e-f-i-b-up-mean",
-    "title": "18  Code Style, Linting, and Formatting",
+    "title": "18  Code Style",
     "section": "18.6 Rule sets: what do E, F, I, B, UP mean?",
     "text": "18.6 Rule sets: what do E, F, I, B, UP mean?\nruff groups rules into sets that match the old pre-ruff tools they replace. The most useful ones for a student project are:\n\n\n\n\n\n\n\n\nCode\nSource\nWhat it catches\n\n\n\n\nE, W\npycodestyle\nPEP 8 style (indentation, whitespace, line length)\n\n\nF\npyflakes\nunused imports, undefined names, duplicate arguments\n\n\nI\nisort\nimport ordering\n\n\nB\nflake8-bugbear\nlikely bugs (mutable default args, unused loop variables)\n\n\nUP\npyupgrade\nmodernize syntax (f-strings over .format, etc.)\n\n\nSIM\nflake8-simplify\nsimpler equivalent constructs\n\n\nANN\nflake8-annotations\nmissing type hints\n\n\nD\npydocstyle\ndocstring conventions\n\n\n\nYou do not need all of them. Start with E, F, I, B, UP. Add more as the project grows.",
     "crumbs": [
       "Part III — Python Management",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style, Linting, and Formatting</span>"
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style</span>"
     ]
   },
   {
     "objectID": "parts/part-3-python/linting.html#when-to-override-a-rule",
     "href": "parts/part-3-python/linting.html#when-to-override-a-rule",
-    "title": "18  Code Style, Linting, and Formatting",
+    "title": "18  Code Style",
     "section": "18.7 When to override a rule",
     "text": "18.7 When to override a rule\nMost linter rules are helpful and you should accept them. Some will not apply to your project. There are three ways to override:\nGlobally, in pyproject.toml:\n[tool.ruff.lint]\nignore = [\"E501\"]   # line too long\nPer-file, in pyproject.toml:\n[tool.ruff.lint.per-file-ignores]\n\"tests/*\" = [\"E501\", \"S101\"]\nPer-line, with a # noqa comment:\nfrom legacy_code import UNUSED  # noqa: F401\nUse # noqa sparingly. Every one is a small promise that a human thought about it and decided the rule did not apply. Unexplained # noqa comments accumulate and become dead weight.",
     "crumbs": [
       "Part III — Python Management",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style, Linting, and Formatting</span>"
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style</span>"
     ]
   },
   {
     "objectID": "parts/part-3-python/linting.html#worked-examples",
     "href": "parts/part-3-python/linting.html#worked-examples",
-    "title": "18  Code Style, Linting, and Formatting",
+    "title": "18  Code Style",
     "section": "18.8 Worked examples",
     "text": "18.8 Worked examples\n\nSetting up a new project\npython -m venv .venv\nsource .venv/bin/activate\npython -m pip install ruff\n\n# Create a minimal pyproject.toml\ncat &gt; pyproject.toml &lt;&lt;'EOF'\n[tool.ruff]\nline-length = 100\ntarget-version = \"py311\"\n\n[tool.ruff.lint]\nselect = [\"E\", \"F\", \"I\", \"B\", \"UP\"]\nignore = [\"E501\"]\n\n[tool.ruff.format]\nquote-style = \"double\"\nEOF\n\n# Run once on the existing code\nruff check --fix .\nruff format .\n\ngit add pyproject.toml\ngit commit -m \"Add ruff config and initial formatting pass\"\nNow ruff check will run instantly on every subsequent change.\n\n\nFixing an unused import\nBefore:\nimport os\nimport sys\nimport pandas as pd\n\ndef main():\n    df = pd.read_csv(\"data.csv\")\n    print(df.head())\nRunning ruff check --fix main.py rewrites the file to:\nimport pandas as pd\n\ndef main():\n    df = pd.read_csv(\"data.csv\")\n    print(df.head())\nos and sys were unused; ruff removed them automatically.\n\n\nCatching a real bug\n# bug.py\ndef greet(name, greetings=[]):\n    greetings.append(f\"Hello, {name}!\")\n    return greetings\nRunning ruff check bug.py:\nbug.py:1:24: B006 Do not use mutable data structures for argument defaults\nThe linter caught a classic Python gotcha: a mutable default argument is shared across calls, so greet(\"Alice\") followed by greet(\"Bob\") returns [\"Hello, Alice!\", \"Hello, Bob!\"], not [\"Hello, Bob!\"]. The fix is:\ndef greet(name, greetings=None):\n    if greetings is None:\n        greetings = []\n    greetings.append(f\"Hello, {name}!\")\n    return greetings\nThis is a real bug. You would find it in production, not in your head. A linter finds it in 20 milliseconds.",
     "crumbs": [
       "Part III — Python Management",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style, Linting, and Formatting</span>"
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style</span>"
     ]
   },
   {
     "objectID": "parts/part-3-python/linting.html#templates",
     "href": "parts/part-3-python/linting.html#templates",
-    "title": "18  Code Style, Linting, and Formatting",
+    "title": "18  Code Style",
     "section": "18.9 Templates",
     "text": "18.9 Templates\nA minimal pyproject.toml for a student project:\n[tool.ruff]\nline-length = 100\ntarget-version = \"py311\"\n\n[tool.ruff.lint]\nselect = [\"E\", \"F\", \"I\", \"B\", \"UP\"]\nignore = [\"E501\"]\n\n[tool.ruff.lint.per-file-ignores]\n\"__init__.py\" = [\"F401\"]\n\"tests/*\" = [\"B011\"]\n\n[tool.ruff.format]\nquote-style = \"double\"\nindent-style = \"space\"\nA one-line CI check to add to your GitHub Actions workflow (see Chapter 27):\n- name: Lint\n  run: |\n    python -m pip install ruff\n    ruff check .\n    ruff format --check .\nWire this into the same CI workflow you use for any other automated checks and every push gets automatic style enforcement.",
     "crumbs": [
       "Part III — Python Management",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style, Linting, and Formatting</span>"
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style</span>"
     ]
   },
   {
     "objectID": "parts/part-3-python/linting.html#exercises",
     "href": "parts/part-3-python/linting.html#exercises",
-    "title": "18  Code Style, Linting, and Formatting",
+    "title": "18  Code Style",
     "section": "18.10 Exercises",
     "text": "18.10 Exercises\n\nInstall ruff in a venv, pick one of your own Python files, and run ruff check on it. How many issues does it report? Skim the output and pick two you do not understand.\nRun ruff check --fix on the same file. Read the diff. Did anything you cared about change?\nRun ruff format on the same file. Read the diff. How many changes are cosmetic vs. substantive?\nCreate a pyproject.toml with the template from section 9 and commit it.\nWire up format-on-save in your editor. Make a one-character change and save. Confirm ruff reformatted the file.\nDeliberately introduce a mutable default argument (like the example in section 8) and confirm that ruff check reports it.\nAdd ruff check to your CI workflow. Intentionally break formatting in a commit and confirm CI fails.",
     "crumbs": [
       "Part III — Python Management",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style, Linting, and Formatting</span>"
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style</span>"
     ]
   },
   {
     "objectID": "parts/part-3-python/linting.html#one-page-checklist",
     "href": "parts/part-3-python/linting.html#one-page-checklist",
-    "title": "18  Code Style, Linting, and Formatting",
+    "title": "18  Code Style",
     "section": "18.11 One-page checklist",
     "text": "18.11 One-page checklist\n\nInstall ruff in every Python venv.\nCommit a pyproject.toml with [tool.ruff] configuration.\nEnable format-on-save in your editor.\nRun ruff check . and ruff format . before every commit (or automate with the pre-commit hook described in Chapter 27).\nUse --fix to auto-fix safe issues; read everything else manually.\nPrefer ruff format over black in new projects; they produce near-identical output, ruff is just faster.\nUse # noqa: RULE sparingly and always with the rule code.\nWire ruff check --format --check into CI so style drift cannot land on main.\nDo not debate style with collaborators. Configure the formatter, run it, move on.",
     "crumbs": [
       "Part III — Python Management",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style, Linting, and Formatting</span>"
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Code Style</span>"
     ]
   },
   {
@@ -3373,133 +3373,133 @@
   {
     "objectID": "parts/part-4-data/tabular-data.html",
     "href": "parts/part-4-data/tabular-data.html",
-    "title": "20  Tabular Data: Shape, Cleaning, and Validation",
+    "title": "20  Tabular Data",
     "section": "",
     "text": "Purpose\nBefore you can analyze a dataset, you have to shape it, clean it, and convince yourself it is what you think it is. Novices skip this step constantly — load a CSV, call .describe(), and start plotting. The results look fine. A week later, a subtle bug reveals that half the rows were duplicated by a bad merge, or a date column was parsed as strings, or a “total” column is the sum of all the other columns plus itself. The analysis is wrong and the rewrites are painful.\nThis chapter is a field guide to the practices that catch those bugs early. It covers what shape your data should be in (wide vs. tidy), how to clean it without corrupting it, how to validate it with lightweight checks, and the specific friction points that burn the most student hours. It deliberately does not teach pandas syntax — that is Chapter 21 — or SQL — that is Chapter 22. Instead it teaches the principles that apply regardless of tool, so that when you pick up a new library you already know what good looks like.\nRead this chapter before the first time you work with a dataset you did not generate yourself. It is short, but it will save you hours of “why is my answer wrong?” later.",
     "crumbs": [
       "Part IV — Working with Data",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Tabular Data: Shape, Cleaning, and Validation</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Tabular Data</span>"
     ]
   },
   {
     "objectID": "parts/part-4-data/tabular-data.html#learning-objectives",
     "href": "parts/part-4-data/tabular-data.html#learning-objectives",
-    "title": "20  Tabular Data: Shape, Cleaning, and Validation",
+    "title": "20  Tabular Data",
     "section": "Learning objectives",
     "text": "Learning objectives\nBy the end of this chapter, you should be able to:\n\nDefine wide vs. tidy (long) data and explain when each is appropriate.\nRecognize the three rules of tidy data (one variable per column, one observation per row, one type of observational unit per table).\nList the standard moves of a data-cleaning pipeline and their order.\nWrite lightweight validation checks — shape, dtypes, null counts, key uniqueness, value ranges — that catch the most common bugs.\nIdentify the seven most common sources of friction when loading a new dataset and apply the standard fix for each.\nExplain why cleaning should be reproducible, not a one-off manual process in a notebook.\nDistinguish between raw data (never modify) and cleaned data (derived, regenerable).",
     "crumbs": [
       "Part IV — Working with Data",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Tabular Data: Shape, Cleaning, and Validation</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Tabular Data</span>"
     ]
   },
   {
     "objectID": "parts/part-4-data/tabular-data.html#running-theme-data-you-have-not-validated-is-data-you-cannot-trust",
     "href": "parts/part-4-data/tabular-data.html#running-theme-data-you-have-not-validated-is-data-you-cannot-trust",
-    "title": "20  Tabular Data: Shape, Cleaning, and Validation",
+    "title": "20  Tabular Data",
     "section": "Running theme: data you have not validated is data you cannot trust",
     "text": "Running theme: data you have not validated is data you cannot trust\nEvery dataset looks reasonable at first glance. Every dataset has problems. A ten-line validation block at the top of your analysis is cheaper than a week of wrong conclusions.",
     "crumbs": [
       "Part IV — Working with Data",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Tabular Data: Shape, Cleaning, and Validation</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Tabular Data</span>"
     ]
   },
   {
     "objectID": "parts/part-4-data/tabular-data.html#wide-vs.-tidy-data",
     "href": "parts/part-4-data/tabular-data.html#wide-vs.-tidy-data",
-    "title": "20  Tabular Data: Shape, Cleaning, and Validation",
+    "title": "20  Tabular Data",
     "section": "20.1 Wide vs. tidy data",
     "text": "20.1 Wide vs. tidy data\nThe single most useful concept for working with tabular data is the distinction between wide and tidy (also called “long”) formats. The idea was popularized by Hadley Wickham and has since shaped every major data analysis library.\n\nWide\nIn a wide dataset, each row is an entity and each column is a measurement of that entity. Classrooms, spreadsheets, and government reports usually give you wide data because it is easy for humans to read.\n\n\n\nstudent\nmath\nreading\nscience\n\n\n\n\nAlice\n92\n88\n95\n\n\nBob\n78\n84\n80\n\n\n\n\n\nTidy (long)\nIn a tidy dataset, each row is a single observation — one measurement of one attribute of one entity — and there are only as many columns as there are kinds of thing (variable name, value, entity identifiers).\n\n\n\nstudent\nsubject\nscore\n\n\n\n\nAlice\nmath\n92\n\n\nAlice\nreading\n88\n\n\nAlice\nscience\n95\n\n\nBob\nmath\n78\n\n\nBob\nreading\n84\n\n\nBob\nscience\n80\n\n\n\nSame information, more rows, fewer columns. So why tidy? Because once your data is tidy:\n\nEvery statistic you want is a group-by: df.groupby(\"subject\")[\"score\"].mean().\nPlots are a single call: sns.boxplot(data=df, x=\"subject\", y=\"score\").\nNew subjects can be added without adding new columns.\nFiltering is trivial: df[df[\"subject\"] == \"math\"].\n\nWide data resists all of these. You end up writing repetitive code, adding columns every time a new measurement type appears, and dealing with an ever-widening table.\n\n\nThe three rules of tidy data\nTidy data obeys three rules:\n\nEach variable forms a column. A variable is a measured property: height, price, date, category.\nEach observation forms a row. An observation is a single unit of measurement: one customer on one day, one test score for one student.\nEach type of observational unit forms a separate table. If your data has students and classes, they belong in two tables (with a join key), not one flattened table.\n\n\n\nWhen to use wide\nTidy is the right shape for analysis and reshaping. Wide is the right shape for:\n\nHuman reading. Nobody wants to scroll through 60 rows when a 3x20 table would fit on the page.\nCertain modeling tasks where each “feature” is a column.\nOutput / reporting. Pivot tidy data back to wide at the last step, for presentation.\n\nThe rule of thumb: clean and analyze in tidy; pivot to wide only for display.\n\n\nConverting between the two\nIn pandas, the functions are melt (wide → long) and pivot / pivot_table (long → wide):\n# wide -&gt; tidy\ntidy = wide.melt(\n    id_vars=\"student\",\n    value_vars=[\"math\", \"reading\", \"science\"],\n    var_name=\"subject\",\n    value_name=\"score\",\n)\n\n# tidy -&gt; wide\nwide_again = tidy.pivot(index=\"student\", columns=\"subject\", values=\"score\")\nLearn these two functions early. They turn a “help me reshape my data” question into a one-liner.",
     "crumbs": [
       "Part IV — Working with Data",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Tabular Data: Shape, Cleaning, and Validation</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Tabular Data</span>"
     ]
   },
   {
     "objectID": "parts/part-4-data/tabular-data.html#the-standard-cleaning-pipeline",
     "href": "parts/part-4-data/tabular-data.html#the-standard-cleaning-pipeline",
-    "title": "20  Tabular Data: Shape, Cleaning, and Validation",
+    "title": "20  Tabular Data",
     "section": "20.2 The standard cleaning pipeline",
     "text": "20.2 The standard cleaning pipeline\nMost real datasets need roughly the same sequence of moves before they are usable. Do them in order; skipping steps or reordering them causes subtle bugs.\n\nLoad the raw file without modifying it. Never overwrite the source file. The raw data is the ground truth you reproduce from. See Chapter 19.\nNormalize column names. Strip whitespace, lowercase, replace spaces and punctuation with underscores. A reproducible helper is better than hand-fixing. df.columns = df.columns.str.strip().str.lower().str.replace(r\"\\W+\", \"_\", regex=True)\nFix dtypes. Make sure numeric columns are numeric, dates are dates, categoricals are categorical. Do this right after loading, before anything else, because downstream operations silently misbehave on wrong dtypes.\nHandle missing values explicitly. Decide whether to drop rows, drop columns, fill with a sentinel, or leave as NaN. Never let the default “drop NaN” behavior of a function be your policy — make the decision yourself.\nDeduplicate. Check for and drop exact duplicate rows. Check for duplicates on your key column(s) — these almost always indicate a bad upstream join or a data-entry error.\nFilter out-of-range values. Heights of 0 or 1000, ages of -5, dates in 2099. Use domain knowledge to decide what to drop or flag.\nReshape to tidy. If the input was wide, melt it now, once.\nDerive new columns. Calculated fields (ratios, categories, flags) come last, after the base columns are trustworthy.\nSave the cleaned output to a separate file. Use Parquet (see Chapter 19). Never save the cleaned data on top of the raw file.\n\nPut every step in a script or notebook that runs end-to-end, from raw to cleaned, in one pass. If someone (including future you) ever needs to know “what did we do to this data?”, the answer should be “read this script.”",
     "crumbs": [
       "Part IV — Working with Data",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Tabular Data: Shape, Cleaning, and Validation</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Tabular Data</span>"
     ]
   },
   {
     "objectID": "parts/part-4-data/tabular-data.html#raw-vs.-cleaned-data",
     "href": "parts/part-4-data/tabular-data.html#raw-vs.-cleaned-data",
-    "title": "20  Tabular Data: Shape, Cleaning, and Validation",
+    "title": "20  Tabular Data",
     "section": "20.3 Raw vs. cleaned data",
     "text": "20.3 Raw vs. cleaned data\nAdopt this rule early: raw data is immutable. You never modify it. You never save over it. You keep it in a folder called data/raw/ and treat it like a read-only museum exhibit.\nCleaned data is a derivative of raw data, produced by a script. It lives in data/processed/ or data/cleaned/. Anyone can delete it and regenerate it by rerunning the script.\nproject/\n├── data/\n│   ├── raw/              # never modify\n│   │   └── sales.csv\n│   ├── interim/          # optional: intermediate results\n│   └── processed/        # cleaned, validated, analysis-ready\n│       └── sales.parquet\n├── src/\n│   └── clean_sales.py    # the script that turns raw into processed\n└── notebooks/\n    └── analysis.ipynb    # reads only from processed/\nThis separation does three things: it makes cleaning reproducible, it makes the lineage of any number in your report traceable, and it prevents the dreaded “I don’t remember which version of this file is the good one” situation. See Chapter 24 for how this fits into overall project structure.",
     "crumbs": [
       "Part IV — Working with Data",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Tabular Data: Shape, Cleaning, and Validation</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Tabular Data</span>"
     ]
   },
   {
     "objectID": "parts/part-4-data/tabular-data.html#validation-lightweight-checks-that-catch-the-most-bugs",
     "href": "parts/part-4-data/tabular-data.html#validation-lightweight-checks-that-catch-the-most-bugs",
-    "title": "20  Tabular Data: Shape, Cleaning, and Validation",
+    "title": "20  Tabular Data",
     "section": "20.4 Validation: lightweight checks that catch the most bugs",
     "text": "20.4 Validation: lightweight checks that catch the most bugs\nValidation does not have to be fancy. A ten-line block at the top of your analysis catches 90% of the problems you will encounter. Paste this pattern into every notebook or cleaning script:\nassert df.shape[0] &gt; 0, \"Empty DataFrame\"\nassert list(df.columns) == EXPECTED_COLUMNS, f\"Columns changed: {df.columns.tolist()}\"\nassert df[\"order_id\"].is_unique, \"Duplicate order IDs\"\nassert df[\"date\"].notna().all(), \"Missing dates\"\nassert (df[\"quantity\"] &gt; 0).all(), \"Non-positive quantities\"\nassert df[\"price\"].dtype.kind in \"if\", f\"Price is {df['price'].dtype}, expected numeric\"\nThis is cheap, self-documenting, and fails loudly at the exact line that is wrong. Libraries like pandera and great_expectations offer more sophisticated schema validation, but for student work the plain assert pattern is plenty.\n\nWhat to validate\nA useful mental model: validate five axes of every dataset you load.\n\nShape. Number of rows and columns, both lower and upper bounds.\nColumns. The expected column names, in the expected order.\nDtypes. Numeric columns are numeric; date columns are dates.\nKeys and uniqueness. The column that should uniquely identify rows actually does. If you have a join key, it has the expected cardinality.\nValues. Ranges, categories, missingness. Ages in 0-120, percentages in 0-1 (or 0-100, pick one), dates within your study window.\n\nRun these checks at the top of every analysis, even when you “know” the data is fine. You do not know until you have checked.",
     "crumbs": [
       "Part IV — Working with Data",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Tabular Data: Shape, Cleaning, and Validation</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Tabular Data</span>"
     ]
   },
   {
     "objectID": "parts/part-4-data/tabular-data.html#the-seven-most-common-friction-points",
     "href": "parts/part-4-data/tabular-data.html#the-seven-most-common-friction-points",
-    "title": "20  Tabular Data: Shape, Cleaning, and Validation",
+    "title": "20  Tabular Data",
     "section": "20.5 The seven most common friction points",
     "text": "20.5 The seven most common friction points\nHere are the specific problems you will hit most often with real data, and the standard fix for each.\n\n1. Column names with spaces, caps, and punctuation\nSymptom: df[\"Total Revenue\"] works but df.Total Revenue doesn’t, and the mixed-case names make every line uglier than it needs to be.\nFix: normalize column names immediately after loading.\ndf.columns = (\n    df.columns\n    .str.strip()\n    .str.lower()\n    .str.replace(r\"\\W+\", \"_\", regex=True)\n    .str.strip(\"_\")\n)\n\n\n2. Numeric columns read as strings\nSymptom: df[\"price\"].sum() concatenates strings instead of adding numbers.\nFix: one bad value somewhere (a \"N/A\" or a \"$\" or a stray footnote) is making pandas treat the whole column as object. Use pd.to_numeric(..., errors=\"coerce\") to convert and flag the culprits:\ndf[\"price_num\"] = pd.to_numeric(df[\"price\"], errors=\"coerce\")\nbad = df[df[\"price_num\"].isna() & df[\"price\"].notna()]\nprint(f\"Unconvertible prices: {len(bad)}\")\nprint(bad[[\"price\"]].drop_duplicates().head())\nThen fix the source: use na_values= at read time (see Chapter 19) or strip the junk explicitly.\n\n\n3. Dates read as strings\nSymptom: .dt.year fails with AttributeError: Can only use .dt accessor with datetimelike values.\nFix: parse the column explicitly.\ndf[\"date\"] = pd.to_datetime(df[\"date\"], errors=\"coerce\")\nIf the format is ambiguous (US MM/DD/YYYY vs. EU DD/MM/YYYY), pass format= explicitly — do not rely on inference for dates you care about.\n\n\n4. Missing-value sentinels\nSymptom: a numeric column contains -999, \"unknown\", or an empty string and your statistics are nonsense.\nFix: catch them at read time:\ndf = pd.read_csv(\"data.csv\", na_values=[\"-999\", \"unknown\", \"\", \"-\"])\nOr clean them after loading:\ndf[\"temp\"] = df[\"temp\"].replace({-999: pd.NA})\n\n\n5. Silent duplication from a bad merge\nSymptom: after a join, your row count doubled and none of your aggregates match.\nFix: merge with validate=:\nmerged = df_a.merge(df_b, on=\"customer_id\", validate=\"one_to_one\")\nPandas will raise immediately if the join is not the cardinality you claimed. Use \"one_to_one\", \"one_to_many\", \"many_to_one\", or \"many_to_many\" as appropriate. Make the choice explicit every time.\n\n\n6. Implicit dropping of NaN rows\nSymptom: your row count keeps shrinking as you chain operations, because functions like .groupby, .dropna, and .merge silently drop rows with missing keys.\nFix: check the shape before and after every operation during cleaning:\nprint(f\"before: {df.shape}\")\ndf = df.dropna(subset=[\"customer_id\"])\nprint(f\"after:  {df.shape}\")\nFor groupby, pass dropna=False if you want NaN groups included.\n\n\n7. Mixed types in a “numeric” column\nSymptom: a column has integers, floats, and a few strings (“N/A”, “n/a”, “unknown”). Reads as object. Operations are slow and error-prone.\nFix: pd.to_numeric(..., errors=\"coerce\") as in problem 2, then decide what to do with the NaNs. Do not silently .dropna() — that is the row you should be investigating.",
     "crumbs": [
       "Part IV — Working with Data",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Tabular Data: Shape, Cleaning, and Validation</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Tabular Data</span>"
     ]
   },
   {
     "objectID": "parts/part-4-data/tabular-data.html#worked-examples",
     "href": "parts/part-4-data/tabular-data.html#worked-examples",
-    "title": "20  Tabular Data: Shape, Cleaning, and Validation",
+    "title": "20  Tabular Data",
     "section": "20.6 Worked examples",
     "text": "20.6 Worked examples\n\nTurning wide survey data into tidy\nYou have a survey export in wide format:\n\n\n\nrespondent\nq1_agree\nq2_agree\nq3_agree\n\n\n\n\nr001\n5\n3\n4\n\n\nr002\n2\n4\n3\n\n\n\nYou want to count how many “agree” (4 or 5) responses each question got.\nWide: ugly, repetitive.\nfor q in [\"q1_agree\", \"q2_agree\", \"q3_agree\"]:\n    print(q, (df[q] &gt;= 4).sum())\nTidy: one-liner.\ntidy = df.melt(id_vars=\"respondent\", var_name=\"question\", value_name=\"score\")\ntidy.groupby(\"question\")[\"score\"].apply(lambda s: (s &gt;= 4).sum())\nAdding a q4_agree later requires zero code changes in the tidy version.\n\n\nA full cleaning pipeline\nimport pandas as pd\n\nEXPECTED_COLUMNS = [\"order_id\", \"date\", \"customer_id\", \"sku\", \"quantity\", \"revenue\"]\n\ndef load_and_clean(path: str) -&gt; pd.DataFrame:\n    # 1. Load raw, treating common missing sentinels\n    df = pd.read_csv(path, na_values=[\"\", \"-\", \"N/A\", \"NA\", \"n/a\"])\n\n    # 2. Normalize column names\n    df.columns = df.columns.str.strip().str.lower().str.replace(r\"\\W+\", \"_\", regex=True)\n\n    # 3. Fix dtypes\n    df[\"date\"] = pd.to_datetime(df[\"date\"], errors=\"coerce\")\n    df[\"revenue\"] = pd.to_numeric(df[\"revenue\"], errors=\"coerce\")\n    df[\"quantity\"] = pd.to_numeric(df[\"quantity\"], errors=\"coerce\")\n\n    # 4. Drop rows missing a key\n    df = df.dropna(subset=[\"order_id\", \"date\"])\n\n    # 5. Deduplicate\n    df = df.drop_duplicates(subset=\"order_id\")\n\n    # 6. Filter out-of-range values\n    df = df[(df[\"quantity\"] &gt; 0) & (df[\"revenue\"] &gt;= 0)]\n\n    # 7. Validate\n    assert df.shape[0] &gt; 0, \"Empty after cleaning\"\n    assert list(df.columns) == EXPECTED_COLUMNS, f\"Column drift: {df.columns.tolist()}\"\n    assert df[\"order_id\"].is_unique, \"Duplicate order_ids leaked through\"\n    assert df[\"date\"].notna().all(), \"Null dates leaked through\"\n\n    return df\n\ncleaned = load_and_clean(\"data/raw/sales.csv\")\ncleaned.to_parquet(\"data/processed/sales.parquet\")\nThis is reproducible, self-documenting, and will crash loudly if the source changes shape. Every project you do should have something like it.\n\n\nCatching a bad merge\norders = pd.read_parquet(\"data/processed/orders.parquet\")\ncustomers = pd.read_parquet(\"data/processed/customers.parquet\")\n\n# Without validate: you might not notice a doubled row count\nmerged = orders.merge(customers, on=\"customer_id\", validate=\"many_to_one\")\n# Raises MergeError if customer_id is NOT unique in `customers`.\nFive extra characters (validate=\"many_to_one\") catches the bug that would otherwise silently double every revenue figure in your final report.",
     "crumbs": [
       "Part IV — Working with Data",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Tabular Data: Shape, Cleaning, and Validation</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Tabular Data</span>"
     ]
   },
   {
     "objectID": "parts/part-4-data/tabular-data.html#templates",
     "href": "parts/part-4-data/tabular-data.html#templates",
-    "title": "20  Tabular Data: Shape, Cleaning, and Validation",
+    "title": "20  Tabular Data",
     "section": "20.7 Templates",
     "text": "20.7 Templates\nA “load, clean, validate” skeleton to paste into every cleaning script:\nimport pandas as pd\n\nEXPECTED_COLUMNS = [...]\nKEY_COLUMN = \"...\"\n\ndef load_raw(path: str) -&gt; pd.DataFrame:\n    return pd.read_csv(\n        path,\n        na_values=[\"\", \"-\", \"N/A\", \"NA\", \"n/a\", \"null\"],\n        parse_dates=[...],\n    )\n\ndef normalize_columns(df: pd.DataFrame) -&gt; pd.DataFrame:\n    df.columns = (\n        df.columns\n        .str.strip()\n        .str.lower()\n        .str.replace(r\"\\W+\", \"_\", regex=True)\n        .str.strip(\"_\")\n    )\n    return df\n\ndef validate(df: pd.DataFrame) -&gt; None:\n    assert df.shape[0] &gt; 0\n    assert list(df.columns) == EXPECTED_COLUMNS\n    assert df[KEY_COLUMN].is_unique\n    # Add dataset-specific checks below",
     "crumbs": [
       "Part IV — Working with Data",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Tabular Data: Shape, Cleaning, and Validation</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Tabular Data</span>"
     ]
   },
   {
     "objectID": "parts/part-4-data/tabular-data.html#exercises",
     "href": "parts/part-4-data/tabular-data.html#exercises",
-    "title": "20  Tabular Data: Shape, Cleaning, and Validation",
+    "title": "20  Tabular Data",
     "section": "20.8 Exercises",
     "text": "20.8 Exercises\n\nTake a wide dataset from your own work (a survey, a grade book, a classroom export) and write a one-line melt that converts it to tidy. Verify by counting rows.\nWrite the reverse: take a tidy dataset and pivot it back to wide. Confirm the two are equivalent after reshaping.\nPick a real CSV and write a 10-line validation block (shape, columns, dtypes, key uniqueness, one range check). Run it. Did anything fail?\nIntentionally break your validation block by adding a bad row (wrong dtype, missing key, out-of-range value). Confirm each type of failure produces a clear error.\nTake an analysis notebook of yours and move the cleaning logic into a separate script (clean_foo.py) that writes to data/processed/foo.parquet. Update the notebook to read only from the processed file.\nWrite a pandas merge that you expect to be one_to_one, then add validate=\"one_to_one\". Now introduce a duplicate into the right-hand DataFrame and confirm pandas raises.\nFind a dataset with missing-value sentinels. Load it twice — once with default options, once with na_values=. Compare .describe(). How many of your statistics changed?",
     "crumbs": [
       "Part IV — Working with Data",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Tabular Data: Shape, Cleaning, and Validation</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Tabular Data</span>"
     ]
   },
   {
     "objectID": "parts/part-4-data/tabular-data.html#one-page-checklist",
     "href": "parts/part-4-data/tabular-data.html#one-page-checklist",
-    "title": "20  Tabular Data: Shape, Cleaning, and Validation",
+    "title": "20  Tabular Data",
     "section": "20.9 One-page checklist",
     "text": "20.9 One-page checklist\n\nNever modify raw data. Keep it in data/raw/, read-only.\nCleaning is a script, not a notebook. Reproducible and rerunnable, top to bottom.\nLoad, normalize, fix dtypes, handle nulls, deduplicate, filter, reshape, derive, save. In that order.\nReshape to tidy for analysis; pivot to wide only for display.\nValidate five axes: shape, columns, dtypes, keys/uniqueness, values.\nPass validate= on every merge.\nCatch missing-value sentinels at read time with na_values=.\nParse dates explicitly. Do not rely on inference for load-bearing columns.\nPaste a assert validation block at the top of every analysis.\nIf row counts change silently, stop and investigate. It is almost always a bug.",
     "crumbs": [
       "Part IV — Working with Data",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Tabular Data: Shape, Cleaning, and Validation</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Tabular Data</span>"
     ]
   },
   {

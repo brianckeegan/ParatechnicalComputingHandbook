@@ -1,4 +1,4 @@
-# Tabular Data
+# Tabular Data  {#sec-tabular-data}
 
 ::: {.callout-tip collapse="true"}
 ## Prerequisites and see-also

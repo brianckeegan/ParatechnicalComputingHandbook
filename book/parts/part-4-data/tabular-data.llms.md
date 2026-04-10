@@ -1,4 +1,4 @@
-# 20  Tabular Data: Shape, Cleaning, and Validation
+# 20  Tabular Data
 
 > **TIP:**
 >
