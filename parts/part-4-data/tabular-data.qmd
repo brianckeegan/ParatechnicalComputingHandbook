@@ -1,4 +1,4 @@
-# Tabular Data: Shape, Cleaning, and Validation {#sec-tabular-data}
+# Tabular Data
 
 ::: {.callout-tip collapse="true"}
 ## Prerequisites and see-also
