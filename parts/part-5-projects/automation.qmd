@@ -273,6 +273,59 @@ Recipe
 
 -   Use least privilege for tokens and permissions.
 
+## Local quality gates: pre-commit hooks
+
+CI is the team's safety net, but it only runs *after* you push. The local equivalent is a **git hook**: a small check that runs automatically right before every `git commit` and aborts the commit if something looks wrong. The most common tool for managing these is [`pre-commit`](https://pre-commit.com), a small framework that takes a config file and runs a pipeline of checks on the files you are about to commit [@precommit_framework].
+
+You do not need pre-commit to do good work, and for solo coursework you can skip it entirely. But once you start collaborating, the same class of small mistakes will keep landing on `main`: trailing whitespace in a diff, an accidentally committed `.env` file, an unformatted Python file someone forgot to run through their linter (see @sec-linting). A pre-commit hook is a tripwire that catches each of these at the earliest possible moment — before they ever become a commit.
+
+The setup is two commands and one file. Install the tool into your project's environment and wire it into git:
+
+```bash
+python -m pip install pre-commit
+pre-commit install
+```
+
+Then drop a `.pre-commit-config.yaml` at the repo root listing the checks you want. A reasonable starter set for a Python data-science project is just two upstream "repos":
+
+```yaml
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: detect-private-key
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.5.7
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+```
+
+The first block catches the file-hygiene mistakes: trailing whitespace, missing final newlines, broken YAML, files larger than 500 KB, and private SSH keys that wandered into the repo. The second block runs `ruff` (your linter and formatter) on every staged Python file. Together they handle most of the small things that would otherwise show up in a code review.
+
+When you `git commit`, the hooks run. If a hook auto-fixes a file, the commit aborts so you can re-stage and re-commit:
+
+```text
+$ git commit -m "Add cleaning helper"
+trim trailing whitespace.................................................Failed
+- files were modified by this hook
+ruff.....................................................................Passed
+
+$ git add src/cleaning.py
+$ git commit -m "Add cleaning helper"
+trim trailing whitespace.................................................Passed
+ruff.....................................................................Passed
+[main a1b2c3d] Add cleaning helper
+```
+
+This "commit twice" rhythm feels weird for a day, then becomes invisible. A few practical points worth knowing. `git commit --no-verify` skips the hooks entirely — treat it as an emergency exit, not a daily convenience. The config is versioned with the code, so when a teammate clones the repo they only need to run `pre-commit install` once and they pick up all the same checks. And you can run every hook against every file at any time with `pre-commit run --all-files`, which is what you want when you first add pre-commit to an existing project. Anything beyond that — debugging individual hooks, writing your own, wiring pre-commit into CI as a redundant check — you can pick up from the official documentation at <https://pre-commit.com> when the need arises.
+
 ## Incorporating AI tools into automation (responsibly)
 
 ### What AI is good for

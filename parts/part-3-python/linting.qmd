@@ -5,7 +5,7 @@
 
 **Prerequisites (read first if unfamiliar):** @sec-scripts-vs-notebooks.
 
-**See also:** @sec-collaboration, @sec-pre-commit, @sec-git-github.
+**See also:** @sec-collaboration, @sec-automation, @sec-git-github.
 :::
 
 ## Purpose {.unnumbered}
@@ -371,7 +371,7 @@ Wire this into the same workflow that runs `pytest` (see @sec-testing) and every
 -   Install `ruff` in every Python venv.
 -   Commit a `pyproject.toml` with `[tool.ruff]` configuration.
 -   Enable format-on-save in your editor.
--   Run `ruff check .` and `ruff format .` before every commit (or automate with @sec-pre-commit).
+-   Run `ruff check .` and `ruff format .` before every commit (or automate with the pre-commit hook described in @sec-automation).
 -   Use `--fix` to auto-fix safe issues; read everything else manually.
 -   Prefer `ruff format` over `black` in new projects; they produce near-identical output, `ruff` is just faster.
 -   Use `# noqa: RULE` sparingly and always with the rule code.

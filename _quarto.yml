@@ -66,7 +66,6 @@ book:
         - parts/part-5-projects/collaboration.qmd
         - parts/part-5-projects/automation.qmd
         - parts/part-5-projects/secrets.qmd
-        - parts/part-5-projects/pre-commit.qmd
 
     - part: "Part VI — Algorithmic Systems"
       chapters:
