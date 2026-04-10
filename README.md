@@ -67,9 +67,9 @@ ParatechnicalComputingHandbook/
 |------|----------|-------|
 | **I — Practice of Technical Work** | Asking Questions, Documentation, Debugging, Reading Tracebacks, AI Tools, Reading Docs | Human and cognitive skills that underpin all technical work |
 | **II — Computing Environment** | OS, File System, Terminal, Text Editors, Remote Computing | The infrastructure you work inside |
-| **III — Python Management** | Package Management, Virtual Environments, Jupyter, Scripting, Testing, Regex, Linting | The Python working context |
+| **III — Python Management** | Package Management, Virtual Environments, Jupyter, Scripting, Regex, Linting | The Python working context |
 | **IV — Working with Data** | Data File Formats, Tabular Data, Pandas Basics, SQL Basics, HTTP and APIs | Getting data in, out, and into shape |
-| **V — Project Management** | Project Management, Version Control, Collaboration, Automation, Secrets, Pre-commit Hooks | Shipping and sustaining work with others |
+| **V — Project Management** | Project Management, Version Control, Collaboration, Automation, Secrets | Shipping and sustaining work with others |
 | **VI — Algorithmic Systems** | LLM Internals, AI Agents, Evaluating AI | Working with AI tools deliberately |
 
 ## Contributing

@@ -5,7 +5,7 @@
 
 **Prerequisites (read first if unfamiliar):** @sec-debugging.
 
-**See also:** @sec-testing, @sec-scripts-vs-notebooks, @sec-asking-questions.
+**See also:** @sec-scripts-vs-notebooks, @sec-asking-questions.
 :::
 
 ## Purpose {.unnumbered}
@@ -14,7 +14,7 @@ When your Python code crashes, Python prints a wall of red text ending with some
 
 That wall of text is a [traceback](../../appendix-glossary.qmd#term-traceback), and it is the single most useful piece of evidence you will get when something breaks. A traceback tells you exactly which file, which line, which function call, and which value caused the crash. Learning to parse one quickly turns most bug-hunting sessions from "I have no idea what is wrong" into "I know which line to look at and roughly why." This chapter teaches you how.
 
-It is a short chapter on purpose: reading tracebacks is a focused skill you can learn in 30 minutes and then reuse for the rest of your career. It pairs with @sec-debugging (which teaches the investigative loop) and @sec-testing (which teaches how to prevent the same error from coming back).
+It is a short chapter on purpose: reading tracebacks is a focused skill you can learn in 30 minutes and then reuse for the rest of your career. It pairs naturally with @sec-debugging, which teaches the investigative loop you use after the traceback has told you where to look.
 
 ## Learning objectives {.unnumbered}
 
@@ -32,11 +32,11 @@ By the end of this chapter, you should be able to:
 
 A traceback has two jobs: tell you what went wrong (the exception type and message on the last line) and tell you where it happened (the stack of frames above it). Most of the time you need both — the "what" is a label, and the "where" is the evidence.
 
-## 1. The anatomy of a traceback
+## The anatomy of a traceback
 
 Here is a minimal traceback from a small script:
 
-```
+```text
 Traceback (most recent call last):
   File "/home/you/project/src/analysis.py", line 42, in <module>
     total = compute_mean(values)
@@ -45,26 +45,44 @@ Traceback (most recent call last):
 ZeroDivisionError: division by zero
 ```
 
-Walk through it piece by piece:
+The first line, `Traceback (most recent call last):`, is Python's way of announcing that an exception propagated all the way up without being caught, and it is about to list the chain of function calls that led to the failure. Read it as a header for what comes next.
 
--   **`Traceback (most recent call last):`** — the header. Python is announcing that an exception propagated all the way up without being caught, and it is about to list the call chain.
--   **Each `File ..., line ..., in ...` block is a *frame*.** A frame is a single function call in progress at the moment the error happened. The topmost frame is the entry point (the script you ran, or the notebook cell you executed). The bottommost frame is the innermost function — the one that actually raised the error.
--   **The line printed under each frame header is the source code** at that line. Python literally reads your source file back and shows you the offending line, which is enormously helpful.
--   **The last line is the exception type and message.** Here it is `ZeroDivisionError: division by zero`. Everything before the colon is the class name; everything after is the string the programmer (or library) passed to explain what went wrong.
+The middle of the output is the **stack**: a sequence of *frames*, where each frame is a single function call in progress at the moment the error happened. Each frame begins with a `File ..., line ..., in ...` line that names the source file, the line number, and the function the program was inside. Underneath that header, Python reads your source file back and prints the actual line of code at that location, which is enormously helpful — you do not have to switch windows to see what is going on. The topmost frame is the entry point: the script you ran, or the notebook cell you executed. The bottommost frame is the innermost function — the one that actually raised the error. In the example above, the script started by calling `compute_mean(values)` on line 42, and `compute_mean` then crashed on line 17 trying to divide by `len(xs)`.
+
+The last line is the exception type and the exception message. Here it is `ZeroDivisionError: division by zero`. Everything before the colon is the class name of the exception; everything after is a free-form string describing what went wrong. You can simulate this in a fresh Python file to see how the same structure shows up for any error you cause:
+
+```python
+# anatomy_demo.py
+def compute_mean(xs):
+    return sum(xs) / len(xs)
+
+values = []                # an empty list, on purpose
+total = compute_mean(values)
+```
+
+Run it with `python anatomy_demo.py` and Python prints exactly the kind of traceback you saw above, with the same three parts: header, stack, and final exception line.
 
 The phrase **"most recent call last"** is the single most important thing to understand. Python prints the stack in execution order: the first frame is what you started with, and the last frame is what was running when the crash happened. If you want to know *what code actually crashed*, look at the **bottom**. If you want to know *how the program got there*, read the frames **top-to-bottom** like a trail of breadcrumbs.
 
-## 2. Top-down vs. bottom-up reading
+## Top-down vs. bottom-up reading
 
-Both directions are useful; pick based on the question you are trying to answer.
+Both directions through the stack are useful; pick based on the question you are trying to answer.
 
-**Read bottom-up when the error is in *your* code.** Start at the last line (`ZeroDivisionError: division by zero`) and then jump to the bottommost frame. That frame almost always points at a line in your source that is wrong in some small way — an empty list, an off-by-one index, a typo in a column name.
+**Read bottom-up when the error is in *your* code.** Start at the last line (`ZeroDivisionError: division by zero`) and then jump to the bottommost frame. That frame almost always points at a line in your source that is wrong in some small way — an empty list, an off-by-one index, a typo in a column name. The bottom is where the crash actually happened, and if the file path on the bottom frame is inside your project, you have already located the bug.
 
-**Read top-down when the error is deep inside a library.** If the bottommost frame is in a file like `/site-packages/pandas/core/indexing.py`, the line shown will be pandas's internal code, and staring at it will not help you. Instead, scan top-down until you find the last frame whose file path is inside your project (for example `src/analysis.py` or `notebooks/exploration.ipynb`). That frame is the last bit of code *you wrote* before handing control over to pandas, and that is where the bug almost certainly lives.
+**Read top-down when the error is deep inside a library.** If the bottommost frame is in a file like `/site-packages/pandas/core/indexing.py`, the line shown will be pandas's internal code, and staring at it will not help you. Instead, scan top-down until you find the last frame whose file path is inside your project (for example `src/analysis.py` or `notebooks/exploration.ipynb`). That frame is the last bit of code *you wrote* before handing control over to pandas, and that is where the bug almost certainly lives. The lines below it are the library doing its job correctly with bad input you provided.
 
-A useful heuristic: **scan for the first file path that belongs to you, from the bottom up.** That frame is where your change lives. The lines below it are the library doing its job correctly with bad input you provided.
+A useful heuristic that combines both: **scan for the first file path that belongs to you, starting from the bottom up.** That frame is where your change lives. To make this fast, get used to the shape of paths that aren't yours. Anything inside `site-packages/`, `lib/python3.X/`, or `frozen importlib` is library or interpreter code and almost never your problem:
 
-## 3. The ten exceptions you will see most often
+```text
+File ".../site-packages/pandas/core/frame.py", line 3893    # not yours
+File ".../site-packages/pandas/core/indexes/base.py", ...   # not yours
+File "src/cleaning.py", line 27, in normalize_dates         # YOURS — start here
+```
+
+The first frame you recognize as yours is almost always the one to fix.
+
+## The ten exceptions you will see most often
 
 These are the error types you will encounter 90% of the time in a first data science course, with a plain-English translation and the first place to look.
 
@@ -128,27 +146,27 @@ These are the error types you will encounter 90% of the time in a first data sci
 
 **First place to look:** the *current working directory*. Print `import os; os.getcwd()` — the path is relative to that. In Jupyter, the current directory is usually the directory containing the `.ipynb` file, not the project root. See @sec-filesystem.
 
-## 4. Chained tracebacks: "during handling of the above exception"
+## Chained tracebacks: "during handling of the above exception"
 
 Sometimes a traceback has two sections joined by a line that says:
 
-```
+```text
 During handling of the above exception, another exception occurred:
 ```
 
 or
 
-```
+```text
 The above exception was the direct cause of the following exception:
 ```
 
-This means the code caught an exception and raised a *new* one while handling it. Pandas does this constantly: it catches a low-level `ValueError` from numpy and re-raises it as a more helpful `pandas.errors.ParserError` with a better message. To debug, **read the original (top) exception first** — that is the root cause — and use the second one as context about how it manifested.
+This means the code caught an exception and raised a *new* one while handling it. Pandas does this constantly: it catches a low-level `ValueError` from numpy and re-raises it as a more helpful `pandas.errors.ParserError` with a better message. To debug, **read the original (top) exception first** — that is the root cause — and use the second one as context about how it manifested. The bottom traceback often has a friendlier message, but the top one is what you actually need to fix.
 
-## 5. Tracebacks in Jupyter notebooks
+## Tracebacks in Jupyter notebooks
 
-Jupyter adds some noise of its own. A traceback from a failing notebook cell looks something like:
+Jupyter adds some formatting of its own around tracebacks, but the bones are the same. A traceback from a failing notebook cell looks something like:
 
-```
+```text
 ---------------------------------------------------------------------------
 KeyError                                  Traceback (most recent call last)
 Cell In[7], line 3
@@ -166,13 +184,13 @@ File ~/envs/project/lib/python3.11/site-packages/pandas/core/frame.py:3893, in D
 KeyError: 'date'
 ```
 
-A few things worth knowing:
+The header `Cell In[7]` names the cell by its *execution number*, not by where the cell sits in your notebook. If you have been re-running cells out of order, those numbers can get confusing fast — there is no rule that says cell 7 is the seventh cell from the top. When the numbering stops matching your mental model, that is a hint to restart the kernel and run from the top (see @sec-jupyter for why this matters).
 
--   **The `Cell In[7]` header names the cell by its execution number**, not by the cell's position in the notebook. If you re-run cells out of order, these numbers can get confusing fast — see @sec-jupyter for why you should re-run from the top periodically.
--   **The `---->` arrow marks the exact line inside that cell** that Python was executing. The arrow plus the line contents is effectively the same as a `File ..., line ...` frame in a script traceback.
--   **Frames in libraries are printed in full**, same as in a script traceback. The "your code, bottom up" heuristic still applies.
+The little `---->` arrow inside the cell preview is Jupyter's pointer at the *exact line* that was executing when things blew up. Conceptually it plays the same role as the `File ..., line ...` frame in a script traceback: it tells you which line crashed. The few unmarked lines of source code shown above and below are just context, so you can see the line in situ.
 
-## 6. Searching for errors online
+Below that, frames inside libraries are printed in full, exactly as they would be in a script traceback. So the "find the first frame that belongs to you, starting from the bottom" heuristic still works in notebooks. In the example above, `pandas/core/frame.py` is library code; the place where you should look is the cell with `df["date"].dt.year`, because that is the last code *you wrote* before pandas raised the error.
+
+## Searching for errors online
 
 When you paste an error message into a search engine, include the **exception type** and the **static part of the message**. Strip out things that are specific to your machine: file paths, variable values, line numbers. For example, do not search
 
@@ -186,9 +204,9 @@ The static part plus the library is usually enough to land you on a Stack Overfl
 
 If the exception is from a library, add the library name. If the exception is a `SyntaxError` or `IndentationError`, don't bother searching — those are almost always typos in your own code that you will spot faster by re-reading.
 
-## 7. Worked examples
+## Worked examples
 
-### Example 1: `KeyError` in pandas
+### A `KeyError` in pandas
 
 You run:
 
@@ -208,7 +226,7 @@ KeyError: 'date'
 
 **Next step:** run `df.columns.tolist()` and look for similar names. You will probably find `'Date'`, `' date'`, or `'date '`. Fix the column name (or normalize with `df.columns = df.columns.str.strip().str.lower()`) and the error goes away.
 
-### Example 2: `ValueError: could not convert string to float`
+### A `ValueError` from a "numeric" column
 
 You run:
 
@@ -234,7 +252,7 @@ df = pd.read_csv("measurements.csv", na_values=["N/A"])
 
 See @sec-data-file-formats for the full list of ways missing values can hide in CSVs.
 
-### Example 3: Chained traceback
+### A chained traceback from a flaky web request
 
 ```
 Traceback (most recent call last):
@@ -258,7 +276,7 @@ RuntimeError: failed to load user profile
 
 **Next step:** print `resp.status_code` and `resp.text[:200]` before the `json.loads` call. You will probably find an HTML error page or an empty response.
 
-## 8. Exercises
+## Exercises
 
 1.  Take a working Python script of your own and deliberately break it in four ways: misspell a variable name, delete an `import`, index past the end of a list, and call a method on `None`. Read each traceback and write down, in a single sentence, what the "what" and "where" are.
 2.  Find a traceback in your own recent course work (a screenshot or a notebook cell output). Without re-running the code, write down your best guess at the root cause based only on the traceback. Then re-run to confirm.
@@ -266,7 +284,7 @@ RuntimeError: failed to load user profile
 4.  In a Jupyter notebook, run cells in a deliberately-wrong order so that a variable is `None` when the next cell uses it. Read the resulting traceback and practice reading the `Cell In[N]` header.
 5.  Pick the most confusing error message you encountered in the last week, strip out the machine-specific parts, paste the static part into a search engine, and write down the first Stack Overflow answer you found. Was it helpful? If not, what made the message hard to search for?
 
-## 9. One-page checklist
+## One-page checklist
 
 -   Look at the **last line** first: exception type and message = *what*.
 -   Look at the **bottommost frame** inside *your* code: file and line = *where*.
@@ -276,7 +294,7 @@ RuntimeError: failed to load user profile
 -   Before asking for help, paste the traceback in full — never just the error message. The stack is half the information. See @sec-asking-questions.
 -   When searching online, include the exception type and the static part of the message; strip file paths, values, and line numbers.
 
-## 10. Quick reference: common exceptions → first suspect
+## Quick reference: common exceptions → first suspect
 
 | Exception | First suspect |
 |---|---|
