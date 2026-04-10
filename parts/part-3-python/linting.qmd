@@ -1,4 +1,4 @@
-# Code Style, Linting, and Formatting {#sec-linting}
+# Code Style {#sec-linting}
 
 ::: {.callout-tip collapse="true"}
 ## Prerequisites and see-also
