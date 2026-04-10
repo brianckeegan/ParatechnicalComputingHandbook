@@ -6,7 +6,7 @@
 
 **Prerequisites (read first if unfamiliar):** @sec-terminal, @sec-scripts-vs-notebooks.
 
-**See also:** @sec-git-github, @sec-testing, @sec-remote-computing.
+**See also:** @sec-git-github, @sec-remote-computing.
 :::
 
 ## Purpose {.unnumbered}

@@ -315,7 +315,7 @@ You decide to rename a function from `compute_mean` to `weighted_mean` everywher
 pytest tests/ -q
 ```
 
-If anything broke, the tests catch it while the change is still small enough to undo. (See @sec-testing for the testing skill set itself.) The whole protocol takes longer than a one-shot replace by maybe a minute, and it has saved many people from very long days.
+If anything broke, the tests catch it while the change is still small enough to undo. The whole protocol takes longer than a one-shot replace by maybe a minute, and it has saved many people from very long days.
 
 ### A remote emergency edit over SSH
 

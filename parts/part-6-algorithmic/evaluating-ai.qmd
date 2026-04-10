@@ -4,7 +4,7 @@
 ::: {.callout-tip collapse="true"}
 ## Prerequisites and see-also
 
-**Prerequisites (read first if unfamiliar):** @sec-llm-internals, @sec-testing.
+**Prerequisites (read first if unfamiliar):** @sec-llm-internals.
 
 **See also:** @sec-ai-agents, @sec-debugging.
 :::

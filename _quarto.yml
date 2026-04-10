@@ -47,7 +47,6 @@ book:
         - parts/part-3-python/virtual-environments.qmd
         - parts/part-3-python/jupyter.qmd
         - parts/part-3-python/scripting.qmd
-        - parts/part-3-python/testing.qmd
         - parts/part-3-python/regex.qmd
         - parts/part-3-python/linting.qmd
 

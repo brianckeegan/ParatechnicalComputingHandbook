@@ -6,7 +6,7 @@
 
 **Prerequisites (read first if unfamiliar):** @sec-terminal.
 
-**See also:** @sec-tracebacks, @sec-testing, @sec-asking-questions.
+**See also:** @sec-tracebacks, @sec-asking-questions.
 :::
 
 ## Purpose {.unnumbered}

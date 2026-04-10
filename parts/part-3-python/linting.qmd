@@ -354,7 +354,7 @@ indent-style = "space"
     ruff format --check .
 ```
 
-Wire this into the same workflow that runs `pytest` (see @sec-testing) and every push gets automatic style enforcement.
+Wire this into the same CI workflow you use for any other automated checks and every push gets automatic style enforcement.
 
 ## 10. Exercises
 

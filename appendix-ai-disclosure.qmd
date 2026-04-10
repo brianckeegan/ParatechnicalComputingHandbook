@@ -10,7 +10,7 @@ We are writing this in the voice of the human authors, not the model — Brian C
 
 During the drafting and conversion of this handbook we used:
 
--   **Claude (Anthropic)**, accessed through Claude Code, to draft prose, convert LaTeX source files into Quarto, and assist with editing passes. Claude wrote first drafts of several chapters in @sec-tracebacks, @sec-virtual-environments, @sec-testing, @sec-data-file-formats, @sec-tabular-data, @sec-regex, @sec-http-apis, @sec-secrets, @sec-reading-docs, @sec-linting, @sec-pandas-basics, @sec-sql-basics, and this appendix.
+-   **Claude (Anthropic)**, accessed through Claude Code, to draft prose, convert LaTeX source files into Quarto, and assist with editing passes. Claude wrote first drafts of several chapters in @sec-tracebacks, @sec-virtual-environments, @sec-data-file-formats, @sec-tabular-data, @sec-regex, @sec-http-apis, @sec-secrets, @sec-reading-docs, @sec-linting, @sec-pandas-basics, @sec-sql-basics, and this appendix.
 -   **ChatGPT (OpenAI)**, occasionally, as a second opinion during outlining.
 -   **GitHub Copilot**, inside the editor, for small-scale code completion in worked examples.
 -   A few earlier chapters were drafted by the human authors before AI assistance was introduced; those chapters were later edited with AI assistance but are substantively human-written.
@@ -83,7 +83,7 @@ We think it matters for three reasons, which correspond to three different audie
 
 A separate but related question is how AI tools were used in any software we publish alongside the book — currently the cleanup script referenced in CLAUDE.md and the `_quarto.yml` / CI workflow configuration. Those were drafted with AI assistance and then tested: the conversion script was run end-to-end on every chapter, and the render pipeline was validated by a clean HTML build with zero warnings. The same "draft, verify, own the result" discipline applies.
 
-If this book grows to include executable code cells (see @sec-jupyter) or tests (see @sec-testing) that ship with the book itself, the same standard will apply to them: AI may draft, humans verify and take responsibility.
+If this book grows to include executable code cells (see @sec-jupyter) or tests that ship with the book itself, the same standard will apply to them: AI may draft, humans verify and take responsibility.
 
 ## 9. How we will keep this appendix current
 

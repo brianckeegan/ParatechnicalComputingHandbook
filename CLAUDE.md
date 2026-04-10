@@ -80,7 +80,6 @@ ParatechnicalComputingHandbook/
 │   │   ├── virtual-environments.qmd
 │   │   ├── jupyter.qmd
 │   │   ├── scripting.qmd
-│   │   ├── testing.qmd
 │   │   ├── regex.qmd
 │   │   └── linting.qmd
 │   ├── part-4-data/                 # Part IV — Working with Data
@@ -132,7 +131,6 @@ Every chapter has an explicit H1 section ID immediately after the heading. Use t
 | Virtual Environments | `@sec-virtual-environments` |
 | Jupyter | `@sec-jupyter` |
 | Scripting | `@sec-scripts-vs-notebooks` |
-| Testing Basics with pytest | `@sec-testing` |
 | Regular Expressions | `@sec-regex` |
 | Code Style, Linting, and Formatting | `@sec-linting` |
 | Data File Formats | `@sec-data-file-formats` |
@@ -320,7 +318,7 @@ Each glossary term in `appendix-glossary.qmd` has an explicit `{#term-<slug>}` a
 
 ## Gap Chapter Backlog
 
-The handbook's original gap analysis identified 16 candidate chapters. The first round added four high-priority chapters (`tracebacks`, `virtual-environments`, `testing`, `data-file-formats`). The second round added eight more: `reading-docs`, `regex`, `linting`, `tabular-data`, `pandas-basics`, `sql-basics`, `http-apis`, and `secrets`. (Pre-commit hooks were originally drafted as a separate chapter, then condensed into a section of `automation.qmd` because the standalone treatment was too detailed for the intended audience.) The following topics remain as candidates for future work.
+The handbook's original gap analysis identified 16 candidate chapters. The first round added three high-priority chapters that survived (`tracebacks`, `virtual-environments`, `data-file-formats`); a fourth, on testing with pytest, was drafted but later removed because the topic was outside the handbook's intended audience. The second round added eight more: `reading-docs`, `regex`, `linting`, `tabular-data`, `pandas-basics`, `sql-basics`, `http-apis`, and `secrets`. (Pre-commit hooks were originally drafted as a separate chapter, then condensed into a section of `automation.qmd` because the standalone treatment was too detailed for the intended audience.) The following topics remain as candidates for future work.
 
 **Lower priority (but valuable):**
 

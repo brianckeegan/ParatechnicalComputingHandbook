@@ -5,7 +5,7 @@
 
 **Prerequisites (read first if unfamiliar):** @sec-data-file-formats.
 
-**See also:** @sec-pandas-basics, @sec-sql-basics, @sec-testing, @sec-tracebacks.
+**See also:** @sec-pandas-basics, @sec-sql-basics, @sec-tracebacks.
 :::
 
 ## Purpose {.unnumbered}
@@ -155,7 +155,7 @@ assert (df["quantity"] > 0).all(), "Non-positive quantities"
 assert df["price"].dtype.kind in "if", f"Price is {df['price'].dtype}, expected numeric"
 ```
 
-This is cheap, self-documenting, and fails loudly at the exact line that is wrong. If you want something more structured, pytest (see @sec-testing) turns each assertion into a named test. Libraries like `pandera` and `great_expectations` offer more sophisticated schema validation, but for student work the plain `assert` pattern is plenty.
+This is cheap, self-documenting, and fails loudly at the exact line that is wrong. Libraries like `pandera` and `great_expectations` offer more sophisticated schema validation, but for student work the plain `assert` pattern is plenty.
 
 ### What to validate
 
@@ -333,7 +333,7 @@ cleaned = load_and_clean("data/raw/sales.csv")
 cleaned.to_parquet("data/processed/sales.parquet")
 ```
 
-This is reproducible, self-documenting, and will crash loudly if the source changes shape. Every project you do should have something like it. Pair it with tests from @sec-testing for extra safety.
+This is reproducible, self-documenting, and will crash loudly if the source changes shape. Every project you do should have something like it.
 
 ### Example 3: catching a bad merge
 
