@@ -43,13 +43,7 @@ A common misconception is that documentation is a single thing: "the docs." In p
 
 ### Two complementary roles: learning and coordination
 
-Documentation does two jobs at the same time:
-
--   **Learning support**: It teaches you how a tool works and how to use it.
-
--   **Coordination support**: It aligns multiple people on how a project should be run, changed, and evaluated.
-
-Many frustrations occur when we ask documentation to do the wrong job. An API reference is a poor tutorial. A tutorial is a poor specification. A README is not a substitute for a change log.
+Documentation does two jobs at the same time. The first is **learning support**: teaching you how a tool works and how to use it. The second is **coordination support**: aligning multiple people on how a project should be run, changed, and evaluated. The same document rarely does both jobs well, which is why so many frustrations come from asking the wrong artifact to do the wrong job. An API reference is a poor tutorial because it assumes you already know what you are looking for. A tutorial is a poor specification because it focuses on one path through the tool, not on every behavior. A README is not a substitute for a change log, because it describes the project as it is *now*, not how it changed. Recognizing which role you need is half the battle.
 
 ### A simple hierarchy of authority
 
@@ -69,45 +63,30 @@ A useful classification (popularized in multiple documentation communities) sepa
 
 ### Reference documentation
 
-**Question it answers**: "What are the exact inputs, outputs, options, and behaviors?"
+Reference docs answer the question *"what are the exact inputs, outputs, options, and behaviors?"* They include API references for functions, classes, and parameters; command-line help and man pages; and configuration file schemas. Reference is dense, structured, and typically not narrative — you do not read it cover to cover, you dip into it for one precise answer and then leave. When you already know what function you want and just need to confirm an argument, reference is the right genre.
 
-Reference documentation includes:
-
--   API references (functions, classes, parameters)
-
--   command-line help and man pages
-
--   configuration schemas
-
-Reference is dense, structured, and typically not narrative. It is the place you go to settle precise details.
+```bash
+# Examples of reference docs you can read locally
+git help merge          # man-page-style git reference
+ls --help               # GNU ls option reference
+python -c "help(dict)"  # Python built-in reference
+```
 
 ### Tutorials
 
-**Question it answers**: "How do I learn this from scratch in a guided way?"
-
-Tutorials are linear and scaffolded. They assume you have time to follow a sequence and that you want a working example even if you do not fully understand every piece yet.
+Tutorials answer the question *"how do I learn this from scratch in a guided way?"* They are linear and scaffolded, and they assume you have the time to follow a sequence step by step. A good tutorial gets you to a working example quickly, even if you do not fully understand every piece on the first pass. The pandas "Getting Started" guide and the official Python tutorial are both examples of this genre.
 
 ### How-to guides
 
-**Question it answers**: "How do I accomplish a specific task?"
-
-How-to guides are goal-oriented and practical. They should be short, focused, and opinionated about the steps.
+How-to guides answer the question *"how do I accomplish a specific task?"* They are goal-oriented and practical, and the best ones are short, focused, and opinionated about the steps. They assume you already know roughly what you want — "I need to read a CSV with a custom delimiter" — and they hand you the recipe without padding it with conceptual background.
 
 ### Explanations and concepts
 
-**Question it answers**: "Why does this work that way?" or "What is the mental model?"
-
-Concept docs clarify terminology, architecture, trade-offs, and design rationale. This is often where you learn what not to do.
+Explanations answer the questions *"why does this work the way it does?"* and *"what is the right mental model for this thing?"* Concept docs clarify terminology, architecture, trade-offs, and design rationale. They are often where you learn what *not* to do — why `iterrows()` is slow in pandas, why mutable default arguments are a trap in Python, why HTTP `POST` is not idempotent. Reading good explanation docs is one of the highest-leverage activities in technical learning, even though it produces nothing immediately runnable.
 
 ### Why this classification matters
 
-When a student says "I read the docs and still don't get it," the hidden question is often: "Which kind of docs did you read, and which kind did you need?" A quick diagnostic:
-
--   If you cannot find the correct function name, you need a **tutorial** or **how-to**.
-
--   If you know the function name but not the parameter, you need **reference**.
-
--   If you keep making the same conceptual mistake, you need **explanations**.
+When a student says "I read the docs and still don't get it," the hidden question is almost always *which kind of docs they read versus which kind they actually needed.* A quick mental diagnostic helps: if you cannot even find the right *function name* for what you want to do, you need a tutorial or a how-to to point you at it. If you know the function name and just need to look up the right parameter, you need reference. And if you keep making the same conceptual mistake — the same join going wrong, the same kind of `KeyError` — you need an explanation page that fixes the mental model, not another how-to that fixes one symptom.
 
 ## Finding documentation efficiently
 
@@ -115,33 +94,20 @@ Finding documentation is a skill because the web contains too much material, and
 
 ### Start with "what is the object?"
 
-Your first step is to identify what you are dealing with:
-
--   A **language feature** (Python list slicing)
-
--   A **library** (pandas, numpy, scikit-learn)
-
--   A **tool** (Git, conda, Jupyter)
-
--   A **platform** (GitHub Actions, Windows Task Scheduler)
-
--   A **file format** (CSV, JSON, Parquet)
-
-Once you know the object class, you know where "official" information is most likely to live.
+The first move is always to figure out what *kind* of thing you are dealing with, because the answer determines where the "official" docs live. Are you trying to understand a **language feature** (Python list slicing, generator expressions), a **library** (pandas, numpy, scikit-learn), a **tool** (Git, conda, Jupyter), a **platform** (GitHub Actions, Windows Task Scheduler), or a **file format** (CSV, JSON, Parquet)? Each of those categories has a different home: language features live in the language reference, libraries live in their own documentation sites, tools live in their man pages and project sites, platforms live in their vendor docs, and file formats live in their public specifications. Once you know the category, you almost always know the URL pattern.
 
 ### Search queries that route you to primary sources
 
-Novices often search for "how to do X" and end up in secondary sources. Instead, search for:
+A common novice mistake is to type *"how do I do X"* into Google and end up in a sea of secondary sources — blog posts, Stack Overflow answers, and YouTube videos of varying age and accuracy. A small change in search query routes you to primary sources directly. Instead of *"how do I write a requirements.txt"*, search for `pip documentation requirements.txt`. Instead of *"how do I use SSH ProxyJump"*, search for `ssh man page ProxyJump`. Instead of *"pandas merge tutorial"*, search for `pandas API merge`. The pattern is always the same: name the tool, name the topic, and add a word like `documentation`, `API`, or `man page` to bias the results toward authoritative sources.
 
--   `<tool> documentation <topic>` (e.g., `pip documentation requirements.txt`)
+```text
+# Instead of                          search for
+# "how to use pandas merge"    →     "pandas API merge"
+# "git rebase tutorial"         →     "git documentation rebase"
+# "fix requests timeout"        →     "requests timeout parameter site:requests.readthedocs.io"
+```
 
--   `<library> API <function>` (e.g., `pandas API read_csv`)
-
--   `<tool> man page <command>` (e.g., `ssh man page ProxyJump`)
-
--   `<error message>` + `<library>` + `version` (when relevant)
-
-If you land on a blog, use it to extract keywords (function names, flags, concepts), then jump to the official docs.
+When you do land on a blog or Stack Overflow post, treat it as a *navigation aid*: use it to extract the function names, flags, and concepts you should look up next, and then jump immediately to the official docs to verify them against your installed version.
 
 ### Know the "home bases"
 
@@ -157,17 +123,16 @@ You do not need to memorize URLs. You do need to recognize which domains and org
 
 ### Use built-in documentation before the web
 
-Before you open a browser, check what is already available locally:
+Before you open a browser, check what is already on your machine. Almost every tool you use ships with its own reference, and that reference has the enormous advantage of being aligned with your installed version — which is exactly what you need when version differences matter. From the command line, the patterns are `tool --help`, `man tool`, or `help tool`. From Python, you can call `help(obj)` on any function or class, and inside Jupyter or IPython you can append `?` to a name to read its docstring or `??` to see its source code. R users have `?function` and `help(function)`. Git's subcommands all have their own help pages, accessible as `git help merge`, `git help commit`, and so on.
 
--   **Command line**: `tool –help`, `man tool`, or `help tool`
+```bash
+git help rebase                  # full man page for git rebase
+ls --help | head -20             # short reference for ls flags
+python -c "help(dict.get)"       # built-in help for dict.get
+```
 
--   **Python**: `help(obj)` and `obj? ` in Jupyter
+The local help is fast, offline, and version-correct. Reach for it before you reach for a search engine.
 
--   **R**: `?function` and `help(function)`
-
--   **Git**: `git help <subcommand>`
-
-Local help is often aligned with your installed version, which is exactly what you need when version differences matter.
 
 ## Reading documentation actively
 
@@ -175,63 +140,19 @@ Reading technical documentation is not like reading a novel. You do not "consume
 
 ### The "extract five facts" method
 
-For a function, command, or tool behavior, extract:
-
-1.  **Inputs**: required arguments and accepted types
-
-2.  **Outputs**: return types, files created, side effects
-
-3.  **Defaults**: what happens if you do nothing special
-
-4.  **Constraints**: version requirements, OS restrictions, permissions
-
-5.  **Failure modes**: common errors and their meaning
-
-If you cannot locate these, you may be in the wrong documentation genre.
+When you are reading the docs for a function, command, or tool behavior, you are looking for five specific facts: the **inputs** (required arguments and the types they accept), the **outputs** (return types, files written, side effects on global state), the **defaults** (what happens if you do not pass anything special), the **constraints** (version requirements, OS restrictions, permissions needed), and the **failure modes** (which errors the function can raise and what they usually mean). If you can find all five for a given function, you know almost everything you need to use it confidently. If you cannot find them — for example, if a tutorial only shows you one usage and never enumerates the parameters — you are reading the wrong genre and should switch to the reference page.
 
 ### Identify assumptions and hidden context
 
-Documentation frequently assumes:
-
--   you are in the right directory,
-
--   your environment is activated,
-
--   you have network access,
-
--   you have permissions to read/write certain paths,
-
--   your input data match a schema.
-
-As you read, ask: "What must be true for these steps to work?" Then compare those assumptions to your situation.
+Almost every set of docs is written for a specific imagined reader, and that reader is usually in a slightly different situation than you are. Docs routinely assume that you are in the right working directory, that your environment is already activated, that you have network access, that you have read/write permissions to wherever the example writes, and that your input data match a schema the docs never quite specify. As you read, train yourself to ask "what must be true for these steps to work?" — and then compare each of those assumptions to your actual situation. The first place they diverge is usually the place where the docs and your reality will collide.
 
 ### Examples are executable contracts
 
-Examples are not decoration. They are the closest thing documentation has to a contract. When you see an example:
-
--   copy it into a scratch file,
-
--   run it with the same version you have,
-
--   modify one variable at a time to map it onto your goal.
-
-If the example fails on your machine, you have learned something important: either the docs are out of date, you are in a different version, or you misunderstood a prerequisite.
+Examples in official docs are not decoration. They are the closest thing documentation has to a contract: the maintainer is asserting that *this* code, running in *this* version of the library, produces *this* result. The most useful thing you can do with an example is take it seriously: copy it into a scratch file, run it as-is on your installed version, and confirm it works *before* you change anything. Then modify it one variable at a time toward your real use case. If the example fails on your machine, that is itself a piece of evidence — either the docs are out of date, you are on a different version than the docs assume, or one of the hidden prerequisites is missing in your environment. Either way, you have learned something concrete instead of staring at the docs in confusion.
 
 ### Beware the "happy path"
 
-Tutorials often show the happy path: clean inputs, correct permissions, and a fresh environment. Real work includes:
-
--   missing files,
-
--   corrupted data,
-
--   partial installs,
-
--   conflicting versions,
-
--   network interruptions.
-
-When you read docs, look for sections labeled "Troubleshooting," "Common issues," "FAQ," "Compatibility," and "Upgrading."
+Tutorials almost always show the happy path: clean input data, correct permissions, a fresh environment, no network blips, and no edge cases. Real work involves the messy versions of all of those — missing files, corrupted data, half-installed packages, version conflicts between tools that used to coexist, and intermittent network failures that look like bugs but are not. When you are reading docs, deliberately look for the sections that handle the unhappy path: "Troubleshooting," "Common issues," "FAQ," "Compatibility," and "Upgrading." Most projects have these, and they are often the highest-density information in the entire site, because they describe exactly the situations that send people looking for help.
 
 ## Reconciling documentation with versions and environments
 
@@ -239,19 +160,16 @@ A high percentage of "the docs are wrong" complaints are actually version mismat
 
 ### Always capture version context
 
-When you are stuck, record:
+When you are stuck on something that the docs say should work, the cheapest first move is to record exactly which versions of everything you have installed. The five fields that solve most version mysteries are the tool or library version, your operating system, your Python version (if Python is involved), the environment manager you are using (conda, pip, venv), and the path of the executable you are actually running. Capture all five before you start changing anything, because every fix you try is going to be interpreted in light of those values.
 
--   tool or library version,
+```bash
+python --version
+python -c "import sys; print(sys.executable)"
+python -c "import pandas; print(pandas.__version__)"
+uname -a   # macOS / Linux  (Windows: 'systeminfo' or 'ver')
+```
 
--   operating system,
-
--   Python version (if relevant),
-
--   environment manager (conda, pip, venv),
-
--   where the executable is located.
-
-This practice aligns with broader reproducibility guidance [@wilson2017goodenough; @turingway2025zenodo]. It also makes questions answerable (see @sec-asking-questions).
+This habit aligns with the broader reproducibility guidance from the literature [@wilson2017goodenough; @turingway2025zenodo], and as a practical bonus it also makes your questions answerable when you need to ask for help (see @sec-asking-questions).
 
 ### Doc version selectors and release notes
 
@@ -273,21 +191,36 @@ A project README is the most important document in your repository. It is the fr
 
 ### Minimum viable README
 
-A minimal README for a class project should include:
+A minimal README for a class project has six sections, and they should appear in roughly this order. First, a **one-paragraph purpose** describing what the project does and why anyone should care. Second, a **setup** section that walks through environment creation and dependency installation. Third, a **how to run** section with the exact commands a reader should type. Fourth, an **expected outputs** section that says what files or results will appear when the run succeeds — this is what lets a reader confirm the run actually worked. Fifth, a **project structure** section explaining what each top-level folder contains. Sixth, a **data notes** section saying where the data came from and any restrictions on its use.
 
-1.  **One-paragraph purpose**: what the project does and why.
+```markdown
+# Q3 Sales Analysis
 
-2.  **Setup**: environment creation and dependency installation.
+A short pipeline that loads quarterly sales data, cleans it, and
+produces a report.
 
-3.  **How to run**: exact commands.
+## Setup
+    python -m venv .venv
+    source .venv/bin/activate
+    pip install -r requirements.txt
 
-4.  **Expected outputs**: what files or results should appear.
+## Run
+    python src/run_pipeline.py
 
-5.  **Project structure**: what key folders contain.
+## Expected outputs
+- outputs/figures/quarterly.png
+- outputs/tables/top_customers.csv
 
-6.  **Data notes**: where data come from and any restrictions.
+## Structure
+- data/raw/        # original CSVs (read-only)
+- src/             # pipeline code
+- outputs/         # generated artifacts (gitignored)
 
-This is not busywork. It is an investment that pays back the first time you return to the project after a week.
+## Data
+Source: /shared/sales-data/2026-q3.csv (internal use only).
+```
+
+This is not busywork. It is an investment that pays back the first time you return to the project after a week away — or the first time a teammate clones the repo and tries to run it on their own machine.
 
 ### Runbooks and operational docs
 
@@ -437,7 +370,7 @@ A practical rule: if the AI suggests a command that could be destructive (`rm`, 
 
 This section demonstrates how documentation practices appear in typical novice workflows.
 
-### Example 1: Turning a notebook into a runnable project
+### Turning a notebook into a runnable project
 
 A student's initial workflow often begins in a Jupyter notebook. That is fine, but as the project grows, collaborators need a stable way to reproduce results.
 
@@ -453,7 +386,7 @@ A documentation upgrade path:
 
 This minimal documentation shift turns a private artifact into a collaborative artifact.
 
-### Example 2: Documenting a data intake pipeline
+### Documenting a data intake pipeline
 
 Even a simple "load a CSV and clean it" pipeline has assumptions:
 
@@ -479,7 +412,7 @@ A good intake document includes:
 
 This bridges the gap between raw files and analysis claims.
 
-### Example 3: Writing troubleshooting notes
+### Writing troubleshooting notes
 
 Troubleshooting notes become valuable when they are specific. Compare:
 
