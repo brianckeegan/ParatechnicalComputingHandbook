@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -595,8 +630,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#getting-oriented-where-settings-live" id="toc-getting-oriented-where-settings-live" class="nav-link" data-scroll-target="#getting-oriented-where-settings-live"><span class="header-section-number">8.2</span> Getting oriented: where settings live</a></li>
   <li><a href="#know-your-system-version-storage-and-constraints" id="toc-know-your-system-version-storage-and-constraints" class="nav-link" data-scroll-target="#know-your-system-version-storage-and-constraints"><span class="header-section-number">8.3</span> Know your system: version, storage, and constraints</a>
   <ul class="collapse">
-  <li><a href="#check-os-versionbuild" id="toc-check-os-versionbuild" class="nav-link" data-scroll-target="#check-os-versionbuild">Check OS version/build</a></li>
-  <li><a href="#check-storage-health-early-and-often" id="toc-check-storage-health-early-and-often" class="nav-link" data-scroll-target="#check-storage-health-early-and-often">Check storage health (early and often)</a></li>
+  <li><a href="#check-os-version-and-build" id="toc-check-os-version-and-build" class="nav-link" data-scroll-target="#check-os-version-and-build">Check OS version and build</a></li>
+  <li><a href="#check-storage-health-early-and-often" id="toc-check-storage-health-early-and-often" class="nav-link" data-scroll-target="#check-storage-health-early-and-often">Check storage health early and often</a></li>
   <li><a href="#understand-local-vs-synced-storage" id="toc-understand-local-vs-synced-storage" class="nav-link" data-scroll-target="#understand-local-vs-synced-storage">Understand local vs synced storage</a></li>
   </ul></li>
   <li><a href="#updates-and-patching-best-practices" id="toc-updates-and-patching-best-practices" class="nav-link" data-scroll-target="#updates-and-patching-best-practices"><span class="header-section-number">8.4</span> Updates and patching: best practices</a>
@@ -618,28 +653,29 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#backups-and-recovery-the-student-safety-net" id="toc-backups-and-recovery-the-student-safety-net" class="nav-link" data-scroll-target="#backups-and-recovery-the-student-safety-net"><span class="header-section-number">8.6</span> Backups and recovery: the student safety net</a>
   <ul class="collapse">
   <li><a href="#what-backups-are-and-are-not" id="toc-what-backups-are-and-are-not" class="nav-link" data-scroll-target="#what-backups-are-and-are-not">What backups are (and are not)</a></li>
-  <li><a href="#windows-backups-conceptual-map" id="toc-windows-backups-conceptual-map" class="nav-link" data-scroll-target="#windows-backups-conceptual-map">Windows backups (conceptual map)</a></li>
-  <li><a href="#macos-backups-conceptual-map" id="toc-macos-backups-conceptual-map" class="nav-link" data-scroll-target="#macos-backups-conceptual-map">macOS backups (conceptual map)</a></li>
-  <li><a href="#recovery-tools-when-something-breaks" id="toc-recovery-tools-when-something-breaks" class="nav-link" data-scroll-target="#recovery-tools-when-something-breaks">Recovery tools (when something breaks)</a></li>
+  <li><a href="#windows-backups-the-2024-approach" id="toc-windows-backups-the-2024-approach" class="nav-link" data-scroll-target="#windows-backups-the-2024-approach">Windows backups (the 2024+ approach)</a></li>
+  <li><a href="#macos-backups-with-time-machine" id="toc-macos-backups-with-time-machine" class="nav-link" data-scroll-target="#macos-backups-with-time-machine">macOS backups with Time Machine</a></li>
+  <li><a href="#test-your-restore-the-step-most-people-skip" id="toc-test-your-restore-the-step-most-people-skip" class="nav-link" data-scroll-target="#test-your-restore-the-step-most-people-skip">Test your restore (the step most people skip)</a></li>
+  <li><a href="#recovery-tools-when-something-really-breaks" id="toc-recovery-tools-when-something-really-breaks" class="nav-link" data-scroll-target="#recovery-tools-when-something-really-breaks">Recovery tools when something really breaks</a></li>
   </ul></li>
   <li><a href="#performance-and-stability-maintenance" id="toc-performance-and-stability-maintenance" class="nav-link" data-scroll-target="#performance-and-stability-maintenance"><span class="header-section-number">8.7</span> Performance and stability maintenance</a>
   <ul class="collapse">
   <li><a href="#storage-cleanup-do-no-harm" id="toc-storage-cleanup-do-no-harm" class="nav-link" data-scroll-target="#storage-cleanup-do-no-harm">Storage cleanup (do no harm)</a></li>
   <li><a href="#startup-and-background-apps" id="toc-startup-and-background-apps" class="nav-link" data-scroll-target="#startup-and-background-apps">Startup and background apps</a></li>
-  <li><a href="#battery-and-laptop-health-practical-notes" id="toc-battery-and-laptop-health-practical-notes" class="nav-link" data-scroll-target="#battery-and-laptop-health-practical-notes">Battery and laptop health (practical notes)</a></li>
+  <li><a href="#battery-heat-and-laptop-health" id="toc-battery-heat-and-laptop-health" class="nav-link" data-scroll-target="#battery-heat-and-laptop-health">Battery, heat, and laptop health</a></li>
   <li><a href="#drivers-and-peripherals" id="toc-drivers-and-peripherals" class="nav-link" data-scroll-target="#drivers-and-peripherals">Drivers and peripherals</a></li>
   </ul></li>
   <li><a href="#troubleshooting-playbook-student-friendly" id="toc-troubleshooting-playbook-student-friendly" class="nav-link" data-scroll-target="#troubleshooting-playbook-student-friendly"><span class="header-section-number">8.8</span> Troubleshooting playbook (student-friendly)</a>
   <ul class="collapse">
   <li><a href="#start-with-the-simplest-reversible-steps" id="toc-start-with-the-simplest-reversible-steps" class="nav-link" data-scroll-target="#start-with-the-simplest-reversible-steps">Start with the simplest reversible steps</a></li>
-  <li><a href="#use-safe-modes-and-diagnostics" id="toc-use-safe-modes-and-diagnostics" class="nav-link" data-scroll-target="#use-safe-modes-and-diagnostics">Use safe modes and diagnostics</a></li>
-  <li><a href="#gather-evidence-for-help" id="toc-gather-evidence-for-help" class="nav-link" data-scroll-target="#gather-evidence-for-help">Gather evidence for help</a></li>
+  <li><a href="#use-safe-mode-when-normal-startup-fails" id="toc-use-safe-mode-when-normal-startup-fails" class="nav-link" data-scroll-target="#use-safe-mode-when-normal-startup-fails">Use safe mode when normal startup fails</a></li>
+  <li><a href="#gather-evidence-before-asking-for-help" id="toc-gather-evidence-before-asking-for-help" class="nav-link" data-scroll-target="#gather-evidence-before-asking-for-help">Gather evidence before asking for help</a></li>
   </ul></li>
   <li><a href="#a-semester-maintenance-schedule" id="toc-a-semester-maintenance-schedule" class="nav-link" data-scroll-target="#a-semester-maintenance-schedule"><span class="header-section-number">8.9</span> A semester maintenance schedule</a>
   <ul class="collapse">
-  <li><a href="#weekly-10-minutes" id="toc-weekly-10-minutes" class="nav-link" data-scroll-target="#weekly-10-minutes">Weekly (10 minutes)</a></li>
-  <li><a href="#monthly-2030-minutes" id="toc-monthly-2030-minutes" class="nav-link" data-scroll-target="#monthly-2030-minutes">Monthly (20–30 minutes)</a></li>
-  <li><a href="#before-major-milestones-projects-finals" id="toc-before-major-milestones-projects-finals" class="nav-link" data-scroll-target="#before-major-milestones-projects-finals">Before major milestones (projects, finals)</a></li>
+  <li><a href="#weekly-rituals-about-10-minutes" id="toc-weekly-rituals-about-10-minutes" class="nav-link" data-scroll-target="#weekly-rituals-about-10-minutes">Weekly rituals (about 10 minutes)</a></li>
+  <li><a href="#monthly-deep-check-about-2030-minutes" id="toc-monthly-deep-check-about-2030-minutes" class="nav-link" data-scroll-target="#monthly-deep-check-about-2030-minutes">Monthly deep check (about 20–30 minutes)</a></li>
+  <li><a href="#before-major-milestones-projects-finals-deadlines" id="toc-before-major-milestones-projects-finals-deadlines" class="nav-link" data-scroll-target="#before-major-milestones-projects-finals-deadlines">Before major milestones (projects, finals, deadlines)</a></li>
   </ul></li>
   <li><a href="#worked-examples" id="toc-worked-examples" class="nav-link" data-scroll-target="#worked-examples"><span class="header-section-number">8.10</span> Worked examples</a>
   <ul class="collapse">
@@ -731,32 +767,38 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="know-your-system-version-storage-and-constraints" class="level2" data-number="8.3">
 <h2 data-number="8.3" class="anchored" data-anchor-id="know-your-system-version-storage-and-constraints"><span class="header-section-number">8.3</span> Know your system: version, storage, and constraints</h2>
-<section id="check-os-versionbuild" class="level3">
-<h3 class="anchored" data-anchor-id="check-os-versionbuild">Check OS version/build</h3>
-<ul>
-<li><p>Record OS version as part of your troubleshooting notes.</p></li>
-<li><p>Understand the difference between:</p>
-<ul>
-<li><p>Major OS version (e.g., Windows 11; macOS <em>name/version</em>)</p></li>
-<li><p>Feature releases/updates (Windows feature updates; macOS major upgrades)</p></li>
-<li><p>Security/patch updates (smaller, frequent fixes)</p></li>
-</ul></li>
-</ul>
+<p>Before you troubleshoot anything, know three things about your machine: what version of the OS is running, how much storage is free, and where your files actually live. These are the facts every help channel will ask you for first, and most surprise failures turn out to trace back to one of them.</p>
+<section id="check-os-version-and-build" class="level3">
+<h3 class="anchored" data-anchor-id="check-os-version-and-build">Check OS version and build</h3>
+<p>Record your OS version as part of your baseline notes — the same way you might note your student ID or your office hours. When you search for error messages later, “macOS 14.5” or “Windows 11 23H2” is often the difference between finding a solved question in five seconds and finding nothing at all. Knowing the build number also lets you tell whether an update actually installed.</p>
+<pre class="text"><code>Windows:   Settings → System → About
+           — look at "OS build" and "Version"
+           — or press Win+R, type "winver", press Enter
+
+macOS:     Apple menu → About This Mac
+           — look at the macOS name (e.g., Sonoma), version (14.5),
+             and build number (click Version for the build)</code></pre>
+<p>It helps to understand the three categories of “version” you will see mentioned. A <strong>major version</strong> is the flagship release: Windows 11, macOS Sonoma, macOS Sequoia. These come roughly once a year. A <strong>feature release or minor update</strong> (Windows “feature update,” macOS point release like 14.5 → 14.6) adds capabilities and small changes and comes more frequently. A <strong>security or patch update</strong> is a smaller, targeted fix that shows up more or less monthly — these are the updates you should always install quickly. Keeping the three categories straight tells you how careful to be about any given update: feature and major upgrades deserve planning; security patches deserve speed.</p>
 </section>
 <section id="check-storage-health-early-and-often" class="level3">
-<h3 class="anchored" data-anchor-id="check-storage-health-early-and-often">Check storage health (early and often)</h3>
-<ul>
-<li><p>Many failures are simply a full disk.</p></li>
-<li><p>Learn to check free space and largest folders.</p></li>
-<li><p>Keep a safety buffer of free space (rule of thumb: do not run at 99</p></li>
-</ul>
+<h3 class="anchored" data-anchor-id="check-storage-health-early-and-often">Check storage health early and often</h3>
+<p>A surprising number of “my computer is broken” support tickets turn out to be “my disk is 100% full and nothing can write anymore.” Full disks cause Python scripts to fail with cryptic errors, browsers to crash, updates to stall, and notebooks to silently fail to save. Checking free space is the first diagnostic you should learn, and you should do it before you panic about anything else.</p>
+<pre class="text"><code>Windows:   Settings → System → Storage
+           — shows total, used, and a breakdown by category
+           — "Temporary files" and "Downloads" are usually the biggest easy wins
+
+macOS:     Apple menu → About This Mac → More Info → Storage Settings
+           — same breakdown, plus a "Manage..." button that lists large files</code></pre>
+<p>A practical rule of thumb: keep at least <strong>15–20% of your disk free at all times</strong>. Modern SSDs slow down dramatically when they fill up, and the operating system itself needs scratch space for swap, caches, and updates. Running at 1–2% free is asking for trouble — at that point even opening a large spreadsheet can fail. When free space dips below the buffer, clear it: empty the Downloads folder, remove old installers, delete obsolete virtual environments (<a href="../part-3-python/virtual-environments.html" class="quarto-xref"><span>Chapter 14</span></a>), and uninstall apps you are not using.</p>
 </section>
 <section id="understand-local-vs-synced-storage" class="level3">
 <h3 class="anchored" data-anchor-id="understand-local-vs-synced-storage">Understand local vs synced storage</h3>
-<ul>
-<li><p>OneDrive (Windows) and iCloud Drive (macOS) can make files “on demand”.</p></li>
-<li><p>For programming/data work, ensure key datasets are available locally before running.</p></li>
-</ul>
+<p>Cloud sync tools — OneDrive on Windows, iCloud Drive on macOS, Google Drive, Dropbox — blur the line between “the file is on your laptop” and “the file is available if the network is up.” Modern versions of both OneDrive and iCloud default to a “files on demand” mode where files show up in your file browser but are not actually downloaded until you open them. For everyday documents this is convenient. For programming and data work it can be catastrophic, because your script sees a file that <em>is not really there</em>, tries to read it, and either hangs for minutes while the OS downloads it or fails with an opaque error.</p>
+<p>The fix is to be explicit about what lives locally. For any dataset your code needs, mark it as “Always keep on this device” in the sync client (right-click the folder in the file browser, look for the “Always keep on this device” option in OneDrive, or “Keep Downloaded” in Finder for iCloud). Better still, keep your active project folder — including the <code>data/raw</code> directory — <em>outside</em> the synced area entirely, and use version control (<a href="../part-5-projects/version-control.html" class="quarto-xref"><span>Chapter 25</span></a>) for the code and an explicit data workflow for the datasets. Sync is a backup convenience, not a project filesystem.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quick sanity check that a file is really local and not a stub:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> data/raw/sales.csv</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># If the size is the actual size (e.g., 4.2M), it's local.</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># If it's tiny (a few KB) or the icon shows a cloud, it's a stub.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="updates-and-patching-best-practices" class="level2" data-number="8.4">
@@ -817,123 +859,183 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="backups-and-recovery-the-student-safety-net" class="level2" data-number="8.6">
 <h2 data-number="8.6" class="anchored" data-anchor-id="backups-and-recovery-the-student-safety-net"><span class="header-section-number">8.6</span> Backups and recovery: the student safety net</h2>
+<p>Losing a week of coursework to a dead hard drive, a lost laptop, or a mis-typed <code>rm</code> command is one of the most demoralizing things that can happen to a student. The cost of setting up a backup once is measured in minutes; the cost of not having one is measured in re-doing work. Get this right before the rest of the chapter.</p>
 <section id="what-backups-are-and-are-not" class="level3">
 <h3 class="anchored" data-anchor-id="what-backups-are-and-are-not">What backups are (and are not)</h3>
-<ul>
-<li><p>A backup is a second copy you can restore.</p></li>
-<li><p>Sync is not always a backup (sync can propagate deletions).</p></li>
-<li><p>Backups should be: automatic, regular, and restorable.</p></li>
-</ul>
+<p>A <strong>backup</strong> is a separate, restorable copy of your data. The word “separate” matters: if the copy lives on the same drive as the original, any failure that takes out the original also takes out the copy. A backup worth trusting lives on a different device — an external drive, a network-attached disk, a cloud service — and it can be restored from that copy to a new machine on demand.</p>
+<p><strong>Cloud sync is not the same thing as a backup.</strong> OneDrive, iCloud Drive, and Dropbox keep your files synchronized across devices, which is wonderful for convenience, but sync <em>propagates deletions</em>: delete a file on your laptop and the cloud copy vanishes seconds later, then the copy on your other devices vanishes seconds after that. If your laptop gets infected with ransomware that encrypts your files, the sync client will happily replicate the ransomware’s damage everywhere. Some sync services offer a “version history” or “recently deleted” feature that partially compensates — OneDrive keeps deleted files for thirty days, iCloud keeps them for thirty days — but the window is short and you should never rely on it as your primary safety net.</p>
+<p>A backup worth having is <strong>automatic</strong>, <strong>regular</strong>, and <strong>restorable</strong>. Automatic means you do not have to remember to run it; regular means it happens often enough that the worst-case data loss is small (an hour, a day, not a month); restorable means you have <em>actually verified</em> that you can get a file back out of it.</p>
 </section>
-<section id="windows-backups-conceptual-map" class="level3">
-<h3 class="anchored" data-anchor-id="windows-backups-conceptual-map">Windows backups (conceptual map)</h3>
-<ul>
-<li><p>Windows Backup (settings and account-based restore workflows).</p></li>
-<li><p>File History (versioned file copies; external drive/network location).</p></li>
-</ul>
+<section id="windows-backups-the-2024-approach" class="level3">
+<h3 class="anchored" data-anchor-id="windows-backups-the-2024-approach">Windows backups (the 2024+ approach)</h3>
+<p>Windows has two backup stories, and the new one is easier than the old one. <strong>Windows Backup</strong> (Start menu → “Windows Backup”) is a Microsoft-account-based flow that saves your folders, apps, and settings to OneDrive, so that when you sign in on a new Windows PC you can pick up where you left off. This is convenient for laptop replacement but it is <em>not</em> a full-system backup and it is bound to how much OneDrive storage you have.</p>
+<p>For a real backup, pair that with <strong>File History</strong> writing to an external drive. Plug in a USB drive (any size — 1 TB external drives are cheap), open Control Panel → File History (it still lives in the old Control Panel on most systems; search “File History” from the Start menu), select the drive, and turn it on. File History will copy the contents of your user folders (Documents, Desktop, Pictures, etc.) to the external drive every hour and keep old versions. The result is a versioned archive you can browse by right-clicking any folder and choosing “Restore previous versions.”</p>
+<pre class="text"><code>Windows:   Control Panel → File History → Select drive → Turn on
+           Settings → Accounts → Windows Backup → configure OneDrive sync</code></pre>
 </section>
-<section id="macos-backups-conceptual-map" class="level3">
-<h3 class="anchored" data-anchor-id="macos-backups-conceptual-map">macOS backups (conceptual map)</h3>
-<ul>
-<li><p>Time Machine (automatic backups to an external disk or approved location).</p></li>
-<li><p>Practice restoring a file so you know it works.</p></li>
-</ul>
+<section id="macos-backups-with-time-machine" class="level3">
+<h3 class="anchored" data-anchor-id="macos-backups-with-time-machine">macOS backups with Time Machine</h3>
+<p>Time Machine is the simplest good backup tool on any operating system. Plug in an external drive (Time Machine will offer to format it for you; say yes if it is a dedicated backup drive), open System Settings → General → Time Machine, click “Add Backup Disk,” and select it. macOS starts an initial backup immediately and then runs incremental backups every hour the drive is connected.</p>
+<p>The under-appreciated feature is how easy Time Machine makes <em>restoring</em>. You do not have to wait for a disaster — you can open any folder and click the Time Machine icon in the menu bar, then “Browse Time Machine Backups,” to scroll through every past version of that folder and restore any file from any point in history. This is invaluable for “I accidentally overwrote a paragraph of my thesis two days ago” situations, not just “my laptop died” situations.</p>
+<pre class="text"><code>macOS:     System Settings → General → Time Machine → Add Backup Disk
+           Menu bar icon → Browse Time Machine Backups (to restore)</code></pre>
 </section>
-<section id="recovery-tools-when-something-breaks" class="level3">
-<h3 class="anchored" data-anchor-id="recovery-tools-when-something-breaks">Recovery tools (when something breaks)</h3>
-<ul>
-<li><p>Windows: recovery options, reset, restore points (when enabled), recovery media.</p></li>
-<li><p>macOS: macOS Recovery, Disk Utility First Aid, reinstall macOS.</p></li>
-</ul>
+<section id="test-your-restore-the-step-most-people-skip" class="level3">
+<h3 class="anchored" data-anchor-id="test-your-restore-the-step-most-people-skip">Test your restore (the step most people skip)</h3>
+<p>A backup you have never restored from is a backup you do not really know works. Make this a deliberate exercise the first time you configure backups: pick a small unimportant file, delete it, and then restore it from the backup. On Windows, right-click the parent folder and choose “Restore previous versions,” find your file, and restore it. On macOS, use the Time Machine browser as described above. The whole drill takes five minutes, and afterward you know — not believe, <em>know</em> — that the system works and that you can drive it when you need to.</p>
+</section>
+<section id="recovery-tools-when-something-really-breaks" class="level3">
+<h3 class="anchored" data-anchor-id="recovery-tools-when-something-really-breaks">Recovery tools when something really breaks</h3>
+<p>Both operating systems include a special <strong>recovery environment</strong> that boots when the normal system will not. You reach it differently on each:</p>
+<pre class="text"><code>Windows:   Hold Shift while clicking Restart → Troubleshoot → Advanced options
+           — "Startup Repair" for boot problems
+           — "System Restore" if restore points were enabled
+           — "Reset this PC" as a last resort (keeps or wipes files)
+
+macOS:     Intel:    Hold Cmd+R at startup
+           Apple Silicon: Hold the power button until "Options" appears
+           — Disk Utility → First Aid to repair the disk
+           — Time Machine restore to roll back the whole system
+           — Reinstall macOS (keeps your files in most cases)</code></pre>
+<p>The recovery environment is the tool of last resort. You reach for it when the system will not boot, when the disk is showing errors, or when something has corrupted the OS badly enough that normal fixes do not work. Because it is rare, most students do not think about it until they need it — at which point they panic. The better move is to <em>know the keystroke that gets you into recovery mode on your specific machine</em>, written down somewhere outside the machine, so that when the emergency comes you spend zero time Googling “how do I boot my Mac into recovery.”</p>
 </section>
 </section>
 <section id="performance-and-stability-maintenance" class="level2" data-number="8.7">
 <h2 data-number="8.7" class="anchored" data-anchor-id="performance-and-stability-maintenance"><span class="header-section-number">8.7</span> Performance and stability maintenance</h2>
+<p>The goal of this section is not to make your computer “fast” — that is what marketing copy promises. The goal is to prevent the everyday conditions that make a computer <em>slow</em> or <em>unreliable</em>, and to do so without accidentally breaking anything. The emphasis is on safe, reversible changes you can make with confidence.</p>
 <section id="storage-cleanup-do-no-harm" class="level3">
 <h3 class="anchored" data-anchor-id="storage-cleanup-do-no-harm">Storage cleanup (do no harm)</h3>
-<ul>
-<li><p>Identify large files and old downloads.</p></li>
-<li><p>Prefer deleting duplicates and stale installers.</p></li>
-<li><p>Avoid deleting unknown system files.</p></li>
-</ul>
+<p>The right cleanup targets are the ones you can identify by sight: old installers in Downloads, duplicate copies of large files, archived projects you know you are done with, and the “temporary files” cache the OS is happy to flush. The wrong targets are files you do not recognize, especially anything inside system folders or hidden directories — when in doubt, do not delete.</p>
+<p>Use your OS’s built-in storage view first, because it already knows what is safe to remove and what is not:</p>
+<pre class="text"><code>Windows:   Settings → System → Storage → Storage Sense
+           — "Cleanup recommendations" flags large files, unused apps,
+             and temp files that are safe to remove
+           — Storage Sense can also auto-clean Downloads and Recycle Bin
+             after N days
+
+macOS:     Apple menu → About This Mac → More Info → Storage Settings → Manage
+           — "Recommendations" lists large unused files and old iOS backups
+           — "Review Files" sorts by size so you can see what is eating space</code></pre>
+<p>For finding genuinely large files that the built-in tools missed, a dedicated disk-usage visualizer like WinDirStat (Windows) or GrandPerspective / DaisyDisk (macOS) paints a map of your disk where the biggest rectangles are the biggest files. This is often the fastest way to find “oh, I had a 40 GB video project sitting in a folder I forgot about.”</p>
+<p><strong>Never delete files whose purpose you do not know.</strong> Hidden system directories (<code>C:\Windows</code>, <code>/System</code>, <code>/Library</code>, <code>~/Library</code> on macOS) contain things your OS and your apps rely on. Removing something in there to free space almost always breaks something later, and the breakage will show up far enough from the delete that you will not connect the two.</p>
 </section>
 <section id="startup-and-background-apps" class="level3">
 <h3 class="anchored" data-anchor-id="startup-and-background-apps">Startup and background apps</h3>
-<ul>
-<li><p>Too many startup items slow boot and drain battery.</p></li>
-<li><p>Learn where to view and disable unnecessary login/startup apps.</p></li>
-</ul>
+<p>Every app that launches at login spends some of your CPU, memory, and battery before you even open your first window, and a laptop that loads twenty of them at login feels permanently sluggish. Most of those apps added themselves to the startup list the first time you installed them, without asking, and most of them do not need to be there.</p>
+<pre class="text"><code>Windows:   Settings → Apps → Startup
+           — toggle off anything with "High impact" that you don't need
+             immediately at login
+           — or: Task Manager → Startup apps tab for the same list
+
+macOS:     System Settings → General → Login Items &amp; Extensions
+           — "Open at Login" shows apps that launch at sign-in; click the minus
+             to remove the ones you don't need
+           — "Allow in Background" shows helper processes that run even when
+             their parent app isn't open</code></pre>
+<p>Disable anything you do not use regularly — updater daemons for apps you rarely open, cloud sync clients for services you no longer use, hardware “companion apps” for peripherals you no longer own. Log out and back in to see the effect. This is reversible: if you turn something off and an app stops working properly, you can turn it back on in the same settings panel.</p>
 </section>
-<section id="battery-and-laptop-health-practical-notes" class="level3">
-<h3 class="anchored" data-anchor-id="battery-and-laptop-health-practical-notes">Battery and laptop health (practical notes)</h3>
-<ul>
-<li><p>Keep ventilation clear; avoid constant thermal throttling.</p></li>
-<li><p>Replace failing batteries and chargers early if they create reliability issues.</p></li>
-</ul>
+<section id="battery-heat-and-laptop-health" class="level3">
+<h3 class="anchored" data-anchor-id="battery-heat-and-laptop-health">Battery, heat, and laptop health</h3>
+<p>Laptops throttle themselves when they get hot. If your computer is permanently running its fans at full speed or living at 95 °C, it is also permanently running slower than it should. The fix is almost never software — it is airflow. Do not use a laptop on a blanket or a bed for extended work; the cushion blocks the intake vents on the bottom. Once or twice a semester, with the laptop off, use a can of compressed air to clear dust from the visible fan intakes. If the fan is audibly louder than it was a year ago, the inside is probably dusty.</p>
+<p>Battery health on modern laptops is something the OS will tell you about directly. On macOS, System Settings → Battery shows “Maximum Capacity” as a percentage of the original design capacity; anything below about 80% is a good candidate for a service appointment. On Windows, <code>powercfg /batteryreport</code> at the command line generates an HTML report of your battery’s full charge capacity history:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows (Command Prompt or PowerShell):</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">powercfg</span> /batteryreport /output <span class="st">"battery.html"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Open the generated file to see capacity vs. design capacity.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A failing charger can also cause mysterious reliability problems — the machine suddenly suspends, or the battery never quite reaches full charge. If you suspect the charger, try a different known-good one before blaming the laptop.</p>
 </section>
 <section id="drivers-and-peripherals" class="level3">
 <h3 class="anchored" data-anchor-id="drivers-and-peripherals">Drivers and peripherals</h3>
-<ul>
-<li><p>Prefer OS/vendor-provided updates.</p></li>
-<li><p>Be cautious about third-party driver websites.</p></li>
-<li><p>For printers and Wi-Fi, document the exact model and error messages.</p></li>
-</ul>
+<p>Drivers are the OS’s interface to your hardware, and they are the single category of update where “install it from the wrong place” can cause real damage. The rule is simple: <strong>install drivers only from the OS’s own update mechanism or directly from the hardware vendor’s official website.</strong> Do not download drivers from third-party “driver finder” or “driver updater” sites — they are, without exaggeration, one of the most common sources of adware and malware on student laptops.</p>
+<p>For printers, the easiest reliable workflow is to let the OS auto-detect the printer and install a generic driver, then install the manufacturer’s official app only if you need specific features. For Wi-Fi and Bluetooth, driver updates usually come through the regular OS update channel and you should not need to touch them manually.</p>
+<p>When a peripheral misbehaves — the printer refuses to connect, the external monitor shows the wrong resolution — the information a help channel will want is specific: the exact device model (usually on a sticker), the exact OS version, the exact error message, and what changed recently. Write those down before you ask for help; they halve the time to resolution.</p>
 </section>
 </section>
 <section id="troubleshooting-playbook-student-friendly" class="level2" data-number="8.8">
 <h2 data-number="8.8" class="anchored" data-anchor-id="troubleshooting-playbook-student-friendly"><span class="header-section-number">8.8</span> Troubleshooting playbook (student-friendly)</h2>
+<p>When your computer stops working the way you expect, the temptation is to try fifteen things at once in a panic. The reliable way is the opposite: a short ordered list of the cheapest diagnostics, applied one at a time, until the problem either resolves or becomes clearer. The playbook below is deliberately boring — almost all OS-level problems fall to the first few steps.</p>
 <section id="start-with-the-simplest-reversible-steps" class="level3">
 <h3 class="anchored" data-anchor-id="start-with-the-simplest-reversible-steps">Start with the simplest reversible steps</h3>
+<p>Before anything clever, try these in order. Each one takes under a minute. Most problems do not survive past step three.</p>
 <ol type="1">
-<li><p>Restart the affected app.</p></li>
-<li><p>Restart the computer.</p></li>
-<li><p>Check free disk space.</p></li>
-<li><p>Check network connectivity.</p></li>
-<li><p>Identify what changed recently (updates, installs, new files).</p></li>
+<li><strong>Restart the affected app.</strong> Quit it completely — not just close the window, actually quit — and reopen it. On macOS, <code>Cmd+Q</code> is “quit,” not <code>Cmd+W</code>, which only closes the window. On Windows, check the system tray for minimized apps and right-click → Exit. About a third of all “app is broken” symptoms are cleared by this one step.</li>
+<li><strong>Restart the computer.</strong> The cliché “have you tried turning it off and on again” is a cliché because it works. A clean restart clears leaked memory, resets hung background processes, reinitializes drivers, and finishes any pending updates. Do a full Shutdown → Start, not just Sleep → Wake, because sleep does not actually reset anything.</li>
+<li><strong>Check free disk space.</strong> Use the method from earlier in this chapter. If you are below ~5% free, that is very likely your actual problem. Free some space before anything else.</li>
+<li><strong>Check network connectivity.</strong> Can you open a different website? Does a different app on the same network work? Is the Wi-Fi icon showing connected? Many “the app is broken” reports are actually “my Wi-Fi disconnected and the app handled it badly.”</li>
+<li><strong>Identify what changed recently.</strong> Did you install something in the last day? Did an OS update run overnight? Did you change a setting? The vast majority of “it was working yesterday” problems are caused by a specific, findable recent change.</li>
 </ol>
+<p>If none of the first five steps resolved the problem, you know the issue is real and you can escalate to more involved diagnostics. But start here every time — you will often skip the escalation entirely.</p>
 </section>
-<section id="use-safe-modes-and-diagnostics" class="level3">
-<h3 class="anchored" data-anchor-id="use-safe-modes-and-diagnostics">Use safe modes and diagnostics</h3>
-<ul>
-<li><p>macOS: Safe Mode to isolate login items and caches.</p></li>
-<li><p>Windows: safe boot/recovery tools (conceptually) when normal startup fails.</p></li>
-</ul>
+<section id="use-safe-mode-when-normal-startup-fails" class="level3">
+<h3 class="anchored" data-anchor-id="use-safe-mode-when-normal-startup-fails">Use safe mode when normal startup fails</h3>
+<p>Both operating systems have a <strong>safe mode</strong> that boots with the minimum set of extensions and drivers. Safe mode is the right tool when the normal boot is either failing or producing a system that is so broken you cannot troubleshoot from inside it.</p>
+<pre class="text"><code>macOS (Apple Silicon):  Shut down → hold the power button until "Loading
+                        startup options" appears → select the disk while
+                        holding Shift → "Continue in Safe Mode"
+macOS (Intel):          Hold Shift at power-on until the login screen
+                        appears. "Safe Boot" will be visible in the menu bar.
+
+Windows:                Hold Shift while clicking Restart → Troubleshoot →
+                        Advanced options → Startup Settings → Restart →
+                        press F4 or F5 for Safe Mode</code></pre>
+<p>If your machine works fine in safe mode but fails in normal mode, the problem is something that loads at normal startup — a third-party driver, a login item, a background extension. Reboot back to normal, disable the suspects one at a time, and the one that fixes the problem is your culprit.</p>
 </section>
-<section id="gather-evidence-for-help" class="level3">
-<h3 class="anchored" data-anchor-id="gather-evidence-for-help">Gather evidence for help</h3>
+<section id="gather-evidence-before-asking-for-help" class="level3">
+<h3 class="anchored" data-anchor-id="gather-evidence-before-asking-for-help">Gather evidence before asking for help</h3>
+<p>When the playbook runs out and you need to ask a TA or a help channel, the quality of your question determines how quickly you get an answer (see <a href="../part-1-practice/questions.html" class="quarto-xref"><span>Chapter 2</span></a>). The minimum evidence to collect:</p>
 <ul>
-<li><p>OS version/build, device model, and available disk space.</p></li>
-<li><p>Exact error message and when it occurs.</p></li>
-<li><p>Steps to reproduce.</p></li>
-<li><p>Screenshot only when text cannot be copied.</p></li>
+<li><strong>OS version and build</strong> (from the section earlier in this chapter).</li>
+<li><strong>Device model</strong> (Windows: Settings → System → About → “Device specifications”; macOS: Apple menu → About This Mac).</li>
+<li><strong>Free disk space</strong> — because this is the first thing anyone will ask.</li>
+<li><strong>The exact error message.</strong> Not “it says there’s an error.” The exact text, copy-pasted if possible, or a screenshot if the text cannot be selected.</li>
+<li><strong>When the error happens.</strong> At startup? When you open a specific app? After a specific action?</li>
+<li><strong>Steps to reproduce.</strong> What do you do, in order, that triggers the problem? Can you trigger it on demand, or is it intermittent?</li>
+<li><strong>What changed recently.</strong> Updates installed, apps installed or removed, settings changed, files moved.</li>
 </ul>
+<p>Prefer copy-pasted text to screenshots. Screenshots cannot be searched, quoted, or fed into a search engine to find other people with the same problem. Use screenshots when the error is a graphical element (a dialog without selectable text, a broken layout) but copy the text whenever you can. See <a href="../part-1-practice/questions.html" class="quarto-xref"><span>Chapter 2</span></a> for the fuller treatment of how to write a good help request.</p>
 </section>
 </section>
 <section id="a-semester-maintenance-schedule" class="level2" data-number="8.9">
 <h2 data-number="8.9" class="anchored" data-anchor-id="a-semester-maintenance-schedule"><span class="header-section-number">8.9</span> A semester maintenance schedule</h2>
-<section id="weekly-10-minutes" class="level3">
-<h3 class="anchored" data-anchor-id="weekly-10-minutes">Weekly (10 minutes)</h3>
-<ul>
-<li><p>Check for OS updates (or confirm automatic updates are active).</p></li>
-<li><p>Confirm backups ran recently.</p></li>
-<li><p>Quick storage check.</p></li>
-</ul>
+<p>The point of a schedule is to spread small amounts of maintenance across the semester so that nothing ever stacks up into an emergency. The schedule below is intentionally lightweight — the entire thing takes about an hour a month — and the whole goal is to make sure you never have to think “oh no, I haven’t backed up in six weeks” at 11 PM the night before a deadline.</p>
+<section id="weekly-rituals-about-10-minutes" class="level3">
+<h3 class="anchored" data-anchor-id="weekly-rituals-about-10-minutes">Weekly rituals (about 10 minutes)</h3>
+<p>Once a week, ideally at the same time (end of your Sunday study session is a common choice), run through a short health check:</p>
+<pre class="text"><code>Weekly checklist:
+[ ] Check for pending OS updates; install security patches
+[ ] Confirm the last backup ran within the past day
+[ ] Glance at free disk space; clean up if under 15%
+[ ] Empty the Trash / Recycle Bin
+[ ] Restart the computer at least once this week</code></pre>
+<p>The “restart once a week” line is easy to forget because modern laptops suspend on close and can go weeks without a real restart, which lets background processes and memory leaks accumulate. A fresh reboot on Sunday night is the cheapest way to start the week with a clean slate.</p>
 </section>
-<section id="monthly-2030-minutes" class="level3">
-<h3 class="anchored" data-anchor-id="monthly-2030-minutes">Monthly (20–30 minutes)</h3>
-<ul>
-<li><p>Install pending feature/major updates only if you have time to recover.</p></li>
-<li><p>Review startup apps.</p></li>
-<li><p>Remove unused applications.</p></li>
-</ul>
+<section id="monthly-deep-check-about-2030-minutes" class="level3">
+<h3 class="anchored" data-anchor-id="monthly-deep-check-about-2030-minutes">Monthly deep check (about 20–30 minutes)</h3>
+<p>Once a month, do the slightly longer review that covers the things that do not change quickly enough to need weekly attention:</p>
+<pre class="text"><code>Monthly checklist:
+[ ] Install any pending feature updates (if you have time to recover)
+[ ] Review and prune startup / login items
+[ ] Uninstall apps you haven't used in months
+[ ] Glance at the Downloads folder and clear it out
+[ ] Verify the backup by restoring one random file
+[ ] Update your primary editor and its extensions
+[ ] Update conda, pip, and any other package managers you rely on</code></pre>
+<p>The “verify the backup by restoring one random file” line is the most important and the easiest to skip. A backup you have never restored from is a claim, not a guarantee. Spending two minutes once a month to confirm it still works is cheap insurance.</p>
 </section>
-<section id="before-major-milestones-projects-finals" class="level3">
-<h3 class="anchored" data-anchor-id="before-major-milestones-projects-finals">Before major milestones (projects, finals)</h3>
-<ul>
-<li><p>Ensure backups are current and restorable.</p></li>
-<li><p>Avoid major upgrades immediately before deadlines.</p></li>
-<li><p>Confirm core tools (conda, notebook environment, editors) still run.</p></li>
-</ul>
+<section id="before-major-milestones-projects-finals-deadlines" class="level3">
+<h3 class="anchored" data-anchor-id="before-major-milestones-projects-finals-deadlines">Before major milestones (projects, finals, deadlines)</h3>
+<p>In the week leading up to a big deadline or an exam, the strategy changes: minimize risk rather than maximize capability. The rule is <strong>do not change anything you do not have to</strong>. Specifically:</p>
+<pre class="text"><code>Pre-deadline checklist:
+[ ] Backups are current AND you have verified you can restore from them
+[ ] Free disk space is above 15%
+[ ] Do NOT install major OS upgrades or feature updates
+[ ] Do NOT upgrade conda, pip, or any package in your active environment
+[ ] Confirm your core tools still run end-to-end:
+    - editor opens the project
+    - conda/venv activates
+    - jupyter notebook launches
+    - the project's main script or notebook runs from a clean start
+[ ] Have a second machine or cloud backup available for emergency access</code></pre>
+<p>The last point is worth thinking about seriously. What is your plan if your laptop dies at 8 PM the night before a submission? If the answer is “I don’t know, I’d panic,” spend an hour now making a plan: pushing your code to GitHub, knowing where a library or lab computer is, having a lightweight workflow that could run on a borrowed machine. The plan does not have to be fancy — it just has to exist before you need it.</p>
 </section>
 </section>
 <section id="worked-examples" class="level2" data-number="8.10">

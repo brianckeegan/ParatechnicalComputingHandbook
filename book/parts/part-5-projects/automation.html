@@ -655,44 +655,44 @@ div.csl-indent {
   <li><a href="#automation-fundamentals-scripts-that-behave-well" id="toc-automation-fundamentals-scripts-that-behave-well" class="nav-link" data-scroll-target="#automation-fundamentals-scripts-that-behave-well"><span class="header-section-number">27.3</span> Automation fundamentals: scripts that behave well</a></li>
   <li><a href="#repeatable-tasks-with-make-and-the-idea-of-rebuilds" id="toc-repeatable-tasks-with-make-and-the-idea-of-rebuilds" class="nav-link" data-scroll-target="#repeatable-tasks-with-make-and-the-idea-of-rebuilds"><span class="header-section-number">27.4</span> Repeatable tasks with <code>make</code> (and the idea of rebuilds)</a>
   <ul class="collapse">
-  <li><a href="#why-use-a-task-runnerbuild-tool" id="toc-why-use-a-task-runnerbuild-tool" class="nav-link" data-scroll-target="#why-use-a-task-runnerbuild-tool">Why use a task runner/build tool</a></li>
-  <li><a href="#makefile-concepts" id="toc-makefile-concepts" class="nav-link" data-scroll-target="#makefile-concepts">Makefile concepts</a></li>
+  <li><a href="#why-use-a-task-runner" id="toc-why-use-a-task-runner" class="nav-link" data-scroll-target="#why-use-a-task-runner">Why use a task runner</a></li>
+  <li><a href="#makefile-concepts-targets-prerequisites-recipes" id="toc-makefile-concepts-targets-prerequisites-recipes" class="nav-link" data-scroll-target="#makefile-concepts-targets-prerequisites-recipes">Makefile concepts: targets, prerequisites, recipes</a></li>
   <li><a href="#phony-targets-for-commands" id="toc-phony-targets-for-commands" class="nav-link" data-scroll-target="#phony-targets-for-commands">Phony targets for “commands”</a></li>
-  <li><a href="#a-student-target-set-recommended" id="toc-a-student-target-set-recommended" class="nav-link" data-scroll-target="#a-student-target-set-recommended">A student target set (recommended)</a></li>
-  <li><a href="#incremental-builds-for-data-pipelines-intro-pattern" id="toc-incremental-builds-for-data-pipelines-intro-pattern" class="nav-link" data-scroll-target="#incremental-builds-for-data-pipelines-intro-pattern">Incremental builds for data pipelines (intro pattern)</a></li>
+  <li><a href="#a-recommended-student-target-set" id="toc-a-recommended-student-target-set" class="nav-link" data-scroll-target="#a-recommended-student-target-set">A recommended student target set</a></li>
+  <li><a href="#incremental-builds-for-data-pipelines" id="toc-incremental-builds-for-data-pipelines" class="nav-link" data-scroll-target="#incremental-builds-for-data-pipelines">Incremental builds for data pipelines</a></li>
   </ul></li>
   <li><a href="#scheduling-scripts" id="toc-scheduling-scripts" class="nav-link" data-scroll-target="#scheduling-scripts"><span class="header-section-number">27.5</span> Scheduling scripts</a>
   <ul class="collapse">
-  <li><a href="#scheduling-on-macoslinux-cron-concept-safe-usage" id="toc-scheduling-on-macoslinux-cron-concept-safe-usage" class="nav-link" data-scroll-target="#scheduling-on-macoslinux-cron-concept-safe-usage">Scheduling on macOS/Linux: cron (concept + safe usage)</a></li>
-  <li><a href="#scheduling-on-windows-task-scheduler-concept-cli" id="toc-scheduling-on-windows-task-scheduler-concept-cli" class="nav-link" data-scroll-target="#scheduling-on-windows-task-scheduler-concept-cli">Scheduling on Windows: Task Scheduler (concept + CLI)</a></li>
+  <li><a href="#scheduling-on-macos-and-linux-cron" id="toc-scheduling-on-macos-and-linux-cron" class="nav-link" data-scroll-target="#scheduling-on-macos-and-linux-cron">Scheduling on macOS and Linux: <code>cron</code></a></li>
+  <li><a href="#scheduling-on-windows-task-scheduler" id="toc-scheduling-on-windows-task-scheduler" class="nav-link" data-scroll-target="#scheduling-on-windows-task-scheduler">Scheduling on Windows: Task Scheduler</a></li>
   <li><a href="#scheduling-hygiene" id="toc-scheduling-hygiene" class="nav-link" data-scroll-target="#scheduling-hygiene">Scheduling hygiene</a></li>
   </ul></li>
   <li><a href="#rebuilds-and-repeatable-workflows-beyond-make" id="toc-rebuilds-and-repeatable-workflows-beyond-make" class="nav-link" data-scroll-target="#rebuilds-and-repeatable-workflows-beyond-make"><span class="header-section-number">27.6</span> Rebuilds and repeatable workflows beyond <code>make</code></a>
   <ul class="collapse">
   <li><a href="#task-runners-as-interfaces" id="toc-task-runners-as-interfaces" class="nav-link" data-scroll-target="#task-runners-as-interfaces">Task runners as interfaces</a></li>
-  <li><a href="#artifacts-vs-caches-concept" id="toc-artifacts-vs-caches-concept" class="nav-link" data-scroll-target="#artifacts-vs-caches-concept">Artifacts vs caches (concept)</a></li>
+  <li><a href="#artifacts-vs-caches" id="toc-artifacts-vs-caches" class="nav-link" data-scroll-target="#artifacts-vs-caches">Artifacts vs caches</a></li>
   </ul></li>
   <li><a href="#continuous-integration-ci-automation-as-a-quality-gate" id="toc-continuous-integration-ci-automation-as-a-quality-gate" class="nav-link" data-scroll-target="#continuous-integration-ci-automation-as-a-quality-gate"><span class="header-section-number">27.7</span> Continuous Integration (CI): automation as a quality gate</a>
   <ul class="collapse">
-  <li><a href="#what-ci-is-student-definition" id="toc-what-ci-is-student-definition" class="nav-link" data-scroll-target="#what-ci-is-student-definition">What CI is (student definition)</a></li>
-  <li><a href="#ci-events-and-triggers-github-actions-framing" id="toc-ci-events-and-triggers-github-actions-framing" class="nav-link" data-scroll-target="#ci-events-and-triggers-github-actions-framing">CI events and triggers (GitHub Actions framing)</a></li>
-  <li><a href="#jobs-steps-runners" id="toc-jobs-steps-runners" class="nav-link" data-scroll-target="#jobs-steps-runners">Jobs, steps, runners</a></li>
+  <li><a href="#what-ci-is-in-one-paragraph" id="toc-what-ci-is-in-one-paragraph" class="nav-link" data-scroll-target="#what-ci-is-in-one-paragraph">What CI is, in one paragraph</a></li>
+  <li><a href="#ci-events-and-triggers" id="toc-ci-events-and-triggers" class="nav-link" data-scroll-target="#ci-events-and-triggers">CI events and triggers</a></li>
+  <li><a href="#jobs-steps-and-runners" id="toc-jobs-steps-and-runners" class="nav-link" data-scroll-target="#jobs-steps-and-runners">Jobs, steps, and runners</a></li>
   <li><a href="#a-minimal-ci-workflow-for-students" id="toc-a-minimal-ci-workflow-for-students" class="nav-link" data-scroll-target="#a-minimal-ci-workflow-for-students">A minimal CI workflow for students</a></li>
   <li><a href="#ci-performance-hygiene" id="toc-ci-performance-hygiene" class="nav-link" data-scroll-target="#ci-performance-hygiene">CI performance hygiene</a></li>
-  <li><a href="#ci-security-basics-novice-appropriate" id="toc-ci-security-basics-novice-appropriate" class="nav-link" data-scroll-target="#ci-security-basics-novice-appropriate">CI security basics (novice-appropriate)</a></li>
+  <li><a href="#ci-security-basics" id="toc-ci-security-basics" class="nav-link" data-scroll-target="#ci-security-basics">CI security basics</a></li>
   </ul></li>
   <li><a href="#local-quality-gates-pre-commit-hooks" id="toc-local-quality-gates-pre-commit-hooks" class="nav-link" data-scroll-target="#local-quality-gates-pre-commit-hooks"><span class="header-section-number">27.8</span> Local quality gates: pre-commit hooks</a></li>
   <li><a href="#incorporating-ai-tools-into-automation-responsibly" id="toc-incorporating-ai-tools-into-automation-responsibly" class="nav-link" data-scroll-target="#incorporating-ai-tools-into-automation-responsibly"><span class="header-section-number">27.9</span> Incorporating AI tools into automation (responsibly)</a>
   <ul class="collapse">
   <li><a href="#what-ai-is-good-for" id="toc-what-ai-is-good-for" class="nav-link" data-scroll-target="#what-ai-is-good-for">What AI is good for</a></li>
-  <li><a href="#what-ai-is-not-good-for-without-verification" id="toc-what-ai-is-not-good-for-without-verification" class="nav-link" data-scroll-target="#what-ai-is-not-good-for-without-verification">What AI is not good for (without verification)</a></li>
+  <li><a href="#what-ai-is-not-good-for" id="toc-what-ai-is-not-good-for" class="nav-link" data-scroll-target="#what-ai-is-not-good-for">What AI is not good for</a></li>
   <li><a href="#guardrails-for-ai-assisted-automation" id="toc-guardrails-for-ai-assisted-automation" class="nav-link" data-scroll-target="#guardrails-for-ai-assisted-automation">Guardrails for AI-assisted automation</a></li>
   <li><a href="#a-practical-workflow-ai-as-a-junior-assistant" id="toc-a-practical-workflow-ai-as-a-junior-assistant" class="nav-link" data-scroll-target="#a-practical-workflow-ai-as-a-junior-assistant">A practical workflow: AI as a junior assistant</a></li>
   </ul></li>
   <li><a href="#common-failure-modes-and-fixes" id="toc-common-failure-modes-and-fixes" class="nav-link" data-scroll-target="#common-failure-modes-and-fixes"><span class="header-section-number">27.10</span> Common failure modes and fixes</a>
   <ul class="collapse">
   <li><a href="#works-on-my-machine-automation" id="toc-works-on-my-machine-automation" class="nav-link" data-scroll-target="#works-on-my-machine-automation">“Works on my machine” automation</a></li>
-  <li><a href="#scheduling-failures-wrong-path-wrong-working-directory" id="toc-scheduling-failures-wrong-path-wrong-working-directory" class="nav-link" data-scroll-target="#scheduling-failures-wrong-path-wrong-working-directory">Scheduling failures (wrong PATH, wrong working directory)</a></li>
+  <li><a href="#scheduling-failures-from-wrong-path-or-wrong-working-directory" id="toc-scheduling-failures-from-wrong-path-or-wrong-working-directory" class="nav-link" data-scroll-target="#scheduling-failures-from-wrong-path-or-wrong-working-directory">Scheduling failures from wrong <code>PATH</code> or wrong working directory</a></li>
   <li><a href="#ci-failures-due-to-missing-files-or-secrets" id="toc-ci-failures-due-to-missing-files-or-secrets" class="nav-link" data-scroll-target="#ci-failures-due-to-missing-files-or-secrets">CI failures due to missing files or secrets</a></li>
   <li><a href="#slow-ci-that-everyone-ignores" id="toc-slow-ci-that-everyone-ignores" class="nav-link" data-scroll-target="#slow-ci-that-everyone-ignores">Slow CI that everyone ignores</a></li>
   <li><a href="#automation-that-overwrites-important-artifacts" id="toc-automation-that-overwrites-important-artifacts" class="nav-link" data-scroll-target="#automation-that-overwrites-important-artifacts">Automation that overwrites important artifacts</a></li>
@@ -829,154 +829,334 @@ div.csl-indent {
 </section>
 <section id="repeatable-tasks-with-make-and-the-idea-of-rebuilds" class="level2" data-number="27.4">
 <h2 data-number="27.4" class="anchored" data-anchor-id="repeatable-tasks-with-make-and-the-idea-of-rebuilds"><span class="header-section-number">27.4</span> Repeatable tasks with <code>make</code> (and the idea of rebuilds)</h2>
-<section id="why-use-a-task-runnerbuild-tool" class="level3">
-<h3 class="anchored" data-anchor-id="why-use-a-task-runnerbuild-tool">Why use a task runner/build tool</h3>
-<ul>
-<li><p>Memorability: <code>make lint</code> beats “remember five commands.”</p></li>
-<li><p>Standardization: everyone runs the same targets.</p></li>
-<li><p>Incremental rebuilds: do less work when inputs haven’t changed.</p></li>
-</ul>
+<section id="why-use-a-task-runner" class="level3">
+<h3 class="anchored" data-anchor-id="why-use-a-task-runner">Why use a task runner</h3>
+<p>The single-sentence pitch for <code>make</code>: it turns “remember to run these five commands in this order, from this directory, with these flags” into <code>make report</code>. That is the whole value proposition, and it is enough on its own to justify learning it for any project that runs more than two scripts.</p>
+<p>Three benefits compound as a project grows. <strong>Memorability</strong> — <code>make test</code>, <code>make lint</code>, <code>make report</code> are short, consistent names you will actually remember a month later. <strong>Standardization</strong> — everyone on the team runs the same commands with the same flags, so “it works on your machine but not mine” stops happening. <strong>Incremental rebuilds</strong> — the <code>make</code> tool was originally designed for compiling large C programs where rebuilding everything takes hours, and its core feature is “do not rebuild outputs whose inputs have not changed.” For a data pipeline, this is exactly the behavior you want: change one script and only the affected parts of the pipeline rerun.</p>
+<p><code>make</code> is not the only task runner (<code>just</code>, <code>invoke</code>, <code>task</code>, and npm scripts all solve similar problems), but it is the one that is already installed on essentially every Unix machine you will ever touch, and it has been doing this job for forty years without breaking.</p>
 </section>
-<section id="makefile-concepts" class="level3">
-<h3 class="anchored" data-anchor-id="makefile-concepts">Makefile concepts</h3>
-<dl>
-<dt>Target</dt>
-<dd>
-<p>What you want (e.g., <code>report.pdf</code>).</p>
-</dd>
-<dt>Prerequisites</dt>
-<dd>
-<p>Inputs the target depends on.</p>
-</dd>
-<dt>Recipe</dt>
-<dd>
-<p>Commands to build/update the target.</p>
-</dd>
-</dl>
+<section id="makefile-concepts-targets-prerequisites-recipes" class="level3">
+<h3 class="anchored" data-anchor-id="makefile-concepts-targets-prerequisites-recipes">Makefile concepts: targets, prerequisites, recipes</h3>
+<p>A <code>Makefile</code> is a plain text file listing <strong>rules</strong>. Each rule has three parts:</p>
+<pre class="make"><code>target: prerequisites
+    recipe</code></pre>
+<p>A <strong>target</strong> is what you want to produce — a file like <code>reports/q3.html</code>, or a named command like <code>test</code>. <strong>Prerequisites</strong> are the files (or other targets) that the target depends on; <code>make</code> rebuilds the target whenever any prerequisite is newer than the target itself. The <strong>recipe</strong> is the shell commands that build the target — one command per line, each line indented with a literal <strong>tab character</strong> (not spaces — this is <code>make</code>’s most notorious pitfall).</p>
+<p>Here is a minimal real Makefile for a small data pipeline:</p>
+<pre class="make"><code># Makefile
+data/processed/sales.parquet: data/raw/sales.csv src/clean.py
+    python src/clean.py --input data/raw/sales.csv --output data/processed/sales.parquet
+
+reports/q3.html: data/processed/sales.parquet src/analyze.py
+    python src/analyze.py --input data/processed/sales.parquet --output reports/q3.html</code></pre>
+<p>Run <code>make reports/q3.html</code> and <code>make</code> figures out the dependency chain: to build the report, it needs <code>sales.parquet</code>; to build <code>sales.parquet</code>, it needs the raw CSV and <code>clean.py</code>. If the parquet file is already newer than both inputs, <code>make</code> skips the clean step entirely. If you change <code>clean.py</code>, <code>make</code> reruns both steps. This is the magic.</p>
 </section>
 <section id="phony-targets-for-commands" class="level3">
 <h3 class="anchored" data-anchor-id="phony-targets-for-commands">Phony targets for “commands”</h3>
-<ul>
-<li><p>Targets that do not correspond to files (e.g., <code>test</code>, <code>clean</code>).</p></li>
-<li><p>Encourages a consistent interface.</p></li>
-</ul>
+<p>Not every target corresponds to a file. <code>make test</code> and <code>make clean</code> are commands that do not produce a file named <code>test</code> or <code>clean</code> — they are just named shortcuts. To tell <code>make</code> “this target is a command, not a file,” declare it as <code>.PHONY</code>:</p>
+<pre class="make"><code>.PHONY: test clean format lint help
+
+test:
+    pytest tests/ -q
+
+clean:
+    rm -rf data/processed/ reports/ __pycache__/
+
+help:
+    @echo "Usage: make &lt;target&gt;"
+    @echo "  setup   — create venv and install dependencies"
+    @echo "  format  — auto-format code with ruff"
+    @echo "  lint    — static checks with ruff"
+    @echo "  test    — run unit and smoke tests"
+    @echo "  run     — execute the full pipeline"
+    @echo "  report  — generate figures and final report"
+    @echo "  clean   — remove generated artifacts"</code></pre>
+<p>Without <code>.PHONY</code>, if you accidentally create a file or directory literally named <code>test</code>, <code>make</code> will think the target is already up to date and refuse to run it. Marking it <code>.PHONY</code> prevents that surprise.</p>
 </section>
-<section id="a-student-target-set-recommended" class="level3">
-<h3 class="anchored" data-anchor-id="a-student-target-set-recommended">A student target set (recommended)</h3>
-<ul>
-<li><p><code>make setup</code> (create env, install deps)</p></li>
-<li><p><code>make format</code> (auto-format code)</p></li>
-<li><p><code>make lint</code> (static checks)</p></li>
-<li><p><code>make test</code> (unit tests / smoke tests)</p></li>
-<li><p><code>make run</code> (execute pipeline)</p></li>
-<li><p><code>make report</code> (generate figures/tables)</p></li>
-<li><p><code>make clean</code> (remove generated artifacts)</p></li>
-</ul>
+<section id="a-recommended-student-target-set" class="level3">
+<h3 class="anchored" data-anchor-id="a-recommended-student-target-set">A recommended student target set</h3>
+<p>Convention matters more than cleverness here. Use these seven target names across your projects, and you will stop thinking about “what did I call this?” and just start typing:</p>
+<pre class="make"><code>.PHONY: setup format lint test run report clean
+
+setup:
+    python -m venv .venv
+    . .venv/bin/activate &amp;&amp; pip install -r requirements.txt
+
+format:
+    ruff format src/ tests/
+
+lint:
+    ruff check src/ tests/
+
+test:
+    pytest tests/ -q
+
+run:
+    python src/pipeline.py
+
+report: data/processed/results.parquet
+    python src/report.py
+
+clean:
+    rm -rf data/processed/ reports/ .pytest_cache/</code></pre>
+<p>With those seven names in every project, a new contributor who clones the repository can get productive in minutes: “<code>make setup</code>, then <code>make test</code>, then <code>make run</code>.” They do not need to read the whole README to find the incantation; the Makefile <em>is</em> the incantation.</p>
 </section>
-<section id="incremental-builds-for-data-pipelines-intro-pattern" class="level3">
-<h3 class="anchored" data-anchor-id="incremental-builds-for-data-pipelines-intro-pattern">Incremental builds for data pipelines (intro pattern)</h3>
+<section id="incremental-builds-for-data-pipelines" class="level3">
+<h3 class="anchored" data-anchor-id="incremental-builds-for-data-pipelines">Incremental builds for data pipelines</h3>
+<p>The pattern that pays off most for data work is one target per stage of the pipeline, with each stage declaring its inputs as prerequisites:</p>
+<pre class="make"><code>RAW       := data/raw/sales.csv
+CLEAN     := data/processed/sales.parquet
+FEATURES  := data/processed/features.parquet
+REPORT    := reports/q3.html
+
+$(CLEAN): $(RAW) src/clean.py
+    python src/clean.py --input $(RAW) --output $(CLEAN)
+
+$(FEATURES): $(CLEAN) src/features.py
+    python src/features.py --input $(CLEAN) --output $(FEATURES)
+
+$(REPORT): $(FEATURES) src/report.py
+    python src/report.py --input $(FEATURES) --output $(REPORT)
+
+.PHONY: all
+all: $(REPORT)</code></pre>
+<p>Run <code>make all</code> and <code>make</code> walks the dependency chain in order. Now the magic kicks in:</p>
 <ul>
-<li><p>Raw data → processed data → figures → report.</p></li>
-<li><p>Each step becomes a target with prerequisites.</p></li>
-<li><p>Benefit: change one input and only downstream targets rebuild.</p></li>
+<li>Change <code>src/features.py</code>: <code>make</code> rebuilds features and report, but skips <code>clean</code> (because <code>sales.parquet</code> is still newer than its inputs).</li>
+<li>Change the raw CSV: <code>make</code> rebuilds everything.</li>
+<li>Change nothing: <code>make</code> says “Nothing to do for ‘all’” and exits in milliseconds.</li>
 </ul>
+<p>The <code>$(CLEAN)</code> syntax defines a variable — it saves you from retyping the file path every time and makes the pipeline easier to read. On a small project this feels like overkill; on a mid-sized project it saves you minutes or hours per iteration and prevents the “I forgot to rerun the cleaning step after I changed the raw data” bug entirely.</p>
 </section>
 </section>
 <section id="scheduling-scripts" class="level2" data-number="27.5">
 <h2 data-number="27.5" class="anchored" data-anchor-id="scheduling-scripts"><span class="header-section-number">27.5</span> Scheduling scripts</h2>
-<section id="scheduling-on-macoslinux-cron-concept-safe-usage" class="level3">
-<h3 class="anchored" data-anchor-id="scheduling-on-macoslinux-cron-concept-safe-usage">Scheduling on macOS/Linux: cron (concept + safe usage)</h3>
-<ul>
-<li><p>Cron runs commands when time fields match.</p></li>
-<li><p>Teach: absolute paths, explicit environment, redirected logs.</p></li>
-<li><p>Common novice bug: script works interactively but fails under cron due to PATH/env.</p></li>
-</ul>
+<p>Once a task is scripted, the next capability is running it without you — every morning at 6 AM, every hour, every first-of-the-month. Both Unix and Windows ship with built-in schedulers that cover everything a student project will need.</p>
+<section id="scheduling-on-macos-and-linux-cron" class="level3">
+<h3 class="anchored" data-anchor-id="scheduling-on-macos-and-linux-cron">Scheduling on macOS and Linux: <code>cron</code></h3>
+<p><code>cron</code> is the long-running background service that reads a “crontab” (a list of scheduled jobs) and runs each job when its time fields match the current time. Every user on a Unix system has their own crontab. Edit yours with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crontab</span> <span class="at">-e</span>      <span class="co"># opens your crontab in an editor</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">crontab</span> <span class="at">-l</span>      <span class="co"># prints your current crontab</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The format of each line is five time fields followed by the command to run:</p>
+<pre class="text"><code># ┌────── minute (0 - 59)
+# │ ┌──── hour (0 - 23)
+# │ │ ┌── day of month (1 - 31)
+# │ │ │ ┌── month (1 - 12)
+# │ │ │ │ ┌── day of week (0 - 6, Sunday = 0)
+# │ │ │ │ │
+  0 6 * * *   /home/agandler/projects/sales/run_pipeline.sh</code></pre>
+<p>That line runs the script every day at 6:00 AM. <code>*</code> means “any value.” <code>*/15 * * * *</code> means “every 15 minutes.” <code>0 * * * *</code> means “at the top of every hour.” There are many cheat-sheets for writing cron expressions; <a href="https://crontab.guru" class="uri">https://crontab.guru</a> will let you type an expression and explain in plain English when it will fire.</p>
+<p><strong>The single most common cron bug is environment.</strong> When <code>cron</code> runs your script, it does <em>not</em> inherit your interactive shell’s environment — it runs with a minimal <code>PATH</code>, no <code>PYTHONPATH</code>, no conda activation, no <code>LANG</code> — and a script that works perfectly when you run it by hand can fail mysteriously under <code>cron</code>. The symptom is usually “command not found” or “ModuleNotFoundError” for something that is clearly installed.</p>
+<p>The fix is to be explicit about everything the script needs. Write a wrapper script rather than calling Python directly from cron:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env bash</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ~/projects/sales/run_pipeline.sh</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Be explicit about the working directory</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/agandler/projects/sales</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Be explicit about the environment</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="st">"/usr/local/bin:/usr/bin:/bin:</span><span class="va">$PATH</span><span class="st">"</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the actual job, redirecting all output to a dated log</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> logs</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="va">timestamp</span><span class="op">=</span><span class="va">$(</span><span class="fu">date</span> +%Y%m%d-%H%M%S<span class="va">)</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> src/pipeline.py <span class="op">&gt;&gt;</span> <span class="st">"logs/pipeline-</span><span class="va">${timestamp}</span><span class="st">.log"</span> <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then the crontab entry just runs the wrapper:</p>
+<pre class="text"><code>0 6 * * *   /home/agandler/projects/sales/run_pipeline.sh</code></pre>
+<p>Three things are going right here: the wrapper <code>cd</code>s to a known directory, it activates the virtual environment so <code>python</code> finds the right packages, and it redirects both stdout and stderr to a log file you can read afterward. If the job fails at 6 AM tomorrow, the log file is what tells you why.</p>
 </section>
-<section id="scheduling-on-windows-task-scheduler-concept-cli" class="level3">
-<h3 class="anchored" data-anchor-id="scheduling-on-windows-task-scheduler-concept-cli">Scheduling on Windows: Task Scheduler (concept + CLI)</h3>
+<section id="scheduling-on-windows-task-scheduler" class="level3">
+<h3 class="anchored" data-anchor-id="scheduling-on-windows-task-scheduler">Scheduling on Windows: Task Scheduler</h3>
+<p>Windows has its own equivalent, the <strong>Task Scheduler</strong>, which is both a GUI app and a command-line tool (<code>schtasks.exe</code>). The GUI is the friendlier place to start.</p>
+<p>Open “Task Scheduler” from the Start menu, click “Create Basic Task…”, give it a name, pick a trigger (Daily, Weekly, When the computer starts…), pick an action (“Start a program”), and point it at the script you want to run. The two settings students most often get wrong are:</p>
 <ul>
-<li><p>Tasks can run periodically or at specific times.</p></li>
-<li><p>Teach: “Start in” directory, user account, and logging.</p></li>
+<li><strong>“Start in (optional)”</strong> — this is the working directory the task runs from. Leave it blank and your script runs from <code>C:\Windows\System32</code>, which is almost certainly not what you want. Set it explicitly to your project directory.</li>
+<li><strong>“Run whether user is logged on or not”</strong> and <strong>“Run with highest privileges”</strong> — these control whether the task runs in the background when you are logged out, and whether it has admin rights. For most student projects you want “Run whether user is logged on or not” (so it runs at 6 AM while you are asleep) and you do <em>not</em> want elevated privileges unless you have a specific reason.</li>
 </ul>
+<p>For scripted creation, <code>schtasks</code> on the command line does the same thing:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>schtasks <span class="op">/</span>Create `</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">/</span>TN <span class="st">"SalesPipeline"</span> `</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">/</span>TR <span class="st">"C:\Users\agandler\projects\sales\run_pipeline.bat"</span> `</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">/</span><span class="fu">SC</span> DAILY <span class="op">/</span>ST <span class="dv">06</span><span class="op">:</span><span class="dv">00</span> `</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">/</span>SD <span class="dv">04</span><span class="op">/</span><span class="dv">10</span><span class="op">/</span><span class="dv">2026</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>.bat</code> wrapper plays the same role as the <code>.sh</code> wrapper on Unix: set the working directory, activate the environment, run the script, and redirect output to a log file.</p>
+<pre class="batch"><code>REM run_pipeline.bat
+cd /d C:\Users\agandler\projects\sales
+call .venv\Scripts\activate.bat
+python src\pipeline.py &gt;&gt; logs\pipeline.log 2&gt;&amp;1</code></pre>
 </section>
 <section id="scheduling-hygiene" class="level3">
 <h3 class="anchored" data-anchor-id="scheduling-hygiene">Scheduling hygiene</h3>
-<ul>
-<li><p>Write logs to a known folder.</p></li>
-<li><p>Add timestamps to outputs.</p></li>
-<li><p>Avoid running overlapping copies (lock files / “already running” check).</p></li>
-<li><p>Alerting concept: what should happen if the job fails.</p></li>
-</ul>
+<p>Three habits make scheduled jobs maintainable:</p>
+<p><strong>Write logs to a known folder, and rotate them.</strong> Every scheduled job should write its output somewhere you can find it later. A <code>logs/</code> directory in the project root is fine. If the job runs frequently, add a timestamp to the filename so you do not overwrite yesterday’s log, and set up some kind of cleanup so the folder does not grow without bound — either a monthly <code>find logs/ -mtime +30 -delete</code>, or use <code>logrotate</code> on Linux.</p>
+<p><strong>Add timestamps to outputs and include them in the log.</strong> Start each log line with the date and time, so that when you look at a log a week later you can correlate events:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"</span><span class="va">$(</span><span class="fu">date</span> <span class="at">-Iseconds</span><span class="va">)</span><span class="st"> starting cleaning step"</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> src/clean.py</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"</span><span class="va">$(</span><span class="fu">date</span> <span class="at">-Iseconds</span><span class="va">)</span><span class="st"> cleaning done"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Prevent overlapping runs with a lock file.</strong> If your script sometimes takes longer than the interval between runs — a cron that fires hourly but a slow job that takes an hour and ten minutes — you can end up with two copies running at once and corrupting each other. Use a lock file to detect and refuse the overlap:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="va">LOCK</span><span class="op">=</span><span class="st">"/tmp/sales-pipeline.lock"</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="ot">-e</span> <span class="st">"</span><span class="va">$LOCK</span><span class="st">"</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"</span><span class="va">$(</span><span class="fu">date</span> <span class="at">-Iseconds</span><span class="va">)</span><span class="st"> another run is in progress; exiting"</span> <span class="op">&gt;&amp;</span><span class="dv">2</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">exit</span> 0</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="bu">trap</span> <span class="st">'rm -f "$LOCK"'</span> EXIT</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> <span class="st">"</span><span class="va">$LOCK</span><span class="st">"</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ...run the pipeline...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Finally, <strong>decide what happens when the job fails.</strong> The minimum is “write the failure to a log I actually read.” A step up is “send me an email or a Slack message” — many small utilities like <code>mail</code> or webhook-based alert services can do this from a wrapper script. The worst pattern is “the job fails silently and I notice three weeks later,” which is what happens when nobody is reading the logs.</p>
 </section>
 </section>
 <section id="rebuilds-and-repeatable-workflows-beyond-make" class="level2" data-number="27.6">
 <h2 data-number="27.6" class="anchored" data-anchor-id="rebuilds-and-repeatable-workflows-beyond-make"><span class="header-section-number">27.6</span> Rebuilds and repeatable workflows beyond <code>make</code></h2>
 <section id="task-runners-as-interfaces" class="level3">
 <h3 class="anchored" data-anchor-id="task-runners-as-interfaces">Task runners as interfaces</h3>
+<p>The most important thing <code>make</code> gives a project is not the incremental rebuild logic — it is the <strong>stable command interface</strong>. <code>make test</code>, <code>make lint</code>, and <code>make report</code> become the canonical way to run those actions, and you can put that same vocabulary everywhere: in the README, in the CI workflow, in the PR template, in your own muscle memory. Any newcomer to the project learns six short commands and becomes productive.</p>
+<p>You do not need <code>make</code>’s dependency-graph features to get that benefit. Plenty of projects use <code>make</code> purely as a task runner — every target is <code>.PHONY</code>, none of them declare prerequisites, and the whole Makefile is just a list of named shortcuts. That is a completely reasonable use of the tool.</p>
+<p>If <code>make</code>’s syntax annoys you (the tab-vs-space rule genuinely trips people up), newer alternatives offer the same task-runner benefit without the historical baggage:</p>
 <ul>
-<li><p>The main value is a stable command interface.</p></li>
-<li><p>Even if you do not use full dependency graphs, a task runner reduces friction.</p></li>
+<li><strong><code>just</code></strong> — a standalone task runner with a friendlier syntax, essentially “Makefile without the traps.” Targets are listed in a <code>justfile</code> and run with <code>just &lt;target&gt;</code>.</li>
+<li><strong><code>invoke</code></strong> — a Python task runner where tasks are Python functions. Useful if you want complex logic inside a task.</li>
+<li><strong>npm scripts</strong> — if your project has a <code>package.json</code>, <code>npm run &lt;script&gt;</code> runs whatever is in the <code>scripts</code> block.</li>
 </ul>
+<p>Pick one and commit to it. The value is in having <em>a</em> standard interface for the project; the specific tool matters much less. For a Python data project where the only task-runner need is named shortcuts, <code>make</code> is the path of least resistance precisely because every machine already has it.</p>
 </section>
-<section id="artifacts-vs-caches-concept" class="level3">
-<h3 class="anchored" data-anchor-id="artifacts-vs-caches-concept">Artifacts vs caches (concept)</h3>
-<ul>
-<li><p>Cache: speed up by reusing dependencies.</p></li>
-<li><p>Artifact: save outputs of a run for inspection/download.</p></li>
-</ul>
+<section id="artifacts-vs-caches" class="level3">
+<h3 class="anchored" data-anchor-id="artifacts-vs-caches">Artifacts vs caches</h3>
+<p>As you start using CI and more complex workflows, you will run into two related concepts that are easy to confuse: <strong>caches</strong> and <strong>artifacts</strong>.</p>
+<p>A <strong>cache</strong> is a store of intermediate files you want to reuse across runs to make things faster. The canonical example is a pip package cache: instead of downloading and installing pandas from scratch every time CI runs, you cache the installed packages keyed on <code>requirements.txt</code>, so unchanged dependencies are restored from cache in seconds. Caches are optimizations — nothing breaks if the cache is empty, it is just slower.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GitHub Actions example — cache the pip download directory</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/cache@v4</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">path</span><span class="kw">:</span><span class="at"> ~/.cache/pip</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">key</span><span class="kw">:</span><span class="at"> pip-${{ hashFiles('requirements.txt') }}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>An <strong>artifact</strong> is an output of a run that you want to save, inspect, or share with other jobs or people. A PDF report, a CSV of results, a directory of logs, a wheel file for a package — these are all artifacts. Unlike caches, artifacts are meant to be consumed: you download them after the run, attach them to a release, or feed them into a later job.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GitHub Actions example — upload the built report as an artifact</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/upload-artifact@v4</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">name</span><span class="kw">:</span><span class="at"> sales-report</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">path</span><span class="kw">:</span><span class="at"> reports/q3.html</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The quick rule of thumb: <strong>cache</strong> the things you do not want to rebuild, <strong>artifact</strong> the things you want to look at. Confuse them and you will either waste space storing ephemeral build caches as long-lived artifacts or silently lose outputs that you assumed would be saved.</p>
 </section>
 </section>
 <section id="continuous-integration-ci-automation-as-a-quality-gate" class="level2" data-number="27.7">
 <h2 data-number="27.7" class="anchored" data-anchor-id="continuous-integration-ci-automation-as-a-quality-gate"><span class="header-section-number">27.7</span> Continuous Integration (CI): automation as a quality gate</h2>
-<section id="what-ci-is-student-definition" class="level3">
-<h3 class="anchored" data-anchor-id="what-ci-is-student-definition">What CI is (student definition)</h3>
-<ul>
-<li><p>Frequent integration into a shared branch.</p></li>
-<li><p>Each integration is verified by an automated build/test.</p></li>
-<li><p>Outcome: detect integration errors early.</p></li>
-</ul>
+<section id="what-ci-is-in-one-paragraph" class="level3">
+<h3 class="anchored" data-anchor-id="what-ci-is-in-one-paragraph">What CI is, in one paragraph</h3>
+<p><strong>Continuous integration</strong> is the practice of having every change integrated into a shared branch be automatically verified by a build-and-test run. The two parts matter equally: <em>frequent integration</em>, which means small changes that land often (not month-long branches that merge in a single giant squash), and <em>automated verification</em>, which means that every push and every pull request triggers a workflow that runs your tests, your linter, and whatever other checks you care about. The result is a shared quality gate that everyone on the team passes through before their code reaches <code>main</code>, which catches breakages while they are still easy to fix — at the moment they are introduced, in the context of one small change, by the person who wrote the code.</p>
+<p>CI is the biggest single quality improvement most projects can make, and on GitHub it is free for public repositories.</p>
 </section>
-<section id="ci-events-and-triggers-github-actions-framing" class="level3">
-<h3 class="anchored" data-anchor-id="ci-events-and-triggers-github-actions-framing">CI events and triggers (GitHub Actions framing)</h3>
-<ul>
-<li><p>Run on push and pull requests.</p></li>
-<li><p>Use path filters to avoid unnecessary runs.</p></li>
-</ul>
+<section id="ci-events-and-triggers" class="level3">
+<h3 class="anchored" data-anchor-id="ci-events-and-triggers">CI events and triggers</h3>
+<p>CI systems run <em>workflows</em> in response to <em>events</em>. The two events that matter for students are <strong>push</strong> (code was pushed to any branch) and <strong>pull_request</strong> (a pull request was opened or updated). Almost every project wants both: push runs catch problems on long-running branches, and pull-request runs catch problems before code merges into <code>main</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># .github/workflows/ci.yml</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> CI</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">main</span><span class="kw">]</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pull_request</span><span class="kw">:</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">main</span><span class="kw">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The configuration above says: “run this workflow whenever something is pushed to <code>main</code>, or whenever a pull request targets <code>main</code>.” That is the baseline every small project should start with.</p>
+<p>For larger repositories, <strong>path filters</strong> let you skip CI runs that cannot possibly affect the outcome — for example, skip Python tests when only the README changed:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pull_request</span><span class="kw">:</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">paths</span><span class="kw">:</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">'src/**'</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">'tests/**'</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">'requirements.txt'</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">'.github/workflows/ci.yml'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Path filters are an optimization, not a correctness feature. Do not add them until you have a real “CI is too slow” problem.</p>
 </section>
-<section id="jobs-steps-runners" class="level3">
-<h3 class="anchored" data-anchor-id="jobs-steps-runners">Jobs, steps, runners</h3>
-<ul>
-<li><p>A workflow is a set of jobs.</p></li>
-<li><p>Jobs run on runners (virtual machines).</p></li>
-<li><p>Steps are commands or reusable actions.</p></li>
-</ul>
+<section id="jobs-steps-and-runners" class="level3">
+<h3 class="anchored" data-anchor-id="jobs-steps-and-runners">Jobs, steps, and runners</h3>
+<p>A <strong>workflow</strong> is a YAML file. It contains one or more <strong>jobs</strong>, which run independently (in parallel, by default). Each job runs on a <strong>runner</strong> — a fresh virtual machine that GitHub provisions for the duration of the job — and consists of <strong>steps</strong>, each of which is either a shell command or a reusable “action” from the marketplace.</p>
+<pre class="text"><code>workflow ─── job: "test" ───── runner: ubuntu-latest
+                │                   │
+                │                   ├── step: checkout the code
+                │                   ├── step: set up Python
+                │                   ├── step: install dependencies
+                │                   └── step: run pytest
+                │
+                └── job: "lint" ──── runner: ubuntu-latest
+                                    ├── step: checkout the code
+                                    ├── step: set up Python
+                                    └── step: run ruff</code></pre>
+<p>Each job starts from a clean machine — nothing carries over from your previous run unless you explicitly restore a cache or download an artifact. This is a feature: CI enforces “does this work from scratch?” on every run, which is what catches “works on my machine” problems.</p>
 </section>
 <section id="a-minimal-ci-workflow-for-students" class="level3">
 <h3 class="anchored" data-anchor-id="a-minimal-ci-workflow-for-students">A minimal CI workflow for students</h3>
-<ol type="1">
-<li><p>Check out code.</p></li>
-<li><p>Set up language/runtime.</p></li>
-<li><p>Install dependencies.</p></li>
-<li><p>Run format/lint checks.</p></li>
-<li><p>Run tests (or smoke tests).</p></li>
-<li><p>Save logs/artifacts if failures occur.</p></li>
-</ol>
+<p>Here is a complete, working GitHub Actions workflow for a small Python project. Drop it in <code>.github/workflows/ci.yml</code> and commit; the next push runs the checks automatically.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> CI</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">main</span><span class="kw">]</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pull_request</span><span class="kw">:</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">main</span><span class="kw">]</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">test</span><span class="kw">:</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Check out the code</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v4</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Python</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-python@v5</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="st">"3.11"</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">cache</span><span class="kw">:</span><span class="at"> pip</span></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install dependencies</span></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>          python -m pip install --upgrade pip</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>          pip install -r requirements.txt</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>          pip install ruff pytest</span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Lint</span></span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">run</span><span class="kw">:</span><span class="at"> ruff check src/ tests/</span></span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Format check</span></span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">run</span><span class="kw">:</span><span class="at"> ruff format --check src/ tests/</span></span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Run tests</span></span>
+<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">run</span><span class="kw">:</span><span class="at"> pytest tests/ -q</span></span>
+<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Upload logs on failure</span></span>
+<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">if</span><span class="kw">:</span><span class="at"> failure()</span></span>
+<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/upload-artifact@v4</span></span>
+<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">name</span><span class="kw">:</span><span class="at"> logs</span></span>
+<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">path</span><span class="kw">:</span><span class="at"> logs/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Six real steps, each one named so that the CI results page tells you exactly which step failed. The lint, format-check, and test steps are your actual quality gate; the <code>if: failure()</code> at the end uploads your logs directory so you can download it and investigate when something breaks. That template is enough for 90% of student projects.</p>
 </section>
 <section id="ci-performance-hygiene" class="level3">
 <h3 class="anchored" data-anchor-id="ci-performance-hygiene">CI performance hygiene</h3>
-<ul>
-<li><p>Dependency caching to speed up installs.</p></li>
-<li><p>Matrix builds (optional): test multiple versions.</p></li>
-<li><p>Keep CI fast so it runs often.</p></li>
-</ul>
+<p>A slow CI is a CI people learn to ignore, and an ignored CI is worse than no CI at all. Three habits keep it fast:</p>
+<p><strong>Cache your dependencies.</strong> The <code>cache: pip</code> line in the <code>setup-python</code> action above restores your pip cache from a previous run keyed on <code>requirements.txt</code>. An install that took 90 seconds from scratch takes 5 seconds from cache. Do the same for conda caches, node_modules, or any other dependency store — every major action has a built-in cache option or works with the generic <code>actions/cache</code>.</p>
+<p><strong>Use matrix builds sparingly.</strong> A matrix lets you run the same job across multiple versions of Python or multiple operating systems:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">strategy</span><span class="kw">:</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">matrix</span><span class="kw">:</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"3.10"</span><span class="kw">,</span><span class="at"> </span><span class="st">"3.11"</span><span class="kw">,</span><span class="at"> </span><span class="st">"3.12"</span><span class="kw">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is powerful for library authors who need to support many versions, but it multiplies your CI minutes. For a student project with one supported Python version, just pick that version and skip the matrix.</p>
+<p><strong>Aim for under five minutes per run.</strong> If CI takes fifteen minutes, people push a change, switch to something else, and never come back to check. If it takes three minutes, they wait for it. The exact target depends on your tolerance, but “measure it and feel bad when it grows” is the right discipline. Common interventions when CI is slow: cache more aggressively, split slow tests into a separate job that only runs on <code>main</code>, or prune tests that take too long for what they prove.</p>
 </section>
-<section id="ci-security-basics-novice-appropriate" class="level3">
-<h3 class="anchored" data-anchor-id="ci-security-basics-novice-appropriate">CI security basics (novice-appropriate)</h3>
-<ul>
-<li><p>Do not print secrets in logs.</p></li>
-<li><p>Understand the difference between untrusted PRs and trusted branches.</p></li>
-<li><p>Use least privilege for tokens and permissions.</p></li>
-</ul>
+<section id="ci-security-basics" class="level3">
+<h3 class="anchored" data-anchor-id="ci-security-basics">CI security basics</h3>
+<p>Three rules are enough for student projects:</p>
+<p><strong>Never print secrets in logs.</strong> If you read an environment variable that contains a token and <code>echo</code> it to the terminal, CI logs capture it forever — and CI logs for public repositories are readable by anyone on the internet. Tokens and API keys should be passed to programs that need them, not logged. When you suspect a secret was leaked in a log, rotate it immediately.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad:</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">run</span><span class="kw">:</span><span class="at"> echo "API key is $MY_API_KEY"</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Good:</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">run</span><span class="kw">:</span><span class="at"> python deploy.py</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">MY_API_KEY</span><span class="kw">:</span><span class="at"> ${{ secrets.MY_API_KEY }}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Understand untrusted pull requests.</strong> When a pull request comes from a fork, GitHub runs the PR’s code inside CI — which means a malicious PR can, in principle, access anything the CI job has access to. By default, GitHub restricts this: secrets are <em>not</em> passed to workflows triggered by pull requests from forks, precisely to prevent this attack. Do not work around that restriction without understanding exactly what you are exposing.</p>
+<p><strong>Use least privilege for tokens.</strong> GitHub Actions gives each workflow run a <code>GITHUB_TOKEN</code> with permissions to read the repository. If your workflow only needs to <em>read</em> the repo, set the permissions explicitly to read-only at the top of the workflow:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">permissions</span><span class="kw">:</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">contents</span><span class="kw">:</span><span class="at"> read</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>That one line prevents a compromised action from, say, pushing commits to your repo. Tighten permissions further as you learn what your workflow actually needs.</p>
 </section>
 </section>
 <section id="local-quality-gates-pre-commit-hooks" class="level2 page-columns page-full" data-number="27.8">
@@ -986,25 +1166,25 @@ div.csl-indent {
 <span class="nocase">pre-commit contributors</span>. n.d. <em>Pre-Commit: A Framework for Managing and Maintaining Multi-Language Pre-Commit Hooks</em>. Project documentation. <a href="https://pre-commit.com/">https://pre-commit.com/</a>.
 </div></div><p>You do not need pre-commit to do good work, and for solo coursework you can skip it entirely. But once you start collaborating, the same class of small mistakes will keep landing on <code>main</code>: trailing whitespace in a diff, an accidentally committed <code>.env</code> file, an unformatted Python file someone forgot to run through their linter (see <a href="../part-3-python/linting.html" class="quarto-xref"><span>Chapter 18</span></a>). A pre-commit hook is a tripwire that catches each of these at the earliest possible moment — before they ever become a commit.</p>
 <p>The setup is two commands and one file. Install the tool into your project’s environment and wire it into git:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install pre-commit</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pre-commit</span> install</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install pre-commit</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pre-commit</span> install</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then drop a <code>.pre-commit-config.yaml</code> at the repo root listing the checks you want. A reasonable starter set for a Python data-science project is just two upstream “repos”:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">repos</span><span class="kw">:</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">repo</span><span class="kw">:</span><span class="at"> https://github.com/pre-commit/pre-commit-hooks</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">rev</span><span class="kw">:</span><span class="at"> v4.6.0</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">hooks</span><span class="kw">:</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> trailing-whitespace</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> end-of-file-fixer</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> check-yaml</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> check-added-large-files</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> detect-private-key</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">repo</span><span class="kw">:</span><span class="at"> https://github.com/astral-sh/ruff-pre-commit</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">rev</span><span class="kw">:</span><span class="at"> v0.5.7</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">hooks</span><span class="kw">:</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> ruff</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">--fix</span><span class="kw">]</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> ruff-format</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">repos</span><span class="kw">:</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">repo</span><span class="kw">:</span><span class="at"> https://github.com/pre-commit/pre-commit-hooks</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">rev</span><span class="kw">:</span><span class="at"> v4.6.0</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">hooks</span><span class="kw">:</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> trailing-whitespace</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> end-of-file-fixer</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> check-yaml</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> check-added-large-files</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> detect-private-key</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">repo</span><span class="kw">:</span><span class="at"> https://github.com/astral-sh/ruff-pre-commit</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">rev</span><span class="kw">:</span><span class="at"> v0.5.7</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">hooks</span><span class="kw">:</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> ruff</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">args</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">--fix</span><span class="kw">]</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> ruff-format</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The first block catches the file-hygiene mistakes: trailing whitespace, missing final newlines, broken YAML, files larger than 500 KB, and private SSH keys that wandered into the repo. The second block runs <code>ruff</code> (your linter and formatter) on every staged Python file. Together they handle most of the small things that would otherwise show up in a code review.</p>
 <p>When you <code>git commit</code>, the hooks run. If a hook auto-fixes a file, the commit aborts so you can re-stage and re-commit:</p>
 <pre class="text"><code>$ git commit -m "Add cleaning helper"
@@ -1021,74 +1201,107 @@ ruff.....................................................................Passed
 </section>
 <section id="incorporating-ai-tools-into-automation-responsibly" class="level2" data-number="27.9">
 <h2 data-number="27.9" class="anchored" data-anchor-id="incorporating-ai-tools-into-automation-responsibly"><span class="header-section-number">27.9</span> Incorporating AI tools into automation (responsibly)</h2>
+<p>Automation configuration files — Makefiles, GitHub Actions YAML, Dockerfiles, cron wrappers — are some of the highest-leverage uses of AI assistance for students. They are repetitive, their syntax is unforgiving, and small errors are tedious to debug. LLMs are surprisingly good at producing a reasonable first draft. They are also capable of producing confident nonsense, and the consequences of nonsense in a workflow file are higher than in regular application code, because a workflow file can run with write access to your repository, your cloud account, or your production environment. Use AI carefully here. See <a href="../part-1-practice/ai-llm.html" class="quarto-xref"><span>Chapter 7</span></a> for the broader treatment.</p>
 <section id="what-ai-is-good-for" class="level3">
 <h3 class="anchored" data-anchor-id="what-ai-is-good-for">What AI is good for</h3>
+<p>A handful of tasks where AI assistance is genuinely useful:</p>
 <ul>
-<li><p>Drafting boilerplate: Makefiles, CI YAML, doc templates.</p></li>
-<li><p>Suggesting test cases and edge checks.</p></li>
-<li><p>Summarizing PRs and highlighting risk areas.</p></li>
+<li><strong>Drafting boilerplate.</strong> A blank CI YAML file in front of you is intimidating; “write me a GitHub Actions workflow that runs pytest on Python 3.11 with pip caching” produces a starting point in seconds. The draft will usually be roughly right and obviously wrong in a few specific ways, which is exactly the situation where a draft is easier to edit than a blank page.</li>
+<li><strong>Explaining unfamiliar syntax.</strong> You see a <code>${{ steps.foo.outputs.bar }}</code> expression in someone else’s workflow and have no idea what it means; ask the AI to explain it. Cross-reference against the actual docs for the final word, but the AI explanation usually points you at the right section faster than a cold web search.</li>
+<li><strong>Generating test cases and edge checks.</strong> “Here’s my <code>clean_sales_data</code> function; what edge cases should I test?” gets you a decent list of candidates — empty input, duplicate rows, null values in the key columns — that you then implement and verify.</li>
+<li><strong>Summarizing PRs and surfacing risk areas.</strong> A short “what did this PR actually change?” summary from an AI can be useful as a starting point for a reviewer, as long as the reviewer still reads the diff.</li>
 </ul>
 </section>
-<section id="what-ai-is-not-good-for-without-verification" class="level3">
-<h3 class="anchored" data-anchor-id="what-ai-is-not-good-for-without-verification">What AI is not good for (without verification)</h3>
+<section id="what-ai-is-not-good-for" class="level3">
+<h3 class="anchored" data-anchor-id="what-ai-is-not-good-for">What AI is not good for</h3>
+<p>An equally important list of things AI assistance is <em>not</em> reliable for:</p>
 <ul>
-<li><p>Inventing correct tool flags or syntax without testing.</p></li>
-<li><p>Making security decisions (permissions, secrets handling).</p></li>
-<li><p>“Fixing” failing CI by random changes.</p></li>
+<li><strong>Inventing correct tool flags or syntax without testing.</strong> LLMs regularly hallucinate command-line flags, action names, and API methods that do not exist. A Makefile target or a <code>sbatch</code> directive that “looks right” but is silently wrong is a special kind of time sink.</li>
+<li><strong>Making security decisions.</strong> Whether to grant a token <code>write</code> access, whether a <code>secrets</code> value is safe to expose in a particular context, whether a permission model is least-privilege — these are judgment calls where an AI’s confidence is not calibrated to the real risk. Make security decisions yourself, after consulting the official docs.</li>
+<li><strong>“Fixing” failing CI by random changes.</strong> A tight feedback loop of “CI failed, ask the AI to fix it, push, CI failed again, ask again” is one of the fastest ways to end up with a workflow that technically passes but does not actually test anything. If CI is failing, understand <em>why</em> before letting the AI propose fixes.</li>
 </ul>
 </section>
 <section id="guardrails-for-ai-assisted-automation" class="level3">
 <h3 class="anchored" data-anchor-id="guardrails-for-ai-assisted-automation">Guardrails for AI-assisted automation</h3>
-<ul>
-<li><p>Always run locally before trusting CI changes.</p></li>
-<li><p>Use small diffs: one change per PR.</p></li>
-<li><p>Require “how to test” steps in PR descriptions.</p></li>
-<li><p>Treat AI output as a draft; confirm against docs.</p></li>
-<li><p>Never paste secrets into prompts.</p></li>
-</ul>
+<p>Five habits make AI assistance safer:</p>
+<p><strong>Always run locally before trusting CI changes.</strong> If an AI suggests changes to a Makefile or a <code>run_pipeline.sh</code>, run them on your own machine first and verify the behavior matches what you expected. Do not commit changes whose behavior you have not observed at least once.</p>
+<p><strong>Keep diffs small.</strong> One automation change per PR. If the AI proposes a sweeping refactor, break it into multiple PRs so each change can be reviewed in isolation.</p>
+<p><strong>Require “how to test” in PR descriptions.</strong> A PR that changes automation should include a short “how I verified this works” section: the commands you ran, the output you expected, what you saw. This is useful regardless of whether AI was involved, but it becomes essential when the code was partly generated.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## How I tested this</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Ran <span class="in">`make test`</span> locally; 42 tests passed.</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Ran <span class="in">`make run`</span> with the small dataset; output matches <span class="in">`reports/expected_q3.html`</span>.</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Pushed a draft branch; CI completed in 3:14 and green.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Treat AI output as a draft; confirm against docs.</strong> The relevant docs for a workflow change are the official GitHub Actions docs, the <code>make</code> manual, the cron documentation, and so on. When an AI suggests a specific flag or setting, search the docs for it before trusting it. If the flag does not appear in the docs, assume it is hallucinated and find the real one.</p>
+<p><strong>Never paste secrets into prompts.</strong> LLM providers log your prompts. Pasting an API key or a password into a chat window is functionally equivalent to leaking it on a public pastebin. When you need to show the AI a file that contains secrets, redact them first.</p>
 </section>
 <section id="a-practical-workflow-ai-as-a-junior-assistant" class="level3">
 <h3 class="anchored" data-anchor-id="a-practical-workflow-ai-as-a-junior-assistant">A practical workflow: AI as a junior assistant</h3>
+<p>Treat the AI like a capable junior teammate who has read every tutorial on the internet but has never actually worked on your specific project. The responsibilities stay with you, and the sequence looks like this:</p>
 <ol type="1">
-<li><p>You specify the intent and constraints.</p></li>
-<li><p>AI drafts the file (Makefile/workflow).</p></li>
-<li><p>You validate against documentation.</p></li>
-<li><p>You run smoke tests.</p></li>
-<li><p>You open a PR and request review.</p></li>
+<li><strong>You specify the intent and constraints.</strong> “I need a GitHub Actions workflow that installs from <code>requirements.txt</code>, runs <code>ruff check</code> and <code>pytest</code>, caches pip, and uploads logs on failure. Python 3.11, Ubuntu, runs on push to main and pull_request to main.”</li>
+<li><strong>AI drafts the file.</strong> You get a YAML workflow, probably about eighty percent right.</li>
+<li><strong>You validate against documentation.</strong> Open the official GitHub Actions docs, cross-check each <code>uses: …</code> action against its README, confirm that syntax the AI used (<code>cache:</code>, <code>if: failure()</code>, <code>permissions:</code>) is real and means what you think it means.</li>
+<li><strong>You run a smoke test.</strong> Push the workflow to a feature branch and watch it run end-to-end. Does it actually cache pip? Does the test step actually fail when you break a test? Does the “upload on failure” step actually produce an artifact?</li>
+<li><strong>You open a PR and request review.</strong> Describe what the automation does, how you tested it, and any places you are uncertain. Reviewers still review. Nothing about “AI helped me write this” removes the human accountability for the result.</li>
 </ol>
+<p>The whole process is a few minutes longer than just having the AI write the file and merging blind. That extra time is the entire point.</p>
 </section>
 </section>
 <section id="common-failure-modes-and-fixes" class="level2" data-number="27.10">
 <h2 data-number="27.10" class="anchored" data-anchor-id="common-failure-modes-and-fixes"><span class="header-section-number">27.10</span> Common failure modes and fixes</h2>
+<p>The failure modes below are the ones that bite every student project eventually. Knowing what they look like in advance makes them much cheaper to fix.</p>
 <section id="works-on-my-machine-automation" class="level3">
 <h3 class="anchored" data-anchor-id="works-on-my-machine-automation">“Works on my machine” automation</h3>
-<ul>
-<li>Fix: pin dependencies, record environment, run in clean env/CI.</li>
-</ul>
+<p><strong>Symptom.</strong> Your Makefile runs perfectly on your laptop. On a teammate’s laptop — or in CI — it fails with an import error, a missing command, or a subtly different output.</p>
+<p><strong>Root cause.</strong> Something about your local environment is different and your automation depends on it implicitly: a Python package you installed globally months ago, a tool in your <code>PATH</code> that is not on the new machine, an environment variable you set once and forgot, a data file in a location unique to your setup, even the version of <code>awk</code> being GNU vs BSD.</p>
+<p><strong>Fix.</strong> Make every assumption explicit. Pin your Python dependencies in <code>requirements.txt</code> or <code>environment.yml</code> with exact versions (see <a href="../part-3-python/package-management.html" class="quarto-xref"><span>Chapter 13</span></a>). Record any other system prerequisites in the README. And run the whole pipeline at least once in CI or a fresh container — the “clean environment” is what catches assumptions you did not know you were making.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A useful habit: rebuild from scratch periodically</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> clean</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> .venv/</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> setup</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> run</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="co"># If this works, your project is reproducible. If not, you just found a bug.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="scheduling-failures-wrong-path-wrong-working-directory" class="level3">
-<h3 class="anchored" data-anchor-id="scheduling-failures-wrong-path-wrong-working-directory">Scheduling failures (wrong PATH, wrong working directory)</h3>
-<ul>
-<li>Fix: use absolute paths, set working directory, log environment.</li>
-</ul>
+<section id="scheduling-failures-from-wrong-path-or-wrong-working-directory" class="level3">
+<h3 class="anchored" data-anchor-id="scheduling-failures-from-wrong-path-or-wrong-working-directory">Scheduling failures from wrong <code>PATH</code> or wrong working directory</h3>
+<p><strong>Symptom.</strong> Your script works fine when you run it interactively, but under <code>cron</code> or Task Scheduler it fails with “command not found,” “No such file or directory,” or “ModuleNotFoundError.”</p>
+<p><strong>Root cause.</strong> Schedulers do not inherit your interactive shell’s environment. <code>PATH</code> is minimal, the working directory is your home directory (not the project), environment variables you set in <code>.bashrc</code> are not loaded, and the virtual environment you “activated this morning” is not active.</p>
+<p><strong>Fix.</strong> Write a wrapper script that is explicit about everything: <code>cd</code> to the project directory with an absolute path, activate the environment, set any <code>PATH</code> additions you need, and redirect output to a log. Then schedule the wrapper, not the raw script. The wrapper pattern from earlier in this chapter is the template.</p>
 </section>
 <section id="ci-failures-due-to-missing-files-or-secrets" class="level3">
 <h3 class="anchored" data-anchor-id="ci-failures-due-to-missing-files-or-secrets">CI failures due to missing files or secrets</h3>
-<ul>
-<li>Fix: ensure CI does not depend on local files; store non-secret config in repo.</li>
-</ul>
+<p><strong>Symptom.</strong> CI fails with “file not found” or “authentication failed” for something that works perfectly on your laptop.</p>
+<p><strong>Root cause.</strong> Your code depends on a file or secret that exists on your laptop but was never committed to the repo or made available to CI. Common culprits: a data file sitting in <code>data/raw/</code> that is gitignored, a <code>.env</code> file with an API token, a config file that was never checked in, a Python package installed manually and not listed in <code>requirements.txt</code>.</p>
+<p><strong>Fix.</strong> For files, either commit them (if they are small and non-sensitive) or write your automation so it can fetch them at runtime from a URL or a data store. For secrets, use your CI system’s secrets mechanism — in GitHub Actions, that is <code>secrets.MY_TOKEN</code> referenced from environment variables. In CI, the golden rule is: if a human can only reproduce the run by having access to something that only exists on your laptop, the automation is broken.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GitHub Actions: pass a secret into the environment of a step</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Deploy</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">run</span><span class="kw">:</span><span class="at"> python deploy.py</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">API_TOKEN</span><span class="kw">:</span><span class="at"> ${{ secrets.DEPLOY_TOKEN }}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="slow-ci-that-everyone-ignores" class="level3">
 <h3 class="anchored" data-anchor-id="slow-ci-that-everyone-ignores">Slow CI that everyone ignores</h3>
-<ul>
-<li>Fix: reduce scope, add caching, split jobs.</li>
-</ul>
+<p><strong>Symptom.</strong> Your team treats the CI check as a suggestion. Pull requests get merged red. People stop looking at CI results.</p>
+<p><strong>Root cause.</strong> CI takes long enough that waiting for it is painful, so people stop waiting. Once the habit of “merge anyway” sets in, every green-or-red distinction is lost and CI becomes decorative.</p>
+<p><strong>Fix.</strong> Measure the runtime and attack the slowest steps. Common wins: cache dependencies aggressively, split slow tests into a separate job that only runs on <code>main</code> (so PR CI stays fast), run independent jobs in parallel, and prune tests that take longer than their value justifies. A CI that finishes in under three minutes will be trusted; a CI that takes fifteen will be worked around.</p>
 </section>
 <section id="automation-that-overwrites-important-artifacts" class="level3">
 <h3 class="anchored" data-anchor-id="automation-that-overwrites-important-artifacts">Automation that overwrites important artifacts</h3>
-<ul>
-<li>Fix: write outputs to dedicated folders; add “are you sure” safeguards for destructive steps.</li>
-</ul>
+<p><strong>Symptom.</strong> You run your pipeline and it happily overwrites a previously generated report — or worse, touches your raw data.</p>
+<p><strong>Root cause.</strong> The script writes to a path without checking what was there, and nothing stops it from clobbering something important.</p>
+<p><strong>Fix.</strong> Three habits. First, <strong>keep raw data immutable</strong>: the cleaning pipeline reads from <code>data/raw/</code> and writes to <code>data/processed/</code>, never the other way around (see <a href="../part-4-data/tabular-data.html" class="quarto-xref"><span>Chapter 20</span></a>). Second, <strong>write outputs to dedicated folders</strong> named after the run, so a new run cannot stomp an old one — <code>reports/2026-04-10/q3.html</code> is safer than <code>reports/q3.html</code>. Third, <strong>for genuinely destructive steps, require explicit confirmation</strong>: a <code>make clean</code> target that nukes <code>data/processed/</code> should at minimum be a distinct target from <code>make run</code>, so no one runs it by accident.</p>
+<pre class="make"><code># Give destructive targets scary names and require them to be explicit
+.PHONY: clean distclean
+
+clean:
+    rm -rf data/processed/ reports/
+
+distclean: clean
+    @echo "WARNING: this will remove .venv and all caches. Ctrl-C to abort."
+    @sleep 3
+    rm -rf .venv/ .pytest_cache/ __pycache__/</code></pre>
+<p>The three-second pause before the <code>rm -rf</code> is not going to stop a determined mistake, but it is enough to catch the “wait, wrong terminal” moment before the damage is irreversible.</p>
 </section>
 </section>
 <section id="worked-examples-outline" class="level2" data-number="27.11">

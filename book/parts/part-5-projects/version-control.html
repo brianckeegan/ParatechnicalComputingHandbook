@@ -810,188 +810,209 @@ git commit       →  history</code></pre>
 <h2 data-number="25.2" class="anchored" data-anchor-id="why-version-control-matters-for-student-data-work"><span class="header-section-number">25.2</span> Why version control matters for student data work</h2>
 <section id="use-cases" class="level3">
 <h3 class="anchored" data-anchor-id="use-cases">Use cases</h3>
-<ul>
-<li><p>Recover from mistakes (accidental edits, deletions).</p></li>
-<li><p>Understand what changed and when.</p></li>
-<li><p>Collaborate without overwriting.</p></li>
-<li><p>Create an audit trail for decisions.</p></li>
-</ul>
+<p>The most immediate payoff of version control is <strong>recovery from mistakes</strong>. You delete a file by accident, or you rewrite a function and realize two hours later that the old version was right. Without Git, those mistakes are permanent — or at least they cost you however long it takes to retype everything. With Git, you run <code>git checkout</code> or <code>git restore</code> and the old version comes back exactly as it was. That safety net alone is worth learning the tool, even for solo projects.</p>
+<p>Beyond recovery, version control gives you a clear answer to <em>“what changed, and when?”</em>. Every commit has an author, a timestamp, and a message explaining why the change was made. A week from now, when you open a file and wonder why on earth a certain line looks the way it does, <code>git log</code> and <code>git blame</code> tell you exactly who wrote it and what commit introduced it. On a team, this is how you avoid silently trampling each other’s work: everyone’s edits live in tracked history instead of whatever version happened to be emailed around last.</p>
+<p>The third reason, which matters most for coursework and research, is <strong>audit trail</strong>. Your commit history is a record of decisions — <em>“switched from mean to median imputation here, see issue #42”</em>, <em>“fixed the off-by-one error in the date parser”</em>. Six weeks later, when you are writing up your results or answering a reviewer’s question, that history is how you reconstruct what you did and why. It is also how you <em>prove</em> to a collaborator, instructor, or future employer that your work is yours.</p>
 </section>
 <section id="what-to-version-and-what-not-to-version" class="level3">
 <h3 class="anchored" data-anchor-id="what-to-version-and-what-not-to-version">What to version and what not to version</h3>
-<ul>
-<li><p>Version: code, notebooks (with discipline), docs, small configuration files.</p></li>
-<li><p>Avoid committing: secrets, credentials, large raw datasets (unless instructed), generated artifacts.</p></li>
-</ul>
+<p>As a rule, version everything that is <strong>small, textual, and authored by you or your team</strong>: source code, notebooks (with the discipline described in the data-science section below), Markdown documentation, configuration files like <code>requirements.txt</code> and <code>.gitignore</code>, and small reference data that your scripts read. These files are the project — if you lost them, you would have to rewrite them. Git’s line-by-line diffing works beautifully on text, and the storage cost is negligible.</p>
+<p>Do <strong>not</strong> version a short, specific list of things. <strong>Secrets and credentials</strong> — API keys, database passwords, <code>.env</code> files — should never be committed; once they land in history they are effectively published, even if you delete the file later (see <a href="secrets.html" class="quarto-xref"><span>Chapter 28</span></a> for why, and how to recover if it happens). <strong>Large raw datasets</strong> — anything bigger than a few megabytes — belong in cloud storage or a shared drive with a clear retrieval script, not inside your repository; Git is not a data store, and a multi-gigabyte CSV will make every <code>git clone</code> slow forever. <strong>Generated artifacts</strong> — compiled binaries, cached model files, HTML output, <code>__pycache__</code> directories — should be reproducible from your code, which means they do not need to be versioned; <code>.gitignore</code> is where you list them. And <strong>environment folders</strong> — <code>.venv/</code>, conda env directories — are enormous, machine-specific, and should never be committed; the environment spec (<code>requirements.txt</code>, <code>environment.yml</code>) is the thing that goes in Git.</p>
 </section>
 </section>
 <section id="getting-started-create-or-clone" class="level2" data-number="25.3">
 <h2 data-number="25.3" class="anchored" data-anchor-id="getting-started-create-or-clone"><span class="header-section-number">25.3</span> Getting started: create or clone</h2>
 <section id="initialize-a-repository-local" class="level3">
 <h3 class="anchored" data-anchor-id="initialize-a-repository-local">Initialize a repository (local)</h3>
-<ul>
-<li><p>When you start a project from scratch.</p></li>
-<li><p>Add a <code>README.md</code> and a reasonable <code>.gitignore</code> early.</p></li>
-</ul>
+<p>When you are starting a project from scratch — a blank folder, no code yet — <code>git init</code> turns that folder into a Git repository. Run it inside the directory you want to track, and Git creates the hidden <code>.git/</code> folder that stores all your history. Before your first commit, add two files that every project should have from day one: a <code>README.md</code> that explains what the project is, and a <code>.gitignore</code> that tells Git which files to <em>never</em> track (see <code>Special considerations for data science projects</code> below for a starter <code>.gitignore</code>).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> housing-audit <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> housing-audit</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ... create README.md and .gitignore ...</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md .gitignore</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Initialize repository"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Making those two files your <em>first</em> commit matters more than it sounds. It establishes the project’s intent in writing, and it ensures the <code>.gitignore</code> is active before you accidentally commit a <code>.venv/</code> folder or a 2 GB dataset. Do not skip this step with the promise of “I’ll add the README later” — later never comes, and by the time you remember, your commit history is cluttered with junk.</p>
 </section>
 <section id="clone-an-existing-repository" class="level3">
 <h3 class="anchored" data-anchor-id="clone-an-existing-repository">Clone an existing repository</h3>
-<ul>
-<li><p>When the course/lab provides starter code.</p></li>
-<li><p>Understand that cloning includes full history.</p></li>
-</ul>
+<p>When a course, lab, or open-source project gives you starter code, you do not initialize — you <strong>clone</strong>. <code>git clone</code> downloads the entire repository, including every commit in its history, into a new folder on your computer.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/course-org/ds101-starter.git</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ds101-starter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>What you get is a <em>full</em> copy, not just a snapshot of the current state. That is what “distributed version control” means: your clone is a complete, self-contained repository with the entire history, not a thin reference to a server. You can work offline, inspect old commits, create branches, and even reconstruct the project if the server disappears. The trade-off is that cloning a repository with a lot of history (or a lot of committed binary files) can be slow and take real disk space — which is one more reason not to commit large files.</p>
 </section>
 <section id="first-time-setup-identity-and-defaults" class="level3">
 <h3 class="anchored" data-anchor-id="first-time-setup-identity-and-defaults">First-time setup (identity and defaults)</h3>
-<ul>
-<li><p>Set your name/email.</p></li>
-<li><p>Choose a default branch name consistent with the course/lab.</p></li>
-</ul>
+<p>Before your first commit on a new machine, tell Git who you are. Git stamps every commit with an author name and email, and if you skip this step you will either get an error on your first commit or — worse — end up with a history full of commits attributed to <code>root@your-laptop</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Your Name"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"you@example.edu"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> init.defaultBranch main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Use the same email address you use on GitHub (or the email your course instructor expects), so commits made locally are correctly associated with your online account. The <code>init.defaultBranch main</code> line sets the name of the default branch in every new repository you create; <code>main</code> is the modern convention and matches what almost every course and open-source project uses today. These settings live in <code>~/.gitconfig</code> and only need to be run once per machine.</p>
 </section>
 </section>
 <section id="daily-git-workflow-the-minimum-viable-loop" class="level2" data-number="25.4">
 <h2 data-number="25.4" class="anchored" data-anchor-id="daily-git-workflow-the-minimum-viable-loop"><span class="header-section-number">25.4</span> Daily Git workflow (the minimum viable loop)</h2>
 <p>The healthy daily loop is the same handful of commands repeated over and over: see what changed, stage what you want, commit it with a clear message, and sync with the remote. Once this loop is automatic, the rest of Git becomes much less intimidating.</p>
 <p>The first move when you sit down to commit is always to check <strong>what changed</strong> since your last commit. <code>git status</code> tells you which files have been modified, added, or deleted. <code>git diff</code> shows the actual line-by-line changes inside those files. Read both before you commit anything — committing without looking at the diff is how you accidentally include debugging print statements, hard-coded passwords, or unrelated experiments.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch main</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> not staged for commit:</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">modified:</span>   src/cleaning.py</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">modified:</span>   notebooks/analysis.ipynb</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git diff src/cleaning.py</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">@@</span> <span class="at">-12,7</span> +12,7 @@ def clean_sales<span class="er">(</span><span class="fu">df</span><span class="kw">)</span><span class="bu">:</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span>    df = df.dropna<span class="er">(</span><span class="kw">)</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ex">+</span>    df = df.dropna<span class="er">(</span><span class="va">subset</span><span class="op">=</span><span class="pp">[</span><span class="st">"customer_id"</span><span class="pp">]</span><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch main</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> not staged for commit:</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">modified:</span>   src/cleaning.py</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">modified:</span>   notebooks/analysis.ipynb</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git diff src/cleaning.py</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="ex">@@</span> <span class="at">-12,7</span> +12,7 @@ def clean_sales<span class="er">(</span><span class="fu">df</span><span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span>    df = df.dropna<span class="er">(</span><span class="kw">)</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ex">+</span>    df = df.dropna<span class="er">(</span><span class="va">subset</span><span class="op">=</span><span class="pp">[</span><span class="st">"customer_id"</span><span class="pp">]</span><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Once you have decided what you want to commit, <strong>stage it intentionally</strong>. The smallest coherent change is the right unit — one logical idea per commit. If your working tree contains both a bug fix and an unrelated rename, stage them as two separate commits, not one. The tool for this is <code>git add</code> (or <code>git add -p</code> for the interactive “stage this hunk, skip this hunk” experience), and the discipline is to think about each file before you stage it rather than reflexively running <code>git add .</code>.</p>
 <p>Then <strong>commit with a meaningful message</strong>. A good commit message is a short summary line in the imperative mood — <em>“Add data intake checks”</em>, not <em>“Added data intake checks”</em> and not <em>“changes”</em>. If the change deserves more explanation, leave a blank line after the summary and then a paragraph or two of context: what the change does, why it was needed, and any subtleties a reader might miss.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add data intake checks for missing customer_id"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add data intake checks for missing customer_id"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Finally, <strong>sync with the remote</strong>. Push your work so it is backed up to GitHub and visible to your collaborators. Pull (or <code>git fetch</code> followed by <code>git merge</code>) before you start a new piece of work, so your local copy reflects whatever your teammates have been doing. Frequent small pushes and pulls are dramatically less painful than one giant sync at the end of the week.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push                <span class="co"># send your commits to origin</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull                <span class="co"># fetch and merge the remote into your branch</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push                <span class="co"># send your commits to origin</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull                <span class="co"># fetch and merge the remote into your branch</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>That is the entire daily loop: status, diff, add, commit, push, pull. Master those six and you have most of what version control gives you.</p>
 </section>
 <section id="branches-and-merges-collaboration-without-chaos" class="level2" data-number="25.5">
 <h2 data-number="25.5" class="anchored" data-anchor-id="branches-and-merges-collaboration-without-chaos"><span class="header-section-number">25.5</span> Branches and merges (collaboration without chaos)</h2>
 <section id="why-branches" class="level3">
 <h3 class="anchored" data-anchor-id="why-branches">Why branches</h3>
-<ul>
-<li><p>Keep <code>main</code> stable.</p></li>
-<li><p>Work on features and fixes in isolation.</p></li>
-</ul>
+<p>Branches exist so that work in progress does not contaminate the version of the project that everyone else depends on. The idea is simple: <code>main</code> is the branch that always works. Every new feature, every bug fix, every experiment, happens on its own short-lived branch. You make your changes, you test them, you open a pull request, it gets reviewed, and only then does the work land on <code>main</code>. Anyone who clones the project at any time gets a working copy — no half-written functions, no broken imports.</p>
+<p>The second reason branches matter is <strong>isolation</strong>. Two people can work on two different features simultaneously without stepping on each other’s toes, because their commits live on separate branches. When both are ready, Git merges them together — and if they touched the same lines, Git tells you about the conflict instead of silently choosing a winner. Without branches, parallel work on a shared file is a recipe for lost changes. Branches also let you experiment safely: create a branch called <code>try-new-parser</code>, make a mess, and if it does not pan out, just delete the branch. Nothing on <code>main</code> was ever at risk.</p>
 </section>
 <section id="a-standard-branch-workflow" class="level3">
 <h3 class="anchored" data-anchor-id="a-standard-branch-workflow">A standard branch workflow</h3>
+<p>The workflow for almost every change, from a one-line typo fix to a multi-day feature, is the same five-step loop:</p>
 <ol type="1">
-<li><p>Update <code>main</code>.</p></li>
-<li><p>Create a new branch with a descriptive name.</p></li>
-<li><p>Make commits on that branch.</p></li>
-<li><p>Open a PR.</p></li>
-<li><p>Merge after review.</p></li>
+<li><strong>Update <code>main</code></strong> with <code>git switch main &amp;&amp; git pull</code> so you start from the latest version.</li>
+<li><strong>Create a new branch</strong> with a descriptive name — <code>fix-date-parser</code>, <code>add-missing-tests</code>, <code>issue-42-cleanup-nulls</code> — so teammates (and future-you) can tell what is in it.</li>
+<li><strong>Make commits on that branch</strong>, one logical change at a time, following the daily Git loop above.</li>
+<li><strong>Open a pull request</strong> on GitHub as soon as there is something to discuss, even if the work is not finished (draft PRs are for exactly this).</li>
+<li><strong>Merge after review</strong>, once at least one other person has looked at the diff and tests pass.</li>
 </ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> fix-date-parser</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ... edit files, run tests ...</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add src/parsers.py tests/test_parsers.py</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Fix date parser off-by-one for February"</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin fix-date-parser</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Then open a PR on GitHub.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>-u</code> flag on your first push tells Git “from now on, this local branch is linked to this remote branch”, so subsequent <code>git push</code> and <code>git pull</code> commands do not need the branch name.</p>
 </section>
 <section id="merge-vs-rebase-novice-policy" class="level3">
 <h3 class="anchored" data-anchor-id="merge-vs-rebase-novice-policy">Merge vs rebase (novice policy)</h3>
-<ul>
-<li><p><strong>Merge</strong> preserves history of parallel work.</p></li>
-<li><p><strong>Rebase</strong> rewrites commits to create a linear story.</p></li>
-<li><p>Student default: use merges unless your instructor/team specifies a rebase policy.</p></li>
-</ul>
+<p>When you are ready to integrate your branch with <code>main</code>, Git gives you two strategies. A <strong>merge</strong> creates a new commit — the <em>merge commit</em> — that ties the two branches together and preserves the full history of what each branch did in parallel. A <strong>rebase</strong> rewrites your branch’s commits so they appear to have been created <em>on top of</em> the latest <code>main</code>, producing a linear history with no branch points. The result is cleaner-looking but the history is edited: the commit hashes change, and the original order of events is gone.</p>
+<p>For student work, use <strong>merges</strong> by default. Merges are easier to reason about, they never rewrite commits anyone else might have pulled, and the “cluttered” history they produce is not actually a problem — it is an honest record of how the work happened. Rebase is a powerful tool once you understand it, but it has sharp edges (<code>git rebase</code> on a branch that other people have already pulled can destroy their work), and the handbook’s advice is to defer that skill until a specific project policy asks for it. If your instructor or team prefers rebase-and-merge, follow their policy; otherwise, stay with merges.</p>
 </section>
 <section id="undo-safely-intro" class="level3">
 <h3 class="anchored" data-anchor-id="undo-safely-intro">Undo safely (intro)</h3>
-<ul>
-<li><p>Undo a working-tree change vs undo a commit are different.</p></li>
-<li><p>Prefer “make a new commit that fixes it” over rewriting shared history.</p></li>
-</ul>
+<p>Git gives you several “undo” commands, and the important thing is that they undo different things at different stages. If you edited a file and have not staged or committed it, you want <code>git restore &lt;file&gt;</code> to throw away the unsaved edits and bring back the last committed version. If you already staged a change with <code>git add</code> but want to unstage it, <code>git restore --staged &lt;file&gt;</code> puts it back into the working tree without losing your edits. If you already committed something and want to undo the commit while keeping the changes around, <code>git reset --soft HEAD~1</code> moves the branch pointer back one commit and leaves your work in the staging area.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore src/broken.py            <span class="co"># throw away unstaged edits</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--staged</span> src/broken.py   <span class="co"># unstage without losing edits</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--soft</span> HEAD~1               <span class="co"># undo last commit, keep changes</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The rule that matters most when you are undoing things is this: <strong>prefer “make a new commit that fixes it” over “rewrite history.”</strong> If the problematic commit has already been pushed to a shared remote, rewriting history with <code>git reset --hard</code>, <code>git rebase</code>, or <code>git push --force</code> can delete work that your teammates have already pulled. Instead, write a new commit that reverses the mistake (<code>git revert &lt;sha&gt;</code> does this for you automatically), push it normally, and leave the original in the history. It is uglier but safe. History rewriting is a tool for branches no one else is looking at yet.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Never run <code>git push --force</code> on <code>main</code> or any branch your teammates share. If you genuinely need to rewrite history on your own feature branch, use <code>git push --force-with-lease</code>, which refuses to overwrite if someone else has pushed in the meantime. On a shared branch, force-pushing is how you erase a collaborator’s work.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="remotes-fetch-pull-push" class="level2" data-number="25.6">
 <h2 data-number="25.6" class="anchored" data-anchor-id="remotes-fetch-pull-push"><span class="header-section-number">25.6</span> Remotes: fetch, pull, push</h2>
 <section id="what-these-commands-do-conceptually" class="level3">
 <h3 class="anchored" data-anchor-id="what-these-commands-do-conceptually">What these commands do conceptually</h3>
-<ul>
-<li><p><code>fetch</code>: download remote history without changing your current branch.</p></li>
-<li><p><code>pull</code>: fetch + merge (or fetch + rebase).</p></li>
-<li><p><code>push</code>: upload your commits to the remote.</p></li>
-</ul>
+<p>Three commands move work between your local repository and a remote one, and it helps to understand exactly what each one does. <code>git fetch</code> downloads the latest commits from the remote into your local copy, but it <strong>does not change the files in your working tree</strong>. It is the safest of the three: fetch, look at what came in, then decide what to do with it. After a fetch, you can run <code>git log main..origin/main</code> to see exactly which new commits the remote has that you do not.</p>
+<p><code>git pull</code> is <code>git fetch</code> followed by a merge into your current branch. It is the convenient one-stop command you will use most of the time, but it is not magic — if the remote has changes that conflict with yours, <code>pull</code> will drop you into a merge conflict just like any other merge. <code>git push</code> goes the other direction: it uploads your local commits to the remote so other people can see them and so your work is backed up. Push only affects the branch you are currently on, and only uploads commits the remote does not already have.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch origin               <span class="co"># see what is on the remote without merging</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull                       <span class="co"># fetch + merge into current branch</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push                       <span class="co"># upload current branch's commits to origin</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="the-drift-problem" class="level3">
 <h3 class="anchored" data-anchor-id="the-drift-problem">The drift problem</h3>
-<ul>
-<li><p>If multiple people push, your local copy can become stale.</p></li>
-<li><p>Best practice: fetch/pull frequently; push small, complete units.</p></li>
-</ul>
+<p>On a team, multiple people are pushing to <code>main</code> every day. If you branched off <code>main</code> on Monday and do not look at it again until Friday, your local copy is now four days behind the world. This is “drift,” and the longer you let it accumulate, the worse your eventual merge conflict becomes. Someone renamed the function you depend on; someone else restructured a file you were about to edit; the test you were writing now depends on an API that no longer exists.</p>
+<p>The habit that prevents drift is simple: <strong>pull before you start new work, and push small, complete units often</strong>. Specifically, run <code>git pull</code> on <code>main</code> before every new branch, rebase or merge <code>main</code> into your long-lived feature branch at least once a day, and push your commits as soon as they are coherent. Small, frequent synchronizations mean every conflict is small. A once-a-week “catch-up” sync is where the scary merge conflicts live.</p>
 </section>
 </section>
 <section id="github-fundamentals" class="level2" data-number="25.7">
 <h2 data-number="25.7" class="anchored" data-anchor-id="github-fundamentals"><span class="header-section-number">25.7</span> GitHub fundamentals</h2>
 <section id="repository-anatomy-on-github" class="level3">
 <h3 class="anchored" data-anchor-id="repository-anatomy-on-github">Repository anatomy on GitHub</h3>
-<ul>
-<li><p>Code view, issues, pull requests, actions, releases (<a href="automation.html" class="quarto-xref"><span>Chapter 27</span></a> covers GitHub Actions and CI in depth).</p></li>
-<li><p>The README is the front door.</p></li>
-</ul>
+<p>A GitHub repository page has several tabs, and each one is a different surface your team uses for a different job. <strong>Code</strong> is the file browser — the current state of the default branch, with a rendering of the README at the bottom. <strong>Issues</strong> is where bugs, tasks, and open questions live; it is the project’s to-do list and discussion forum. <strong>Pull Requests</strong> is where proposed changes are reviewed and merged. <strong>Actions</strong> is where automated workflows run on every push (<a href="automation.html" class="quarto-xref"><span>Chapter 27</span></a> covers GitHub Actions and CI in depth). <strong>Releases</strong> is where you publish tagged, named versions of your project that other people can download and cite.</p>
+<p>The single most important file in any repository is the <strong>README</strong>, because it is the front door. When someone lands on your repository for the first time — a classmate, a reviewer, a potential employer, or future-you — the README is what tells them what the project is, how to install it, and how to run it. If the README is missing or stale, every other tab is less useful because readers have no orientation. Invest in the README first and maintain it as part of the work (see <a href="project-management.html" class="quarto-xref"><span>Chapter 24</span></a> for what a good README contains).</p>
 </section>
 <section id="pull-requests-the-core-collaboration-primitive" class="level3">
 <h3 class="anchored" data-anchor-id="pull-requests-the-core-collaboration-primitive">Pull requests: the core collaboration primitive</h3>
-<ul>
-<li><p>What a PR contains: commits, file diffs, discussion.</p></li>
-<li><p>Draft PRs for early feedback.</p></li>
-<li><p>Keep PRs small and focused.</p></li>
-</ul>
+<p>A pull request is a proposal: “I would like these commits from this branch to become part of this other branch.” Mechanically, a PR bundles together three things — the commits you made, the file-level diff those commits produce, and the discussion thread where reviewers and the author work out whether the change should merge. All three live on the same page, which is why PRs are the natural place for code review.</p>
+<p>Two habits make PRs actually work. First, <strong>open a draft PR early</strong>, even before the code is finished, if you want feedback on the approach. A draft PR signals “do not merge this yet, but please comment.” Second, <strong>keep PRs small and focused on a single idea</strong>. A PR that touches 30 files across three unrelated changes is almost impossible to review meaningfully — reviewers will skim and rubber-stamp, or they will refuse. A PR that touches five files for one clear purpose gets read carefully and merged quickly.</p>
 </section>
 <section id="pr-merge-strategies-team-policy" class="level3">
 <h3 class="anchored" data-anchor-id="pr-merge-strategies-team-policy">PR merge strategies (team policy)</h3>
-<ul>
-<li><p>Merge commit vs squash-and-merge vs rebase-and-merge.</p></li>
-<li><p>Student guidance: pick one strategy per repository and be consistent.</p></li>
-</ul>
+<p>GitHub offers three ways to merge a PR, and each produces slightly different history. <strong>Merge commit</strong> preserves every commit on the branch and adds a merge commit tying them into <code>main</code> — the most honest record of how the work happened. <strong>Squash-and-merge</strong> flattens all the PR’s commits into a single commit on <code>main</code>, which keeps <code>main</code>’s history linear and clean but loses the fine-grained steps. <strong>Rebase-and-merge</strong> replays each commit onto <code>main</code> as if they had been written there directly, producing a linear history with the original commits preserved but without a merge commit.</p>
+<p>There is no “best” strategy — each has trade-offs. The important thing is to <strong>pick one and be consistent within a repository</strong>. Mixing strategies across PRs makes the history confusing. For student projects, squash-and-merge is a reasonable default because it means sloppy work-in-progress commits on a branch become a single clean commit on <code>main</code>. Whatever the policy is, you usually configure it once in the repository settings on GitHub, and then every PR uses it.</p>
 </section>
 <section id="reviews-and-commenting-best-practices" class="level3">
 <h3 class="anchored" data-anchor-id="reviews-and-commenting-best-practices">Reviews and commenting best practices</h3>
-<ul>
-<li><p>Comment on code with context: what, why, and suggested change.</p></li>
-<li><p>Prefer actionable, specific feedback.</p></li>
-<li><p>Separate ‘nit’’ (minor style) from ‘blocker’’ (correctness).</p></li>
-<li><p>When you respond, acknowledge and summarize what you changed.</p></li>
-</ul>
+<p>Good review comments share three traits: they point to a specific line or region, they explain the <em>why</em>, and they propose a concrete direction. “This is wrong” is useless; “This assumes the column is never null, but the source data has about 3% nulls, so this line will crash on real input — consider adding a dropna or fillna before this step” is actionable. Aim for that level of specificity on every comment you leave.</p>
+<p>It also helps reviewers and authors to tag the <em>kind</em> of feedback a comment is. A simple taxonomy — <strong>Blocker</strong> (must fix before merge, correctness or security), <strong>Suggestion</strong> (a better alternative, non-blocking), <strong>Question</strong> (asking the author to clarify intent), <strong>Nit</strong> (a minor style or naming point, explicitly non-blocking) — lets the author know what actually has to change before the PR can merge versus what is opinion. When you are the author responding to reviews, always reply to each thread explicitly: either “changed in commit abc123” or “kept as-is because…” so the reviewer can see the loop closed. Chapter <a href="collaboration.html" class="quarto-xref"><span>Chapter 26</span></a> has more on this.</p>
 </section>
 <section id="linking-work-issues-leftrightarrow-prs" class="level3">
 <h3 class="anchored" data-anchor-id="linking-work-issues-leftrightarrow-prs">Linking work: issues <span class="math inline">\(\leftrightarrow\)</span> PRs</h3>
-<ul>
-<li><p>Use issues to track tasks and decisions.</p></li>
-<li><p>Reference issues in PR descriptions and commit messages.</p></li>
-</ul>
+<p>GitHub notices when you reference an issue number in a PR description, a commit message, or another issue’s comments, and it automatically creates a link between them. Take advantage of this: every PR should reference the issue(s) it addresses, and every issue should be closed with a summary that links to the PR that resolved it. That cross-referencing turns the repository into a searchable, navigable history of <em>why</em> changes were made, not just <em>what</em> they were.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summary</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>Fix the off-by-one in the date parser so February rolls over correctly.</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>Closes #42.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The magic words — <code>Closes #42</code>, <code>Fixes #42</code>, or <code>Resolves #42</code> — will cause GitHub to automatically close issue #42 when the PR is merged. That single line is how you keep the issue tracker honest without any manual bookkeeping.</p>
 </section>
 </section>
 <section id="forking-workflow-contributing-without-direct-write-access" class="level2" data-number="25.8">
 <h2 data-number="25.8" class="anchored" data-anchor-id="forking-workflow-contributing-without-direct-write-access"><span class="header-section-number">25.8</span> Forking workflow (contributing without direct write access)</h2>
 <section id="fork-vs-clone" class="level3">
 <h3 class="anchored" data-anchor-id="fork-vs-clone">Fork vs clone</h3>
-<ul>
-<li><p>Fork creates your copy on GitHub.</p></li>
-<li><p>Clone downloads a repository to your computer.</p></li>
-</ul>
+<p>Forking and cloning sound similar but do different things. <strong>Cloning</strong> downloads a repository to your computer — it is a local-vs-remote operation. <strong>Forking</strong> creates a personal copy of someone else’s repository on GitHub, under your own account — it is a GitHub-to-GitHub operation. You fork when you do not have permission to push directly to the original repository, which is the normal situation for open-source projects and for most course repositories you did not create yourself.</p>
+<p>The standard pattern is to fork <em>and</em> clone: fork the repo on GitHub to get <code>github.com/your-name/project</code>, then clone your fork to your laptop to get a working copy you can actually edit. From there, the fork is the remote you have write access to (<code>origin</code>), and the original project is a second read-only remote (<code>upstream</code>) you use to stay in sync.</p>
 </section>
 <section id="the-standard-fork-contribution-flow" class="level3">
 <h3 class="anchored" data-anchor-id="the-standard-fork-contribution-flow">The standard fork contribution flow</h3>
+<p>The full six-step workflow for contributing to a repository you do not own:</p>
 <ol type="1">
-<li><p>Fork the repository.</p></li>
-<li><p>Clone your fork.</p></li>
-<li><p>Add <code>upstream</code> remote pointing to the original repo.</p></li>
-<li><p>Create a feature branch.</p></li>
-<li><p>Push to your fork.</p></li>
-<li><p>Open a PR from your fork to upstream.</p></li>
+<li><strong>Fork</strong> the repository on GitHub by clicking the Fork button. You now own a copy at <code>github.com/your-name/project</code>.</li>
+<li><strong>Clone</strong> <em>your fork</em> (not the original) to your computer.</li>
+<li><strong>Add <code>upstream</code></strong> as a second remote so you can pull updates from the original project.</li>
+<li><strong>Create a feature branch</strong> for your change (never work directly on your fork’s <code>main</code>).</li>
+<li><strong>Push</strong> the feature branch to your fork.</li>
+<li><strong>Open a PR</strong> from your fork’s feature branch <em>to the original repository’s</em> <code>main</code>.</li>
 </ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># After forking on GitHub:</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/your-name/project.git</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> project</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add upstream https://github.com/original-owner/project.git</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># origin    https://github.com/your-name/project.git  (fetch/push)</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># upstream  https://github.com/original-owner/project.git (fetch/push)</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> fix-typo-in-readme</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ... make changes ...</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin fix-typo-in-readme</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Then open a PR on GitHub targeting original-owner/project main.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The one subtle point is that your PR goes from your fork’s feature branch <em>into</em> the original repository’s <code>main</code>. GitHub’s PR creation page handles this automatically once both sides exist — you just confirm the source branch (yours) and the target branch (theirs).</p>
 </section>
 <section id="keeping-your-fork-up-to-date" class="level3">
 <h3 class="anchored" data-anchor-id="keeping-your-fork-up-to-date">Keeping your fork up to date</h3>
-<ul>
-<li><p>Fetch from upstream.</p></li>
-<li><p>Merge (or rebase) into your branch.</p></li>
-<li><p>Resolve conflicts early rather than letting them accumulate.</p></li>
-</ul>
+<p>Forks get stale. While you are working on your feature, the original project continues to receive commits, and your fork’s <code>main</code> branch will fall behind. If you let the drift get too large before you sync, your eventual PR will conflict with recent changes and reviewers will ask you to rebase.</p>
+<p>The fix is to periodically pull from <code>upstream</code> into your local <code>main</code>, then push the updated <code>main</code> to your fork. Do this before you start any new branch:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch upstream</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge upstream/main</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Once your local and forked <code>main</code> branches are current, you can branch off them with confidence. If you have a long-lived feature branch, merge the updated <code>main</code> into it the same day you see upstream has moved. Resolving a small conflict today is orders of magnitude easier than resolving a month’s worth of accumulated drift when you are trying to get a PR over the finish line.</p>
 </section>
 </section>
 <section id="merge-conflicts-a-disciplined-resolution-playbook" class="level2" data-number="25.9">
@@ -1007,13 +1028,13 @@ git commit       →  history</code></pre>
 CONFLICT (content): Merge conflict in src/cleaning.py
 Automatic merge failed; fix conflicts and then commit the result.</code></pre>
 <p><strong>Second, run <code>git status</code></strong> to confirm the list of conflicted files, then open each one in your editor. Conflicted files contain little markers that show you both versions of every contested region:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> HEAD</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.dropna(subset<span class="op">=</span>[<span class="st">"customer_id"</span>])</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">=======</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.dropna(subset<span class="op">=</span>[<span class="st">"customer_id"</span>, <span class="st">"date"</span>])</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> feature<span class="op">-</span>strict<span class="op">-</span>cleaning</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> HEAD</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.dropna(subset<span class="op">=</span>[<span class="st">"customer_id"</span>])</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="op">=======</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.dropna(subset<span class="op">=</span>[<span class="st">"customer_id"</span>, <span class="st">"date"</span>])</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> feature<span class="op">-</span>strict<span class="op">-</span>cleaning</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The lines between <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code> and <code>=======</code> are the version that was on your branch; the lines between <code>=======</code> and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature-strict-cleaning</code> are the version coming in from the other branch. <strong>Third, decide the correct combined content</strong> — and “correct” almost never means “pick one side wholesale.” Read both versions, understand what each was trying to do, and write the merged version that preserves both intents:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.dropna(subset<span class="op">=</span>[<span class="st">"customer_id"</span>, <span class="st">"date"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> df.dropna(subset<span class="op">=</span>[<span class="st">"customer_id"</span>, <span class="st">"date"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Delete the conflict markers when you are done — they are not valid code and Git will not magically remove them for you.</p>
 <p><strong>Fourth, stage the resolved files</strong> with <code>git add</code>. Git uses staging as the signal that “I have finished resolving this file.” <strong>Fifth, run <code>git commit</code></strong> (or <code>git merge --continue</code>) to finalize the merge. Git produces a default commit message describing the merge; you can usually accept it. <strong>Sixth and most important, run a smoke test</strong> — execute the code, run any tests, open the notebook — to confirm that your manually-merged version actually works. A “successful” merge that produces broken code is the most common way for conflicts to silently introduce bugs.</p>
 </section>
@@ -1029,32 +1050,55 @@ Automatic merge failed; fix conflicts and then commit the result.</code></pre>
 <h2 data-number="25.10" class="anchored" data-anchor-id="special-considerations-for-data-science-projects"><span class="header-section-number">25.10</span> Special considerations for data science projects</h2>
 <section id="gitignore-hygiene" class="level3">
 <h3 class="anchored" data-anchor-id="gitignore-hygiene"><code>.gitignore</code> hygiene</h3>
-<ul>
-<li><p>Ignore environment folders (<code>.venv/</code>, conda env dirs).</p></li>
-<li><p>Ignore caches and generated outputs (<code>__pycache__</code>, <code>.ipynb_checkpoints/</code>).</p></li>
-<li><p>Ignore secrets files (<code>.env</code>).</p></li>
-</ul>
+<p>Data science projects accumulate files that <em>should not</em> be in Git — environment folders, caches, temporary outputs, secrets — and the tool for keeping them out is <code>.gitignore</code>. The file sits at the root of your repository and lists patterns that Git will refuse to track. Add it as one of your first commits, and adjust it as the project grows.</p>
+<p>A reasonable starter <code>.gitignore</code> for a Python data-science project looks like this:</p>
+<pre class="text"><code># Python bytecode and caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Environments
+.venv/
+venv/
+env/
+.conda/
+
+# Secrets and local config
+.env
+.env.local
+credentials.json
+
+# Data (commit small reference data only; large files live elsewhere)
+data/raw/
+data/interim/
+data/processed/
+*.csv
+!data/examples/*.csv
+
+# Editor and OS junk
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/settings.json</code></pre>
+<p>The <code>!</code> prefix means “un-ignore this” — it is how you exclude a pattern from a broader rule. The block above ignores every <code>*.csv</code> except the ones under <code>data/examples/</code>, which is a useful trick when you want most data out of Git but a small fixture committed as test input. The <code>.vscode/*</code> / <code>!.vscode/settings.json</code> pair does the same for a shared editor config.</p>
 </section>
 <section id="notebooks-in-git" class="level3">
 <h3 class="anchored" data-anchor-id="notebooks-in-git">Notebooks in Git</h3>
-<ul>
-<li><p>Notebooks are JSON; diffs can be noisy.</p></li>
-<li><p>Practices: clear unnecessary outputs, keep cells ordered, consider paired text formats.</p></li>
-</ul>
+<p>Jupyter notebooks are JSON files, not plain text. They contain your code, your markdown, <em>and</em> your cell outputs (including any figures, tables, and printed values) all in one big structured blob. Git can diff them, but the diffs are noisy, hard to read in a PR, and prone to spurious changes that appear every time you re-run a cell.</p>
+<p>Three practices keep notebooks manageable in Git. <strong>First, clear outputs before committing</strong> — either manually via “Restart &amp; Clear Outputs” in Jupyter, or automatically with a pre-commit hook using <code>nbstripout</code> (<a href="automation.html" class="quarto-xref"><span>Chapter 27</span></a> covers pre-commit hooks). The resulting notebook diffs capture only the code and prose you actually changed. <strong>Second, keep cells in execution order</strong> from top to bottom — a notebook with cells executed <code>[3]</code>, <code>[1]</code>, <code>[5]</code> is confusing for reviewers and unreliable when rerun. <strong>Third, treat notebooks as narrative and keep heavy code in <code>src/</code></strong> — import helper functions from versioned Python modules rather than redefining them in every notebook. That way notebook diffs stay small and the code that really matters lives in files Git can review cleanly.</p>
 </section>
 <section id="large-files-and-datasets" class="level3">
 <h3 class="anchored" data-anchor-id="large-files-and-datasets">Large files and datasets</h3>
-<ul>
-<li><p>Avoid committing large raw data unless instructed.</p></li>
-<li><p>Prefer storing raw data outside the repo and documenting retrieval.</p></li>
-</ul>
+<p>Do not commit large raw datasets to Git. Git was designed for source code — thousands of small text files — and it does not compress or handle multi-megabyte binary files well. A committed 500 MB CSV makes every <code>git clone</code> slow forever, because Git keeps the file in history even if you delete it later. A committed 2 GB model file can push your repository past GitHub’s size limits.</p>
+<p>The right pattern is to <strong>store raw data outside the repository</strong> — in a cloud bucket, a shared drive, a course-provided URL, or a dedicated data-storage service — and commit only the <em>retrieval script</em> that downloads it into your local <code>data/raw/</code> folder. That way the code to reproduce the dataset is versioned, the dataset itself is not, and a new collaborator can run <code>make data</code> or <code>python scripts/download_data.py</code> to populate their local copy. If you really do need to version large files inside a repository, look into <strong>Git LFS</strong> (Large File Storage), which is a separate system that stores big blobs alongside Git instead of inside it — but it is an advanced tool and overkill for most student projects.</p>
 </section>
 <section id="releases-and-tags-optional" class="level3">
 <h3 class="anchored" data-anchor-id="releases-and-tags-optional">Releases and tags (optional)</h3>
-<ul>
-<li><p>Tag a version that corresponds to a submission or report.</p></li>
-<li><p>Helps you reproduce exactly what was delivered.</p></li>
-</ul>
+<p>A <strong>tag</strong> is a name you attach to a specific commit that does not move as you continue to commit. Branches move; tags do not. Git tags are how you mark “this is the exact version of the project I submitted for the midterm” or “this is the version of the code used in the published figure,” so that you — or anyone else — can come back months later and reproduce exactly that state:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> v1.0-midterm <span class="at">-m</span> <span class="st">"Midterm submission, 2025-03-10"</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin v1.0-midterm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>On GitHub, you can promote a tag to a <strong>release</strong>, which adds release notes and optional downloadable files (like a zipped data snapshot or a compiled PDF). Releases are the right mechanism for citation: a paper or report can reference <code>v1.0-midterm</code> and a reviewer can click through to the exact code that produced the results. You do not need releases for day-to-day work, but they are cheap to create and worth knowing about for the moments they matter.</p>
 </section>
 </section>
 <section id="worked-examples-outline" class="level2" data-number="25.11">
