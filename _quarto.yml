@@ -16,7 +16,6 @@ book:
   repo-url: https://github.com/brianckeegan/ParatechnicalComputingHandbook
   repo-branch: main
   repo-actions: [edit, issue]
-  downloads: [pdf]
   sharing: [twitter, linkedin]
   sidebar:
     style: docked
@@ -29,6 +28,7 @@ book:
       chapters:
         - parts/part-1-practice/questions.qmd
         - parts/part-1-practice/documentation.qmd
+        - parts/part-1-practice/reading-docs.qmd
         - parts/part-1-practice/debugging.qmd
         - parts/part-1-practice/tracebacks.qmd
         - parts/part-1-practice/ai-llm.qmd
@@ -48,10 +48,16 @@ book:
         - parts/part-3-python/jupyter.qmd
         - parts/part-3-python/scripting.qmd
         - parts/part-3-python/testing.qmd
+        - parts/part-3-python/regex.qmd
+        - parts/part-3-python/linting.qmd
 
     - part: "Part IV — Working with Data"
       chapters:
         - parts/part-4-data/data-file-formats.qmd
+        - parts/part-4-data/tabular-data.qmd
+        - parts/part-4-data/pandas-basics.qmd
+        - parts/part-4-data/sql-basics.qmd
+        - parts/part-4-data/http-apis.qmd
 
     - part: "Part V — Project Management"
       chapters:
@@ -59,6 +65,8 @@ book:
         - parts/part-5-projects/version-control.qmd
         - parts/part-5-projects/collaboration.qmd
         - parts/part-5-projects/automation.qmd
+        - parts/part-5-projects/secrets.qmd
+        - parts/part-5-projects/pre-commit.qmd
 
     - part: "Part VI — Algorithmic Systems"
       chapters:
@@ -70,6 +78,7 @@ book:
 
   appendices:
     - appendix-glossary.qmd
+    - appendix-ai-disclosure.qmd
 
 # Books inherit most website options from `book:`, but Quarto 1.9 routes
 # `llms-txt` through the website config specifically. Declaring a sibling

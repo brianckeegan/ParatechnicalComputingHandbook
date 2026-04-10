@@ -20,14 +20,8 @@ jobs:
           # (see _quarto.yml -> website.llms-txt).
           version: "1.9.37"
 
-      - name: Set up TinyTeX for PDF rendering
-        uses: quarto-dev/quarto-actions/setup@v2
-        with:
-          tinytex: true
-          version: "1.9.37"
-
-      - name: Render book (HTML + PDF)
-        run: quarto render
+      - name: Render book (HTML)
+        run: quarto render --to html
 
       - name: Upload rendered book
         uses: actions/upload-artifact@v4

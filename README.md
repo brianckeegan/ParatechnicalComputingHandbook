@@ -6,20 +6,16 @@ A reference book for the skills that fall between knowing what to type and worki
 
 **Authors:** Brian C. Keegan & Abram Handler
 
----
-
 ## Who this is for
 
 Undergraduate students in data science, social science, humanities, and adjacent fields who use Python and computing as tools. No prior CS background assumed. The handbook covers what happens around the code — environments, documentation, debugging, collaboration, and automation — and is designed to be **used as reference documentation** rather than read front-to-back. Drop into any chapter that matches your current problem; each chapter opens with a "Prerequisites and see-also" callout linking to related material if you need more context.
-
----
 
 ## Building the book
 
 ### Prerequisites
 
 - **Quarto ≥ 1.9.0** — https://quarto.org/docs/download/ (the `llms-txt` feature requires 1.9.0+)
-- **TinyTeX** for PDF rendering — run `quarto install tinytex` after installing Quarto
+- **TinyTeX** (optional) — only needed if you want to render the PDF locally (`quarto install tinytex`). CI renders HTML only.
 
 ### Commands
 
@@ -29,23 +25,18 @@ From the repo root:
 # Interactive preview with live reload
 quarto preview
 
-# Full render to HTML + PDF
-quarto render
-
-# HTML only (much faster iteration)
+# Render HTML (matches CI)
 quarto render --to html
 
-# PDF only
+# Render PDF locally (requires TinyTeX)
 quarto render --to pdf
 ```
 
 Output lands in `_book/`:
 
 - `_book/index.html` — landing page for the HTML book
-- `_book/Paratechnical-Computing-Handbook.pdf` — printable PDF
 - `_book/llms.txt` and per-chapter `*.llms.md` — machine-readable versions designed to be ingested by LLMs (see https://quarto.org/docs/websites/website-llms.html)
-
----
+- `_book/Paratechnical-Computing-Handbook.pdf` — only if you rendered `--to pdf` locally
 
 ## Project structure
 
@@ -67,23 +58,19 @@ ParatechnicalComputingHandbook/
 │   └── part-6-algorithmic/          # Part VI — Algorithmic Systems
 │
 ├── graphics/                        # images used in chapters
-└── .github/workflows/build-book.yml # CI: renders HTML + PDF
+└── .github/workflows/build-book.yml # CI: renders HTML book
 ```
-
----
 
 ## Book contents
 
 | Part | Chapters | Theme |
 |------|----------|-------|
-| **I — Practice of Technical Work** | Asking Questions, Documentation, Debugging, Reading Tracebacks, AI Tools | Human and cognitive skills that underpin all technical work |
+| **I — Practice of Technical Work** | Asking Questions, Documentation, Debugging, Reading Tracebacks, AI Tools, Reading Docs | Human and cognitive skills that underpin all technical work |
 | **II — Computing Environment** | OS, File System, Terminal, Text Editors, Remote Computing | The infrastructure you work inside |
-| **III — Python Management** | Package Management, Virtual Environments, Jupyter, Scripting, Testing | The Python working context |
-| **IV — Working with Data** | Data File Formats | Moving data from files into your analysis |
-| **V — Project Management** | Project Management, Version Control, Collaboration, Automation | Shipping and sustaining work with others |
+| **III — Python Management** | Package Management, Virtual Environments, Jupyter, Scripting, Testing, Regex, Linting | The Python working context |
+| **IV — Working with Data** | Data File Formats, Tabular Data, Pandas Basics, SQL Basics, HTTP and APIs | Getting data in, out, and into shape |
+| **V — Project Management** | Project Management, Version Control, Collaboration, Automation, Secrets, Pre-commit Hooks | Shipping and sustaining work with others |
 | **VI — Algorithmic Systems** | LLM Internals, AI Agents, Evaluating AI | Working with AI tools deliberately |
-
----
 
 ## Contributing
 
@@ -98,8 +85,6 @@ The short version:
 - Citations: `[@bibkey]`, with entries in `references.bib`.
 - Formatting: `**bold**`, `*italic*`, `` `code` ``, fenced code blocks with language hints.
 
----
-
 ## CI
 
-Every push and pull request triggers `.github/workflows/build-book.yml`, which runs `quarto render` in an Ubuntu runner with a pinned Quarto version and TinyTeX. The rendered `_book/` output is uploaded as an artifact named `paratechnical-computing-handbook` and retained for 30 days.
+Every push and pull request triggers `.github/workflows/build-book.yml`, which runs `quarto render --to html` in an Ubuntu runner with a pinned Quarto version. The rendered `_book/` output is uploaded as an artifact named `paratechnical-computing-handbook` and retained for 30 days. PDF rendering is a local-only step — install TinyTeX and run `quarto render --to pdf` if you want one.
