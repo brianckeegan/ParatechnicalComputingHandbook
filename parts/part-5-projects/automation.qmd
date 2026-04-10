@@ -39,91 +39,67 @@ If running checks and builds is one command, people will do it. If it is a long 
 
 ## A mental model: the automation ladder
 
-### Level 0: manual commands
+It helps to think of automation as a ladder with five rungs, each one strictly more capable than the last and each one worth climbing only when the rung below has become a real chore.
 
--   You type commands repeatedly.
+The bottom rung is **Level 0: manual commands.** You type the same sequence by hand every time you need to do a task. This works fine when the task is rare and small, but it has the obvious failure mode: as soon as the sequence has more than two or three steps, you start forgetting them in stressful moments, and the risk of an inconsistent run grows.
 
--   Risk: missed steps, inconsistent runs.
+The next rung is **Level 1: scripts.** You put the sequence into a `.py`, `.sh`, or `.ps1` file and run that file instead of the individual commands. The benefit is enormous and basically free: the sequence is now repeatable, shareable, and reviewable.
 
-### Level 1: scripts
+```bash
+#!/usr/bin/env bash
+# scripts/build_report.sh
+set -e
+python src/clean.py --input data/raw/sales.csv --output data/processed/sales.parquet
+python src/analyze.py --input data/processed/sales.parquet --output reports/q3.html
+echo "report ready: reports/q3.html"
+```
 
--   Put the sequence in a `.py`, `.sh`, or `.ps1` file.
+**Level 2: task runners and rebuild tools.** Once you have several scripts, you start wanting *named* tasks rather than long file paths. `make test`, `make report`, `make clean`. A task runner lets you label common workflows with short names and (in the case of build tools like `make`) lets you skip work whose inputs have not changed. This is the level where "rebuild only the parts that changed" becomes possible.
 
--   Benefit: repeatability and shareability.
+**Level 3: schedulers.** Once a task is scripted and named, you can run it on a time-based schedule — every night at 2 AM, every hour, every Monday morning — without anyone being at the keyboard. This is the level where unattended operation becomes possible. `cron` on macOS and Linux and Task Scheduler on Windows are the basic tools.
 
-### Level 2: task runners and rebuild tools
+**Level 4: continuous integration (CI).** The top rung is having checks run *automatically on every push and pull request* to your repository, with the results visible to your collaborators. CI is what catches integration errors before they land on `main`, and it is what creates the "shared quality gate" that lets a team move faster than any one person could alone.
 
--   Named tasks: `make test`, `make report`.
-
--   Rebuild only what changed (dependency graph).
-
-### Level 3: schedulers
-
--   Run tasks on a time-based schedule (daily, hourly).
-
--   Benefit: unattended operation.
-
-### Level 4: CI
-
--   Run checks automatically on every push/PR.
-
--   Benefit: catches integration errors early; creates a shared quality gate.
+The right level depends on what you are doing. Solo coursework lives happily at Level 1. A team project usually wants Level 4 for the things that matter most (tests, linting, build) and Level 1 for everything else. Climbing the ladder before you need to is busywork; refusing to climb it after a chore has bitten you is a slow form of procrastination.
 
 ## Deciding what to automate (student-friendly heuristics)
 
 ### Automate if
 
--   you repeat the task more than twice,
-
--   you need the task to be done the same way every time,
-
--   mistakes are costly (grading, publication, deployment),
-
--   teammates need a one-command workflow.
+A useful rule of thumb: automate something the third time you do it. The first time, you are still figuring out the steps; the second time, you might do them differently; by the third, the sequence is stable enough that writing it down repays the investment. Beyond that, four signs argue strongly for automation: you repeat the task more than twice, you need it done the *same way* every time, the cost of getting it wrong is real (grading, publication, anything other people depend on), or your teammates need a one-command workflow they can run without your help.
 
 ### Do not automate (yet) if
 
--   the process is still unclear,
-
--   the task changes every hour,
-
--   automation would hide important learning.
+The opposite is also true. Automation has its own cost — writing it, debugging it, maintaining it — and you can pay that cost prematurely. Hold off if the process is still unclear (you do not know what the right steps *are* yet), if the task is changing every hour (you will spend more time updating the automation than running the task), or if automating away the manual version would hide learning you actually need. There is no virtue in automating an analysis you do not yet understand.
 
 ### The "minimum viable automation" set
 
--   One command to set up environment.
-
--   One command to run a smoke test.
-
--   One command to build core outputs.
+For most student projects, three commands cover almost everything. **One command to set up the environment** (creating a venv or conda env and installing dependencies). **One command to run a smoke test** (a small check that the code can load, the data is reachable, and nothing is wildly broken). **One command to build the core outputs** (whichever scripts produce the figures, tables, or report you care about). Once those three exist, your project is reproducible by anyone who clones it, including future you.
 
 ## Automation fundamentals: scripts that behave well
 
-### Exit codes and failure
+A handful of properties separate scripts that automate cleanly from scripts that automate "almost." Get into the habit of building all of them in from the start.
 
--   Success should exit with code 0.
+The first is **clean exit codes and failure modes**. By long Unix convention, a successful script exits with code `0` and a failing script exits with any nonzero code. Schedulers, task runners, and CI systems all read that exit code to decide whether the run succeeded — so if your script swallows errors and exits 0 anyway, every downstream system thinks everything is fine when it is not. In bash, `set -e` makes the script exit immediately on any error; in Python, raise an exception or call `sys.exit(1)` on failure rather than just printing a warning.
 
--   Failure should exit nonzero and print a clear message.
+```bash
+#!/usr/bin/env bash
+set -e                       # exit on first error
+python src/clean.py          # if this fails, the script stops
+python src/analyze.py        # only runs if clean.py succeeded
+```
 
-### Idempotence and safe re-runs
+The second is **idempotence**, which is a fancy word for "running this twice produces the same result as running it once." An idempotent script can be safely re-run after a partial failure without manual cleanup. A non-idempotent script appends to a log file every run, or fails the second time because it tries to create a directory that already exists. Aim for the first kind: use `mkdir -p` instead of plain `mkdir`, write outputs by overwriting rather than appending, and design so that "rerun the whole thing" is always safe.
 
--   A task is idempotent if re-running it yields the same final state.
+The third is **explicit inputs and outputs**. Treat file paths and parameters as first-class arguments rather than constants buried in the middle of the script. Write outputs to predictable, named locations (`data/processed/`, `reports/`, `logs/`). Never overwrite raw data — the rule from @sec-tabular-data still applies: raw is sacred, derivatives go elsewhere.
 
--   Avoid scripts that require manual cleanup to rerun.
+The fourth is **logging and observability**. For a script that runs unattended, you cannot watch its terminal — so print useful progress markers as it goes, and save them somewhere you can read after the fact. For long tasks, mark the start and end of each stage. For scheduled or CI runs, redirect stdout and stderr to a log file so you can investigate what happened when something fails:
 
-### Inputs/outputs as first-class
+```bash
+python src/run_pipeline.py >> logs/pipeline.log 2>&1
+```
 
--   Treat file paths and parameters as explicit.
-
--   Write outputs to predictable locations.
-
--   Never overwrite raw data.
-
-### Logging and observability (intro)
-
--   Print progress markers for long tasks.
-
--   Save logs for scheduled/CI runs.
+The combination of clean exits, idempotence, explicit I/O, and logging is what turns "a script that works on my machine when I babysit it" into "a script my teammates can rely on."
 
 ## Repeatable tasks with `make` (and the idea of rebuilds)
 
@@ -392,13 +368,13 @@ This "commit twice" rhythm feels weird for a day, then becomes invisible. A few 
 
 ## Worked examples (outline)
 
-### Example 1: Turn a 6-step checklist into `make` targets
+### Turn a 6-step checklist into `make` targets
 
 -   Create `make format`, `make test`, `make report`.
 
 -   Add a default target `make all`.
 
-### Example 2: Schedule a daily pipeline run
+### Schedule a daily pipeline run
 
 -   Create a script with logs.
 
@@ -406,7 +382,7 @@ This "commit twice" rhythm feels weird for a day, then becomes invisible. A few 
 
 -   Verify outputs and failure behavior.
 
-### Example 3: Add GitHub Actions CI
+### Add GitHub Actions CI
 
 -   Run on push and pull request.
 
@@ -414,19 +390,19 @@ This "commit twice" rhythm feels weird for a day, then becomes invisible. A few 
 
 -   Upload artifacts on failure.
 
-### Example 4: Speed up CI with caching
+### Speed up CI with caching
 
 -   Add dependency caching.
 
 -   Compare runtimes before/after.
 
-### Example 5: Add pre-commit hooks + CI enforcement
+### Add pre-commit hooks + CI enforcement
 
 -   Run lightweight checks before commit.
 
 -   Ensure CI runs the same checks.
 
-### Example 6: Use AI to draft a workflow, then validate
+### Use AI to draft a workflow, then validate
 
 -   Draft YAML with AI.
 
