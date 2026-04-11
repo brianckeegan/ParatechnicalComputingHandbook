@@ -1,4 +1,4 @@
-# 11  Text Editors
+# 12  Text Editors
 
 > **TIP:**
 >
@@ -32,7 +32,7 @@ By the end of this chapter, you should be able to:
 
 Choose an editor that fits the task, and build habits that transfer across editors: paths, file formats, search, safe edits, and reproducibility.
 
-## 11.1 A beginner mental model
+## 12.1 A beginner mental model
 
 A surprising amount of computing happens inside plain text files. Your code is plain text. Your configuration files (`.gitignore`, `pyproject.toml`, `_quarto.yml`, `requirements.txt`) are plain text. Your data, when it is in a friendly format like CSV or JSON, is plain text. Your logs are plain text. Your README is plain text. The text editor is the universal workbench you use to read and modify all of those, and learning to drive one well pays back across every other tool in this book.
 
@@ -40,7 +40,7 @@ What an editor actually *does* under the hood is conceptually simple. It reads b
 
 A small vocabulary will save you a lot of confusion. **Encoding** is the rule for turning raw bytes into characters; UTF-8 is the modern default and you should not save files in anything else unless you have a specific reason. **Line endings** are the invisible characters that mark the end of each line; macOS and Linux use a single newline (LF, byte `\n`), while Windows uses a carriage-return-then-newline pair (CRLF, bytes `\r\n`), and projects shared between OSes can produce noisy diffs and parser errors when they get mixed. **Whitespace** is the catch-all term for spaces, tabs, and newlines, and it matters more in some languages than others — Python, YAML, and Makefiles in particular treat whitespace as significant and will fail on tabs-vs-spaces confusion. **Syntax highlighting** is when an editor colors keywords, strings, and comments differently so the structure of the code is visually obvious. **Linting and formatting** are automated tools that check style and normalize it (see [sec-linting](#sec-linting)). And an **IDE** (“integrated development environment”) is a heavier kind of editor that bundles a build system, a debugger, and language tooling into one package — useful for some ecosystems, overkill for others.
 
-## 11.2 Choosing your tool: three editor classes
+## 12.2 Choosing your tool: three editor classes
 
 Editors come in three rough sizes, and it is worth knowing which size fits which job.
 
@@ -52,7 +52,7 @@ The largest tier is **IDEs**: Visual Studio for C# and .NET work, IntelliJ for J
 
 The decision rule for a typical Python data student is straightforward. For a quick edit on a remote server, use `nano` (or `vim` if you are comfortable with it). For everything else — Python scripting, notebooks, small projects — use a GUI editor with an integrated terminal, defaulting to VS Code. Reach for a full IDE only if your course or project specifically requires it.
 
-## 11.3 Essential editor skills (transfer across tools)
+## 12.3 Essential editor skills (transfer across tools)
 
 The operations in this section are the ones that transfer across every editor you will ever use. Learn them once, in whichever editor is your daily driver, and you will recognize their equivalents in `nano`, `vim`, VS Code, and any IDE a future job puts in front of you.
 
@@ -110,7 +110,7 @@ Three navigation commands are worth learning on day one of any new editor:
 
 Keep a clear mental model of the **project root** — the folder that contains your `README.md`, `pyproject.toml`, or `.git/` directory. Your editor’s file tree starts here, your terminal commands usually run from here, and relative paths in your code are resolved from here. “Where is the root?” is one of the first questions to answer whenever you open a project; if the answer is unclear, open the editor on the wrong folder and half of your search and navigation commands will silently miss things that live outside the opened folder.
 
-## 11.4 Simple scripting workflows in an editor (novice level)
+## 12.4 Simple scripting workflows in an editor (novice level)
 
 ### The write-run-read-repeat loop
 
@@ -155,7 +155,7 @@ The minimum debugger vocabulary is small. A **breakpoint** is a marker on a line
 
 Do not feel obligated to learn a debugger on day one. Plenty of professional data scientists go entire projects with just `print` and tests. Reach for the debugger when `print`-debugging has stopped feeling fast, not before.
 
-## 11.5 Debugging files (common student failure modes)
+## 12.5 Debugging files (common student failure modes)
 
 ### Wrong file, wrong place
 
@@ -177,7 +177,7 @@ When a project is shared between Windows and macOS or Linux developers, you can 
 
 YAML, Python, and Makefiles all care about the difference between tabs and spaces, and YAML in particular breaks in subtle ways when you mix them. The symptom is usually a parser error pointing at a line that looks correct to your eyes. The fix is to turn on visible whitespace so you can *see* whether a line is using tabs or spaces, and to validate the file with the tool that reads it — `python -c "import yaml; yaml.safe_load(open('config.yml'))"` will tell you immediately whether your YAML is parseable.
 
-## 11.6 Terminal editors: survival skills
+## 12.6 Terminal editors: survival skills
 
 You do not need to become fluent in a terminal editor. You do need to know enough to open a file, change one line, and save and exit without calling a friend — because sooner or later you will SSH into a server and discover that a terminal editor is the only tool available. This section covers the minimum for each of the three most common terminal editors.
 
@@ -236,7 +236,7 @@ Ctrl+g               cancel current operation (if you get stuck mid-command)
 
 The Emacs notation is `C-x C-s` for “hold Ctrl, press x, release, hold Ctrl, press s.” Most tutorials use that form. As with `vim`, you do not need to be an Emacs power user; you need to be able to edit and save a file without panic.
 
-## 11.7 GUI editors: practical configuration (keep it minimal)
+## 12.7 GUI editors: practical configuration (keep it minimal)
 
 Most GUI editors ship with hundreds of settings and thousands of available extensions. The temptation is to configure extensively; the right move is to configure *minimally*. A lightly configured editor is easier to reproduce on a new machine, easier to explain to a collaborator, and much less likely to break in confusing ways after an update.
 
@@ -298,7 +298,7 @@ Most editors distinguish between **global (user) settings**, which apply everywh
 
 This particular file tells VS Code to use the project’s own virtual environment as the Python interpreter, to format files on save, and to draw a vertical ruler at column 88 (the `black` default). It does not say anything about your personal color theme or font size — those belong in your global settings, where they do not affect collaborators. Keeping global settings light is what makes your setup portable: when you borrow a friend’s laptop for half an hour, you can install VS Code, open the project, and be productive in a few minutes.
 
-## 11.8 IDEs: fundamentals without overwhelm
+## 12.8 IDEs: fundamentals without overwhelm
 
 A full IDE — IntelliJ, PyCharm, Visual Studio, Xcode, RStudio — is a heavier tool than a GUI code editor. It is worth understanding IDEs at a conceptual level even if you do not use one day-to-day, because eventually a course or a job will put you in front of one.
 
@@ -335,7 +335,7 @@ A watch panel shows the values of variables you want to keep an eye on. A call s
 
 As with the GUI-editor debugger, you do not have to learn this on day one. Many students go through an entire intro sequence on `print`-debugging and tests alone, and that is fine. But when you hit the bug where you need to understand the state of a complicated object at a specific iteration of a loop, the debugger will save you hours and you should know it is there.
 
-## 11.9 Best practices: habits that prevent pain
+## 12.9 Best practices: habits that prevent pain
 
 The habits in this section are cheap to build and expensive to learn the hard way.
 
@@ -387,7 +387,7 @@ git checkout .                  # throw everything away; back to the commit
 
 The habit to build: **commit small, commit often, and commit before anything that scares you.** Commits are cheap, and the safety they provide is enormous. See [sec-git-github](#sec-git-github) for the mechanics and [sec-project-management](#sec-project-management) for how commit hygiene fits into broader project discipline.
 
-## 11.10 Worked examples
+## 12.10 Worked examples
 
 ### Writing and running a tiny script
 
@@ -453,7 +453,7 @@ exit
 
 The whole interaction is under a minute if you know the basic `nano` keystrokes. The reason the chapter recommended learning `nano` for emergencies is exactly this scenario: you want a tool that is already installed on every Unix box you might log into and that you can drive without a tutorial open in front of you.
 
-## 11.11 Templates
+## 12.11 Templates
 
 ### Template A: Editor setup checklist (first week)
 
@@ -477,7 +477,7 @@ The whole interaction is under a minute if you know the basic `nano` keystrokes.
     5. Run tests or rerun script
     6. Commit with a message describing the change
 
-## 11.12 Exercises
+## 12.12 Exercises
 
 1.  Configure your editor to show line numbers and visible whitespace; explain what you changed.
 
@@ -491,7 +491,7 @@ The whole interaction is under a minute if you know the basic `nano` keystrokes.
 
 6.  Optional: learn a minimal vim workflow (insert, save, quit, search).
 
-## 11.13 One-page checklist
+## 12.13 One-page checklist
 
 - I can open, save, and locate files reliably.
 
@@ -507,7 +507,7 @@ The whole interaction is under a minute if you know the basic `nano` keystrokes.
 
 - I have a fallback editor skill for remote/emergency use.
 
-## 11.14 Quick reference: terminal editor survival commands (optional handout)
+## 12.14 Quick reference: terminal editor survival commands (optional handout)
 
 ### nano
 
@@ -521,7 +521,7 @@ The whole interaction is under a minute if you know the basic `nano` keystrokes.
 
 ### vim
 
-## 11.15 Quick reference: GUI/IDE search
+## 12.15 Quick reference: GUI/IDE search
 
 - Find in file, replace in file
 

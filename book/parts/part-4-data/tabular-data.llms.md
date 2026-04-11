@@ -1,4 +1,4 @@
-# 20  Tabular Data
+# 21  Tabular Data
 
 > **TIP:**
 >
@@ -30,7 +30,7 @@ By the end of this chapter, you should be able to:
 
 Every dataset looks reasonable at first glance. Every dataset has problems. A ten-line validation block at the top of your analysis is cheaper than a week of wrong conclusions.
 
-## 20.1 Wide vs. tidy data
+## 21.1 Wide vs. tidy data
 
 The single most useful concept for working with tabular data is the distinction between **wide** and **tidy** (also called “long”) formats. The idea was popularized by Hadley Wickham and has since shaped every major data analysis library.
 
@@ -102,7 +102,7 @@ wide_again = tidy.pivot(index="student", columns="subject", values="score")
 
 Learn these two functions early. They turn a “help me reshape my data” question into a one-liner.
 
-## 20.2 The standard cleaning pipeline
+## 21.2 The standard cleaning pipeline
 
 Most real datasets need roughly the same sequence of moves before they are usable. Do them in order; skipping steps or reordering them causes subtle bugs.
 
@@ -118,7 +118,7 @@ Most real datasets need roughly the same sequence of moves before they are usabl
 
 Put every step in a script or notebook that runs end-to-end, from raw to cleaned, in one pass. If someone (including future you) ever needs to know “what did we do to this data?”, the answer should be “read this script.”
 
-## 20.3 Raw vs. cleaned data
+## 21.3 Raw vs. cleaned data
 
 Adopt this rule early: **raw data is immutable.** You never modify it. You never save over it. You keep it in a folder called `data/raw/` and treat it like a read-only museum exhibit.
 
@@ -138,7 +138,7 @@ Cleaned data is a *derivative* of raw data, produced by a script. It lives in `d
 
 This separation does three things: it makes cleaning reproducible, it makes the lineage of any number in your report traceable, and it prevents the dreaded “I don’t remember which version of this file is the good one” situation. See [sec-project-management](#sec-project-management) for how this fits into overall project structure.
 
-## 20.4 Validation: lightweight checks that catch the most bugs
+## 21.4 Validation: lightweight checks that catch the most bugs
 
 Validation does not have to be fancy. A ten-line block at the top of your analysis catches 90% of the problems you will encounter. Paste this pattern into every notebook or cleaning script:
 
@@ -165,7 +165,7 @@ A useful mental model: validate five axes of every dataset you load.
 
 Run these checks at the top of every analysis, even when you “know” the data is fine. You do not know until you have checked.
 
-## 20.5 The seven most common friction points
+## 21.5 The seven most common friction points
 
 Here are the specific problems you will hit most often with real data, and the standard fix for each.
 
@@ -260,7 +260,7 @@ For groupby, pass `dropna=False` if you want NaN groups included.
 
 **Fix:** `pd.to_numeric(..., errors="coerce")` as in problem 2, then decide what to do with the NaNs. Do not silently `.dropna()` — that is the row you should be investigating.
 
-## 20.6 Worked examples
+## 21.6 Worked examples
 
 ### Turning wide survey data into tidy
 
@@ -344,7 +344,7 @@ merged = orders.merge(customers, on="customer_id", validate="many_to_one")
 
 Five extra characters (`validate="many_to_one"`) catches the bug that would otherwise silently double every revenue figure in your final report.
 
-## 20.7 Templates
+## 21.7 Templates
 
 **A “load, clean, validate” skeleton to paste into every cleaning script:**
 
@@ -378,7 +378,7 @@ def validate(df: pd.DataFrame) -> None:
     # Add dataset-specific checks below
 ```
 
-## 20.8 Exercises
+## 21.8 Exercises
 
 1.  Take a wide dataset from your own work (a survey, a grade book, a classroom export) and write a one-line `melt` that converts it to tidy. Verify by counting rows.
 2.  Write the reverse: take a tidy dataset and `pivot` it back to wide. Confirm the two are equivalent after reshaping.
@@ -388,7 +388,7 @@ def validate(df: pd.DataFrame) -> None:
 6.  Write a `pandas` merge that you *expect* to be `one_to_one`, then add `validate="one_to_one"`. Now introduce a duplicate into the right-hand DataFrame and confirm pandas raises.
 7.  Find a dataset with missing-value sentinels. Load it twice — once with default options, once with `na_values=`. Compare `.describe()`. How many of your statistics changed?
 
-## 20.9 One-page checklist
+## 21.9 One-page checklist
 
 - **Never modify raw data.** Keep it in `data/raw/`, read-only.
 - **Cleaning is a script, not a notebook.** Reproducible and rerunnable, top to bottom.

@@ -1,4 +1,4 @@
-# 16  Scripting
+# 17  Scripting
 
 > **TIP:**
 >
@@ -32,7 +32,7 @@ By the end of this chapter, you should be able to:
 
 The logic (data loading, cleaning, analysis) should live in importable functions. The notebook (or script) should orchestrate and explain.
 
-## 16.1 Mental models and vocabulary
+## 17.1 Mental models and vocabulary
 
 ### Script, module, package
 
@@ -89,7 +89,7 @@ $ jupyter lab                          # notebooks also see data/raw/...
 
 For scripts that need to be runnable from anywhere (for example, scheduled jobs), the trick from [sec-filesystem](#sec-filesystem) still applies: `Path(__file__).resolve().parent.parent` gives you the script’s own folder, and from there you can walk up to the project root without depending on the caller’s CWD. The general principle is the same either way: **pick an anchor once, and resolve every path relative to it.**
 
-## 16.2 Writing scripts: the essentials
+## 17.2 Writing scripts: the essentials
 
 A minimal Python script has a predictable shape: imports at the top, then constants and configuration, then the functions that do the work, then a `main()` function that orchestrates them, and finally the `if __name__ == "__main__":` block at the bottom that runs `main()` when the file is executed as a script.
 
@@ -135,7 +135,7 @@ log.info("loaded %d rows", len(df))
 
 Stick with `print` for course assignments; reach for logging when you start writing scripts that other people will depend on or that run unattended.
 
-## 16.3 Organizing reusable code: from one file to `src/`
+## 17.3 Organizing reusable code: from one file to `src/`
 
 ### From monolith to functions
 
@@ -210,7 +210,7 @@ The second habit is to **stop copy-pasting code between notebooks**. Every time 
 
 The third is a mindset shift: when imports are confusing, **treat it as a project-structure problem, not a magic-command problem**. The temptation is to reach for `sys.path.insert(0, "../..")` or `%load_ext autoreload` or other incantations to force imports to work in the current layout. These sometimes help, but they are almost always patching a symptom. If you find yourself doing them, step back and ask whether the project layout matches the one above — whether you have a clean project root you are running from, whether `src/` is a real folder with an `__init__.py`, whether you are launching your notebook server from the root. Nine times out of ten, the fix is a structural one, and the magic commands become unnecessary.
 
-## 16.4 Loading custom scripts into notebooks
+## 17.4 Loading custom scripts into notebooks
 
 ### The basic pattern: import your code
 
@@ -298,7 +298,7 @@ print("cleaning module:", cleaning.__file__)
 
 When the smoke test prints the path of a Python interpreter that is not your project’s virtual environment, you know the kernel is wrong. When `cwd` is not the project root, you know the notebook was launched from the wrong place. When a required file shows up as `MISSING`, you know to download it before running the analysis. Each of these is a thirty-seconds fix when you catch it here and a half-hour detour when you catch it later. Make the smoke test cell the first cell of every notebook that depends on `src/`, and you will save yourself the detours.
 
-## 16.5 Passing parameters from the command line
+## 17.5 Passing parameters from the command line
 
 ### Why parameterize scripts
 
@@ -362,7 +362,7 @@ def main():
 
 Three small habits, almost no extra effort, and your work is dramatically more reproducible.
 
-## 16.6 Translating notebooks into scripts (and vice versa)
+## 17.6 Translating notebooks into scripts (and vice versa)
 
 ### Why convert
 
@@ -454,7 +454,7 @@ papermill notebooks/analysis.ipynb outputs/analysis_q3.ipynb \
 
 Papermill runs the notebook end-to-end, injects your parameters as if they had been typed into the parameters cell, and writes a new executed notebook with the results and outputs baked in. This is the right tool when the final artifact is *supposed* to be a human-readable notebook — a monthly report, a per-experiment writeup, a gallery of results — and what changes between runs is only a handful of inputs. For pipelines where the output is pure data, a plain script is usually the better choice.
 
-## 16.7 Notebook versus script: trade-offs and decision rules
+## 17.7 Notebook versus script: trade-offs and decision rules
 
 ### Notebooks are best for
 
@@ -474,7 +474,7 @@ There are clear smells that signal “this notebook should become (or call) a sc
 
 The complementary smells say “this should stay in a notebook”: the primary goal is interpretation or communication, the analysis is still exploratory and changing quickly, or you are teaching or documenting reasoning rather than producing a deliverable. Notebooks are the wrong tool for production but the right tool for thinking; do not let “scripts are more professional” push you out of a notebook when a notebook is what you actually need.
 
-## 16.8 Best practices: making scripts and notebooks play well together
+## 17.8 Best practices: making scripts and notebooks play well together
 
 ### Make data and paths explicit
 
@@ -661,7 +661,7 @@ papermill notebooks/analysis.ipynb outputs/analysis_q3.ipynb \
 
 `papermill` writes a new copy of the notebook with the executed outputs and the new parameter values baked in. This is the right tool when you want to keep the notebook narrative form but run it many times — for example, generating one report per month from the same template.
 
-## 16.9 Templates
+## 17.9 Templates
 
 ### Template A: Minimal script skeleton
 
@@ -711,7 +711,7 @@ papermill notebooks/analysis.ipynb outputs/analysis_q3.ipynb \
 
     # 6) Restart-and-run-all proof
 
-## 16.10 Exercises
+## 17.10 Exercises
 
 1.  Write a script that loads a CSV and prints a short summary (rows, columns, missingness).
 
@@ -725,7 +725,7 @@ papermill notebooks/analysis.ipynb outputs/analysis_q3.ipynb \
 
 6.  Write a short paragraph explaining whether your project should be a notebook, a script, or a hybrid—and why.
 
-## 16.11 One-page checklist
+## 17.11 One-page checklist
 
 - My script has a `main()` and does not run heavy work on import.
 
@@ -739,7 +739,7 @@ papermill notebooks/analysis.ipynb outputs/analysis_q3.ipynb \
 
 - I choose notebooks for narrative/exploration and scripts for repeatable/automated runs.
 
-## 16.12 Quick reference: common tools (conceptual)
+## 17.12 Quick reference: common tools (conceptual)
 
 - Notebook conversion to scripts and reports.
 

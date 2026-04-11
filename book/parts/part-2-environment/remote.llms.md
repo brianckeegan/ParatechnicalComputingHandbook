@@ -1,4 +1,4 @@
-# 12  Remote Computing
+# 13  Remote Computing
 
 > **TIP:**
 >
@@ -34,7 +34,7 @@ By the end of this chapter, you should be able to:
 
 The goal is not cleverness; it is predictable workflows that minimize risk.
 
-## 12.1 A beginner mental model
+## 13.1 A beginner mental model
 
 The vocabulary here is simpler than it sounds. Your **local machine** is the laptop or desktop in front of you, the one whose keyboard you can touch. A **remote machine** is any other computer you reach over a network connection: a university server, a high-performance cluster login node, a cloud VM, a lab workstation. The **network** between them is whichever path actually connects them — your campus network, your home Wi-Fi, the public internet, or some combination.
 
@@ -44,7 +44,7 @@ A few details about how connections behave matter in practice. An **SSH session*
 
 Given all that overhead, why use remote computing at all? Four reasons. The first is **resources**: the server has more CPU, more RAM, more disk, or a GPU your laptop does not have. The second is **shared data and licensed software**: some datasets and tools live on a server because they are too large, too sensitive, or too expensive to copy. The third is **reliability**: a server runs continuously and gets backed up, while your laptop closes its lid and dies on Wi-Fi. The fourth is **collaboration**: when several people share a remote environment, everyone runs the same code against the same data with the same library versions, which eliminates an entire category of “works on my machine” bugs.
 
-## 12.2 Prerequisites and safe defaults
+## 13.2 Prerequisites and safe defaults
 
 Before the first SSH command, gather the information you need and decide on a few baseline habits. Remote computing is a discipline where small mistakes can leak credentials, expose data, or rack up real money on cloud bills, and the best time to develop careful habits is before you have any power to break anything.
 
@@ -95,7 +95,7 @@ A few non-negotiable habits that should feel automatic before you do anything el
 - **Assume your command history is readable.** Your future self will read it, and on shared servers the administrators technically can too. Anything sensitive — API tokens, personal data, “try this hack” one-liners — should either not be typed at all or should be wrapped in a scripted workflow where the secret comes from an environment variable.
 - **Use the minimum access needed, and log out when done.** If a server has `sudo` available, do not live as root; do your normal work as your user account and elevate only for the few commands that actually need it. When your session is over, type `exit` (or `Ctrl+D`) to cleanly terminate it. Idle SSH sessions are both a resource cost and a small security risk.
 
-## 12.3 SSH fundamentals
+## 13.3 SSH fundamentals
 
 ### What SSH provides
 
@@ -159,7 +159,7 @@ After generating, copy the public key (the file ending in `.pub`, never the one 
 
 - Keep configuration readable; document nonstandard choices.
 
-## 12.4 File transfer: getting data in and out
+## 13.4 File transfer: getting data in and out
 
 Moving files between your laptop and a remote server is the second-most-common thing you will do after logging in. SSH provides three complementary tools for this (`scp`, `sftp`, `rsync`), and each has a situation where it is the right choice.
 
@@ -246,7 +246,7 @@ A short list of file-transfer habits that will hurt you:
 - **Do not move large files through an interactive `sftp` session if `rsync` is available.** Interactive sessions cannot resume if the connection drops, so a 90% complete transfer that fails means starting over. `rsync` exists specifically to avoid that.
 - **Do not leave datasets in your home directory on shared servers without talking to the admin.** Shared filesystems have quotas, and a surprise 40 GB in your home directory is the kind of thing that earns you an angry email.
 
-## 12.5 Tunneling and port forwarding (making remote services usable)
+## 13.5 Tunneling and port forwarding (making remote services usable)
 
 ### Why tunneling exists
 
@@ -276,7 +276,7 @@ A third variant is **dynamic forwarding** with `-D`, which sets up a SOCKS proxy
 
 A few small habits keep tunnels safe and easy to manage. When you only need a tunnel and not an interactive shell, add `-N` (`ssh -N -L 8888:localhost:8888 username@hostname`) so SSH does not open a shell you do not need. Always bind the local side to `localhost` (the default) rather than `0.0.0.0`, so other users on your network cannot piggyback on your tunnel. And close tunnels when you are done with them — leaving them open consumes resources and leaves an open authenticated path you do not need.
 
-## 12.6 VPN fundamentals
+## 13.6 VPN fundamentals
 
 ### What a VPN does
 
@@ -330,7 +330,7 @@ Three habits make VPN workflows smooth:
 - **Assume remote processes do not survive a disconnect.** When the VPN drops, treat any running SSH session as dead — even if your terminal window is still open, the connection is gone. Reconnect the VPN, then reopen SSH, and use `tmux attach` to get back to the session you left running.
 - **Know where your VPN client shows status and logs.** Every VPN client has a status indicator (green/yellow/red dot) and a log window. Find both the first time you set the client up. The next time something does not work, the log is the first place to look — “Authentication failed,” “Certificate expired,” and “Server unreachable” each point at different problems.
 
-## 12.7 Remote work patterns: from simple to professional
+## 13.7 Remote work patterns: from simple to professional
 
 Once you can connect and move files, the question becomes: how do you *work* on a remote machine day-to-day? There is no single right answer — different problems reach for different patterns. The three below cover most of what students encounter.
 
@@ -412,7 +412,7 @@ Three details matter here. First, `--ip=127.0.0.1` (equivalently, `localhost`) t
 
 If the server already has a Jupyter service set up by admins (JupyterHub or similar), use that instead — it handles all of the above for you and is the safer default.
 
-## 12.8 Cloud computing basics (what novices must know)
+## 13.8 Cloud computing basics (what novices must know)
 
 ### What “the cloud” actually is
 
@@ -464,7 +464,7 @@ Alerts:         50% → email
 
 The second surprise is security. A cloud VM with SSH open to the entire internet, running an unpatched OS, will start receiving automated login attempts within minutes and can be compromised within hours. The defenses are boring but they work: use key-based authentication instead of passwords, keep inbound SSH restricted to your current IP, install updates (`sudo apt upgrade`) regularly, do not expose services (databases, Jupyter, web apps) directly to the public internet without thinking hard about it, and do not store credentials or secrets on instances that could be seized by anyone who gets shell access. When in doubt, assume any service exposed to the internet is one misconfiguration away from being the bad day of your academic career.
 
-## 12.9 Security best practices for remote computing
+## 13.9 Security best practices for remote computing
 
 The rules in this section are deliberately boring. That is the point — security practices that feel dramatic and clever are usually the ones that backfire, and the ones that work tend to be tiny habits you do the same way every day.
 
@@ -549,7 +549,7 @@ For student-level remote work, you do not need a fancy logging infrastructure. Y
 
 The bigger point: use **version control for code changes** ([sec-git-github](#sec-git-github)). Every time you edit a script on the server, commit the change. Every time a piece of code produces a result you plan to keep, commit the code that produced it. “What version of the code made this output?” is a question you should always be able to answer, and Git is the only practical way to answer it retroactively.
 
-## 12.10 Troubleshooting and diagnostics
+## 13.10 Troubleshooting and diagnostics
 
 Remote connections fail in a predictable set of ways. The diagnosis almost always comes from running a few small commands — not from staring at an error message hoping it will become more informative.
 
@@ -655,7 +655,7 @@ ssh -v agandler@server.cs.example.edu 2>&1 | grep -i "offering\|accepted\|public
 
 **Server-side access control problem.** Your key is correct but the server has not authorized it — the public key was never added to `~/.ssh/authorized_keys` on the server, the file has the wrong permissions, or your account has been disabled. If you have another way into the server (password login, console access, another working key), fix it there. If not, you need to contact whoever administers the server and ask them to install your public key.
 
-## 12.11 Worked examples
+## 13.11 Worked examples
 
 ### Your first SSH login
 
@@ -747,7 +747,7 @@ ssh -i ~/.ssh/id_ed25519 ubuntu@203.0.113.42
 
 Run your job. When you are done — and this is the part students forget — go back to the cloud console and **terminate** (not just stop) the instance, so that you stop paying for storage too. Confirm in the billing dashboard that no resources are still running. Cloud bills can compound quickly if you forget about a forgotten VM, and the failure mode of “I left it running for a month” is a real and expensive mistake.
 
-## 12.12 Exercises
+## 13.12 Exercises
 
 1.  Generate an SSH key pair with a passphrase and identify where keys are stored.
 
@@ -761,7 +761,7 @@ Run your job. When you are done — and this is the part students forget — go 
 
 6.  Cloud practice (if allowed): launch a VM, SSH in, then shut it down and confirm termination.
 
-## 12.13 One-page checklist
+## 13.13 One-page checklist
 
 - I know whether I need a VPN before SSH.
 
@@ -779,7 +779,7 @@ Run your job. When you are done — and this is the part students forget — go 
 
 - I log out and terminate cloud resources when finished.
 
-## 12.14 Quick reference: common SSH commands
+## 13.14 Quick reference: common SSH commands
 
     ssh username@hostname
     ssh -p 2222 username@hostname
@@ -788,7 +788,7 @@ Run your job. When you are done — and this is the part students forget — go 
     scp localfile username@hostname:/remote/path/
     sftp username@hostname
 
-## 12.15 Quick reference: vocabulary
+## 13.15 Quick reference: vocabulary
 
 SSH  
 Secure Shell protocol for encrypted remote access.

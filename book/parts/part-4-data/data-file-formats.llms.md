@@ -1,4 +1,4 @@
-# 19  Data File Formats
+# 20  Data File Formats
 
 > **TIP:**
 >
@@ -29,7 +29,7 @@ By the end of this chapter, you should be able to:
 
 Always verify shape, columns, dtypes, and head/tail of a DataFrame in the cell right after `read_*`. Most data bugs are actually loading bugs in disguise.
 
-## 19.1 CSV: the workhorse, and its quirks
+## 20.1 CSV: the workhorse, and its quirks
 
 A [CSV](../../appendix-glossary.llms.md#term-csv) file is a plain-text file where each line is a row and columns are separated by a delimiter — traditionally a comma. CSV is the most common data format you will encounter because it is human-readable, supported everywhere, and easy to generate from any tool.
 
@@ -174,7 +174,7 @@ for chunk in pd.read_csv("huge.csv", chunksize=100_000):
 
 For files bigger than ~1 GB, also consider Parquet (see section 5) — it is faster and smaller.
 
-## 19.2 TSV and other delimited formats
+## 20.2 TSV and other delimited formats
 
 A TSV file is a CSV file where the delimiter is a tab. TSVs are marginally better than CSVs because tabs are very rarely used inside cell values, so quoting is less important. Read them with:
 
@@ -184,7 +184,7 @@ df = pd.read_csv("data.tsv", sep="\t")
 
 Everything else from the CSV section applies.
 
-## 19.3 JSON: when the structure is nested
+## 20.3 JSON: when the structure is nested
 
 [JSON](../../appendix-glossary.llms.md#term-json) is the dominant format for data returned from web APIs. Unlike CSV, JSON supports nested data — a record can have fields whose values are themselves objects or arrays.
 
@@ -244,7 +244,7 @@ df = pd.read_json("events.jsonl", lines=True)
 - Trailing commas are not allowed in strict JSON. Some tools emit them; you may need to pre-process.
 - JSON has no native date type — dates are always strings. Convert after loading with `pd.to_datetime(df["date"])`.
 
-## 19.4 Excel: the format you cannot escape
+## 20.4 Excel: the format you cannot escape
 
 Excel files (`.xlsx`, `.xls`) are not plain text. They are binary (or XML-in-a-zip for `.xlsx`) and contain one or more *sheets*, each with its own rows, columns, formulas, formatting, and occasional merged cells. pandas reads them via `openpyxl` (which you may need to install):
 
@@ -297,7 +297,7 @@ df.to_excel("cleaned.xlsx", index=False)
 
 Always pass `index=False` unless you explicitly want the row index as a column.
 
-## 19.5 Parquet: the format for real data work
+## 20.5 Parquet: the format for real data work
 
 [Parquet](../../appendix-glossary.llms.md#term-parquet) is a binary, columnar format designed for analytical data. It is the right answer for datasets bigger than a few hundred MB or for data you load repeatedly. You will need `pyarrow` installed:
 
@@ -335,7 +335,7 @@ raw.to_parquet("intermediate/sales.parquet")
 df = pd.read_parquet("intermediate/sales.parquet")
 ```
 
-## 19.6 Text encoding in general
+## 20.6 Text encoding in general
 
 If you remember only one thing about encoding, remember this: **encoding is the rule for turning bytes into characters.** UTF-8 is the standard for modern text and should be your default. Files that are not UTF-8 are usually Latin-1 (or `cp1252` on Windows), which covers Western European characters but not Greek, Cyrillic, Chinese, etc.
 
@@ -361,7 +361,7 @@ When you write a file yourself, always write UTF-8:
 df.to_csv("out.csv", index=False, encoding="utf-8")
 ```
 
-## 19.7 Worked examples
+## 20.7 Worked examples
 
 ### A “normal” CSV that is not normal
 
@@ -433,7 +433,7 @@ df = pd.read_excel(
 )
 ```
 
-## 19.8 Templates
+## 20.8 Templates
 
 **A defensive `read_csv` that handles most of the common quirks:**
 
@@ -459,7 +459,7 @@ print("nulls per column:")
 print(df.isna().sum())
 ```
 
-## 19.9 Exercises
+## 20.9 Exercises
 
 1.  Take a CSV file from a real data source (a government open-data portal, a Kaggle dataset, or your course). Open it in a text editor, note the delimiter, the header row, and any obviously-missing-value sentinels. Then load it with `pd.read_csv`, passing the correct parameters the first time.
 2.  Deliberately save a CSV with `encoding="latin-1"` (e.g., a file with accented characters). Try to read it with the default UTF-8 and observe the `UnicodeDecodeError`. Then read it correctly.
@@ -469,7 +469,7 @@ print(df.isna().sum())
 6.  Convert a CSV you use often into Parquet. Compare file sizes and load times (`%time df = pd.read_csv(...)` vs `%time df = pd.read_parquet(...)`).
 7.  Write the “validate after load” snippet from section 8 as a reusable function `validate(df)` that prints the report. Put it in a module you can import from any notebook.
 
-## 19.10 One-page checklist
+## 20.10 One-page checklist
 
 - Open unfamiliar CSVs in a text editor first; note the delimiter, encoding, and header layout.
 - Default to UTF-8 encoding; fall back to Latin-1 / cp1252 only when needed.

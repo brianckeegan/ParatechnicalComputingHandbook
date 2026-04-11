@@ -1,4 +1,4 @@
-# 18  Code Style
+# 19  Code Style
 
 > **TIP:**
 >
@@ -34,11 +34,11 @@ By the end of this chapter, you should be able to:
 
 If you find yourself debating spaces or import order with a collaborator, you have already lost. Delegate the decision to a formatter and a linter, commit their config to git, and move on to the actual code review.
 
-## 18.1 PEP 8 in one paragraph
+## 19.1 PEP 8 in one paragraph
 
 [PEP 8](https://peps.python.org/pep-0008/) is the official Python style guide. It is short and sensible: 4-space indents, 79-character lines (most people now use 88 or 100), snake_case for functions and variables, PascalCase for classes, `UPPER_SNAKE` for constants, imports at the top, one blank line between functions, two between top-level definitions, no trailing whitespace. The modern formatters (`black`, `ruff format`) implement PEP 8 with a handful of opinionated choices baked in, so you almost never need to read PEP 8 yourself — you just run the formatter and the code comes out compliant.
 
-## 18.2 Formatters vs. linters
+## 19.2 Formatters vs. linters
 
 A **formatter** rewrites your code to look a certain way. It will not change what the code does. You run it, the file is rewritten, and the diff is entirely cosmetic. `black` is the canonical Python formatter.
 
@@ -46,7 +46,7 @@ A **linter** reads your code and reports problems — without changing it. Probl
 
 They are complementary. Formatters fix *style*; linters find *mistakes*.
 
-## 18.3 `black`: the boring formatter
+## 19.3 `black`: the boring formatter
 
 `black` is called “the uncompromising Python code formatter” for a reason: it does not take many options. You install it, you run it, your code is black-formatted. No discussions about whether to use single or double quotes. Black picks; you move on.
 
@@ -92,7 +92,7 @@ target-version = ["py311"]
 
 That is almost everything you can configure. The point of black is that it is opinionated; you are not meant to tune it much.
 
-## 18.4 `ruff`: the fast linter (and formatter)
+## 19.4 `ruff`: the fast linter (and formatter)
 
 [`ruff`](https://docs.astral.sh/ruff/) is a modern Python linter written in Rust. It is 10–100× faster than the older tools (`flake8`, `pylint`), implements hundreds of rules, and increasingly doubles as a formatter compatible with `black`. If you are starting a new project today, the straightforward choice is “use `ruff` for both linting and formatting.”
 
@@ -148,7 +148,7 @@ ignore = [
 
 A sensible starting config for a student project: select `E`, `F`, `I`, `B`, `UP`, ignore line-length (the formatter controls that), and let per-file ignores handle the rest as you run into them.
 
-## 18.5 Editor integration: format on save
+## 19.5 Editor integration: format on save
 
 The real magic happens when your editor runs the formatter automatically on every save. Your code is never in an unformatted state for more than a split second, and you stop thinking about style entirely.
 
@@ -191,7 +191,7 @@ In the first cell of a notebook:
 
 Every code cell is formatted on execution from then on.
 
-## 18.6 Rule sets: what do E, F, I, B, UP mean?
+## 19.6 Rule sets: what do E, F, I, B, UP mean?
 
 `ruff` groups rules into sets that match the old pre-ruff tools they replace. The most useful ones for a student project are:
 
@@ -208,7 +208,7 @@ Every code cell is formatted on execution from then on.
 
 You do not need all of them. Start with `E`, `F`, `I`, `B`, `UP`. Add more as the project grows.
 
-## 18.7 When to override a rule
+## 19.7 When to override a rule
 
 Most linter rules are helpful and you should accept them. Some will not apply to your project. There are three ways to override:
 
@@ -234,7 +234,7 @@ from legacy_code import UNUSED  # noqa: F401
 
 Use `# noqa` sparingly. Every one is a small promise that a human thought about it and decided the rule did not apply. Unexplained `# noqa` comments accumulate and become dead weight.
 
-## 18.8 Worked examples
+## 19.8 Worked examples
 
 ### Setting up a new project
 
@@ -318,7 +318,7 @@ def greet(name, greetings=None):
 
 This is a real bug. You would find it in production, not in your head. A linter finds it in 20 milliseconds.
 
-## 18.9 Templates
+## 19.9 Templates
 
 **A minimal `pyproject.toml` for a student project:**
 
@@ -352,7 +352,7 @@ indent-style = "space"
 
 Wire this into the same CI workflow you use for any other automated checks and every push gets automatic style enforcement.
 
-## 18.10 Exercises
+## 19.10 Exercises
 
 1.  Install `ruff` in a venv, pick one of your own Python files, and run `ruff check` on it. How many issues does it report? Skim the output and pick two you do not understand.
 2.  Run `ruff check --fix` on the same file. Read the diff. Did anything you cared about change?
@@ -362,7 +362,7 @@ Wire this into the same CI workflow you use for any other automated checks and e
 6.  Deliberately introduce a mutable default argument (like the example in section 8) and confirm that `ruff check` reports it.
 7.  Add `ruff check` to your CI workflow. Intentionally break formatting in a commit and confirm CI fails.
 
-## 18.11 One-page checklist
+## 19.11 One-page checklist
 
 - Install `ruff` in every Python venv.
 - Commit a `pyproject.toml` with `[tool.ruff]` configuration.

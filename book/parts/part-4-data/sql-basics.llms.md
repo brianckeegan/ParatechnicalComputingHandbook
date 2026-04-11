@@ -1,4 +1,4 @@
-# 22  SQL Basics
+# 23  SQL Basics
 
 > **TIP:**
 >
@@ -30,7 +30,7 @@ By the end of this chapter, you should be able to:
 
 SQL does not tell the database how to get the answer. It tells the database *what* answer you want, and the query planner figures out the rest. That flip in mindset is most of the conceptual work of learning SQL.
 
-## 22.1 What a relational database is
+## 23.1 What a relational database is
 
 A **relational database** is a collection of **tables**. Each table has rows (records) and columns (fields), like a DataFrame. Relations between tables are made explicit through **keys**: a primary key uniquely identifies a row, and a foreign key in one table points at the primary key of another.
 
@@ -56,7 +56,7 @@ A simple example with two tables:
 
 This split of data across tables is called **normalization** and it is how databases avoid the repeated-data problems of one giant wide table.
 
-## 22.2 `SELECT ... FROM`: the basic query
+## 23.2 `SELECT ... FROM`: the basic query
 
 The simplest query returns columns from one table:
 
@@ -74,7 +74,7 @@ FROM customers;
 
 Every SQL statement ends with a semicolon. Keywords are traditionally UPPERCASE; column and table names are lowercase. Neither is required — SQL is case-insensitive — but the convention makes queries easier to read.
 
-## 22.3 `WHERE`: filtering rows
+## 23.3 `WHERE`: filtering rows
 
 ``` sql
 SELECT *
@@ -118,7 +118,7 @@ SELECT * FROM customers WHERE city IS NULL;
 
 Every three-valued-logic bug in SQL traces back to this rule.
 
-## 22.4 `ORDER BY` and `LIMIT`
+## 23.4 `ORDER BY` and `LIMIT`
 
 ``` sql
 SELECT * FROM orders
@@ -136,7 +136,7 @@ ORDER BY date
 LIMIT 10 OFFSET 20;   -- skip 20, return the next 10
 ```
 
-## 22.5 Aggregates and `GROUP BY`
+## 23.5 Aggregates and `GROUP BY`
 
 An aggregate function collapses many rows into one.
 
@@ -181,7 +181,7 @@ GROUP BY customer_id;
 
 Most databases reject it outright. The fix is either to add `name` to `GROUP BY` or to wrap it in something like `MIN(name)` (when every row in the group has the same name, this works).
 
-## 22.6 Filtering aggregates: `HAVING`
+## 23.6 Filtering aggregates: `HAVING`
 
 `WHERE` filters rows *before* aggregation. `HAVING` filters groups *after* aggregation. If you want “customers who placed more than five orders”:
 
@@ -194,7 +194,7 @@ HAVING COUNT(*) > 5;
 
 A useful mnemonic: `WHERE` is for individual rows, `HAVING` is for aggregate results.
 
-## 22.7 `JOIN`: combining tables
+## 23.7 `JOIN`: combining tables
 
 `JOIN` matches rows from two tables on a shared key.
 
@@ -239,7 +239,7 @@ FROM orders o
 JOIN customers c USING (customer_id);
 ```
 
-## 22.8 Running SQL from Python
+## 23.8 Running SQL from Python
 
 ### SQLite from the standard library
 
@@ -310,7 +310,7 @@ cur.execute("SELECT * FROM customers WHERE city = ?", (city,))
 
 The `?` is a placeholder; the driver escapes the value. This is not paranoia: every professional SQL codebase uses parameters for everything, every time.
 
-## 22.9 SQL vs. pandas
+## 23.9 SQL vs. pandas
 
 SQL and pandas overlap enormously. A rough rule for picking one:
 
@@ -330,7 +330,7 @@ SQL and pandas overlap enormously. A rough rule for picking one:
 
 A common hybrid pattern: write a SQL query that selects and joins the rows you need, load the result into pandas as a DataFrame, and do the rest in pandas. You get the best of both worlds — the database handles the heavy lifting of filtering and joining, and pandas handles the parts it is better at.
 
-## 22.10 SQL ↔︎ pandas translation table
+## 23.10 SQL ↔︎ pandas translation table
 
 | SQL | pandas |
 |----|----|
@@ -347,7 +347,7 @@ A common hybrid pattern: write a SQL query that selects and joins the rows you n
 | `SELECT * FROM a LEFT JOIN b USING (k)` | `a.merge(b, on="k", how="left")` |
 | `SELECT DISTINCT k FROM t` | `df["k"].unique()` |
 
-## 22.11 Worked examples
+## 23.11 Worked examples
 
 ### Top customers by revenue
 
@@ -401,7 +401,7 @@ plt.show()
 
 The database does the aggregation over potentially millions of rows; pandas and matplotlib handle the plot. Both tools do what they are best at.
 
-## 22.12 Templates
+## 23.12 Templates
 
 **A parameterized query function:**
 
@@ -437,7 +437,7 @@ SELECT * FROM orders LIMIT 5;
 
 Every database has its own variant of these metadata queries. Learn them for whichever one you use.
 
-## 22.13 Exercises
+## 23.13 Exercises
 
 1.  Download the sample [Chinook SQLite database](https://github.com/lerocha/chinook-database) (or any other small public dataset). Write a `SELECT` that lists the top 10 tracks by length.
 2.  Using the same database, write a query that counts the number of tracks per genre and orders them descending.
@@ -447,7 +447,7 @@ Every database has its own variant of these metadata queries. Learn them for whi
 6.  Load the result of a SQL query directly into a pandas DataFrame and run `.describe()` on one of the numeric columns. Compare with running the same aggregate purely in SQL using `AVG`/`MIN`/`MAX`.
 7.  Take a pandas pipeline you already wrote and translate it line-for-line into SQL. Run both; confirm the row count and numeric totals agree.
 
-## 22.14 One-page checklist
+## 23.14 One-page checklist
 
 - Identifiers are lowercase; keywords are UPPERCASE; strings in single quotes.
 - End every statement with a semicolon.

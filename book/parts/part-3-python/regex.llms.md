@@ -1,4 +1,4 @@
-# 17  Regular Expressions
+# 18  Regular Expressions
 
 > **TIP:**
 >
@@ -28,7 +28,7 @@ By the end of this chapter, you should be able to:
 
 Regex matches the *shape* of text — three digits, a dot, four digits — not its meaning. If your problem requires understanding what the text *means* (parsing HTML, real emails, code, dates with validation), regex is the wrong tool. If it requires finding a pattern of characters, regex is perfect.
 
-## 17.1 The seven metacharacters you actually need
+## 18.1 The seven metacharacters you actually need
 
 The entire language is built from a small set of special characters that mean “not themselves.” Here are the ones you will use constantly:
 
@@ -51,7 +51,7 @@ Plus these two for grouping and escaping:
 
 That is most of what you need to know to read 90% of the regexes you encounter in the wild.
 
-## 17.2 Character classes: the shortcut for “one of these”
+## 18.2 Character classes: the shortcut for “one of these”
 
 A character class matches exactly one character from a set:
 
@@ -75,7 +75,7 @@ Combine with `+`, `*`, `?`, or `{n,m}` to repeat:
 | `\d{3,5}` | between 3 and 5 digits |
 | `\d{2,}`  | 2 or more digits       |
 
-## 17.3 Anchors: where in the string
+## 18.3 Anchors: where in the string
 
 | Syntax    | Matches                                                     |
 |-----------|-------------------------------------------------------------|
@@ -85,7 +85,7 @@ Combine with `+`, `*`, `?`, or `{n,m}` to repeat:
 
 Word boundaries (`\b`) are the most underused regex feature for data work. They are the difference between matching `cat` in `"the cat sat"` (what you want) and also matching it in `"concatenate"` (what you do not).
 
-## 17.4 Python’s `re` module
+## 18.4 Python’s `re` module
 
 Import once at the top of your script or notebook:
 
@@ -125,7 +125,7 @@ re.findall(r"^\w+", big_text, re.MULTILINE)     # ^ matches each line
 
 You can combine them: `re.IGNORECASE | re.MULTILINE`.
 
-## 17.5 Capture groups: extracting parts of a match
+## 18.5 Capture groups: extracting parts of a match
 
 Parentheses do two jobs: they group a sub-pattern and they *capture* what matched so you can pull it out later.
 
@@ -151,7 +151,7 @@ m = re.search(r"(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})", text)
 m.group("year")   # '2024'
 ```
 
-## 17.6 Regex in pandas
+## 18.6 Regex in pandas
 
 pandas has regex built into its string methods. Three you will reach for constantly:
 
@@ -186,7 +186,7 @@ df["phone"] = df["phone"].str.replace(r"[^\d]", "", regex=True)
 
 That last example strips every non-digit character, normalizing `(303) 555-1212` and `303.555.1212` both to `3035551212`.
 
-## 17.7 When not to use regex
+## 18.7 When not to use regex
 
 Regex is a hammer. It is not the right tool for:
 
@@ -197,7 +197,7 @@ Regex is a hammer. It is not the right tool for:
 
 A good rule of thumb: if your regex is longer than one line or contains more than three `(...)` groups, reconsider.
 
-## 17.8 Worked examples
+## 18.8 Worked examples
 
 ### Extracting order IDs from free-text notes
 
@@ -263,7 +263,7 @@ grep -vE '^\s*#' config.cfg          # strip comment lines
 
 Your regex skill transfers directly.
 
-## 17.9 Templates
+## 18.9 Templates
 
 **A cheat-sheet for the patterns you will reuse most often:**
 
@@ -280,7 +280,7 @@ r"@\w+"             # mention / username
 r"\d{4}-\d{2}-\d{2}"# ISO-ish date (shape only, not validation)
 ```
 
-## 17.10 Exercises
+## 18.10 Exercises
 
 1.  Write a regex that matches a US phone number written as `(xxx) xxx-xxxx`, `xxx-xxx-xxxx`, or `xxx.xxx.xxxx`. Test it on five variations.
 2.  You have a log file with lines like `2024-03-15 14:22:03 ERROR Failed to connect`. Write a regex with capture groups that extracts the date, time, level, and message.
@@ -290,7 +290,7 @@ r"\d{4}-\d{2}-\d{2}"# ISO-ish date (shape only, not validation)
 6.  Using the terminal, run `grep -E` with a regex to find every line in your Python source files that starts with `def` or `class` — a quick index of your API.
 7.  Take a regex you find confusing and rewrite it on paper, breaking it into pieces and explaining each. If you cannot, it is probably too clever and a simpler approach exists.
 
-## 17.11 One-page checklist
+## 18.11 One-page checklist
 
 - Use raw strings (`r"..."`) for every Python regex.
 - Start with the simplest thing that matches what you want; only add complexity when it fails.

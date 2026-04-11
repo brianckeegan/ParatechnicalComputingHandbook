@@ -1,4 +1,4 @@
-# 9  Local File System
+# 10  Local File System
 
 > **TIP:**
 >
@@ -30,7 +30,7 @@ By the end of this chapter, you should be able to:
 
 A script, notebook, or application often assumes files are in specific locations. Good file management makes those dependencies explicit and stable.
 
-## 9.1 A beginner mental model
+## 10.1 A beginner mental model
 
 The smallest piece of vocabulary you need is the difference between a **file** and a **folder**. A file is a single named unit of stored data — a `report.docx` document, a `data.csv` table, a `cleaning.py` script. A folder (sometimes called a *directory*; the words are interchangeable) is a container that holds files, and it can hold other folders too. Folders inside folders form a tree, and your entire computer’s file system is one big tree growing out of a single root.
 
@@ -47,7 +47,7 @@ A practical Windows quirk worth knowing: the operating system has historical lim
 
 Each filename usually ends with an **extension** like `.csv`, `.py`, or `.docx`, separated from the name by a dot. Extensions are how your operating system (and most applications) decide which program to open a file with — `.csv` opens in Excel or a text editor, `.py` opens in Python, `.docx` opens in Word. When you can choose the format you save in, prefer stable plain-text formats like `.csv`, `.txt`, and `.md` over proprietary binary ones (`.xlsx`, `.docx`, `.pdf`). Plain-text files can be read by any tool, version-controlled cleanly with `git diff`, and recovered from when something goes wrong; binary formats can do none of those things well.
 
-## 9.2 Access and navigation on Windows
+## 10.2 Access and navigation on Windows
 
 When you open File Explorer on Windows (the icon is a manila folder, usually pinned to the taskbar), you see three things you should learn to recognize: a **sidebar** down the left with shortcuts to common locations like Quick Access and This PC, a **main pane** in the middle showing the contents of whichever folder you have selected, and an **address bar** along the top showing your current location as a sequence of clickable segments. Those segments are called *breadcrumbs*, and clicking any one of them jumps you back to that folder — so if you are deep inside `C:\Users\you\Documents\project\notebooks\drafts`, you can click `Documents` once and land in your Documents folder without using the Back button five times.
 
@@ -55,7 +55,7 @@ Beyond pointing and clicking, File Explorer rewards a few specific skills. **Sea
 
 A second important Windows-specific concept is **OneDrive sync**. If your account uses OneDrive, your `Documents` folder may not actually live on your laptop — it may live in the cloud, with placeholder files on disk that download on demand when you open them. Sync status icons next to each file or folder tell you what state things are in: a cloud icon means “in the cloud only, not local,” a green checkmark means “always kept on this device,” and a circular arrow means “currently syncing.” For programming and data work, this matters because a script that tries to read a 2 GB CSV will silently trigger a download that may or may not finish before the script tries to use the file. The fix is to right-click any folder you actively work in and select “Always keep on this device,” which forces a full local copy.
 
-## 9.3 Access and navigation on macOS
+## 10.3 Access and navigation on macOS
 
 Finder on macOS plays the same role as File Explorer on Windows. You open it by clicking the smiley-face icon in the Dock, and you immediately see a **sidebar** with Favorites and iCloud Drive on the left, a **toolbar** with view-mode buttons across the top, and the **main pane** showing whichever folder is selected. The view-mode buttons are worth learning: icon view is good for browsing photos, list view is good for sorting by date or size, column view is the fastest way to drill down through several folders in a row, and gallery view is mostly useful for media. Column view in particular is the best macOS feature for “where am I?” — each column shows the contents of the next level down, so you can navigate a deep folder hierarchy without losing your place.
 
@@ -65,7 +65,7 @@ A few system folders are hidden by default — the macOS root, the `~/Library` f
 
 The macOS equivalent of OneDrive’s “files on demand” behavior is **iCloud Drive optimization**. If macOS thinks you are running low on disk space, it will quietly evict the least-used files in `Documents` and `Desktop` to iCloud, leaving placeholder icons that re-download when you open them. Same problem, same fix: for any folder where you actually run code, make sure the files are present locally. You can confirm by selecting a file and pressing `Command + I` to bring up the Get Info window, which says whether the file is on your Mac or only in iCloud.
 
-## 9.4 Organizing work: conventions that scale
+## 10.4 Organizing work: conventions that scale
 
 The single biggest improvement most students can make to their file management is to **stop working out of `Downloads/` and `Desktop/`** and instead create a stable top-level home for everything school-related. The exact name does not matter — `School/`, `Courses/`, `Coursework/` are all fine — but the existence of one designated place does matter, because it gives every assignment, lab, and project a predictable parent. Inside that home, give each course its own folder, and inside each course folder, separate `Assignments/`, `Labs/`, and `Project/`. The reward is enormous: when you come back to the work in three weeks, you do not have to remember where you put things; you just open the path you always use.
 
@@ -97,7 +97,7 @@ Naming conventions are the other lever that pays back compounding interest. Use 
 
 The provenance habit is the same idea applied to data. Keep raw files read-only; if you need a variant of one (a smaller subset, a column rename, an encoding fix), save the variant under a new name in `data/processed/` and write down in your README or a changelog *what* you changed and *why*. The same week, this seems like overkill. Six weeks later, when you cannot reproduce your own results, it is the difference between five minutes of investigation and an afternoon of guessing.
 
-## 9.5 Search, metadata, and “finding it later’’
+## 10.5 Search, metadata, and “finding it later’’
 
 ### Search strategies that work
 
@@ -121,7 +121,7 @@ data/processed/   2026-03-14  10:42   <DIR>
   cleaned.csv.tmp 2026-03-14  10:41              0   <-- aborted write, delete
 ```
 
-## 9.6 File operations and safety
+## 10.6 File operations and safety
 
 ### Copy vs move vs rename
 
@@ -163,7 +163,7 @@ When you see one of those errors on a file you expected to own, there are only a
 
 The general habit that prevents permission problems is to **do your real work inside your user home directory** and treat everything outside it as read-only. `~/Courses/`, `~/Projects/`, `~/Documents/` — all fine. `/usr/local/`, `C:\Windows\`, `/System/` — all off-limits. If a tutorial ever tells you to `sudo` something while you are still learning, pause: there is almost always a safer path that does not require administrator rights, and using them casually is the single fastest way to break your computer.
 
-## 9.7 Common student pitfalls (and how to avoid them)
+## 10.7 Common student pitfalls (and how to avoid them)
 
 A small number of mistakes account for almost all the file-management pain that beginners suffer, and they are all preventable. The most common one is **working out of `Downloads/` or `Desktop/` forever**: every assignment lands wherever it was downloaded, duplicates accumulate, version `final-2.csv` ends up next to `final-3.csv` next to `data.csv`, and three weeks later nothing can be found. The fix is the one from the previous section — create a stable project root under `Courses/` or `Projects/` and move work there immediately, every time.
 
@@ -173,7 +173,7 @@ The third is **accidental extension changes**, where you rename `data.csv` to `d
 
 The fourth is **moving folders after you have written code that depends on them**. A script that references `data/input.csv` works fine until you reorganize and the data file moves. The fix is twofold: pick your project root early, do not move it casually, and inside the project use *relative* paths so that everything is stable as long as the project root stays put. If you must use absolute paths, compute them at runtime from `__file__` rather than hard-coding `/Users/alex/...`, since hard-coded absolute paths immediately break when anyone else clones the project — including future you on a different laptop.
 
-## 9.8 Bridging to the terminal and programming
+## 10.8 Bridging to the terminal and programming
 
 ### Why file habits matter for code
 
@@ -218,7 +218,7 @@ df = pd.read_csv("data/raw/survey.csv")     # usually fine, but brittle
 
 Two small supporting habits make everything else smoother. **Keep paths short** — deep project trees hit Windows’ legacy path-length limits and make every error message harder to read — and **avoid special characters** in filenames you pass to code. Spaces, parentheses, accented letters, and curly quotes all work in the GUI and all occasionally break in the terminal or a script. Stick to letters, digits, hyphens, and underscores for anything a script will touch, and you will never need to learn which layer of which tool is responsible for the broken quoting.
 
-## 9.9 Worked examples
+## 10.9 Worked examples
 
 ### Building a course workspace from scratch
 
@@ -267,7 +267,7 @@ A relative path like `data/input.csv` is interpreted relative to whatever direct
 
 The third check, only if the first two pass, is whether the file is sync-stranded: you can see a placeholder for it but the bytes are still in the cloud. On macOS you can confirm with `Command + I` in Finder; on Windows the sync icon next to the file tells you. Force a local copy and try again. Most “file not found” errors will be solved by one of these three checks; only after all three should you start looking at code.
 
-## 9.10 Exercises
+## 10.10 Exercises
 
 1.  Create a project folder structure and explain (in one paragraph) why each folder exists.
 
@@ -279,7 +279,7 @@ The third check, only if the first two pass, is whether the file is sync-strande
 
 5.  Break and fix: move a folder referenced by a notebook/script; then repair it using relative paths.
 
-## 9.11 One-page checklist
+## 10.11 One-page checklist
 
 - I know where my project root is.
 
@@ -297,7 +297,7 @@ The third check, only if the first two pass, is whether the file is sync-strande
 
 - I avoid working in system directories and respect permissions.
 
-## 9.12 Quick reference: key locations
+## 10.12 Quick reference: key locations
 
 ### Windows (typical)
 
@@ -357,13 +357,13 @@ A “file path” is an address that describes where a folder or file lives on y
 
 **Note on drives and separators.** Windows may assign other drive letters (`D:`, `E:`, etc.) if you have multiple hard drives or partitions. Replace `C:\` with the correct letter when constructing paths. Also remember that Windows uses backslashes (`\`) to separate path components, whereas macOS and Linux use forward slashes (`/`). This difference matters when typing paths in the terminal or code.
 
-## 9.13 Why can’t I find a file I downloaded from Canvas? Where did it go?
+## 10.13 Why can’t I find a file I downloaded from Canvas? Where did it go?
 
 Building on the ideas about your computer’s file system from the previous section, it is important to know where to find the files we download using our web browser. Depending on the defaults and other preferences of your web browser, downloaded folders might go to your Desktop, a Downloads folder, or some other place. The steps below will make sure that your browser is downloading the folders to a consistent location: your Downloads folder. Instructions for changing the download location of the most popular web browsers (Chrome, Safari, Firefox, and Edge) are listed below with links to their official documentation or other tutorials.
 
 ![](graphics/download-location-chrome.png)
 
-Figure 9.1: Changing the Chrome download location.
+Figure 10.1: Changing the Chrome download location.
 
 ##### Chrome.
 
@@ -371,7 +371,7 @@ Figure 9.1: Changing the Chrome download location.
 
 ![](graphics/download-location-safari.png)
 
-Figure 9.2: Changing the Safari download location.
+Figure 10.2: Changing the Safari download location.
 
 ##### Safari.
 
@@ -383,7 +383,7 @@ Figure 9.2: Changing the Safari download location.
 
 ![](graphics/download-location-mozilla.png)
 
-Figure 9.3: Changing the Firefox download location.
+Figure 10.3: Changing the Firefox download location.
 
 ##### Edge.
 
@@ -395,9 +395,9 @@ Note that some file types like PDFs may open by default in your web browser rath
 
 ![](graphics/download-location-edge.png)
 
-Figure 9.4: Changing the Edge download location.
+Figure 10.4: Changing the Edge download location.
 
-## 9.14 What does it mean to unzip a file? How do I do that?
+## 10.14 What does it mean to unzip a file? How do I do that?
 
 Compressed zip files are archives that bundle one or more files into a single package and reduce their size. Before you can work with the contents, you need to *unzip* (extract) the archive. Both Windows and macOS provide built‑in tools to handle zip files, and many third‑party tools exist. The basic workflow is the same:
 

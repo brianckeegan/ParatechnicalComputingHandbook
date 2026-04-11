@@ -1,4 +1,4 @@
-# 15  Jupyter
+# 16  Jupyter
 
 > **TIP:**
 >
@@ -34,7 +34,7 @@ By the end of this chapter, you should be able to:
 
 A notebook should read like a report and execute like a program. The discipline is to ensure both.
 
-## 15.1 Mental models: what Jupyter is doing
+## 16.1 Mental models: what Jupyter is doing
 
 You will encounter two flavors of Jupyter and they are sometimes confused with each other. **Jupyter Notebook** (often called “classic”) is the original single-document interface — one notebook per browser tab, no built-in file browser, very simple. **JupyterLab** is the newer multi-document environment that gives you a file browser sidebar, multiple notebooks open as tabs, integrated terminals, and side-by-side panes. Most modern courses use JupyterLab. Both flavors run on the same underlying machinery, so anything you learn about kernels and execution state applies to either.
 
@@ -46,7 +46,7 @@ You type in a cell  →  browser  →  Jupyter server  →  kernel  →  result 
 
 The single most important thing to internalize about notebooks is that **the kernel keeps state across cells**. When you assign `df = pd.read_csv("data.csv")` in one cell, that variable lives in the kernel’s memory until you restart it. You can run cells out of order, redefine variables, delete cells whose results are still in memory, and end up in a situation where the notebook on screen does not match the state in the kernel — a phenomenon called **hidden state**. “It works on my notebook” almost always means “it works against the specific hidden state in my kernel right now,” and the only reliable way to find out whether your notebook is actually correct is to **Restart Kernel and Run All** and watch every cell execute from a clean slate. Build that habit early.
 
-## 15.2 Launching Jupyter the right way
+## 16.2 Launching Jupyter the right way
 
 The single rule that prevents most “Jupyter cannot find my files” frustration is: **always launch Jupyter from your project’s folder**. The folder you are in when you start the server becomes Jupyter’s root — the file browser shows the contents of that folder and nothing above it. If you launch from your home directory, you will see all of your home; if you launch from the wrong project, you will see the wrong project; if you launch from `Downloads`, you will see Downloads.
 
@@ -69,7 +69,7 @@ print(os.getcwd())
 
 If the path it prints is your project root, you are good. If it is anything else, close the server (Ctrl+C in the terminal) and relaunch from the right place. Some people leave a `PROJECT_ROOT.txt` file in their project root specifically so they can `ls` for it from inside a notebook as a quick “am I in the right place” check.
 
-## 15.3 The common failure: “Jupyter shows no notebooks”
+## 16.3 The common failure: “Jupyter shows no notebooks”
 
 The most common Jupyter complaint is some variant of “I opened JupyterLab and my files are not there,” or “my notebook cannot find `data/input.csv` even though I can clearly see it in Finder.” Both are usually the same problem: the Jupyter server is running in a different folder than the one you think it is. The file browser shows whatever folder the server was launched in, and your code’s relative paths resolve relative to that folder — so if the server is in the wrong place, both symptoms appear at once.
 
@@ -85,7 +85,7 @@ print("contents:", sorted(os.listdir("."))[:10])
 
 That single cell turns “Jupyter is broken” into a clear, immediately diagnosable state.
 
-## 15.4 Notebook mechanics: cells and execution
+## 16.4 Notebook mechanics: cells and execution
 
 ### Cell types
 
@@ -150,7 +150,7 @@ df.describe()     # summary statistics
 
 The supporting habit is to **clear and re-run outputs** before committing a notebook to version control. In the menu, **Cell → All Output → Clear** wipes every cached output. Then **Run All** executes the notebook from scratch, producing exactly the outputs your current code would produce on a clean run. Two benefits: the notebook you commit is reproducible (what you see is what the code does), and the file is dramatically smaller because you have gotten rid of any stale outputs from older experiments.
 
-## 15.5 Running shell commands inside notebooks (responsibly)
+## 16.5 Running shell commands inside notebooks (responsibly)
 
 ### Why this is useful
 
@@ -240,7 +240,7 @@ Fourth, **document what the command does in a markdown cell above it**, especial
 
 Finally, **prefer reproducible commands over manual clicking whenever you can.** The whole advantage of a notebook is that the commands are there for next time. If you find yourself running the same mouse-click sequence in a file browser on every project, turn it into a shell line in a notebook cell and document it. Next semester, you will be glad you did.
 
-## 15.6 Notebook style and discipline (how to write a notebook that survives)
+## 16.6 Notebook style and discipline (how to write a notebook that survives)
 
 ### Structure: a notebook template
 
@@ -376,7 +376,7 @@ plt.close(fig)    # prevents the figure from also appearing in the cell output
 
 The payoff is that the notebook stays small (its job is to *produce* artifacts, not to *be* them), version control behaves sensibly, and the artifacts themselves are first-class files you can share or embed in a report.
 
-## 15.7 Notebook pitfalls and how to prevent them
+## 16.7 Notebook pitfalls and how to prevent them
 
 ### Out-of-order execution
 
@@ -476,7 +476,7 @@ With a progress bar or a timer, “is it actually stuck?” becomes “how fast 
 
 The structural prevention is to **move expensive work out of notebooks and into scripts** whenever it is genuinely expensive. A model that takes four hours to train does not belong in a notebook cell where the slightest mistake costs you the whole run. Put the training in a script that writes the model to disk, then have the notebook load the saved artifact and analyze it. Notebooks are for interactive exploration; anything that takes longer than the time you are willing to sit and wait should live somewhere else.
 
-## 15.8 When to move from notebooks to scripts (and back)
+## 16.8 When to move from notebooks to scripts (and back)
 
 [sec-scripts-vs-notebooks](#sec-scripts-vs-notebooks) covers the scripting workflow in full; this section explains how notebooks and scripts fit together and when to use which.
 
@@ -516,7 +516,7 @@ scripts/
 
 The notebook and the script import the *same* functions from `src/`. When you improve a cleaning step, both the notebook and the script pick up the improvement automatically, because there is only one copy of the logic. This is the shape that “scales”: small student projects can start with just a notebook, grow to need `src/` as they get more complex, and grow again to include `scripts/` when they need automation — without ever having to rewrite from scratch.
 
-## 15.9 Worked examples
+## 16.9 Worked examples
 
 ### Launching Jupyter in the right place
 
@@ -566,7 +566,7 @@ Now the file browser shows the project, and the working-directory check cell fro
 
 A notebook that runs once but fails on a clean kernel is not really finished. Three habits make a notebook genuinely reproducible. The first is to give it a clear linear structure: a title in a markdown cell, a one-paragraph purpose statement, then an “imports and setup” code cell, then the analysis cells in execution order, then a “results” section. The second is to extract any logic that you might want to reuse into functions in `src/`, and import them rather than copy-pasting code between cells. The third is the discipline of **Restart Kernel and Run All** every time you finish a meaningful chunk of work — and *especially* before you commit the notebook to git or share it with anyone. If “Restart and Run All” produces an error that interactive use never did, you have just discovered a hidden-state bug, and now is the right time to fix it. Better to find it now than to ship a notebook that quietly does not reproduce.
 
-## 15.10 Templates
+## 16.10 Templates
 
 ### Template A: Notebook header block
 
@@ -596,9 +596,9 @@ A notebook that runs once but fails on a clean kernel is not really finished. Th
 
     # 4) run a small smoke test
 
-## 15.11 Exercises
+## 16.11 Exercises
 
-## 15.12 One-page checklist
+## 16.12 One-page checklist
 
 - I launch Jupyter from the correct project folder (or pass the correct directory).
 
@@ -616,7 +616,7 @@ A notebook that runs once but fails on a clean kernel is not really finished. Th
 
 - I keep outputs controlled and store large artifacts outside the notebook.
 
-## 15.13 Quick reference: common launch and debugging moves
+## 16.13 Quick reference: common launch and debugging moves
 
 - Confirm working directory before launching.
 
@@ -626,4 +626,4 @@ A notebook that runs once but fails on a clean kernel is not really finished. Th
 
 - If execution hangs: interrupt; then restart if needed.
 
-## 15.14 Quick reference: IPython conveniences
+## 16.14 Quick reference: IPython conveniences

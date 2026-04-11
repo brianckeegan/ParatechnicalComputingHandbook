@@ -1,4 +1,4 @@
-# 10  Command Line
+# 11  Command Line
 
 > **TIP:**
 >
@@ -34,7 +34,7 @@ By the end of this chapter, you should be able to:
 
 This chapter focuses on Unix-like shells (macOS Terminal, Linux, and Windows via WSL). An appendix maps concepts to Windows PowerShell where relevant.
 
-## 10.1 A beginner mental model
+## 11.1 A beginner mental model
 
 The first piece of vocabulary worth getting right is the difference between a **terminal** and a **shell**, because the words are often used interchangeably and the distinction matters when you read documentation. The **terminal** is the application window you type in — Terminal.app on macOS, Windows Terminal or PowerShell on Windows, GNOME Terminal or Konsole on Linux. The **shell** is the program running *inside* that window — usually `bash` or `zsh` on macOS and Linux, `pwsh` (PowerShell) or `cmd.exe` on Windows. The terminal is the dumb pipe that handles fonts and key presses; the shell is the smart program that interprets what you type. A **command** is the actual thing you ask the shell to run: a program name followed by some arguments, like `ls -l data/`.
 
@@ -54,7 +54,7 @@ $ echo $?                  # check the exit code of the previous command
 
 The reason any of this is worth learning, when GUI file managers are right there, is that the command line gives you four things the GUI cannot. It has a high **action-to-keystroke ratio** for repetitive work — moving fifty files into the right folders is one short command at the prompt and a fifteen-minute drag-and-drop session in the GUI. It is **composable**: small focused tools combined with pipes and redirection give you a flexible toolkit instead of fifty single-purpose buttons. It is **automatable**: anything you can type once, you can save in a script and run again on a schedule. And it is **remote-friendly**, which is the entire reason you can do real work on a server you have never physically seen (see [sec-remote-computing](#sec-remote-computing)). None of those properties are nice-to-haves; they are the difference between doing a job once and doing it reliably for an entire semester.
 
-## 10.2 Orientation and safety first
+## 11.2 Orientation and safety first
 
 The single most useful habit at the command line is to always know where you are. Three commands give you the answer at any time: `pwd` prints your current working directory, `ls` lists the contents of that directory, and `cd` changes you to a different one. Before you do anything that touches files, run `pwd` and `ls` so you can confirm the world is what you think it is.
 
@@ -79,7 +79,7 @@ $ rm *.tmp                 # only after the listing looked right
 
 The mistakes worth being paranoid about are a short list. The first is **deleting the wrong directory**, especially with `rm -rf`, which removes everything underneath a directory and gives you no chance to take it back. The second is **running a command in the wrong directory** — most often a destructive one — because you forgot to `cd` first. The third is **overwriting a file with output redirection**: `python script.py > results.csv` will silently obliterate any existing `results.csv`, with no prompt and no undo. And the fourth is **reflexive `sudo`**, where you use elevated privileges to “fix” a permission problem you do not yet understand. Each of these has cost real students real assignments. Build the habit of pausing for one extra second before any of them, and the disasters never happen.
 
-## 10.3 Command anatomy and help
+## 11.3 Command anatomy and help
 
 ### Basic syntax
 
@@ -157,7 +157,7 @@ Hello, $NAME
 
 The rule of thumb to take away is: **quote variables and paths by default**, and use double quotes unless you specifically need the “no expansion” behavior of single quotes. The most common bug that comes from forgetting this is a variable that is empty or unset — `rm $TARGET_DIR/*` turns into `rm /*` if `$TARGET_DIR` is empty, which is the kind of afternoon nobody wants. `rm "$TARGET_DIR"/*` at least fails loudly instead of silently destroying things.
 
-## 10.4 File system navigation
+## 11.4 File system navigation
 
 A handful of single characters carry most of the load in command-line paths, and learning them is the difference between fluent and stuck. The forward slash `/` at the start of a path is the **root directory** — the very top of your filesystem. The tilde `~` is shorthand for **your home directory** (`/Users/you` on macOS, `/home/you` on Linux). A single dot `.` means **the current directory**, and two dots `..` mean **the parent directory**, one level up. With these, you can build any path you need:
 
@@ -184,7 +184,7 @@ drwxr-xr-x  3 you staff   96B Apr 10 12:34 src
 
 Once you are typing commands and paths, the two keyboard tricks that pay off most are **Tab completion** and **command history**. When you start typing a filename or a command, hit **Tab** and the shell will fill in the rest if there is exactly one match (and beep if there is not — hit Tab twice to see the candidates). This is not just a convenience; it eliminates a huge fraction of typo bugs, because if Tab refuses to complete, the file you are reaching for does not exist by that name. **Up Arrow** scrolls back through commands you have already run, and `Ctrl+R` lets you search the history for a substring — both let you reuse a slightly-modified version of a command rather than retyping it from scratch.
 
-## 10.5 Creating, viewing, and editing files
+## 11.5 Creating, viewing, and editing files
 
 To make a new directory, use `mkdir`. The flag worth knowing on day one is `-p`, which creates any missing parent directories along the way and silently does nothing if the target already exists — both conveniences that make `mkdir -p` safe to use in scripts. To create an empty file (or to update the timestamp on an existing one), use `touch`.
 
@@ -209,7 +209,7 @@ To create a small text file directly from the command line, you can use **redire
 nano notes.txt    # opens nano; Ctrl+O to save, Ctrl+X to exit
 ```
 
-## 10.6 File operations: copy, move, delete (with safety)
+## 11.6 File operations: copy, move, delete (with safety)
 
 The three commands you will use most are `cp`, `mv`, and `rm`. `cp source dest` copies a file from one place to another. `mv source dest` moves it (or renames it, which is just moving from one name to another in the same folder). `rm file` deletes a file. All three accept either a single source or multiple sources, and all three accept the `-i` flag, which makes them prompt you before they overwrite or delete anything. For the first few weeks of using the terminal, using `-i` by default is a sensible safety net.
 
@@ -243,7 +243,7 @@ $ rm *.tmp                # only run this after the echo looked right
 
 Two seconds of preview prevents the entire category of “I deleted way more than I meant to” disasters.
 
-## 10.7 Searching and inspecting
+## 11.7 Searching and inspecting
 
 ### Finding files
 
@@ -323,7 +323,7 @@ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  dataset.csv
 
 You do not need checksums for everyday work, but they are the right answer whenever you find yourself asking, “did that big download actually finish, or did it silently truncate?” Compare the checksum the source publishes to the one your file computes. If they match, the file is good; if they do not, transfer again.
 
-## 10.8 Pipes and redirection: building workflows
+## 11.8 Pipes and redirection: building workflows
 
 The reason the command line composes so well is that almost every Unix tool is built around the same three streams of data: **stdin** (where input comes from), **stdout** (where normal output goes), and **stderr** (where error messages go). By default stdin is your keyboard and stdout/stderr are your terminal, but you can redirect any of them to a file or to another command, and that is where the power lives.
 
@@ -355,7 +355,7 @@ $ command1; echo $?                        # see exit code explicitly
 
 The habit that follows from this is to always check that your commands actually succeeded, not to assume they did because the prompt came back. Pay attention to error output, look at exit codes when you are scripting, and treat any nonzero result as evidence to investigate before you move on.
 
-## 10.9 Environment basics: `PATH`, variables, and reproducibility
+## 11.9 Environment basics: `PATH`, variables, and reproducibility
 
 ### Environment variables
 
@@ -426,7 +426,7 @@ python clean.py         # now all relative paths resolve predictably
 
 A project whose scripts all start with this pattern is much harder to break by accident, because the code no longer depends on the CWD the user happened to be in.
 
-## 10.10 Permissions, ownership, and `sudo`
+## 11.10 Permissions, ownership, and `sudo`
 
 ### The permission model (just enough)
 
@@ -469,7 +469,7 @@ $ ls -l data/output.csv
 
 If a file in your project ends up owned by `root` (because an earlier command was run with `sudo`), the fix is to restore your ownership: `sudo chown $(whoami) data/output.csv`. If you have created a tangle of root-owned files inside a project — which is a not-uncommon way for a debugging session to go sideways — stop, do not run any more `sudo` commands, and ask for help. Untangling root-owned files is a small task when you catch it early and a much larger one if you keep adding more.
 
-## 10.11 Security hygiene for terminal users
+## 11.11 Security hygiene for terminal users
 
 ### Secrets and command history
 
@@ -516,7 +516,7 @@ $ sudo -i           # now every command is running as root
 
 If you make a habit of running as your normal user by default, the rare occasions you do need `sudo` will stand out, and you will give them the care they deserve.
 
-## 10.12 Workflow patterns for students
+## 11.12 Workflow patterns for students
 
 ### Pattern 1: “enter a project, run, exit”
 
@@ -589,7 +589,7 @@ Produces: `data/processed/cleaned.csv` (expected ~5 MB, ~18,000 rows).
 
 The four steps are: identify, archive, delete, verify. Identification uses search and preview (`ls`, `find`, `echo *glob*`) so you can see the targets as a list before anything irreversible happens. Archiving copies anything you think you might want later into a dated folder — it costs almost nothing and prevents the “oh no, I needed that” moment. Deletion runs the actual removal, ideally against the exact same list the identification step produced. Verification runs the identification step again to confirm the targets are gone and nothing extra has joined them. Follow this pattern even on “obvious” cleanups, and the worst case of a mistake is that you have to restore a file from the archive folder rather than from a backup you hope exists.
 
-## 10.13 Troubleshooting playbook
+## 11.13 Troubleshooting playbook
 
 ### Common errors and what they mean
 
@@ -664,7 +664,7 @@ Traceback (most recent call last):
 
 Disciplined debugging is not glamorous, but it is reliable, and it is what separates people who lose an hour to a mystery error from people who spend two minutes and keep working.
 
-## 10.14 Worked examples
+## 11.14 Worked examples
 
 ### Building a course workspace from the terminal
 
@@ -761,7 +761,7 @@ $ ls ../data/ | od -c | head -3
 
 If the bytes look like the filename you expected, you are good. If they include surprises, that is the bug. With those three checks, “file not found” becomes diagnosable in under a minute.
 
-## 10.15 Templates
+## 11.15 Templates
 
 ### Template A: Safe destructive action checklist
 
@@ -789,7 +789,7 @@ If the bytes look like the filename you expected, you are good. If they include 
       Notes/assumptions:
     * ...
 
-## 10.16 Exercises
+## 11.16 Exercises
 
 1.  Navigate from your home directory to a course folder using only `cd`, `pwd`, `ls`.
 
@@ -805,7 +805,7 @@ If the bytes look like the filename you expected, you are good. If they include 
 
 7.  Trigger a permission error intentionally (in a safe location) and explain why `sudo` is not the first fix.
 
-## 10.17 One-page checklist
+## 11.17 One-page checklist
 
 - I can explain terminal vs shell, and command + arguments.
 
@@ -823,7 +823,7 @@ If the bytes look like the filename you expected, you are good. If they include 
 
 - I avoid leaking secrets in commands and history.
 
-## 10.18 Windows notes: PowerShell and WSL (optional)
+## 11.18 Windows notes: PowerShell and WSL (optional)
 
 ### Two common paths
 
@@ -839,11 +839,11 @@ If the bytes look like the filename you expected, you are good. If they include 
 
 - Pipes exist in both, but objects vs text differ.
 
-## 10.19 What is a terminal?
+## 11.19 What is a terminal?
 
 A terminal is a tool for interacting with your computer by issuing commands. A terminal launches a shell (e.g. `bash` or `zsh`), so sometimes you will hear a “terminal” also described as a “shell”.
 
-## 10.20 What terminal commands should I know, as a basic foundation?
+## 11.20 What terminal commands should I know, as a basic foundation?
 
 The exact syntax of terminal commands will be slightly different on Windows and Mac. So to keep things consistent, we are only going to detail high-level descriptions of terminal commands in this guide. You can Google the exact commands for your specific system; it is good practice to learn to search for the terminal commands you will need online.
 

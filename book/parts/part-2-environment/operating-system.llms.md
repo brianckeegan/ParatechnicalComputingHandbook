@@ -1,4 +1,4 @@
-# 8  Operating System
+# 9  Operating System
 
 > **TIP:**
 >
@@ -32,13 +32,13 @@ By the end of this chapter, you should be able to:
 
 Most OS problems are predictable. The goal is not perfection; it is consistent, low-effort habits that prevent avoidable failures.
 
-## 8.1 A beginner mental model of the OS
+## 9.1 A beginner mental model of the OS
 
 The operating system is the layer that sits between your applications and your hardware, and it is responsible for almost everything that lets a computer feel like a coherent device. It manages your **user accounts**, which is what makes your files separate from someone else’s on the same machine, and it enforces the **permissions** that decide who can read or write what. It owns the **hardware and drivers** — your keyboard, your Wi-Fi card, your storage devices — and translates between them and the apps that need to use them. It runs your **network connections** and your **file system**, launches and stops your applications, and ships its own **updates** along with the built-in security protections that defend you from most casual malware. And when something goes wrong, the OS provides the **recovery tools** that help you get back to a working state.
 
 There is a useful split inside that long list, between the things you should learn to manage yourself and the things you should leave alone. You are in charge of your settings, your updates, your backups, your storage usage, and your accounts — these are the levers that determine whether your computer stays stable. You are explicitly *not* in charge of things like aggressive third-party “cleaner” or “optimizer” apps, registry hacks copied from random forums, drivers downloaded from sketchy websites instead of the vendor’s official site, or any security setting whose effect you cannot articulate in one sentence. Each of those is a category of fix that has hurt many more people than it has helped. The rule of thumb: if you do not understand what a change does, the right action is to not make the change.
 
-## 8.2 Getting oriented: where settings live
+## 9.2 Getting oriented: where settings live
 
 On Windows, almost everything you will routinely change lives in the **Settings** app (the gear icon), which has top-level sections for System, Windows Update, Apps, Accounts, and Privacy & Security. There is a separate **Windows Security** app that hosts the things related to Defender and the firewall, and there is also the older **Control Panel**, which Microsoft has been slowly migrating away from but which still holds a few specific tools — File History, for example, lives there on many systems. If you cannot find a setting in the Settings app, the next place to look is Control Panel, and the place after that is to type the name of what you want into the Start menu search box.
 
@@ -46,7 +46,7 @@ On macOS, the analogous hub is **System Settings** (recently renamed from “Sys
 
 The single most useful skill on either OS is knowing that the Settings panel has a search box at the top, and that searching for a keyword usually jumps you straight to the right page. You do not need to memorize the menu hierarchy; you need to memorize a small vocabulary of keywords. Type `update`, `backup`, `encryption`, `privacy`, `firewall`, `storage`, or `recovery` into the search box, and you will land on the relevant page faster than navigating through the menus by hand.
 
-## 8.3 Know your system: version, storage, and constraints
+## 9.3 Know your system: version, storage, and constraints
 
 Before you troubleshoot anything, know three things about your machine: what version of the OS is running, how much storage is free, and where your files actually live. These are the facts every help channel will ask you for first, and most surprise failures turn out to trace back to one of them.
 
@@ -94,7 +94,7 @@ ls -lh data/raw/sales.csv
 # If it's tiny (a few KB) or the icon shows a cloud, it's a stub.
 ```
 
-## 8.4 Updates and patching: best practices
+## 9.4 Updates and patching: best practices
 
 ### Why updates matter
 
@@ -126,7 +126,7 @@ Treat patching as a small ritual rather than an interruption. Five steps make th
 
 - Consider enabling automatic updates, but still check periodically.
 
-## 8.5 Security baseline for students
+## 9.5 Security baseline for students
 
 ### Accounts and authentication
 
@@ -150,7 +150,7 @@ Encryption introduces exactly one new dependency you must take seriously: the **
 
 Install software only from places you can trust: the vendor’s official website, the platform’s app store (Microsoft Store or Mac App Store), or a reputable package manager (Homebrew on macOS, winget on Windows, conda or pip in your Python environment). Random “freeware” download sites are one of the most common malware vectors, and they routinely bundle adware and toolbars with whatever you actually wanted. Keep your browser up to date, since the browser is the single program that handles the most untrusted input you encounter. And periodically uninstall software you no longer use — every installed app is a small attack surface, and removing the ones you do not need shrinks the surface for free.
 
-## 8.6 Backups and recovery: the student safety net
+## 9.6 Backups and recovery: the student safety net
 
 Losing a week of coursework to a dead hard drive, a lost laptop, or a mis-typed `rm` command is one of the most demoralizing things that can happen to a student. The cost of setting up a backup once is measured in minutes; the cost of not having one is measured in re-doing work. Get this right before the rest of the chapter.
 
@@ -207,7 +207,7 @@ macOS:     Intel:    Hold Cmd+R at startup
 
 The recovery environment is the tool of last resort. You reach for it when the system will not boot, when the disk is showing errors, or when something has corrupted the OS badly enough that normal fixes do not work. Because it is rare, most students do not think about it until they need it — at which point they panic. The better move is to *know the keystroke that gets you into recovery mode on your specific machine*, written down somewhere outside the machine, so that when the emergency comes you spend zero time Googling “how do I boot my Mac into recovery.”
 
-## 8.7 Performance and stability maintenance
+## 9.7 Performance and stability maintenance
 
 The goal of this section is not to make your computer “fast” — that is what marketing copy promises. The goal is to prevent the everyday conditions that make a computer *slow* or *unreliable*, and to do so without accidentally breaking anything. The emphasis is on safe, reversible changes you can make with confidence.
 
@@ -274,7 +274,7 @@ For printers, the easiest reliable workflow is to let the OS auto-detect the pri
 
 When a peripheral misbehaves — the printer refuses to connect, the external monitor shows the wrong resolution — the information a help channel will want is specific: the exact device model (usually on a sticker), the exact OS version, the exact error message, and what changed recently. Write those down before you ask for help; they halve the time to resolution.
 
-## 8.8 Troubleshooting playbook (student-friendly)
+## 9.8 Troubleshooting playbook (student-friendly)
 
 When your computer stops working the way you expect, the temptation is to try fifteen things at once in a panic. The reliable way is the opposite: a short ordered list of the cheapest diagnostics, applied one at a time, until the problem either resolves or becomes clearer. The playbook below is deliberately boring — almost all OS-level problems fall to the first few steps.
 
@@ -322,7 +322,7 @@ When the playbook runs out and you need to ask a TA or a help channel, the quali
 
 Prefer copy-pasted text to screenshots. Screenshots cannot be searched, quoted, or fed into a search engine to find other people with the same problem. Use screenshots when the error is a graphical element (a dialog without selectable text, a broken layout) but copy the text whenever you can. See [sec-asking-questions](#sec-asking-questions) for the fuller treatment of how to write a good help request.
 
-## 8.9 A semester maintenance schedule
+## 9.9 A semester maintenance schedule
 
 The point of a schedule is to spread small amounts of maintenance across the semester so that nothing ever stacks up into an emergency. The schedule below is intentionally lightweight — the entire thing takes about an hour a month — and the whole goal is to make sure you never have to think “oh no, I haven’t backed up in six weeks” at 11 PM the night before a deadline.
 
@@ -378,7 +378,7 @@ Pre-deadline checklist:
 
 The last point is worth thinking about seriously. What is your plan if your laptop dies at 8 PM the night before a submission? If the answer is “I don’t know, I’d panic,” spend an hour now making a plan: pushing your code to GitHub, knowing where a library or lab computer is, having a lightweight workflow that could run on a borrowed machine. The plan does not have to be fancy — it just has to exist before you need it.
 
-## 8.10 Worked examples
+## 9.10 Worked examples
 
 ### Setting up a safe update routine
 
@@ -400,7 +400,7 @@ The first step is to figure out what changed. On Windows, Settings → Windows U
 
 If you need to roll the update back, both OSes provide that. Windows lets you uninstall recent updates from the same Update history page. macOS does not allow you to roll back an OS update directly, but Time Machine can restore the entire system from a backup made before the update — which is the reason you set up backups in the first place. As a last resort, both systems have a recovery mode (Shift+Restart on Windows, Command+R at boot on Macs with Intel chips, or hold the power button on Apple Silicon) that boots into a small repair environment where you can reset, restore, or reinstall the operating system. Treat reinstallation as a real but final option — it works, but it is hours of effort, and it requires a backup that you have already verified.
 
-## 8.11 Exercises
+## 9.11 Exercises
 
 1.  Record your OS version/build and device model in a troubleshooting note.
 
@@ -414,7 +414,7 @@ If you need to roll the update back, both OSes provide that. Windows lets you un
 
 6.  Simulate a recovery: restore one older version of a document from backup.
 
-## 8.12 One-page checklist
+## 9.12 One-page checklist
 
 - I can find key settings (updates, backups, security, storage).
 
@@ -434,7 +434,7 @@ If you need to roll the update back, both OSes provide that. Windows lets you un
 
 - I can follow a basic troubleshooting playbook and gather evidence.
 
-## 8.13 Quick map: where common settings live
+## 9.13 Quick map: where common settings live
 
 ### Windows (typical)
 

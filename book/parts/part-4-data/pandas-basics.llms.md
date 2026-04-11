@@ -1,4 +1,4 @@
-# 21  pandas Basics
+# 22  pandas Basics
 
 > **TIP:**
 >
@@ -30,7 +30,7 @@ By the end of this chapter, you should be able to:
 
 Almost every pandas operation is a set-wise verb: “filter these rows,” “add this column to all rows,” “group by this and take the mean.” When you find yourself writing `for row in df.itertuples()`, stop and think about the vectorized equivalent. Your code will be shorter, faster, and easier to read.
 
-## 21.1 The two data structures
+## 22.1 The two data structures
 
 Everything in pandas is built on two data structures.
 
@@ -77,7 +77,7 @@ print(df)
 
 The `index` is *not* a column — it’s the row labels, and it is carried through most operations. You can always reset it to a default integer index with `df.reset_index()`, and promote a column to the index with `df.set_index("column_name")`.
 
-## 21.2 Creating a DataFrame
+## 22.2 Creating a DataFrame
 
 Four common ways, in rough order of frequency:
 
@@ -121,7 +121,7 @@ df = pd.DataFrame(
 )
 ```
 
-## 21.3 Inspecting a new DataFrame
+## 22.3 Inspecting a new DataFrame
 
 The first thing you should do with any new DataFrame is run these six commands, in a cell by themselves:
 
@@ -137,7 +137,7 @@ df.describe()   # summary statistics for numeric columns
 
 This takes ten seconds and catches 90% of “why is my analysis wrong?” bugs. See [sec-tabular-data](#sec-tabular-data) for why validation is so important.
 
-## 21.4 Selecting columns and rows
+## 22.4 Selecting columns and rows
 
 ### Columns
 
@@ -207,7 +207,7 @@ Three things to remember about boolean masks:
 2.  **Parenthesize every sub-condition.** `df[df["x"] > 1 & df["y"] < 2]` misbehaves because of operator precedence.
 3.  **Use `na=False`** on `.str.contains` to make NaNs behave like `False`.
 
-## 21.5 Adding, modifying, and dropping columns
+## 22.5 Adding, modifying, and dropping columns
 
 ``` python
 df["revenue"] = df["price"] * df["quantity"]        # new column from arithmetic
@@ -226,7 +226,7 @@ df = df.rename(columns={"price": "unit_price"})     # rename
 )
 ```
 
-## 21.6 The classic novice traps
+## 22.6 The classic novice traps
 
 ### Chained assignment and `SettingWithCopyWarning`
 
@@ -276,7 +276,7 @@ df["adjusted"] = df["price"] * 1.1
 
 A good rule: if you wrote `iterrows` or `itertuples`, your first instinct should be “how can I do this as a vectorized operation or a `.apply`?” There is almost always a way.
 
-## 21.7 Aggregation and group-by
+## 22.7 Aggregation and group-by
 
 Group-by is pandas’s single most important verb. It splits the data into groups, applies a function to each group, and combines the results.
 
@@ -297,7 +297,7 @@ A worked example: find the top three products by revenue within each category.
 
 If you find yourself writing complex group-by logic, that is the moment to read the pandas User Guide chapter on `groupby` — see [sec-reading-docs](#sec-reading-docs).
 
-## 21.8 Merging (joining) DataFrames
+## 22.8 Merging (joining) DataFrames
 
 `merge` is the pandas equivalent of a SQL JOIN (see [sec-sql-basics](#sec-sql-basics)).
 
@@ -311,7 +311,7 @@ Parameters to care about:
 - `how`: `"inner"` (default, keeps only matching rows), `"left"`, `"right"`, `"outer"` (union).
 - **`validate`**: specify the expected cardinality (`"one_to_one"`, `"one_to_many"`, `"many_to_one"`, `"many_to_many"`). Use this *every time*. It catches bad merges immediately. See [sec-tabular-data](#sec-tabular-data).
 
-## 21.9 Sorting
+## 22.9 Sorting
 
 ``` python
 df.sort_values("price")                        # ascending by one column
@@ -320,7 +320,7 @@ df.sort_values(["category", "price"])          # multi-column
 df.sort_index()                                # sort by index (labels)
 ```
 
-## 21.10 Worked examples
+## 22.10 Worked examples
 
 ### A one-minute exploration of a new dataset
 
@@ -376,7 +376,7 @@ assert len(merged) == len(orders), "Merge changed row count"
 
 The `validate` + assert pattern prevents the silent-duplication class of bugs.
 
-## 21.11 Templates
+## 22.11 Templates
 
 **A “first look” block for any new DataFrame:**
 
@@ -407,7 +407,7 @@ result = (
 )
 ```
 
-## 21.12 Exercises
+## 22.12 Exercises
 
 1.  Load a CSV from an open-data source into a DataFrame. Run the six inspection commands from section 3. Write one sentence for each about what you learned.
 2.  From the same DataFrame, select a single column as a Series and a list of two columns as a DataFrame. Confirm the types with `type()`.
@@ -417,7 +417,7 @@ result = (
 6.  Perform a `merge` and then `validate="one_to_one"`. Intentionally break it by duplicating a row in the right-hand DataFrame and confirm pandas raises.
 7.  Take a notebook cell you wrote as a for-loop over `iterrows` and rewrite it as a vectorized operation. Time both. Write down the speedup.
 
-## 21.13 One-page checklist
+## 22.13 One-page checklist
 
 - Every new DataFrame: run shape / dtypes / head / describe / isna before anything else.
 - Use `.loc` for label-based selection, `.iloc` for integer-based, and boolean masks for filters.
