@@ -32,6 +32,7 @@ book:
         - parts/part-1-practice/debugging.qmd
         - parts/part-1-practice/tracebacks.qmd
         - parts/part-1-practice/ai-llm.qmd
+        - parts/part-1-practice/artifacts-have-politics.qmd
 
     - part: "Part II — Computing Environment"
       chapters:

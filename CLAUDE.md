@@ -68,7 +68,8 @@ ParatechnicalComputingHandbook/
 │   │   ├── reading-docs.qmd
 │   │   ├── debugging.qmd
 │   │   ├── tracebacks.qmd
-│   │   └── ai-llm.qmd
+│   │   ├── ai-llm.qmd
+│   │   └── artifacts-have-politics.qmd
 │   ├── part-2-environment/          # Part II — Computing Environment
 │   │   ├── operating-system.qmd
 │   │   ├── file-system.qmd
@@ -122,6 +123,7 @@ Every chapter has an explicit H1 section ID immediately after the heading. Use t
 | Debugging | `@sec-debugging` |
 | Reading Python Tracebacks | `@sec-tracebacks` |
 | Using AI Tools | `@sec-ai-llm` |
+| Artifacts Have Politics | `@sec-artifacts-politics` |
 | Operating System | `@sec-os-management` |
 | Local File System | `@sec-filesystem` |
 | Command Line | `@sec-terminal` |
