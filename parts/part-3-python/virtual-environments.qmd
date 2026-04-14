@@ -75,6 +75,10 @@ source .venv/bin/activate
 
 After activation your shell prompt usually changes to show the env name, e.g. `(.venv) you@host:~/project$`. If you don't see it, that is a hint something is off.
 
+::: {.column-margin}
+![ALT: Terminal prompt before and after activating a virtual environment. The "after" prompt shows a `(.venv)` prefix at the start of the line, confirming the environment is active.](graphics/PLACEHOLDER-venv-prompt.png){#fig-venv-prompt}
+:::
+
 **Install packages** into the active venv:
 
 ```bash

@@ -79,6 +79,10 @@ python -m pip install requests
 
 The simplest possible use:
 
+::: {.column-margin}
+![ALT: Web browser showing the raw JSON response from a public API (for example, `https://jsonplaceholder.typicode.com/users/1`). The response is a formatted object with name, email, and address fields, illustrating what API data looks like before any Python parsing.](graphics/PLACEHOLDER-browser-json-response.png){#fig-browser-json}
+:::
+
 ```python
 import requests
 

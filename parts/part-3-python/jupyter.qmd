@@ -61,6 +61,10 @@ source .venv/bin/activate                # 2. activate the project's environment
 jupyter lab                              # 3. start the server
 ```
 
+::: {.column-margin}
+![ALT: JupyterLab interface after launch, showing the file-browser sidebar on the left with the project's folders (data/, notebooks/, src/), a notebook open as a tab in the centre pane, and the kernel indicator in the top-right showing the active Python environment.](graphics/PLACEHOLDER-jupyterlab-overview.png){#fig-jupyterlab-overview}
+:::
+
 Each command matters. The `cd` puts Jupyter in the right folder. Activating the venv ensures Jupyter starts with your project's interpreter and packages, not the system Python. And `jupyter lab` (or `jupyter notebook` for the classic interface) is what actually launches the server. After running them, your default browser opens with the JupyterLab UI, and the file browser on the left should show the contents of your project — `data/`, `notebooks/`, `src/`, the README. If it shows something else, stop and try again from the correct folder.
 
 To verify you are in the right place once Jupyter is up, run a single cell at the top of any notebook:
@@ -97,6 +101,10 @@ Every cell in a Jupyter notebook has a **type**, and the type determines what th
 A **Code** cell holds Python (or whatever language the kernel speaks) and is sent to the kernel for execution when you run it. Whatever the last expression in the cell evaluates to is displayed below the cell as its *output*, alongside anything the code explicitly printed. Code cells are the only cells that actually compute anything — they are where the work happens.
 
 A **Markdown** cell holds text, not code. When you run a markdown cell, Jupyter renders it as formatted prose: headings become headings, `code spans` become monospace, lists become lists, and equations written in LaTeX syntax (`$x^2$`) become typeset math. Markdown cells are how a notebook becomes a *document* — the paragraphs between your code cells that tell a reader what you are doing and why.
+
+::: {.column-margin}
+![ALT: A Jupyter notebook showing side-by-side cells. The top cell is a code cell with `df.head()` and its rendered DataFrame output. The cell below it is a markdown cell whose source contains a heading and a short paragraph, and which is rendered as formatted prose.](graphics/PLACEHOLDER-jupyter-cell-types.png){#fig-jupyter-cell-types}
+:::
 
 A **Raw** cell is passed through without rendering or execution. You will almost never need one as a student; they are mainly used when converting a notebook to another format (like LaTeX or a slide deck) and you need to include material that should not be interpreted by Jupyter. Leave them alone unless a specific tool tells you to use one.
 

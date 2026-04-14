@@ -112,7 +112,11 @@ The most common SSH command is:
 ssh username@hostname
 ```
 
-For example, `ssh agandler@server.cs.example.edu`. If the server is running SSH on a non-standard port (some institutions do this), you add `-p`:
+For example, `ssh agandler@server.cs.example.edu`.
+
+::: {.column-margin}
+![ALT: Terminal showing a successful SSH connection. The prompt has changed from the local hostname to the remote hostname (for example, from `you@laptop` to `agandler@server.cs.example.edu`), signalling that commands now run on the remote machine.](graphics/PLACEHOLDER-ssh-connected.png){#fig-ssh-connected}
+::: If the server is running SSH on a non-standard port (some institutions do this), you add `-p`:
 
 ```bash
 ssh -p 2222 username@hostname

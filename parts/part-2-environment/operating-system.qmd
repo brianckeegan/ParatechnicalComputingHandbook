@@ -67,6 +67,14 @@ macOS:     Apple menu → About This Mac
              and build number (click Version for the build)
 ```
 
+::: {.column-margin}
+![ALT: Windows Settings → System → About page, with "OS build" and "Version" fields highlighted so the reader knows exactly where to find them.](graphics/PLACEHOLDER-windows-about.png){#fig-windows-about}
+:::
+
+::: {.column-margin}
+![ALT: macOS "About This Mac" dialog, showing the macOS name, version, and build number.](graphics/PLACEHOLDER-macos-about.png){#fig-macos-about}
+:::
+
 It helps to understand the three categories of "version" you will see mentioned. A **major version** is the flagship release: Windows 11, macOS Sonoma, macOS Sequoia. These come roughly once a year. A **feature release or minor update** (Windows "feature update," macOS point release like 14.5 → 14.6) adds capabilities and small changes and comes more frequently. A **security or patch update** is a smaller, targeted fix that shows up more or less monthly — these are the updates you should always install quickly. Keeping the three categories straight tells you how careful to be about any given update: feature and major upgrades deserve planning; security patches deserve speed.
 
 ### Check storage health early and often

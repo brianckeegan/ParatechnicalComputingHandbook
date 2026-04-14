@@ -377,6 +377,10 @@ Documentation drifts out of sync with the code almost immediately, because chang
 - [Conventional Comments](https://conventionalcomments.org/) — a lightweight convention for labelling review comments so their intent is obvious.
 :::
 
+::: {.column-margin}
+![ALT: GitHub pull request review interface, showing an inline comment anchored to a specific line of the diff. The comment thread includes the reviewer's suggestion, a reply from the author, and a resolved-thread indicator.](graphics/PLACEHOLDER-github-pr-review-comment.png){#fig-github-pr-review-comment}
+:::
+
 ## Worked examples (outline)
 
 ### Turn a chat question into a good issue

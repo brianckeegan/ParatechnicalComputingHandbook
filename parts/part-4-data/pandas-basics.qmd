@@ -36,6 +36,10 @@ Almost every pandas operation is a set-wise verb: "filter these rows," "add this
 
 Everything in pandas is built on two data structures.
 
+::: {.column-margin}
+![ALT: Jupyter cell output showing a rendered pandas DataFrame. The rendering includes the row index on the left, bold column headers along the top, and several rows of data, illustrating the tabular structure a DataFrame provides.](graphics/PLACEHOLDER-dataframe-render.png){#fig-dataframe-render}
+:::
+
 ### Series: a labeled 1-D array
 
 A **Series** is like a Python list, except every element has a label (the index). Think of it as a single column in a spreadsheet.
