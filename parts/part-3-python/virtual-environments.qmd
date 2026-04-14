@@ -179,6 +179,14 @@ If it does not auto-detect, you can pick manually:
 
 The selected interpreter shows in the bottom-right of the VS Code status bar. Click it any time to switch.
 
+::: {.callout-note}
+## 📚 Further reading
+
+- [`venv` — Creation of virtual environments](https://docs.python.org/3/library/venv.html) — the official module reference and command-line usage.
+- [Python Packaging User Guide: Virtual environments](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/) — a tutorial-style walk-through, including pip usage inside a venv.
+- [Real Python: Python Virtual Environments — A Primer](https://realpython.com/python-virtual-environments-a-primer/) — extended discussion of venv internals, common pitfalls, and alternatives.
+:::
+
 ## Worked examples
 
 ### Starting a new project from scratch

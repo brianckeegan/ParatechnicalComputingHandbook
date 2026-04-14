@@ -559,6 +559,14 @@ Second, **avoid embedding large data into the notebook itself.** A cell that rea
 
 Third, **prefer Jupytext pairing or script conversion for anything code-reviewed.** If a reviewer has to compare two versions of a notebook, they almost certainly want to see a plain-text diff, not a JSON blob. Pairing with Jupytext gives them the best of both worlds: the reviewer reads the `.py`, the analyst keeps using the `.ipynb`, and the two stay in sync automatically. For notebooks that are handed in once and never reviewed, this is overkill; for notebooks that are part of a shared project, it is almost always worth the small setup cost.
 
+::: {.callout-note}
+## 📚 Further reading
+
+- [Python: `argparse` tutorial](https://docs.python.org/3/howto/argparse.html) — the canonical walk-through for building command-line interfaces.
+- [Real Python: Command-Line Interfaces in Python](https://realpython.com/command-line-interfaces-python-argparse/) — a longer-form treatment with subcommands and examples.
+- [`if __name__ == "__main__"`](https://docs.python.org/3/library/__main__.html) — the official explanation of the import vs. script entry point pattern.
+:::
+
 ## Worked examples
 
 ### Turning notebook code into importable functions

@@ -381,6 +381,14 @@ Pre-deadline checklist:
 
 The last point is worth thinking about seriously. What is your plan if your laptop dies at 8 PM the night before a submission? If the answer is "I don't know, I'd panic," spend an hour now making a plan: pushing your code to GitHub, knowing where a library or lab computer is, having a lightweight workflow that could run on a borrowed machine. The plan does not have to be fancy — it just has to exist before you need it.
 
+::: {.callout-note}
+## 📚 Further reading
+
+- [Microsoft Support: Windows](https://support.microsoft.com/en-us/windows) — the canonical help portal for Windows updates, backups, and security.
+- [Apple Support: Mac](https://support.apple.com/guide/mac-help/welcome/mac) — the Mac User Guide, covering Software Update, Time Machine, and FileVault.
+- [StaySafeOnline: Cybersecurity Basics](https://staysafeonline.org/online-safety-privacy-basics/) — a plain-language primer on passwords, MFA, and account hygiene.
+:::
+
 ## Worked examples
 
 ### Setting up a safe update routine

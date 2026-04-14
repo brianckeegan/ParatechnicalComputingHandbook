@@ -304,6 +304,14 @@ The worst uses of AI come from asking it to do the parts of the work you should 
 
 5.  Post the question.
 
+::: {.callout-note}
+## 📚 Further reading
+
+- [How do I ask a good question?](https://stackoverflow.com/help/how-to-ask) — Stack Overflow's canonical guide. Short, opinionated, and worth re-reading every year.
+- [How to create a Minimal, Reproducible Example](https://stackoverflow.com/help/minimal-reproducible-example) — the companion page on MREs, with language-specific examples.
+- [How To Ask Questions The Smart Way](http://www.catb.org/~esr/faqs/smart-questions.html) — Eric Raymond's classic essay; the tone is dated but the substance holds up.
+:::
+
 ## Worked examples
 
 This section illustrates how vague questions become answerable.

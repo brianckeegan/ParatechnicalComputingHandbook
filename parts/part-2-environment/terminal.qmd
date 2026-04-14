@@ -669,6 +669,14 @@ Traceback (most recent call last):
 
 Disciplined debugging is not glamorous, but it is reliable, and it is what separates people who lose an hour to a mystery error from people who spend two minutes and keep working.
 
+::: {.callout-note}
+## 📚 Further reading
+
+- [The Bash Reference Manual](https://www.gnu.org/software/bash/manual/) — the canonical reference for bash syntax, built-ins, and scripting.
+- [Software Carpentry: The Unix Shell](https://swcarpentry.github.io/shell-novice/) — a complete beginner tutorial with hands-on exercises.
+- [ExplainShell](https://explainshell.com/) — paste any command and get a breakdown of every flag and argument.
+:::
+
 ## Worked examples
 
 ### Building a course workspace from the terminal

@@ -259,6 +259,14 @@ Practical responses to hallucination:
 
 -   Ask "Are you confident in this?" or "What might be wrong here?" --- models often acknowledge uncertainty when asked directly.
 
+::: {.callout-note}
+## 📚 Further reading
+
+- [Anthropic: Prompt engineering](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) — structured prompt design patterns and evaluation tips.
+- [OpenAI: Prompt engineering](https://platform.openai.com/docs/guides/prompt-engineering) — OpenAI's parallel guide, including system-message best practices.
+- [Hugging Face: Transformers documentation](https://huggingface.co/docs/transformers/index) — the reference implementation of the model architecture behind most modern chat models.
+:::
+
 ## Worked examples
 
 ### Diagnosing why a prompt produces inconsistent output

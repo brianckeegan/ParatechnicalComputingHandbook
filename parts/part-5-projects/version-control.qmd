@@ -429,6 +429,14 @@ git push origin v1.0-midterm
 
 On GitHub, you can promote a tag to a **release**, which adds release notes and optional downloadable files (like a zipped data snapshot or a compiled PDF). Releases are the right mechanism for citation: a paper or report can reference `v1.0-midterm` and a reviewer can click through to the exact code that produced the results. You do not need releases for day-to-day work, but they are cheap to create and worth knowing about for the moments they matter.
 
+::: {.callout-note}
+## 📚 Further reading
+
+- [Pro Git book](https://git-scm.com/book/en/v2) — the free, authoritative book on Git, written by one of its maintainers.
+- [GitHub Docs: Getting started with Git](https://docs.github.com/en/get-started/using-git/about-git) — a beginner-friendly overview of Git concepts paired with GitHub features.
+- [Git cheat sheet (PDF)](https://education.github.com/git-cheat-sheet-education.pdf) — GitHub Education's printable reference for everyday commands.
+:::
+
 ## Worked examples (outline)
 
 ### The daily loop

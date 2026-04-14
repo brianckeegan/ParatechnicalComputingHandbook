@@ -719,6 +719,14 @@ distclean: clean
 
 The three-second pause before the `rm -rf` is not going to stop a determined mistake, but it is enough to catch the "wait, wrong terminal" moment before the damage is irreversible.
 
+::: {.callout-note}
+## 📚 Further reading
+
+- [GitHub Actions documentation](https://docs.github.com/en/actions) — the authoritative reference for building CI workflows on GitHub.
+- [GNU Make manual](https://www.gnu.org/software/make/manual/) — the classic reference for `make`, targets, and incremental rebuilds.
+- [crontab.guru](https://crontab.guru/) — an interactive explainer for cron expressions that removes most of the mystery.
+:::
+
 ## Worked examples (outline)
 
 ### Turn a 6-step checklist into `make` targets

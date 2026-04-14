@@ -236,6 +236,14 @@ from legacy_code import UNUSED  # noqa: F401
 
 Use `# noqa` sparingly. Every one is a small promise that a human thought about it and decided the rule did not apply. Unexplained `# noqa` comments accumulate and become dead weight.
 
+::: {.callout-note}
+## 📚 Further reading
+
+- [PEP 8 — Style Guide for Python Code](https://peps.python.org/pep-0008/) — the authoritative style reference most Python linters encode.
+- [Ruff documentation](https://docs.astral.sh/ruff/) — the canonical reference for the modern all-in-one linter and formatter.
+- [Black documentation](https://black.readthedocs.io/en/stable/) — the opinionated formatter that eliminates style arguments.
+:::
+
 ## Worked examples
 
 ### Setting up a new project

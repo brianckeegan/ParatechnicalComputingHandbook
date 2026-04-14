@@ -204,6 +204,14 @@ The static part plus the library is usually enough to land you on a Stack Overfl
 
 If the exception is from a library, add the library name. If the exception is a `SyntaxError` or `IndentationError`, don't bother searching — those are almost always typos in your own code that you will spot faster by re-reading.
 
+::: {.callout-note}
+## 📚 Further reading
+
+- [Built-in Exceptions](https://docs.python.org/3/library/exceptions.html) — the complete hierarchy of Python exception classes.
+- [Errors and Exceptions (Python tutorial)](https://docs.python.org/3/tutorial/errors.html) — the official introduction to raising and handling exceptions.
+- [Real Python: Understanding the Python Traceback](https://realpython.com/python-traceback/) — a walk-through of every part of a traceback with worked examples.
+:::
+
 ## Worked examples
 
 ### A `KeyError` in pandas

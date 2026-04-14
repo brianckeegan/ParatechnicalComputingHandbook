@@ -199,6 +199,14 @@ Regex is a hammer. It is not the right tool for:
 
 A good rule of thumb: if your regex is longer than one line or contains more than three `(...)` groups, reconsider.
 
+::: {.callout-note}
+## 📚 Further reading
+
+- [Python `re` module reference](https://docs.python.org/3/library/re.html) — the authoritative list of pattern syntax and functions.
+- [Python Regular Expression HOWTO](https://docs.python.org/3/howto/regex.html) — a longer-form tutorial that builds intuition before you reach for the reference.
+- [regex101](https://regex101.com/) — an interactive tester that explains every part of a pattern as you type.
+:::
+
 ## Worked examples
 
 ### Extracting order IDs from free-text notes

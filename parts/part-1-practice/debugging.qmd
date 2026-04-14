@@ -401,6 +401,14 @@ When you feel stuck, use this checklist as a reset:
 
 Print it and keep it near your desk.
 
+::: {.callout-note}
+## 📚 Further reading
+
+- [Python `logging` HOWTO](https://docs.python.org/3/howto/logging.html) — the official walk-through of loggers, handlers, and levels.
+- [Real Python: Python Debugging with `pdb`](https://realpython.com/python-debugging-pdb/) — a clean, beginner-friendly introduction to the built-in debugger.
+- [Software Carpentry: Python Debugging lesson](https://swcarpentry.github.io/python-novice-inflammation/11-debugging.html) — a short lesson on systematic debugging with examples.
+:::
+
 ## Case studies
 
 The goal of case studies is to show the loop in action.

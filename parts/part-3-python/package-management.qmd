@@ -561,6 +561,14 @@ python -m pip install -r requirements.txt --verbose
 
 The verbose output tells you which package pip is currently wrestling with — often one package deep in the dependency graph. The fix is to **add constraints or pins** so pip has less to search. Pinning the top-level packages to specific versions (`pandas==2.2.1`) or adding a `constraints.txt` file that caps known-problematic dependencies (`numpy<2.0`) usually collapses the search space to something solvable. If pip is still backtracking after you have pinned aggressively, the fastest recovery is to delete the `.venv`, start from a clean environment, and install packages in the smallest groups that let the solver find a consistent answer.
 
+::: {.callout-note}
+## 📚 Further reading
+
+- [Python Packaging User Guide](https://packaging.python.org/en/latest/) — the authoritative reference on pip, virtual environments, and PyPI.
+- [Conda User Guide: Managing environments](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) — the official walk-through for `conda create`, `activate`, and `export`.
+- [Real Python: Managing Python Packages](https://realpython.com/installing-python/) — a beginner-friendly overview of installation and package management patterns.
+:::
+
 ## Worked examples
 
 ### Creating a clean conda environment for a project

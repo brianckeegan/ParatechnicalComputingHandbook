@@ -278,6 +278,14 @@ For any action that is hard to reverse --- writing to a database, sending a mess
                 return {"error": "Action cancelled by user."}
         return TOOL_REGISTRY[tool_call.name](**tool_call.args)
 
+::: {.callout-note}
+## 📚 Further reading
+
+- [Anthropic: Building agents with the Claude API](https://docs.anthropic.com/en/docs/agents-and-tools/overview) — patterns and examples for tool use and agentic loops.
+- [LangChain agents documentation](https://python.langchain.com/docs/tutorials/agents/) — a framework-level walk-through of agent construction.
+- [OpenAI: Function calling guide](https://platform.openai.com/docs/guides/function-calling) — the canonical reference for defining tools the model can invoke.
+:::
+
 ## Worked examples
 
 ### Building a research agent with document retrieval

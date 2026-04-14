@@ -322,6 +322,14 @@ df.sort_values(["category", "price"])          # multi-column
 df.sort_index()                                # sort by index (labels)
 ```
 
+::: {.callout-note}
+## 📚 Further reading
+
+- [pandas User Guide](https://pandas.pydata.org/docs/user_guide/index.html) — conceptual explanations of indexing, merging, and reshaping.
+- [pandas API reference](https://pandas.pydata.org/docs/reference/index.html) — every method and parameter, with examples.
+- [pandas Cheat Sheet (PDF)](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf) — a printable one-pager covering the most common operations.
+:::
+
 ## Worked examples
 
 ### A one-minute exploration of a new dataset

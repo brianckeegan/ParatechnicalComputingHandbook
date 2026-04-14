@@ -254,6 +254,14 @@ Before you write a lot of custom API code, check:
 -   **Is there a bulk download?** Many data sources also offer CSV, Parquet, or SQL dumps of the same data. If you want a snapshot, the dump is usually much faster and easier than hammering the API row by row. See @sec-data-file-formats.
 -   **Is this a one-off?** For a single fetch, `curl` on the command line or a browser download might be faster than a Python script. Save the result to disk and work from there.
 
+::: {.callout-note}
+## 📚 Further reading
+
+- [`requests` documentation](https://requests.readthedocs.io/en/latest/) — the official guide to the most common Python HTTP library.
+- [MDN: An overview of HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview) — a clear, browser-agnostic explanation of HTTP methods, headers, and status codes.
+- [HTTP Status Codes (httpstatuses.com)](https://httpstatuses.com/) — a searchable reference for every status code you will see in the wild.
+:::
+
 ## Worked examples
 
 ### Fetch a GitHub repo's metadata

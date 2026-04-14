@@ -366,6 +366,14 @@ Use the following guardrails:
 
 A practical rule: if the AI suggests a command that could be destructive (`rm`, `sudo`, permissions changes), stop and verify in official documentation or with an instructor.
 
+::: {.callout-note}
+## 📚 Further reading
+
+- [The Diátaxis framework](https://diataxis.fr/) — the four-quadrant model for tutorials, how-tos, reference, and explanation. The clearest way to think about documentation genres.
+- [Write the Docs: Beginner's Guide](https://www.writethedocs.org/guide/) — a community-maintained introduction to writing technical documentation.
+- [Make a README](https://www.makeareadme.com/) — a short guide with a template you can copy into any project.
+:::
+
 ## Worked examples
 
 This section demonstrates how documentation practices appear in typical novice workflows.

@@ -520,6 +520,14 @@ scripts/
 
 The notebook and the script import the *same* functions from `src/`. When you improve a cleaning step, both the notebook and the script pick up the improvement automatically, because there is only one copy of the logic. This is the shape that "scales": small student projects can start with just a notebook, grow to need `src/` as they get more complex, and grow again to include `scripts/` when they need automation — without ever having to rewrite from scratch.
 
+::: {.callout-note}
+## 📚 Further reading
+
+- [JupyterLab documentation](https://jupyterlab.readthedocs.io/en/latest/) — the official guide to the multi-document interface, extensions, and kernels.
+- [Jupyter Notebook documentation](https://jupyter-notebook.readthedocs.io/en/latest/) — the classic single-document interface, still widely used in courses.
+- [Jupyter Keyboard Shortcuts reference](https://jupyterlab.readthedocs.io/en/latest/user/commands.html) — the full list of command-palette actions and default keybindings.
+:::
+
 ## Worked examples
 
 ### Launching Jupyter in the right place

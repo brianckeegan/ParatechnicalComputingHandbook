@@ -658,6 +658,14 @@ ssh -v agandler@server.cs.example.edu 2>&1 | grep -i "offering\|accepted\|public
 
 **Server-side access control problem.** Your key is correct but the server has not authorized it — the public key was never added to `~/.ssh/authorized_keys` on the server, the file has the wrong permissions, or your account has been disabled. If you have another way into the server (password login, console access, another working key), fix it there. If not, you need to contact whoever administers the server and ask them to install your public key.
 
+::: {.callout-note}
+## 📚 Further reading
+
+- [OpenSSH manual pages](https://www.openssh.com/manual.html) — the canonical reference for `ssh`, `sshd`, `scp`, `sftp`, and SSH config files.
+- [SSH Academy](https://www.ssh.com/academy/ssh) — a tutorial-style introduction to keys, agents, tunneling, and common errors.
+- [VS Code Remote - SSH](https://code.visualstudio.com/docs/remote/ssh) — the official guide to editing remote files as if they were local.
+:::
+
 ## Worked examples
 
 ### Your first SSH login

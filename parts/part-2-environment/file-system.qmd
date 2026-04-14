@@ -221,6 +221,14 @@ df = pd.read_csv("data/raw/survey.csv")     # usually fine, but brittle
 
 Two small supporting habits make everything else smoother. **Keep paths short** — deep project trees hit Windows' legacy path-length limits and make every error message harder to read — and **avoid special characters** in filenames you pass to code. Spaces, parentheses, accented letters, and curly quotes all work in the GUI and all occasionally break in the terminal or a script. Stick to letters, digits, hyphens, and underscores for anything a script will touch, and you will never need to learn which layer of which tool is responsible for the broken quoting.
 
+::: {.callout-note}
+## 📚 Further reading
+
+- [File Explorer in Windows](https://support.microsoft.com/en-us/windows/file-explorer-in-windows-ef370130-1cca-9dc5-e0df-2f7416fe1cb1) — the official walk-through of navigating Windows paths.
+- [Finder User Guide for Mac](https://support.apple.com/guide/mac-help/finder-mchlp1103/mac) — the Apple equivalent covering tags, column view, and search.
+- [Python `pathlib` documentation](https://docs.python.org/3/library/pathlib.html) — the cross-platform way to work with paths from code.
+:::
+
 ## Worked examples
 
 ### Building a course workspace from scratch

@@ -390,6 +390,14 @@ git checkout .                  # throw everything away; back to the commit
 
 The habit to build: **commit small, commit often, and commit before anything that scares you.** Commits are cheap, and the safety they provide is enormous. See @sec-git-github for the mechanics and @sec-project-management for how commit hygiene fits into broader project discipline.
 
+::: {.callout-note}
+## 📚 Further reading
+
+- [VS Code documentation](https://code.visualstudio.com/docs) — the official guide, including the Python extension walk-through.
+- [VS Code Python tutorial](https://code.visualstudio.com/docs/python/python-tutorial) — a focused introduction to running and debugging Python in VS Code.
+- [nano cheat sheet](https://www.nano-editor.org/dist/latest/cheatsheet.html) — every keystroke you need for quick edits over SSH.
+:::
+
 ## Worked examples
 
 ### Writing and running a tiny script

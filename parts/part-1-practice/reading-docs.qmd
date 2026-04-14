@@ -220,6 +220,14 @@ pd.read_csv?
 
 If `skipfooter` shows up in your version's docstring with the same meaning the blog assumes, you are fine. If your version's docstring is silent on it, or the description is different, trust the docs and not the blog.
 
+::: {.callout-note}
+## 📚 Further reading
+
+- [Python documentation](https://docs.python.org/3/) — the canonical reference for the standard library and language.
+- [pandas API reference](https://pandas.pydata.org/docs/reference/) — every DataFrame and Series method with signatures and examples.
+- [Diátaxis framework](https://diataxis.fr/) — the model that distinguishes tutorials, how-tos, reference, and explanation.
+:::
+
 ## Worked examples
 
 ### Looking up a parameter: what does `how='outer'` do in `pd.merge`?

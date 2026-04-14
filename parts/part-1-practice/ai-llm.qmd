@@ -453,6 +453,14 @@ Conflicts are common. Resolve them with evidence.
 
 If the assistant cannot provide a verifiable primary source, treat its claim as tentative.
 
+::: {.callout-note}
+## 📚 Further reading
+
+- [Anthropic: Prompt engineering overview](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) — Anthropic's guide to structured, verifiable prompts.
+- [OpenAI: Prompt engineering](https://platform.openai.com/docs/guides/prompt-engineering) — OpenAI's parallel guide, with patterns for chat and API workflows.
+- [Google: Generative AI prompt guide](https://ai.google.dev/gemini-api/docs/prompting-intro) — a beginner-friendly walk-through from Gemini's documentation.
+:::
+
 ## Case studies
 
 These case studies illustrate how AI fits into a disciplined workflow.
