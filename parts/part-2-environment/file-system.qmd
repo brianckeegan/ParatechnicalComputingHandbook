@@ -202,7 +202,7 @@ The corollary is that **hard-coded, machine-specific absolute paths are a code s
 
 ### Cross-platform path handling (conceptual)
 
-If you only ever use macOS or only ever use Windows, path handling is usually invisible. The moment you share code with someone on the other platform, though, the separator character (`/` vs `\`) and the shape of the root (`/Users/...` vs `C:\Users\...`) start producing subtle bugs that are hard to track down. The safe habit is to stop writing paths as strings at all and instead use whatever path-handling utility your language provides. In Python, that utility is `pathlib`, and it is worth learning on day one:
+If you only ever use macOS or only ever use Windows, path handling is usually invisible. The moment you share code with someone on the other platform, though, the separator character (`/` vs `\`) and the shape of the root (`/Users/...` vs `C:\Users\...`) start producing subtle bugs that are hard to track down. The safe habit is to stop writing paths as strings at all and instead use whatever path-handling utility your language provides. In Python, that utility is [`pathlib`](https://docs.python.org/3/library/pathlib.html), and it is worth learning on day one:
 
 ```python
 from pathlib import Path
