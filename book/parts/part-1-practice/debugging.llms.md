@@ -1,4 +1,4 @@
-# 5  Debugging
+# 6  Debugging
 
 > **TIP:**
 >
@@ -38,7 +38,7 @@ By the end of this chapter, you should be able to:
 
 Most debugging becomes easier when you adopt one rule: make one change at a time, then observe the result. When you change multiple things at once, you cannot tell which change mattered. Debugging is a science experiment, not a guessing game.
 
-## 5.1 A mental model: debugging as an evidence-driven loop
+## 6.1 A mental model: debugging as an evidence-driven loop
 
 A bug is a situation where the program behaves differently than you expect. Debugging is the process of reconciling expectations with reality.
 
@@ -68,7 +68,7 @@ Beginners often respond to a bug by changing multiple lines, rerunning, and hopi
 
 A disciplined debugging workflow feels slower for the first few minutes and is dramatically faster after that, because it spends each minute reducing uncertainty rather than spinning in confusion.
 
-## 5.2 Start with a clear problem statement
+## 6.2 Start with a clear problem statement
 
 Before you dive into code, write a one-sentence statement:
 
@@ -84,7 +84,7 @@ Examples:
 
 This statement forces you to name your expectation. Many issues turn out to be misunderstandings of what a function or tool is supposed to do.
 
-## 5.3 Reproduce the bug and capture the evidence
+## 6.3 Reproduce the bug and capture the evidence
 
 If you cannot reproduce a bug, you cannot reliably confirm a fix. Reproduction does not always mean “every time.” It means “often enough that you can test changes.”
 
@@ -113,7 +113,7 @@ Jupyter notebooks are convenient, but they create a common debugging hazard: *hi
 
 If a bug appears in a notebook but not in a script (or vice versa), that difference is evidence.
 
-## 5.4 Read error messages and stack traces
+## 6.4 Read error messages and stack traces
 
 Error messages are not insults. They are structured signals.
 
@@ -143,7 +143,7 @@ Each family points you at a different first move. A `KeyError` should make you r
 
 For a fuller treatment of the most common Python exceptions and how to read the surrounding stack frames, see [sec-tracebacks](#sec-tracebacks).
 
-## 5.5 Decomposition: make the problem smaller
+## 6.5 Decomposition: make the problem smaller
 
 Decomposition is the most important debugging skill. You reduce a complex failure to a small failure.
 
@@ -182,7 +182,7 @@ df["age"].mean()           # reproduces the ValueError without a real file
 
 Closely related: **hard-code a small example.** A three-row DataFrame or a five-element list is almost always enough to reproduce a logic bug, and it’s small enough to reason about end to end. **Delete code aggressively** — pull out everything that isn’t required to trigger the failure, and if removing a block does not change the symptom, it was not relevant. Finally, **freeze any randomness**. If your bug only sometimes appears, set the random seeds (`random.seed(0)`, `numpy.random.seed(0)`, `torch.manual_seed(0)`) so that “sometimes” becomes “every time on this seed,” which is debuggable.
 
-## 5.6 Hypotheses and controlled experiments
+## 6.6 Hypotheses and controlled experiments
 
 Once you have localized the issue, do not jump straight to a fix. First, form a hypothesis.
 
@@ -207,7 +207,7 @@ print(result.shape)                         # experiment 2: shape downstream
 
 Whatever experiment you run, *write down* what you tried and what happened. Even when the bug remains, the run is progress: you have ruled something out, and your search space just got smaller.
 
-## 5.7 Instrumentation: print statements and sanity checks
+## 6.7 Instrumentation: print statements and sanity checks
 
 Instrumentation means adding temporary measurements to observe program state.
 
@@ -247,7 +247,7 @@ Examples:
 
 Use assertions to encode assumptions you would otherwise hold in your head.
 
-## 5.8 Logging: debugging that scales beyond one run
+## 6.8 Logging: debugging that scales beyond one run
 
 Print statements are fine during exploration, but logging is better when:
 
@@ -312,7 +312,7 @@ Never log:
 
 If you need to confirm that a token exists, log only that it is set, not its value.
 
-## 5.9 Testing: confirm fixes and prevent regressions
+## 6.9 Testing: confirm fixes and prevent regressions
 
 Testing is the final stage of debugging. Without tests, a bug can return quietly.
 
@@ -352,7 +352,7 @@ Examples:
 
 A test should give the same result every run. If randomness is involved, set a seed or test statistical properties rather than exact values.
 
-## 5.10 Debugging in common environments
+## 6.10 Debugging in common environments
 
 Different environments create different failure modes.
 
@@ -376,7 +376,7 @@ Not every bug lives in the code. A surprising number of “code” bugs are actu
 
 The diagnostic move that catches most of these in one go is to compare environments: if a command works in one terminal but not another, the environment is the suspect, not the code. Run the same command in both and compare the output of `pwd`, `which python`, `echo $PATH`, and `python --version`. The first place these diverge is the place to investigate.
 
-## 5.11 A practical debugging checklist
+## 6.11 A practical debugging checklist
 
 When you feel stuck, use this checklist as a reset:
 
@@ -404,7 +404,7 @@ Print it and keep it near your desk.
 > - [Real Python: Python Debugging with `pdb`](https://realpython.com/python-debugging-pdb/) — a clean, beginner-friendly introduction to the built-in debugger.
 > - [Software Carpentry: Python Debugging lesson](https://swcarpentry.github.io/python-novice-inflammation/11-debugging.html) — a short lesson on systematic debugging with examples.
 
-## 5.12 Case studies
+## 6.12 Case studies
 
 The goal of case studies is to show the loop in action.
 
@@ -441,7 +441,7 @@ print(df["age"].isna().mean())       # how many are NaN?
 
 In this case the column is `object`, the head shows `'35'`, `'42'`, `'unknown'`, and the NaN rate is 80%. Hypothesis: ages were read as strings because of the `'unknown'` sentinel, so `pd.to_numeric` produced mostly NaNs, and your average call ignored them — leaving a near-zero result. The fix is to handle the missing values explicitly at load time (`na_values=['unknown']`) and to add a test that locks in an expected non-NaN rate going forward, so the next time someone changes the ingestion the silent failure cannot return. The general lesson is that debugging silent wrongness almost always comes down to inspecting intermediate representations rather than the final answer.
 
-## 5.13 Using AI tools in debugging
+## 6.13 Using AI tools in debugging
 
 AI tools can help you debug, but they can also increase confusion if you treat them as authoritative.
 
@@ -467,7 +467,7 @@ AI tools can help you debug, but they can also increase confusion if you treat t
 
 A practical motto: AI can suggest hypotheses; you supply the evidence.
 
-## 5.14 Templates
+## 6.14 Templates
 
 ### Template A: debugging journal entry
 
@@ -494,7 +494,7 @@ When debugging takes more than a few minutes, keep a short journal:
 
 - Test fails on the buggy version.
 
-## 5.15 Exercises
+## 6.15 Exercises
 
 1.  Take a recent error you encountered. Write a one-sentence symptom statement (X, expect Y, observe Z).
 
@@ -508,7 +508,7 @@ When debugging takes more than a few minutes, keep a short journal:
 
 6.  In a notebook, intentionally create a hidden-state bug (run cells out of order), then fix it by restarting and re-running from top.
 
-## 5.16 One-page checklist
+## 6.16 One-page checklist
 
 - I can state the symptom clearly (expected vs actual).
 

@@ -1,4 +1,4 @@
-# 6  Reading Python Tracebacks
+# 7  Reading Python Tracebacks
 
 > **TIP:**
 >
@@ -30,7 +30,7 @@ By the end of this chapter, you should be able to:
 
 A traceback has two jobs: tell you what went wrong (the exception type and message on the last line) and tell you where it happened (the stack of frames above it). Most of the time you need both — the “what” is a label, and the “where” is the evidence.
 
-## 6.1 The anatomy of a traceback
+## 7.1 The anatomy of a traceback
 
 Here is a minimal traceback from a small script:
 
@@ -62,7 +62,7 @@ Run it with `python anatomy_demo.py` and Python prints exactly the kind of trace
 
 The phrase **“most recent call last”** is the single most important thing to understand. Python prints the stack in execution order: the first frame is what you started with, and the last frame is what was running when the crash happened. If you want to know *what code actually crashed*, look at the **bottom**. If you want to know *how the program got there*, read the frames **top-to-bottom** like a trail of breadcrumbs.
 
-## 6.2 Top-down vs. bottom-up reading
+## 7.2 Top-down vs. bottom-up reading
 
 Both directions through the stack are useful; pick based on the question you are trying to answer.
 
@@ -80,7 +80,7 @@ File "src/cleaning.py", line 27, in normalize_dates         # YOURS — start he
 
 The first frame you recognize as yours is almost always the one to fix.
 
-## 6.3 The ten exceptions you will see most often
+## 7.3 The ten exceptions you will see most often
 
 These are the error types you will encounter 90% of the time in a first data science course, with a plain-English translation and the first place to look.
 
@@ -144,7 +144,7 @@ These are the error types you will encounter 90% of the time in a first data sci
 
 **First place to look:** the *current working directory*. Print `import os; os.getcwd()` — the path is relative to that. In Jupyter, the current directory is usually the directory containing the `.ipynb` file, not the project root. See [sec-filesystem](#sec-filesystem).
 
-## 6.4 Chained tracebacks: “during handling of the above exception”
+## 7.4 Chained tracebacks: “during handling of the above exception”
 
 Sometimes a traceback has two sections joined by a line that says:
 
@@ -160,7 +160,7 @@ The above exception was the direct cause of the following exception:
 
 This means the code caught an exception and raised a *new* one while handling it. Pandas does this constantly: it catches a low-level `ValueError` from numpy and re-raises it as a more helpful `pandas.errors.ParserError` with a better message. To debug, **read the original (top) exception first** — that is the root cause — and use the second one as context about how it manifested. The bottom traceback often has a friendlier message, but the top one is what you actually need to fix.
 
-## 6.5 Tracebacks in Jupyter notebooks
+## 7.5 Tracebacks in Jupyter notebooks
 
 Jupyter adds some formatting of its own around tracebacks, but the bones are the same. A traceback from a failing notebook cell looks something like:
 
@@ -188,7 +188,7 @@ The little `---->` arrow inside the cell preview is Jupyter’s pointer at the *
 
 Below that, frames inside libraries are printed in full, exactly as they would be in a script traceback. So the “find the first frame that belongs to you, starting from the bottom” heuristic still works in notebooks. In the example above, `pandas/core/frame.py` is library code; the place where you should look is the cell with `df["date"].dt.year`, because that is the last code *you wrote* before pandas raised the error.
 
-## 6.6 Searching for errors online
+## 7.6 Searching for errors online
 
 When you paste an error message into a search engine, include the **exception type** and the **static part of the message**. Strip out things that are specific to your machine: file paths, variable values, line numbers. For example, do not search
 
@@ -208,7 +208,7 @@ If the exception is from a library, add the library name. If the exception is a 
 > - [Errors and Exceptions (Python tutorial)](https://docs.python.org/3/tutorial/errors.html) — the official introduction to raising and handling exceptions.
 > - [Real Python: Understanding the Python Traceback](https://realpython.com/python-traceback/) — a walk-through of every part of a traceback with worked examples.
 
-## 6.7 Worked examples
+## 7.7 Worked examples
 
 ### A `KeyError` in pandas
 
@@ -274,7 +274,7 @@ See [sec-data-file-formats](#sec-data-file-formats) for the full list of ways mi
 
 **Next step:** print `resp.status_code` and `resp.text[:200]` before the `json.loads` call. You will probably find an HTML error page or an empty response.
 
-## 6.8 Exercises
+## 7.8 Exercises
 
 1.  Take a working Python script of your own and deliberately break it in four ways: misspell a variable name, delete an `import`, index past the end of a list, and call a method on `None`. Read each traceback and write down, in a single sentence, what the “what” and “where” are.
 2.  Find a traceback in your own recent course work (a screenshot or a notebook cell output). Without re-running the code, write down your best guess at the root cause based only on the traceback. Then re-run to confirm.
@@ -282,7 +282,7 @@ See [sec-data-file-formats](#sec-data-file-formats) for the full list of ways mi
 4.  In a Jupyter notebook, run cells in a deliberately-wrong order so that a variable is `None` when the next cell uses it. Read the resulting traceback and practice reading the `Cell In[N]` header.
 5.  Pick the most confusing error message you encountered in the last week, strip out the machine-specific parts, paste the static part into a search engine, and write down the first Stack Overflow answer you found. Was it helpful? If not, what made the message hard to search for?
 
-## 6.9 One-page checklist
+## 7.9 One-page checklist
 
 - Look at the **last line** first: exception type and message = *what*.
 - Look at the **bottommost frame** inside *your* code: file and line = *where*.
@@ -292,7 +292,7 @@ See [sec-data-file-formats](#sec-data-file-formats) for the full list of ways mi
 - Before asking for help, paste the traceback in full — never just the error message. The stack is half the information. See [sec-asking-questions](#sec-asking-questions).
 - When searching online, include the exception type and the static part of the message; strip file paths, values, and line numbers.
 
-## 6.10 Quick reference: common exceptions → first suspect
+## 7.10 Quick reference: common exceptions → first suspect
 
 | Exception                    | First suspect                              |
 |------------------------------|--------------------------------------------|

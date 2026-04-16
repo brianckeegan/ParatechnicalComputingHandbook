@@ -1,4 +1,4 @@
-# 4  Reading Official Documentation
+# 5  Reading Official Documentation
 
 > **TIP:**
 >
@@ -30,7 +30,7 @@ By the end of this chapter, you should be able to:
 
 For any question about a library function, the official docs should be your first stop, not your last. Blog posts are for discovery; docs are for correctness.
 
-## 4.1 The four genres of documentation
+## 5.1 The four genres of documentation
 
 Not all documentation is for the same kind of question. The [Diátaxis framework](https://diataxis.fr/) (worth a bookmark) divides docs into four genres:
 
@@ -45,7 +45,7 @@ Most novices reach for tutorials first and stop there. The real superpower is kn
 
 The official docs of major libraries usually include all four genres. pandas has a “Getting Started” (tutorials), “User Guide” (explanations), “Cookbook” (how-tos), and “API Reference.” Python itself has a tutorial, a library reference, a language reference, and a “HOWTOs” section. Learn where each lives for the libraries you use most.
 
-## 4.2 Reading a function signature
+## 5.2 Reading a function signature
 
 Every library reference page starts with a signature. Read it slowly — it tells you most of what you need to know without ever scrolling further.
 
@@ -82,7 +82,7 @@ Closely related: `None` in a Python signature almost never means “nothing.” 
 
 Each parameter has its own description below the signature. Read the ones you actually pass; skim the rest until you need them.
 
-## 4.3 Reading a return value
+## 5.3 Reading a return value
 
 Every reference page tells you what the function returns — its type and shape. For a pandas DataFrame method, the return is usually another DataFrame (or Series, or scalar). The important question is always: **is this operation in-place, or does it return a new object?**
 
@@ -93,7 +93,7 @@ df.sort_values("date", inplace=True)   # modifies df directly, returns None
 
 Many pandas operations historically had an `inplace` parameter; the modern convention is to avoid it and use the return value. If your code sorts a DataFrame and then operates on the original unsorted one, you probably forgot to assign: `df = df.sort_values("date")`.
 
-## 4.4 Reading docstrings from Python itself
+## 5.4 Reading docstrings from Python itself
 
 You do not have to open a browser to read documentation. Every function, method, and class has a docstring you can read inline.
 
@@ -127,7 +127,7 @@ df = pd.DataFrame({"a": [1, 2, 3]})
 
 For built-in functions and methods, `help` is fast and always available, even on an airplane.
 
-## 4.5 Reading a docstring: the canonical shape
+## 5.5 Reading a docstring: the canonical shape
 
 Most Python docstrings follow a structured format with the same sections:
 
@@ -168,7 +168,7 @@ The sections you will read most often are the **summary line**, the **Parameters
 
 If you only have time to read two of those four sections, read the summary line and the examples.
 
-## 4.6 Extracting a minimal example from the docs
+## 5.6 Extracting a minimal example from the docs
 
 The examples in a reference page are designed to be self-contained. They usually import everything they need, create any sample data inline, and run top to bottom — meaning you can paste them anywhere and they should work. The workflow for a new function is to find the example that looks closest to what you want, copy it into a notebook cell or a throwaway script, run it as-is, and confirm that it works *before* you change anything. Then modify one variable at a time toward your real use case, running again after each change so that if something breaks you know exactly which change broke it.
 
@@ -188,7 +188,7 @@ df.melt(id_vars=["respondent_id"], value_vars=["q1", "q2", "q3"])
 
 This iterative workflow beats “try to guess the right incantation” every time, and it gives you something better than a working call: a clear explanation, in your own head, of *why* it works.
 
-## 4.7 Release notes and changelogs
+## 5.7 Release notes and changelogs
 
 Sometimes the docs on the site match a newer version than the one installed in your environment. Most libraries publish a release note page (sometimes called “What’s New” or “Changelog”) that lists the behavior changes in each release. There are three symptoms that almost always mean “go check the changelog”: code that worked last year stops working now, a tutorial that uses an argument your version does not seem to have, and a deprecation warning whose meaning is opaque. All three are version-mismatch problems, and the changelog is the cheapest way to confirm and resolve them. For pandas the page is at [pandas.pydata.org/docs/whatsnew](https://pandas.pydata.org/docs/whatsnew); for Python itself it is at [docs.python.org/3/whatsnew](https://docs.python.org/3/whatsnew).
 
@@ -201,7 +201,7 @@ print(pd.__version__)
 
 Then go to the “What’s new in X.Y” page for that version and scan for the function you are using.
 
-## 4.8 When a blog post is wrong
+## 5.8 When a blog post is wrong
 
 Blog posts are wonderful for discovery — “I didn’t know I could do that” — and dangerous for reference. Two warning signs should make you suspicious of any blog code you are about to copy. The first is **no date, or a date older than about two years.** APIs change; an answer that was right in 2018 may be silently wrong in 2026. The second, and more diagnostic, is that **the code in the post does not match the function signature in the official docs.** That mismatch is almost always a sign that the post was written against a different version, and continuing to follow it will land you in a confusing place.
 
@@ -224,7 +224,7 @@ If `skipfooter` shows up in your version’s docstring with the same meaning the
 > - [pandas API reference](https://pandas.pydata.org/docs/reference/) — every DataFrame and Series method with signatures and examples.
 > - [Diátaxis framework](https://diataxis.fr/) — the model that distinguishes tutorials, how-tos, reference, and explanation.
 
-## 4.9 Worked examples
+## 5.9 Worked examples
 
 ### Looking up a parameter: what does `how='outer'` do in `pd.merge`?
 
@@ -266,7 +266,7 @@ If you find yourself wondering “does Python’s `in` operator work on a dict?�
 
 The language reference is dense — it is for people who want precise answers to precise questions. You will not read it cover to cover, but you will increasingly rely on it as you get comfortable.
 
-## 4.10 Templates
+## 5.10 Templates
 
 **A “read the docs before asking for help” pre-flight checklist:**
 
@@ -279,7 +279,7 @@ The language reference is dense — it is for people who want precise answers to
 
 If yes to all five, then it is time to ask a question (see [sec-asking-questions](#sec-asking-questions)).
 
-## 4.11 Exercises
+## 5.11 Exercises
 
 1.  Using `help()` in a Python REPL, read the docstring for `sorted`. What does the `key` parameter do? What does `reverse=True` do?
 2.  In a Jupyter notebook, type `pd.read_csv?` and scroll through every parameter. Pick three you have never used and read their descriptions.
@@ -289,7 +289,7 @@ If yes to all five, then it is time to ask a question (see [sec-asking-questions
 6.  For a library you use often but have not read the docs of (e.g., `matplotlib`, `scikit-learn`), find the entry page for the four Diátaxis genres: tutorial, how-to, reference, explanation. Bookmark each.
 7.  The next time you hit a confusing error message, before searching online, open the docs for the function that raised the error. Read the Parameters and Examples sections. Time how long it took to find the answer.
 
-## 4.12 One-page checklist
+## 5.12 One-page checklist
 
 - **Docs first, blog posts second.** Official documentation is almost always faster and more reliable.
 - Know the four genres: tutorials (learn), how-tos (do), references (look up), explanations (understand).
