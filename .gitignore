@@ -3,19 +3,6 @@
 /.quarto/
 **/*.quarto_ipynb
 
-# Intermediate LaTeX files (from quarto render --to pdf)
-*.aux
-*.log
-*.toc
-*.out
-*.bbl
-*.blg
-*.fdb_latexmk
-*.fls
-*.synctex.gz
-/index.tex
-/Paratechnical-Computing-Handbook.tex
-
 # Python
 __pycache__/
 *.pyc
@@ -26,3 +13,4 @@ __pycache__/
 # OS
 .DS_Store
 Thumbs.db
+.claude/
