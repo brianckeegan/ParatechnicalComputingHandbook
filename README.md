@@ -32,11 +32,11 @@ quarto render --to html
 quarto render --to pdf
 ```
 
-Output lands in `_book/`:
+Output lands in `book/`:
 
-- `_book/index.html` — landing page for the HTML book
-- `_book/llms.txt` and per-chapter `*.llms.md` — machine-readable versions designed to be ingested by LLMs (see https://quarto.org/docs/websites/website-llms.html)
-- `_book/Paratechnical-Computing-Handbook.pdf` — only if you rendered `--to pdf` locally
+- `book/index.html` — landing page for the HTML book
+- `book/llms.txt` and per-chapter `*.llms.md` — machine-readable versions designed to be ingested by LLMs (see https://quarto.org/docs/websites/website-llms.html)
+- `book/Paratechnical-Computing-Handbook.pdf` — only if you rendered `--to pdf` locally
 
 ## Project structure
 
@@ -87,4 +87,4 @@ The short version:
 
 ## CI
 
-Every push and pull request triggers `.github/workflows/build-book.yml`, which runs `quarto render --to html` in an Ubuntu runner with a pinned Quarto version. The rendered `_book/` output is uploaded as an artifact named `paratechnical-computing-handbook` and retained for 30 days. PDF rendering is a local-only step — install TinyTeX and run `quarto render --to pdf` if you want one.
+Every push to `main` and pull request against `main` triggers `.github/workflows/build-book.yml`, which renders the book in an Ubuntu runner using the latest stable Quarto release. The rendered `book/` output is uploaded as an artifact named `paratechnical-computing-handbook` and retained for 30 days. On pushes to `main`, the workflow also publishes the book to GitHub Pages via the `gh-pages` branch (using `quarto-dev/quarto-actions/publish`). PDF rendering is a local-only step — install TinyTeX and run `quarto render --to pdf` if you want one.

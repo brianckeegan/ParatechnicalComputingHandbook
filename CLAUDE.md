@@ -35,15 +35,15 @@ quarto render --to html
 quarto render --to pdf
 ```
 
-Output lands in `_book/` (gitignored). The landing page is `_book/index.html`. The LLM-friendly files are `_book/llms.txt` and one `*.llms.md` per chapter. A PDF is only produced if you explicitly run `--to pdf`.
+Output lands in `book/` (gitignored). The landing page is `book/index.html`. The LLM-friendly files are `book/llms.txt` and one `*.llms.md` per chapter. A PDF is only produced if you explicitly run `--to pdf`.
 
 ### Verify
 
 After `quarto render --to html`:
 
 - **Zero warnings** from `quarto render --to html`.
-- `_book/index.html` opens and the sidebar lists all six parts with their chapters.
-- `_book/llms.txt` exists and enumerates all chapters.
+- `book/index.html` opens and the sidebar lists all six parts with their chapters.
+- `book/llms.txt` exists and enumerates all chapters.
 - At least a handful of `@sec-*` cross-references resolve (click through in HTML).
 - Optional, local only: `quarto render --to pdf` renders without LaTeX errors (requires TinyTeX).
 
@@ -276,7 +276,7 @@ Each glossary term in `appendix-glossary.qmd` has an explicit `{#term-<slug>}` a
 
 ### What Not to Change
 
-- `_quarto.yml` top-level structure without a reason. In particular, do not remove the sibling `website: { llms-txt: true }` block; Quarto 1.9.37 has a bug where `llms-txt` under `book:` does not activate llms.txt generation, but under `website:` it does. See @sec-automation analog in the issue tracker if you want to upstream this.
+- `_quarto.yml` top-level structure without a reason. In particular, do not remove the sibling `website: { llms-txt: true }` block; Quarto 1.9 has a bug where `llms-txt` under `book:` does not activate llms.txt generation, but under `website:` it does. See @sec-automation analog in the issue tracker if you want to upstream this.
 - Section ID prefixes. They are baked into cross-references across the book.
 
 ---
@@ -338,6 +338,6 @@ Each of the above would be a reasonable first PR for a contributor. Follow the c
 
 ## CI/CD
 
-`.github/workflows/build-book.yml` runs `quarto render` on every push and PR, uploading the full `_book/` output as an artifact named `paratechnical-computing-handbook`. The workflow pins Quarto to 1.9.37 because the `llms-txt` feature requires 1.9.0+ and we want the exact same renderer in CI as locally.
+`.github/workflows/build-book.yml` renders the book on every push to `main` and on pull requests against `main`, using the latest stable Quarto release (`quarto-dev/quarto-actions/setup@v2` with `version: release`). The rendered `book/` output is uploaded as an artifact named `paratechnical-computing-handbook` and retained for 30 days. On pushes to `main`, the workflow also publishes the book to GitHub Pages by pushing `book/` to the `gh-pages` branch (`quarto-dev/quarto-actions/publish@v2`, `target: gh-pages`). PRs are render-only and do not publish.
 
-If you bump the Quarto version, also update the pin in `.github/workflows/build-book.yml` **and** the prerequisites in this file.
+The minimum Quarto version is 1.9.0 (`llms-txt` requires it). If you need to pin a specific version for reproducibility, set `version:` in the workflow's `setup@v2` step.
